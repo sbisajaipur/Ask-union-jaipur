@@ -1010,3 +1010,40 @@ section {
   }
 
 }
+/* SUNIL DABAL PHOTO - FINAL SIZE */
+
+#office-bearers .leader-card{
+  width:260px !important;
+  max-width:260px !important;
+  margin:0 auto !important;
+  padding:8px !important;
+  overflow:hidden !important;
+  text-align:center !important;
+}
+
+#office-bearers .leader-card img.leader-photo{
+  display:block !important;
+  width:220px !important;
+  height:300px !important;
+  max-width:220px !important;
+  max-height:300px !important;
+  object-fit:contain !important;
+  margin:0 auto !important;
+  border-radius:12px !important;
+}
+
+@media(max-width:600px){
+
+  #office-bearers .leader-card{
+    width:240px !important;
+    max-width:240px !important;
+  }
+
+  #office-bearers .leader-card img.leader-photo{
+    width:200px !important;
+    height:270px !important;
+    max-width:200px !important;
+    max-height:270px !important;
+  }
+
+}
