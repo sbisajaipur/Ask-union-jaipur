@@ -943,16 +943,11 @@ section {
 }/* =========================
    MODULE LEADER CARD
 ========================= */
-
-#office-bearers .resources{
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-}
+/* MODULE LEADER PHOTO - COMPACT */
 
 #office-bearers .leader-card{
   width:100%;
-  padding:12px;
+  padding:10px;
   margin:0;
   text-align:center;
   overflow:hidden;
@@ -960,28 +955,19 @@ section {
 
 #office-bearers .leader-photo{
   display:block;
-  width:100%;
-  max-width:380px;
+  width:180px;
   height:auto;
-  max-height:520px;
-  object-fit:contain;
+  max-width:100%;
   margin:0 auto;
-  border-radius:16px;
+  border-radius:14px;
+  box-shadow:0 5px 15px rgba(80,20,35,.12);
 }
-
-/* Mobile */
 
 @media(max-width:600px){
 
-  #office-bearers .leader-card{
-    padding:8px;
-  }
-
   #office-bearers .leader-photo{
-    width:100%;
-    max-width:100%;
-    max-height:500px;
-    border-radius:14px;
+    width:180px;
   }
 
 }
+#of
