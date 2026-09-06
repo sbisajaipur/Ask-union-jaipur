@@ -1,5 +1,14 @@
 const PROJECT_ID = "ask-union-jaipur-circle";
 
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAzMEREwPKnifSIrB5CvaC8-FbVIa5zF0",
+  authDomain: "ask-union-jaipur-circle.firebaseapp.com",
+  projectId: "ask-union-jaipur-circle",
+  storageBucket: "ask-union-jaipur-circle.firebasestorage.app",
+  messagingSenderId: "584327754977",
+  appId: "1:584327754977:web:7164a85c007165743ef3a"
+};
+
 const FIRESTORE_BASE =
   "https://firestore.googleapis.com/v1/projects/" +
   PROJECT_ID +
@@ -7,11 +16,10 @@ const FIRESTORE_BASE =
 
 
 /* =========================
-   FIRESTORE VALUE READER
+   FIRESTORE VALUE
 ========================= */
 
 function readValue(value) {
-
   if (!value) return "";
 
   if (value.stringValue !== undefined)
@@ -34,23 +42,196 @@ function readValue(value) {
 
 
 /* =========================
-   HTML SECURITY
+   SECURITY
 ========================= */
 
 function escapeHtml(value) {
-
   return String(value ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+
+/* =========================
+   CREATE ITEM
+========================= */
+
+function createItem(fields) {
+
+  const title =
+    readValue(fields.title) ||
+    readValue(fields.Title) ||
+    readValue(fields.name) ||
+    readValue(fields.Name) ||
+    "Untitled";
+
+  const date =
+    readValue(fields.date) ||
+    readValue(fields.Date) ||
+    "";
+
+  const details =
+    readValue(fields.details) ||
+    readValue(fields.Details) ||
+    readValue(fields.description) ||
+    readValue(fields.Description) ||
+    readValue(fields.message) ||
+    readValue(fields.Message) ||
+    "";
+
+  const link =
+    readValue(fields.link) ||
+    readValue(fields.Link) ||
+    readValue(fields.url) ||
+    readValue(fields.URL) ||
+    "";
+
+  return `
+    <div class="item">
+
+      <b>${escapeHtml(title)}</b>
+
+      ${
+        date
+          ? `<span>${escapeHtml(date)}</span>`
+          : ""
+      }
+
+      ${
+        details
+          ? `<p>${escapeHtml(details)}</p>`
+          : ""
+      }
+
+      ${
+        link
+          ? `
+            <a
+              href="${escapeHtml(link)}"
+              target="_blank"
+              rel="noopener"
+            >
+              Open PDF / Link →
+            </a>
+          `
+          : ""
+      }
+
+    </div>
+  `;
+}
+
+
+/* =========================
+   REST METHOD
+========================= */
+
+async function loadFromREST(collection) {
+
+  const response = await fetch(
+    `${FIRESTORE_BASE}/${collection}?pageSize=100&v=11`,
+    {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        "Accept": "application/json"
+      }
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      "REST HTTP " + response.status
+    );
+  }
+
+  const data = await response.json();
+
+  return data.documents || [];
+}
+
+
+/* =========================
+   LOAD FIREBASE SDK
+========================= */
+
+function loadScript(src) {
+
+  return new Promise((resolve, reject) => {
+
+    const script =
+      document.createElement("script");
+
+    script.src = src;
+
+    script.onload = resolve;
+
+    script.onerror = () =>
+      reject(
+        new Error(
+          "Could not load Firebase SDK"
+        )
+      );
+
+    document.head.appendChild(script);
+
+  });
 
 }
 
 
 /* =========================
-   LOAD FIRESTORE COLLECTION
+   FIREBASE SDK METHOD
+========================= */
+
+let firebaseReady = false;
+
+async function loadFromFirebase(collectionName) {
+
+  if (!firebaseReady) {
+
+    await loadScript(
+      "https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"
+    );
+
+    await loadScript(
+      "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"
+    );
+
+    firebase.initializeApp(
+      FIREBASE_CONFIG
+    );
+
+    firebaseReady = true;
+  }
+
+  const db =
+    firebase.firestore();
+
+  const snapshot =
+    await db
+      .collection(collectionName)
+      .get();
+
+  const documents = [];
+
+  snapshot.forEach(doc => {
+
+    documents.push({
+      fields: doc.data()
+    });
+
+  });
+
+  return documents;
+}
+
+
+/* =========================
+   MAIN LOADER
 ========================= */
 
 async function loadCollection(
@@ -64,256 +245,117 @@ async function loadCollection(
 
   if (!element) return;
 
+  element.innerHTML =
+    `<div class="item">
+       <p>Loading...</p>
+     </div>`;
+
+
+  let documents = [];
+
+
+  /* FIRST: REST */
 
   try {
 
-    element.innerHTML =
-      "<p>Loading...</p>";
-
-
-    const url =
-      FIRESTORE_BASE +
-      "/" +
-      collection +
-      "?v=10";
-
-
     console.log(
-      "Loading Firestore:",
+      "Trying Firestore REST:",
       collection
     );
 
-
-    const response =
-      await fetch(url, {
-        method: "GET",
-        cache: "no-store",
-        headers: {
-          "Accept": "application/json"
-        }
-      });
-
-
-    /* =========================
-       CHECK HTTP RESPONSE
-    ========================= */
-
-    if (!response.ok) {
-
-      const errorText =
-        await response.text();
-
-      console.error(
-        "Firestore error:",
-        response.status,
-        errorText
-      );
-
-
-      throw new Error(
-        "HTTP " +
-        response.status
-      );
-
-    }
-
-
-    /* =========================
-       READ JSON
-    ========================= */
-
-    const result =
-      await response.json();
-
+    documents =
+      await loadFromREST(collection);
 
     console.log(
-      collection +
-      " response:",
-      result
+      "REST successful:",
+      collection,
+      documents.length
+    );
+
+  } catch (restError) {
+
+    console.warn(
+      "REST failed:",
+      restError
     );
 
 
-    const documents =
-      result.documents || [];
+    /* SECOND: FIREBASE SDK */
 
+    try {
 
-    /* =========================
-       NO DATA
-    ========================= */
+      console.log(
+        "Trying Firebase SDK:",
+        collection
+      );
 
-    if (documents.length === 0) {
+      documents =
+        await loadFromFirebase(collection);
 
-      element.innerHTML =
-        '<div class="about-card">' +
+      console.log(
+        "Firebase SDK successful:",
+        collection,
+        documents.length
+      );
 
-          '<p>' +
-          escapeHtml(emptyMessage) +
-          '</p>' +
+    } catch (firebaseError) {
 
-        '</div>';
+      console.error(
+        "Firebase SDK failed:",
+        firebaseError
+      );
+
+      element.innerHTML = `
+        <div class="item">
+
+          <b>
+            Information temporarily unavailable.
+          </b>
+
+          <p>
+            Please refresh the page and try again.
+          </p>
+
+        </div>
+      `;
 
       return;
-
     }
-
-
-    /* =========================
-       CREATE HTML
-    ========================= */
-
-    let html = "";
-
-
-    documents.forEach(function(doc) {
-
-      const fields =
-        doc.fields || {};
-
-
-      /* TITLE */
-
-      const title =
-        readValue(fields.title) ||
-        readValue(fields.Title) ||
-        readValue(fields.name) ||
-        readValue(fields.Name) ||
-        "Untitled";
-
-
-      /* DATE */
-
-      const date =
-        readValue(fields.date) ||
-        readValue(fields.Date) ||
-        readValue(fields.createdAt) ||
-        readValue(fields.CreatedAt) ||
-        "";
-
-
-      /* DETAILS */
-
-      const details =
-        readValue(fields.details) ||
-        readValue(fields.Details) ||
-        readValue(fields.description) ||
-        readValue(fields.Description) ||
-        readValue(fields.message) ||
-        readValue(fields.Message) ||
-        "";
-
-
-      /* LINK */
-
-      const link =
-        readValue(fields.link) ||
-        readValue(fields.Link) ||
-        readValue(fields.url) ||
-        readValue(fields.URL) ||
-        "";
-
-
-      html +=
-        '<div class="about-card">' +
-
-
-          '<strong>' +
-          escapeHtml(title) +
-          '</strong>' +
-
-
-          (
-            date
-            ?
-
-              '<small style="' +
-              'display:block;' +
-              'margin-top:6px;' +
-              'opacity:.65;' +
-              '">' +
-
-              escapeHtml(date) +
-
-              '</small>'
-
-            : ""
-          ) +
-
-
-          (
-            details
-            ?
-
-              '<p style="' +
-              'margin-top:10px;' +
-              'line-height:1.6;' +
-              '">' +
-
-              escapeHtml(details) +
-
-              '</p>'
-
-            : ""
-          ) +
-
-
-          (
-            link
-            ?
-
-              '<a ' +
-              'href="' +
-              escapeHtml(link) +
-              '" ' +
-              'target="_blank" ' +
-              'rel="noopener" ' +
-              'class="hero-btn">' +
-
-              'OPEN PDF / LINK →' +
-
-              '</a>'
-
-            : ""
-          ) +
-
-
-        '</div>';
-
-    });
-
-
-    element.innerHTML = html;
-
-
-  } catch (error) {
-
-    console.error(
-      "Error loading " +
-      collection +
-      ":",
-      error
-    );
-
-
-    element.innerHTML =
-      '<div class="about-card">' +
-
-        '<strong>' +
-        'Unable to load information.' +
-        '</strong>' +
-
-        '<p>' +
-        'Please refresh the page and try again.' +
-        '</p>' +
-
-      '</div>';
-
   }
+
+
+  /* =========================
+     NO DOCUMENTS
+  ========================= */
+
+  if (!documents.length) {
+
+    element.innerHTML = `
+      <div class="item">
+        <p>${escapeHtml(emptyMessage)}</p>
+      </div>
+    `;
+
+    return;
+  }
+
+
+  /* =========================
+     DISPLAY DOCUMENTS
+  ========================= */
+
+  element.innerHTML =
+    documents
+      .map(doc =>
+        createItem(doc.fields || {})
+      )
+      .join("");
 
 }
 
 
 /* =========================
-   START APP
+   START
 ========================= */
 
 document.addEventListener(
@@ -326,13 +368,11 @@ document.addEventListener(
       "No new updates published yet."
     );
 
-
     loadCollection(
       "circulars",
       "circularsList",
       "No circulars published yet."
     );
-
 
     loadCollection(
       "events",
