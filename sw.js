@@ -5,8 +5,8 @@ const STATIC_FILES = [
   "./index.html",
   "./style.css",
   "./manifest.json",
-  "./icon-192.png",
-  "./icon-512.png",
+"./ask-union-icon-192.png",
+"./ask-union-icon-512.png",
   "./udaipur-bg.png"
 ];
 
