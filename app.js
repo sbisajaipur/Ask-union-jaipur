@@ -67,14 +67,10 @@ function renderItem(data) {
     data.Name ||
     "Untitled";
 
-
   const date =
-  formatDate(
     data.date ||
     data.Date ||
-    ""
-  );
-
+    "";
 
   const details =
     data.details ||
@@ -85,14 +81,12 @@ function renderItem(data) {
     data.Message ||
     "";
 
-
   const link =
     data.link ||
     data.Link ||
     data.url ||
     data.URL ||
     "";
-
 
   return `
     <div class="item">
@@ -103,21 +97,13 @@ function renderItem(data) {
 
       ${
         date
-          ? `
-            <span>
-              ${escapeHtml(date)}
-            </span>
-          `
+          ? `<span>${escapeHtml(formatDate(date))}</span>`
           : ""
       }
 
       ${
         details
-          ? `
-            <p>
-              ${escapeHtml(details)}
-            </p>
-          `
+          ? `<p>${escapeHtml(details)}</p>`
           : ""
       }
 
@@ -127,9 +113,11 @@ function renderItem(data) {
             <a
               href="${escapeHtml(link)}"
               target="_blank"
-              rel="noopener"
-            >
-              Open PDF / Link →
+              rel="noopener noreferrer"
+              class="pdf-button">
+              
+              <span>📄 Open PDF / Link →</span>
+
             </a>
           `
           : ""
@@ -137,7 +125,6 @@ function renderItem(data) {
 
     </div>
   `;
-
 }
 
 /* =========================================
