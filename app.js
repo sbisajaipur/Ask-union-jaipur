@@ -1,41 +1,221 @@
 // ======================================================
 // ASK UNION – SBISA UDAIPUR MODULE
-// Firebase Firestore Public Display
+// Direct Firestore REST Reader
 // ======================================================
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAzMEREwPKnifSIrB5CvaC8-CFbVIa5zF0",
-  authDomain: "ask-union-jaipur-circle.firebaseapp.com",
-  projectId: "ask-union-jaipur-circle",
-  storageBucket: "ask-union-jaipur-circle.firebasestorage.app",
-  messagingSenderId: "584327754977",
-  appId: "1:584327754977:web:7164a85c007165743ef3a"
-};
+const PROJECT_ID = "ask-union-jaipur-circle";
+
+const FIRESTORE_BASE =
+  `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
 
 
-// Load Firebase
-const firebaseScript = document.createElement("script");
-firebaseScript.src =
-  "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js";
+// ======================================================
+// FIRESTORE VALUE READER
+// ======================================================
 
-document.head.appendChild(firebaseScript);
+function readValue(value) {
+
+  if (!value) return "";
+
+  if (value.stringValue !== undefined)
+    return value.stringValue;
+
+  if (value.integerValue !== undefined)
+    return value.integerValue;
+
+  if (value.doubleValue !== undefined)
+    return value.doubleValue;
+
+  if (value.booleanValue !== undefined)
+    return value.booleanValue;
+
+  if (value.timestampValue !== undefined)
+    return value.timestampValue;
+
+  return "";
+
+}
 
 
-firebaseScript.onload = function () {
+// ======================================================
+// ESCAPE HTML
+// ======================================================
 
-  const firestoreScript = document.createElement("script");
+function escapeHtml(value) {
 
-  firestoreScript.src =
-    "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js";
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
-  document.head.appendChild(firestoreScript);
+}
 
 
-  firestoreScript.onload = function () {
+// ======================================================
+// LOAD COLLECTION
+// ======================================================
 
-    firebase.initializeApp(firebaseConfig);
+async function loadCollection(
+  collection,
+  elementId,
+  emptyMessage
+) {
 
-    const db = firebase.firestore();
+  const element =
+    document.getElementById(elementId);
+
+  if (!element) return;
+
+
+  try {
+
+    const response = await fetch(
+      `${FIRESTORE_BASE}/${collection}`
+    );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        `Firestore HTTP ${response.status}`
+      );
+
+    }
+
+
+    const result =
+      await response.json();
+
+
+    const documents =
+      result.documents || [];
+
+
+    if (documents.length === 0) {
+
+      element.innerHTML =
+        `<div class="item">${emptyMessage}</div>`;
+
+      return;
+
+    }
+
+
+    let html = "";
+
+
+    documents.forEach(document => {
+
+      const fields =
+        document.fields || {};
+
+
+      const title =
+        readValue(fields.title) ||
+        readValue(fields.Title) ||
+        "Untitled";
+
+
+      const date =
+        readValue(fields.date) ||
+        readValue(fields.Date) ||
+        "";
+
+
+      const details =
+        readValue(fields.details) ||
+        readValue(fields.Details) ||
+        "";
+
+
+      const link =
+        readValue(fields.link) ||
+        readValue(fields.Link) ||
+        "";
+
+
+      html += `
+
+        <div class="item">
+
+          <b>
+            ${escapeHtml(title)}
+          </b>
+
+          ${
+            date
+              ? `<span>${escapeHtml(date)}</span>`
+              : ""
+          }
+
+          ${
+            details
+              ? `<p>${escapeHtml(details)}</p>`
+              : ""
+          }
+
+          ${
+            link
+              ? `
+                <a
+                  href="${escapeHtml(link)}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Open PDF / Link →
+                </a>
+              `
+              : ""
+          }
+
+        </div>
+
+      `;
+
+    });
+
+
+    element.innerHTML = html;
+
+
+  } catch (error) {
+
+    console.error(
+      `Error loading ${collection}:`,
+      error
+    );
+
+
+    element.innerHTML = `
+
+      <div class="item">
+
+        <b>
+          Unable to load information
+        </b>
+
+        <p>
+          Please refresh the page.
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+// ======================================================
+// START
+// ======================================================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
 
     loadCollection(
       "updates",
@@ -43,11 +223,13 @@ firebaseScript.onload = function () {
       "No new updates published yet."
     );
 
+
     loadCollection(
       "circulars",
       "circularsList",
       "No circulars published yet."
     );
+
 
     loadCollection(
       "events",
@@ -55,172 +237,5 @@ firebaseScript.onload = function () {
       "No upcoming events published yet."
     );
 
-
-    // ================================================
-    // LOAD FIRESTORE COLLECTION
-    // ================================================
-
-    function loadCollection(collectionName, elementId, emptyMessage) {
-
-      const element = document.getElementById(elementId);
-
-      if (!element) return;
-
-      element.innerHTML =
-        '<div class="item">Loading...</div>';
-
-
-      db.collection(collectionName)
-        .orderBy("createdAt", "desc")
-        .get()
-
-        .then(snapshot => {
-
-          if (snapshot.empty) {
-
-            element.innerHTML =
-              `<div class="item">${emptyMessage}</div>`;
-
-            return;
-          }
-
-
-          let html = "";
-
-
-          snapshot.forEach(doc => {
-
-            const data = doc.data();
-
-
-            // Support both old and new field names
-            const title =
-              data.title ||
-              data.Title ||
-              "Untitled";
-
-
-            const date =
-              data.date ||
-              data.Date ||
-              "";
-
-
-            const details =
-              data.details ||
-              data.Details ||
-              "";
-
-
-            const link =
-              data.link ||
-              data.Link ||
-              "";
-
-
-            html += `
-
-              <div class="item">
-
-                <b>${escapeHtml(title)}</b>
-
-                ${
-                  date
-                    ? `<span>${escapeHtml(date)}</span>`
-                    : ""
-                }
-
-                ${
-                  details
-                    ? `<p>${escapeHtml(details)}</p>`
-                    : ""
-                }
-
-                ${
-                  link
-                    ? `
-                      <a
-                        href="${escapeAttribute(link)}"
-                        target="_blank"
-                        rel="noopener"
-                      >
-                        Open PDF / Link →
-                      </a>
-                    `
-                    : ""
-                }
-
-              </div>
-
-            `;
-
-          });
-
-
-          element.innerHTML = html;
-
-        })
-
-
-        .catch(error => {
-
-          console.error(
-            "Firestore error:",
-            collectionName,
-            error
-          );
-
-
-          element.innerHTML = `
-
-            <div class="item">
-
-              <b>Information temporarily unavailable.</b>
-
-              <p>
-                Please try again after a moment.
-              </p>
-
-            </div>
-
-          `;
-
-        });
-
-    }
-
-
-    // ================================================
-    // SECURITY HELPERS
-    // ================================================
-
-    function escapeHtml(value) {
-
-      return String(value)
-
-        .replace(/&/g, "&amp;")
-
-        .replace(/</g, "&lt;")
-
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
-
-    }
-
-
-    function escapeAttribute(value) {
-
-      return String(value)
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
-
-    }
-
-  };
-
-};
+  }
+);
