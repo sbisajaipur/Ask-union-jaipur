@@ -335,7 +335,8 @@ async function publish(){
     document.getElementById("details").value.trim();  
   
   const link =  
-    document.getElementById("link").value.trim();  
+    document.getElementById("link").value.trim(); document.getElementById("contentDate").value =
+  data.date || ""; 
   
   if(!title){  
   
