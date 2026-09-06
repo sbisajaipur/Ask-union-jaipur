@@ -1,4 +1,4 @@
-const CACHE_NAME = "ask-union-v6";const CACHE_NAME = "ask-union-v5";const CACHE_NAME = "ask-union-v3";
+const CACHE_NAME = "ask-union-v6";
 
 const FILES_TO_CACHE = [
   "./",
@@ -20,6 +20,7 @@ self.addEventListener("install", event => {
   self.skipWaiting();
 });
 
+
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys => {
@@ -33,6 +34,7 @@ self.addEventListener("activate", event => {
 
   self.clients.claim();
 });
+
 
 self.addEventListener("fetch", event => {
   event.respondWith(
