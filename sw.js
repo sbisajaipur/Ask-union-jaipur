@@ -1,4 +1,4 @@
-const CACHE_NAME = "ask-union-v10";
+const CACHE_NAME = "ask-union-v11";
 
 const STATIC_FILES = [
   "./",
