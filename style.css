@@ -1720,3 +1720,152 @@ header{
 #useful .resource strong{
   font-weight:750;
 }
+/* =========================================
+   ASK UNION — COMPACT MODERN MOBILE UI
+========================================= */
+
+@media(max-width:600px){
+
+  /* ---------- General ---------- */
+
+  .section{
+    padding-top:20px !important;
+    padding-bottom:20px !important;
+  }
+
+  .section-head{
+    margin-bottom:14px !important;
+  }
+
+  .section-head h2{
+    font-size:21px !important;
+    margin:4px 0 !important;
+  }
+
+
+  /* ---------- Content Cards ---------- */
+
+  .item{
+    padding:14px 15px !important;
+    margin:9px 0 !important;
+    border-radius:17px !important;
+  }
+
+  .item b{
+    font-size:15px !important;
+    line-height:1.35 !important;
+    margin-bottom:5px !important;
+  }
+
+  .item p{
+    font-size:13px !important;
+    line-height:1.5 !important;
+    margin:6px 0 !important;
+  }
+
+  .item span,
+  .item .small{
+    font-size:10px !important;
+    padding:4px 8px !important;
+  }
+
+
+  /* ---------- PDF Button ---------- */
+
+  .item a{
+    min-height:38px !important;
+    padding:0 13px !important;
+    border-radius:11px !important;
+
+    font-size:12px !important;
+  }
+
+
+  /* ---------- Circulars ---------- */
+
+  #circulars .item{
+    padding:15px !important;
+  }
+
+  #circulars .item a{
+    display:inline-flex !important;
+    margin-top:7px !important;
+  }
+
+
+  /* ---------- Events ---------- */
+
+  #events .item{
+    padding:15px !important;
+  }
+
+
+  /* ---------- Useful Information ---------- */
+
+  #useful .resource{
+    padding:15px !important;
+    min-height:95px !important;
+    border-radius:17px !important;
+  }
+
+  #useful .resource-icon{
+    font-size:28px !important;
+    margin-bottom:7px !important;
+  }
+
+  #useful .resource strong{
+    font-size:15px !important;
+  }
+
+  #useful .resource small{
+    font-size:11px !important;
+  }
+
+
+  /* ---------- Bottom Navigation ---------- */
+
+  .bottom-nav{
+    min-height:62px !important;
+    padding:5px !important;
+    border-radius:20px !important;
+  }
+
+  .bottom-nav a{
+    min-height:50px !important;
+    gap:3px !important;
+    font-size:9px !important;
+  }
+
+  .bottom-nav span{
+    font-size:9px !important;
+  }
+
+
+  /* ---------- Less visual weight ---------- */
+
+  .item,
+  .resource,
+  .about-card{
+    box-shadow:
+      0 4px 15px rgba(60,20,30,.045) !important;
+  }
+
+}
+
+
+/* =========================================
+   REMOVE EXCESSIVE EMPTY SPACE
+========================================= */
+
+@media(max-width:600px){
+
+  #updates,
+  #circulars,
+  #events,
+  #office-bearers,
+  #about,
+  #useful{
+    min-height:auto !important;
+  }
+
+}
