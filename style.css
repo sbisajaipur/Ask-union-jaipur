@@ -8,46 +8,59 @@ html {
 
 :root {
   --maroon: #7b1024;
-  --dark-maroon: #560817;
-  --light-maroon: #f8e9ed;
-  --gold: #c9a227;
-  --bg: #f7f5f3;
+  --dark-maroon: #520817;
+  --light-maroon: #f8e8ec;
+  --cream: #faf7f4;
   --white: #ffffff;
   --text: #202124;
   --muted: #77777f;
-  --border: #ebe6e3;
+  --border: #e8dfdc;
 }
 
 body {
   margin: 0;
-  background:
-    linear-gradient(rgba(247,245,243,.72), rgba(247,245,243,.72)),
-    url("udaipur-bg.jpg") center top / cover fixed no-repeat;
-  color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
   line-height: 1.6;
+
+  /* UDAIPUR BACKGROUND */
+  background:
+    linear-gradient(
+      rgba(250, 247, 244, 0.72),
+      rgba(250, 247, 244, 0.82)
+    ),
+    url("udaipur-bg.jpg") center top / cover fixed no-repeat;
 }
 
 .app {
   max-width: 1120px;
-  margin: auto;
-  background: transparent;
+  margin: 0 auto;
   min-height: 100vh;
+  background: transparent;
 }
 
 /* ================= HEADER ================= */
 
 header {
-  background: linear-gradient(135deg, var(--dark-maroon), var(--maroon));
-  color: white;
-  padding: 14px 28px;
+  background: linear-gradient(
+    135deg,
+    #520817,
+    #7b1024,
+    #921d38
+  );
+  color: #fff;
+
+  padding: 13px 28px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 5px 20px rgba(0,0,0,.18);
+
+  box-shadow: 0 6px 22px rgba(50, 0, 15, 0.25);
 }
 
 .brand-wrap {
@@ -61,7 +74,7 @@ header {
   height: 55px;
   border-radius: 12px;
   object-fit: cover;
-  background: white;
+  background: #fff;
 }
 
 .brand-title {
@@ -73,12 +86,12 @@ header {
 .brand-sub {
   font-size: 11px;
   letter-spacing: 2px;
-  opacity: .85;
+  opacity: 0.88;
 }
 
 .online {
   font-size: 10px;
-  padding: 6px 10px;
+  padding: 7px 12px;
   border: 1px solid rgba(255,255,255,.35);
   border-radius: 20px;
   letter-spacing: 1px;
@@ -87,26 +100,39 @@ header {
 /* ================= HERO ================= */
 
 .hero {
- .hero {
   position: relative;
   overflow: hidden;
+
+  min-height: 430px;
+
   background:
-    linear-gradient(rgba(75, 5, 20, .48), rgba(75, 5, 20, .58)),
+    linear-gradient(
+      90deg,
+      rgba(55, 4, 16, 0.68),
+      rgba(70, 8, 25, 0.35),
+      rgba(40, 4, 12, 0.15)
+    ),
     url("udaipur-bg.jpg") center center / cover no-repeat;
-  color: white;
-  padding: 65px 40px;
+
+  color: #fff;
+
+  padding: 75px 42px;
+
   border-radius: 0 0 25px 25px;
+
+  display: flex;
+  align-items: center;
 }
 
 .hero-content {
-  max-width: 760px;
+  max-width: 720px;
 }
 
 .eyebrow {
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 2.5px;
-  opacity: .8;
+  opacity: .88;
 }
 
 .eyebrow.dark {
@@ -115,57 +141,78 @@ header {
 }
 
 .hero h1 {
-  font-size: 48px;
-  line-height: 1.1;
-  margin: 14px 0;
-  letter-spacing: -1px;
+  margin: 15px 0;
+  font-size: 50px;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
 }
 
 .hero h1 span {
-  opacity: .8;
+  opacity: .82;
 }
 
 .hero p {
   max-width: 650px;
   font-size: 16px;
-  opacity: .9;
+  opacity: .95;
 }
 
 .hero-btn {
   display: inline-block;
-  margin-top: 14px;
-  padding: 12px 20px;
-  background: white;
+  margin-top: 15px;
+  padding: 12px 21px;
+
+  background: #fff;
   color: var(--maroon);
-  border-radius: 10px;
+
+  border-radius: 11px;
   text-decoration: none;
   font-weight: 800;
-  box-shadow: 0 7px 20px rgba(0,0,0,.15);
+
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
 }
 
 /* ================= QUICK ACCESS ================= */
 
 .quick {
-  padding: 35px 30px;
+  margin: -35px 30px 25px;
+  position: relative;
+  z-index: 5;
+
+  padding: 28px;
+
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 19px;
+
+  box-shadow: 0 12px 35px rgba(40,20,15,.12);
 }
 
 .section-head {
   display: flex;
   align-items: end;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .section-head h2 {
-  margin: 4px 0 0;
+  margin: 3px 0 0;
   font-size: 27px;
   letter-spacing: -.5px;
+}
+
+.number {
+  color: #cfc4c1;
+  font-size: 22px;
+  font-weight: 800;
 }
 
 .quick-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 13px;
 }
 
 .quick-card {
@@ -173,28 +220,36 @@ header {
   grid-template-columns: 45px 1fr auto;
   align-items: center;
   gap: 12px;
-  padding: 17px;
-  background: white;
+
+  padding: 16px;
+
+  background: #fff;
   border: 1px solid var(--border);
   border-radius: 15px;
+
   text-decoration: none;
-  box-shadow: 0 7px 20px rgba(50,25,20,.05);
-  transition: .2s;
+
+  box-shadow: 0 6px 18px rgba(50,25,20,.05);
+
+  transition: .2s ease;
 }
 
 .quick-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(50,25,20,.1);
+  box-shadow: 0 12px 25px rgba(50,25,20,.11);
 }
 
 .quick-card .icon {
   width: 45px;
   height: 45px;
+
   display: grid;
   place-items: center;
+
   background: var(--light-maroon);
   border-radius: 12px;
-  font-size: 22px;
+
+  font-size: 21px;
 }
 
 .quick-card strong {
@@ -211,31 +266,30 @@ header {
 
 .quick-card > span {
   color: var(--maroon);
-  font-weight: bold;
+  font-weight: 900;
 }
 
-/* ================= SECTIONS ================= */
+/* ================= CONTENT SECTIONS ================= */
 
 .section {
-  margin: 0 30px 25px;
+  margin: 0 30px 22px;
   padding: 25px;
-  background: white;
-  border: 1px solid var(--border);
+
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(7px);
+
+  border: 1px solid rgba(232,223,220,.9);
   border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(50,25,20,.045);
+
+  box-shadow: 0 9px 28px rgba(40,20,15,.08);
 }
 
 .section h2 {
-  margin: 0;
   color: var(--maroon);
+  margin: 0;
 }
 
-.number {
-  color: #aaa;
-  font-size: 12px;
-}
-
-/* ================= FIREBASE CONTENT ================= */
+/* ================= FIREBASE CARDS ================= */
 
 #updatesList,
 #circularsList,
@@ -248,61 +302,50 @@ header {
 .update-card,
 .circular-card,
 .event-card {
+  margin: 0;
+
+  padding: 16px;
+
   background: #fffafa;
+
   border: 1px solid #eadfe1;
   border-left: 4px solid var(--maroon);
+
   border-radius: 12px;
-  padding: 16px;
-  margin: 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,.035);
+
+  box-shadow: 0 4px 13px rgba(0,0,0,.035);
 }
 
-/* Links/buttons generated by existing app */
-
-a {
+.item a,
+.update-card a,
+.circular-card a,
+.event-card a {
   color: var(--maroon);
-}
-
-.btn {
-  display: inline-block;
-  background: var(--maroon);
-  color: white;
-  text-decoration: none;
-  padding: 10px 18px;
-  border-radius: 9px;
-  margin-top: 8px;
   font-weight: 700;
-}
-
-.btn:hover {
-  background: var(--dark-maroon);
 }
 
 /* ================= ABOUT UNION ================= */
 
 .about-card {
-  background: white;
-}
-
-.about-card h3 {
-  color: var(--maroon);
-  margin-top: 26px;
-  margin-bottom: 8px;
-  font-size: 19px;
-}
-
-.about-card p {
-  color: #4e4e55;
+  background: #fff;
 }
 
 .history-banner {
   display: flex;
   align-items: center;
   gap: 18px;
-  background: linear-gradient(100deg, #f7e6ea, #fff);
+
+  padding: 17px;
+
+  background: linear-gradient(
+    100deg,
+    #f7e6ea,
+    #fff
+  );
+
   border: 1px solid #ead4d9;
   border-radius: 14px;
-  padding: 17px;
+
   margin-bottom: 22px;
 }
 
@@ -322,10 +365,22 @@ a {
   font-size: 12px;
 }
 
+.about-card h3 {
+  color: var(--maroon);
+  margin: 25px 0 8px;
+  font-size: 19px;
+}
+
+.about-card p {
+  color: #4d4d54;
+}
+
 .legacy {
   display: grid;
   grid-template-columns: 1fr 1fr;
+
   gap: 7px 25px;
+
   padding-left: 22px;
 }
 
@@ -342,8 +397,11 @@ a {
 .circles span {
   background: var(--light-maroon);
   color: var(--maroon);
+
   padding: 6px 12px;
+
   border-radius: 20px;
+
   font-size: 12px;
   font-weight: 700;
 }
@@ -351,9 +409,18 @@ a {
 .motto {
   margin-top: 25px;
   padding: 20px;
+
   text-align: center;
-  color: white;
-  background: linear-gradient(135deg, var(--dark-maroon), var(--maroon));
+
+  color: #fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--dark-maroon),
+      var(--maroon)
+    );
+
   border-radius: 13px;
 }
 
@@ -364,12 +431,14 @@ a {
 
 .motto strong {
   display: block;
+
   margin-top: 5px;
+
   font-size: 18px;
   letter-spacing: 2px;
 }
 
-/* ================= RESOURCES ================= */
+/* ================= USEFUL INFORMATION ================= */
 
 .resources {
   display: grid;
@@ -378,12 +447,22 @@ a {
 }
 
 .resource {
-  background: white;
+  background: #fff;
+
   border: 1px solid var(--border);
   border-radius: 14px;
+
   padding: 18px;
+
   font-size: 22px;
+
   box-shadow: 0 5px 15px rgba(0,0,0,.04);
+
+  transition: .2s;
+}
+
+.resource:hover {
+  transform: translateY(-2px);
 }
 
 .resource strong,
@@ -404,10 +483,21 @@ a {
 /* ================= FOOTER ================= */
 
 footer {
-  background: #4d0717;
-  color: white;
+  position: relative;
+
+  background:
+    linear-gradient(
+      rgba(78, 5, 22, .94),
+      rgba(78, 5, 22, .97)
+    ),
+    url("udaipur-bg.jpg") center / cover no-repeat;
+
+  color: #fff;
+
   text-align: center;
-  padding: 30px 20px 90px;
+
+  padding: 32px 20px 90px;
+
   font-size: 12px;
 }
 
@@ -417,7 +507,7 @@ footer strong {
 }
 
 footer p {
-  opacity: .75;
+  opacity: .78;
 }
 
 /* ================= BOTTOM NAV ================= */
@@ -431,7 +521,12 @@ footer p {
 @media (max-width: 700px) {
 
   body {
-    background: var(--bg);
+    background:
+      linear-gradient(
+        rgba(250,247,244,.82),
+        rgba(250,247,244,.88)
+      ),
+      url("udaipur-bg.jpg") center top / cover fixed no-repeat;
   }
 
   header {
@@ -450,6 +545,7 @@ footer p {
 
   .brand-sub {
     font-size: 9px;
+    letter-spacing: 1.5px;
   }
 
   .online {
@@ -458,12 +554,20 @@ footer p {
   }
 
   .hero {
-    padding: 45px 20px 40px;
-    border-radius: 0 0 20px 20px;
+    min-height: 390px;
+
+    padding: 48px 20px 45px;
+
+    background:
+      linear-gradient(
+        rgba(65,5,18,.62),
+        rgba(65,5,18,.48)
+      ),
+      url("udaipur-bg.jpg") center center / cover no-repeat;
   }
 
   .hero h1 {
-    font-size: 35px;
+    font-size: 36px;
   }
 
   .hero p {
@@ -471,12 +575,15 @@ footer p {
   }
 
   .quick {
-    padding: 27px 14px;
+    margin: -25px 14px 18px;
+    padding: 20px 14px;
+    border-radius: 16px;
   }
 
   .section {
     margin: 0 14px 18px;
     padding: 18px;
+
     border-radius: 15px;
   }
 
@@ -491,6 +598,7 @@ footer p {
 
   .quick-card {
     grid-template-columns: 38px 1fr;
+
     padding: 12px;
     gap: 9px;
   }
@@ -513,12 +621,21 @@ footer p {
     font-size: 10px;
   }
 
+  .history-banner {
+    padding: 13px;
+  }
+
+  .year {
+    font-size: 25px;
+  }
+
   .legacy {
     grid-template-columns: 1fr;
   }
 
   .resources {
     grid-template-columns: 1fr 1fr;
+    gap: 9px;
   }
 
   .resource {
@@ -534,25 +651,43 @@ footer p {
     font-size: 10px;
   }
 
+  footer {
+    padding-bottom: 82px;
+  }
+
+  /* MOBILE BOTTOM MENU */
+
   .bottom-nav {
     position: fixed;
+
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+
     bottom: 0;
     left: 0;
     right: 0;
+
     height: 62px;
-    background: white;
+
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(10px);
+
     border-top: 1px solid #ddd;
+
     z-index: 200;
-    box-shadow: 0 -6px 20px rgba(0,0,0,.1);
+
+    box-shadow: 0 -7px 22px rgba(0,0,0,.1);
   }
 
   .bottom-nav a {
     text-decoration: none;
+
     text-align: center;
+
     color: #777;
+
     padding: 7px 2px;
+
     font-size: 18px;
   }
 
