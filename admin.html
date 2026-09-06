@@ -1,313 +1,571 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASK UNION – Admin</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      margin: 0;
-      padding: 20px;
-    }
+<title>ASK UNION – Admin Panel</title>
 
-    .box {
-      max-width: 600px;
-      margin: 20px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 18px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.08);
-    }
+<style>
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  margin:0;
+  padding:20px;
+}
 
-    h1 {
-      color: #123b70;
-    }
+.box{
+  max-width:650px;
+  margin:20px auto;
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
 
-    input, textarea, select, button {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 13px;
-      margin: 8px 0;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
+h1,h2{
+  color:#123b70;
+}
 
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
+input,textarea,select,button{
+  width:100%;
+  box-sizing:border-box;
+  padding:13px;
+  margin:8px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
 
-    button {
-      background: #1264d8;
-      color: white;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
+textarea{
+  min-height:110px;
+}
 
-    .logout {
-      background: #777;
-    }
+button{
+  background:#1264d8;
+  color:white;
+  border:0;
+  font-weight:bold;
+}
 
-    .hidden {
-      display: none;
-    }
+.logout{
+  background:#777;
+}
 
-    #message {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 10px;
-    }
-  </style>
+.edit{
+  background:#f0a000;
+}
+
+.delete{
+  background:#d93025;
+}
+
+.hidden{
+  display:none;
+}
+
+.item{
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:15px;
+  margin:12px 0;
+}
+
+.item b{
+  font-size:18px;
+}
+
+.small{
+  color:#777;
+  font-size:13px;
+}
+
+.message{
+  margin-top:10px;
+  font-weight:bold;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- LOGIN -->
-  <div class="box" id="loginBox">
+<!-- LOGIN -->
 
-    <h1>ASK UNION</h1>
-    <h2>SBISA JAIPUR CIRCLE</h2>
+<div class="box" id="loginBox">
 
-    <p>Union Admin Login</p>
+<h1>ASK UNION</h1>
+<h2>SBISA JAIPUR CIRCLE</h2>
 
-    <input
-      type="email"
-      id="email"
-      placeholder="Admin Email"
-    >
+<p>Union Admin Login</p>
 
-    <input
-      type="password"
-      id="password"
-      placeholder="Password"
-    >
+<input
+type="email"
+id="email"
+placeholder="Admin Email">
 
-    <button onclick="login()">LOGIN</button>
+<input
+type="password"
+id="password"
+placeholder="Password">
 
-    <div id="loginMessage"></div>
+<button onclick="login()">LOGIN</button>
 
-  </div>
+<div id="loginMessage"></div>
 
-
-  <!-- ADMIN PANEL -->
-  <div class="box hidden" id="adminBox">
-
-    <h1>Content Management</h1>
-
-    <p>
-      Logged in as:
-      <b id="adminEmail"></b>
-    </p>
-
-    <button class="logout" onclick="logout()">
-      LOGOUT
-    </button>
-
-    <hr>
-
-    <h2>Publish Content</h2>
-
-    <label>Type</label>
-
-    <select id="type">
-      <option value="updates">Update / Notice</option>
-      <option value="circulars">Circular</option>
-      <option value="events">Event</option>
-    </select>
-
-    <label>Title</label>
-
-    <input
-      type="text"
-      id="title"
-      placeholder="Enter title"
-    >
-
-    <label>Details</label>
-
-    <textarea
-      id="details"
-      placeholder="Enter details"
-    ></textarea>
-
-    <label>PDF / Link (optional)</label>
-
-    <input
-      type="url"
-      id="link"
-      placeholder="https://..."
-    >
-
-    <button onclick="publish()">
-      PUBLISH
-    </button>
-
-    <div id="message"></div>
-
-  </div>
+</div>
 
 
-  <!-- FIREBASE -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<!-- ADMIN -->
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<div class="box hidden" id="adminBox">
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<h1>Content Management</h1>
+
+<p>
+Logged in as:
+<b id="adminEmail"></b>
+</p>
+
+<button class="logout" onclick="logout()">
+LOGOUT
+</button>
+
+<hr>
+
+<h2>Publish / Edit Content</h2>
+
+<select id="type">
+<option value="updates">Update / Notice</option>
+<option value="circulars">Circular</option>
+<option value="events">Event</option>
+</select>
+
+<input
+type="text"
+id="title"
+placeholder="Enter title">
+
+<textarea
+id="details"
+placeholder="Enter details"></textarea>
+
+<input
+type="url"
+id="link"
+placeholder="PDF / Link (optional)">
+
+<button id="publishButton" onclick="publish()">
+PUBLISH
+</button>
+
+<button
+id="cancelButton"
+class="logout hidden"
+onclick="cancelEdit()">
+CANCEL EDIT
+</button>
+
+<div id="message" class="message"></div>
+
+<hr>
+
+<h2>Published Content</h2>
+
+<select id="manageType" onchange="loadContent()">
+<option value="updates">Updates / Notices</option>
+<option value="circulars">Circulars</option>
+<option value="events">Events</option>
+</select>
+
+<div id="contentList">
+Loading...
+</div>
+
+</div>
 
 
-  <script>
+<!-- FIREBASE -->
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",
-      authDomain: "ask-union-jaipur-circle.firebaseapp.com",
-      projectId: "ask-union-jaipur-circle",
-      storageBucket: "ask-union-jaipur-circle.firebasestorage.app",
-      messagingSenderId: "584327754977",
-      appId: "1:584327754977:web:7164a85c007165743ef3a0"
-    };
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
-    firebase.initializeApp(firebaseConfig);
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 
-    // LOGIN
-    function login() {
+<script>
 
-      const email =
-        document.getElementById("email").value.trim();
+const firebaseConfig = {
+  apiKey: "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",
+  authDomain: "ask-union-jaipur-circle.firebaseapp.com",
+  projectId: "ask-union-jaipur-circle",
+  storageBucket: "ask-union-jaipur-circle.firebasestorage.app",
+  messagingSenderId: "584327754977",
+  appId: "1:584327754977:web:7164a85c007165743ef3a0"
+};
 
-      const password =
-        document.getElementById("password").value;
+firebase.initializeApp(firebaseConfig);
 
-      if (!email || !password) {
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-        document.getElementById("loginMessage").innerText =
-          "Please enter email and password.";
+let editingId = null;
 
-        return;
-      }
 
-      auth.signInWithEmailAndPassword(email, password)
+// LOGIN
 
-        .then(() => {
+function login(){
 
-          document.getElementById("loginMessage").innerText = "";
+  const email =
+    document.getElementById("email").value.trim();
 
-        })
+  const password =
+    document.getElementById("password").value;
 
-        .catch(error => {
+  auth.signInWithEmailAndPassword(email,password)
 
-          document.getElementById("loginMessage").innerText =
-            "Login failed: " + error.message;
+  .catch(error=>{
+    document.getElementById("loginMessage").innerText =
+      "Login failed: " + error.message;
+  });
+}
+
+
+// AUTH STATE
+
+auth.onAuthStateChanged(user=>{
+
+  if(user){
+
+    document.getElementById("loginBox")
+      .classList.add("hidden");
+
+    document.getElementById("adminBox")
+      .classList.remove("hidden");
+
+    document.getElementById("adminEmail")
+      .innerText=user.email;
+
+    loadContent();
+
+  }else{
+
+    document.getElementById("loginBox")
+      .classList.remove("hidden");
+
+    document.getElementById("adminBox")
+      .classList.add("hidden");
+
+  }
+
+});
+
+
+// LOGOUT
+
+function logout(){
+  auth.signOut();
+}
+
+
+// PUBLISH
+
+async function publish(){
+
+  const type =
+    document.getElementById("type").value;
+
+  const title =
+    document.getElementById("title").value.trim();
+
+  const details =
+    document.getElementById("details").value.trim();
+
+  const link =
+    document.getElementById("link").value.trim();
+
+  if(!title){
+
+    alert("Please enter a title.");
+
+    return;
+  }
+
+
+  try{
+
+    if(editingId){
+
+      await db.collection(type)
+        .doc(editingId)
+        .update({
+
+          title:title,
+          details:details,
+          link:link,
+          updatedAt:new Date().toISOString()
 
         });
+
+      showMessage("✓ Updated successfully!");
+
+      editingId=null;
+
+      document.getElementById("publishButton")
+        .innerText="PUBLISH";
+
+      document.getElementById("cancelButton")
+        .classList.add("hidden");
+
+    }else{
+
+      await db.collection(type).add({
+
+        title:title,
+        details:details,
+        link:link,
+        date:new Date().toISOString(),
+        createdBy:auth.currentUser.email
+
+      });
+
+      showMessage("✓ Published successfully!");
+
     }
 
 
-    // AUTH STATE
-    auth.onAuthStateChanged(user => {
+    clearForm();
 
-      if (user) {
+    loadContent();
 
-        document.getElementById("loginBox")
-          .classList.add("hidden");
+  }catch(error){
 
-        document.getElementById("adminBox")
-          .classList.remove("hidden");
+    showMessage("Error: "+error.message);
 
-        document.getElementById("adminEmail")
-          .innerText = user.email;
+  }
 
-      } else {
+}
 
-        document.getElementById("loginBox")
-          .classList.remove("hidden");
 
-        document.getElementById("adminBox")
-          .classList.add("hidden");
+// LOAD CONTENT
 
-      }
+async function loadContent(){
+
+  const type =
+    document.getElementById("manageType").value;
+
+  const list =
+    document.getElementById("contentList");
+
+  list.innerHTML="Loading...";
+
+
+  try{
+
+    const snapshot =
+      await db.collection(type).get();
+
+    if(snapshot.empty){
+
+      list.innerHTML=
+        "<p>No content published yet.</p>";
+
+      return;
+    }
+
+
+    let html="";
+
+
+    snapshot.forEach(doc=>{
+
+      const data=doc.data();
+
+      html += `
+
+        <div class="item">
+
+          <b>${escapeHtml(data.title || "")}</b>
+
+          <div class="small">
+            ${data.date || ""}
+          </div>
+
+          <p>
+            ${escapeHtml(data.details || "")}
+          </p>
+
+          ${
+            data.link
+            ? `<p><a href="${data.link}" target="_blank">
+                 Open PDF / Link
+               </a></p>`
+            : ""
+          }
+
+          <button
+            class="edit"
+            onclick="editContent('${type}','${doc.id}')">
+            EDIT
+          </button>
+
+          <button
+            class="delete"
+            onclick="deleteContent('${type}','${doc.id}')">
+            DELETE
+          </button>
+
+        </div>
+
+      `;
 
     });
 
 
-    // LOGOUT
-    function logout() {
+    list.innerHTML=html;
 
-      auth.signOut();
+  }catch(error){
 
+    list.innerHTML=
+      "Error loading content: "+error.message;
+
+  }
+
+}
+
+
+// EDIT
+
+async function editContent(type,id){
+
+  try{
+
+    const doc =
+      await db.collection(type).doc(id).get();
+
+    if(!doc.exists){
+
+      alert("Content not found.");
+
+      return;
     }
 
+    const data=doc.data();
 
-    // PUBLISH
-    async function publish() {
+    document.getElementById("type").value=type;
 
-      const type =
-        document.getElementById("type").value;
+    document.getElementById("title").value=
+      data.title || "";
 
-      const title =
-        document.getElementById("title").value.trim();
+    document.getElementById("details").value=
+      data.details || "";
 
-      const details =
-        document.getElementById("details").value.trim();
+    document.getElementById("link").value=
+      data.link || "";
 
-      const link =
-        document.getElementById("link").value.trim();
+    editingId=id;
 
+    document.getElementById("publishButton")
+      .innerText="UPDATE";
 
-      if (!title) {
+    document.getElementById("cancelButton")
+      .classList.remove("hidden");
 
-        alert("Please enter a title.");
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
 
-        return;
-      }
+  }catch(error){
 
+    alert(error.message);
 
-      try {
+  }
 
-        await db.collection(type).add({
-
-          title: title,
-
-          details: details,
-
-          link: link,
-
-          date: new Date().toISOString(),
-
-          createdBy: auth.currentUser.email
-
-        });
+}
 
 
-        document.getElementById("message").innerText =
-          "✓ Published successfully!";
+// DELETE
+
+async function deleteContent(type,id){
+
+  const ok =
+    confirm("Are you sure you want to delete this content?");
+
+  if(!ok) return;
 
 
-        document.getElementById("title").value = "";
+  try{
 
-        document.getElementById("details").value = "";
+    await db.collection(type)
+      .doc(id)
+      .delete();
 
-        document.getElementById("link").value = "";
+    showMessage("✓ Deleted successfully!");
+
+    loadContent();
+
+  }catch(error){
+
+    showMessage("Delete error: "+error.message);
+
+  }
+
+}
 
 
-      } catch (error) {
+// CANCEL EDIT
 
-        document.getElementById("message").innerText =
-          "Error: " + error.message;
+function cancelEdit(){
 
-      }
+  editingId=null;
 
-    }
+  clearForm();
 
-  </script>
+  document.getElementById("publishButton")
+    .innerText="PUBLISH";
+
+  document.getElementById("cancelButton")
+    .classList.add("hidden");
+
+}
+
+
+// CLEAR FORM
+
+function clearForm(){
+
+  document.getElementById("title").value="";
+  document.getElementById("details").value="";
+  document.getElementById("link").value="";
+
+}
+
+
+// MESSAGE
+
+function showMessage(text){
+
+  document.getElementById("message")
+    .innerText=text;
+
+}
+
+
+// BASIC HTML SAFETY
+
+function escapeHtml(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+</script>
 
 </body>
 </html>
