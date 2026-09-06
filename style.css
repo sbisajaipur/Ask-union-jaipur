@@ -1375,3 +1375,61 @@ button,
   }
 
 }
+/* =========================================
+   ASK UNION - PWA APP HEADER
+========================================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:9998;
+
+  background:rgba(123,16,36,.96);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+
+  box-shadow:0 4px 18px rgba(60,15,25,.16);
+
+  transition:
+    padding .2s ease,
+    box-shadow .2s ease;
+}
+
+.brand-wrap{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-logo{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  border-radius:10px;
+}
+
+.brand-title{
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+/* Mobile PWA header */
+
+@media(max-width:600px){
+
+  header{
+    padding:
+      8px 12px !important;
+  }
+
+  .brand-logo{
+    width:38px;
+    height:38px;
+  }
+
+  .brand-title{
+    font-size:16px;
+  }
+
+}
