@@ -812,4 +812,82 @@ section {
   #useful .resource strong {
     font-size: 17px;
   }
+}/* ===== PREMIUM CONTENT CARDS ===== */
+
+#updatesList,
+#circularsList,
+#eventsList {
+  display: grid;
+  gap: 16px;
+}
+
+#updatesList .item,
+#circularsList .item,
+#eventsList .item {
+  position: relative;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(123, 16, 36, 0.08);
+  box-shadow: 0 8px 24px rgba(50, 20, 30, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#updatesList .item:hover,
+#circularsList .item:hover,
+#eventsList .item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(50, 20, 30, 0.12);
+}
+
+#updatesList .item b,
+#circularsList .item b,
+#eventsList .item b {
+  display: block;
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 7px;
+  color: #7b1024;
+}
+
+#updatesList .item span,
+#circularsList .item span,
+#eventsList .item span {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #f4e9ec;
+  color: #7b1024;
+}
+
+#updatesList .item p,
+#circularsList .item p,
+#eventsList .item p {
+  margin: 8px 0 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}
+
+#updatesList .item a,
+#circularsList .item a,
+#eventsList .item a {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 9px 15px;
+  border-radius: 12px;
+  background: #7b1024;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#updatesList .item a:hover,
+#circularsList .item a:hover,
+#eventsList .item a:hover {
+  opacity: 0.9;
 }
