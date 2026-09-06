@@ -726,3 +726,24 @@ section {
   }
 
 }
+.top-header {
+  position: relative !important;
+  z-index: 1000;
+  main {
+  padding-top: 90px;
+}
+
+section {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-top: 85px;
+  }
+
+  section {
+    scroll-margin-top: 95px;
+  }
+}
+}
