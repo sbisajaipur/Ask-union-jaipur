@@ -1534,4 +1534,83 @@ header{
     margin-top:8px;
   }
 
+}/* =========================================
+   ASK UNION - PWA QUICK ACCESS
+========================================= */
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.quick-grid a{
+  min-height:120px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+
+  padding:18px;
+
+  background:rgba(255,255,255,.94);
+
+  border:1px solid rgba(123,16,36,.10);
+  border-radius:20px;
+
+  color:#292929;
+  text-decoration:none;
+
+  box-shadow:0 7px 22px rgba(50,20,30,.07);
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+}
+
+.quick-grid a:active{
+  transform:scale(.96);
+  background:#faf0f3;
+  box-shadow:0 4px 12px rgba(50,20,30,.08);
+}
+
+.quick-grid a strong{
+  margin-top:10px;
+  font-size:16px;
+  color:#7b1024;
+}
+
+.quick-grid a small{
+  margin-top:5px;
+  color:#777;
+  font-size:12px;
+  line-height:1.4;
+}
+
+
+/* Mobile app layout */
+
+@media(max-width:600px){
+
+  .quick-grid{
+    grid-template-columns:1fr 1fr;
+    gap:11px;
+  }
+
+  .quick-grid a{
+    min-height:105px;
+    padding:15px;
+    border-radius:18px;
+  }
+
+  .quick-grid a strong{
+    font-size:14px;
+  }
+
+  .quick-grid a small{
+    font-size:11px;
+  }
+
 }
