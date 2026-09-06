@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#063b73">
+<title>ASK UNION – SBISA Jaipur Circle</title>
+<link rel="manifest" href="manifest.json">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f7fb;color:#17324d}
+.app{max-width:480px;margin:auto;min-height:100vh;background:#fff}
+header{background:#063b73;color:#fff;padding:18px 18px 22px;border-radius:0 0 22px 22px}
+.brand{font-size:25px;font-weight:800}.sub{font-size:14px;margin-top:3px}
+.hero{margin:16px;border-radius:18px;padding:24px 18px;background:linear-gradient(135deg,#063b73,#1674b9);color:#fff}
+.hero h2{margin:0 0 8px;font-size:22px}.hero p{margin:0;line-height:1.45}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 16px}
+.card{border:0;border-radius:15px;padding:17px 8px;background:#eef6fd;text-align:center;font-weight:700;color:#063b73;cursor:pointer}
+.icon{font-size:25px;display:block;margin-bottom:7px}.section{padding:20px 16px}.section h3{margin:0 0 12px}
+.item{padding:14px;background:#f7fafc;border-radius:12px;margin-bottom:9px;border-left:4px solid #1674b9}
+.item b{display:block;margin-bottom:5px}.small{font-size:12px;color:#6b7c8c}
+footer{position:sticky;bottom:0;background:#fff;border-top:1px solid #ddd;padding:12px;text-align:center;color:#063b73;font-size:13px}
+button.back{border:0;background:none;color:#fff;font-size:16px;cursor:pointer;margin-bottom:12px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand">ASK UNION</div><div class="sub">SBISA JAIPUR CIRCLE</div></header>
+
+<div id="home">
+<div class="hero"><h2>Our People • Our Voice • Our Strength</h2><p>Union information, circulars, events and member support — all in one place.</p></div>
+<div class="grid">
+<button class="card" onclick="show('updates')"><span class="icon">📢</span>Updates</button>
+<button class="card" onclick="show('circulars')"><span class="icon">📄</span>Circulars</button>
+<button class="card" onclick="show('events')"><span class="icon">📅</span>Events</button>
+<button class="card" onclick="show('grievance')"><span class="icon">💬</span>Grievance</button>
+<button class="card" onclick="show('union')"><span class="icon">👥</span>Union</button>
+<button class="card" onclick="show('useful')"><span class="icon">📚</span>Useful Info</button>
+</div>
+<div class="section"><h3>Latest</h3>
+<div class="item"><b>Important Union Announcement</b><span class="small">Latest information will appear here.</span></div>
+<div class="item"><b>New Circular</b><span class="small">Circulars can be published from the admin system.</span></div>
+</div>
+</div>
+
+<div id="page" class="hidden">
+<div style="background:#063b73;padding:14px 16px"><button class="back" onclick="home()">← Back</button><div id="title" style="color:#fff;font-size:22px;font-weight:700"></div></div>
+<div id="content" class="section"></div>
+</div>
+
+<footer>ASK UNION • SBISA Jaipur Circle</footer>
+</div>
+<script>
+const data={
+updates:["Important union announcements","Latest SBI/union developments","Staff welfare updates"],
+circulars:["SBISA Circulars","SBI Circulars","HR & Service Matters","Transfer & Promotion","Settlement Updates"],
+events:["Jaipur Circle meetings","Family meetings","Sports & cultural programmes","Workshops & conferences"],
+grievance:["Submit a grievance","Give a suggestion","Contact union representatives","Important contact numbers"],
+union:["Jaipur Circle Office Bearers","AO / RBO Representatives","Zonal Representatives","Union Constitution","About SBISA"],
+useful:["Service Matters","Leave Rules","Transfer & Promotion","Settlement Updates","Retirement","SBI Policies & Schemes","Downloads"]
+};
+function show(key){
+ document.getElementById("home").classList.add("hidden");
+ document.getElementById("page").classList.remove("hidden");
+ document.getElementById("title").textContent=key[0].toUpperCase()+key.slice(1);
+ document.getElementById("content").innerHTML=data[key].map((x,i)=>`<div class="item"><b>${x}</b><span class="small">Content can be added through the future admin panel.</span></div>`).join("");
+}
+function home(){document.getElementById("page").classList.add("hidden");document.getElementById("home").classList.remove("hidden")}
+</script>
+</body>
+</html>
