@@ -1724,3 +1724,346 @@ header{
   }
 
 }
+/* =========================================
+   ASK UNION — MODERN 2026 UI
+   MOBILE / PWA DESIGN
+========================================= */
+
+:root{
+  --modern-maroon:#7b1024;
+  --modern-maroon-dark:#5e0b1c;
+  --modern-cream:#faf7f4;
+  --modern-white:rgba(255,255,255,.94);
+  --modern-text:#252326;
+  --modern-muted:#777;
+}
+
+
+/* =========================
+   GLOBAL
+========================= */
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  color:var(--modern-text);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  background:rgba(123,16,36,.94) !important;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+
+  box-shadow:
+    0 4px 24px rgba(50,10,20,.16) !important;
+}
+
+.brand-wrap{
+  gap:12px !important;
+}
+
+.brand-logo{
+  border-radius:12px !important;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  border-radius:0 0 30px 30px !important;
+
+  box-shadow:
+    0 12px 35px rgba(50,15,25,.14) !important;
+}
+
+.hero-content{
+  max-width:680px !important;
+}
+
+.hero h1{
+  letter-spacing:-1.2px !important;
+  font-weight:800 !important;
+}
+
+.hero p{
+  opacity:.94;
+}
+
+.hero-btn{
+  border-radius:15px !important;
+  box-shadow:
+    0 8px 22px rgba(50,15,25,.16) !important;
+}
+
+
+/* =========================
+   SECTION HEADINGS
+========================= */
+
+.section-head{
+  margin-bottom:18px;
+}
+
+.section-head h2{
+  letter-spacing:-.4px;
+}
+
+.eyebrow{
+  letter-spacing:2px;
+}
+
+
+/* =========================
+   QUICK ACCESS
+========================= */
+
+.quick-grid{
+  gap:12px !important;
+}
+
+.quick-grid a{
+  min-height:112px !important;
+
+  padding:17px !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.98),
+      rgba(250,247,244,.92)
+    ) !important;
+
+  border:1px solid rgba(123,16,36,.09) !important;
+
+  border-radius:20px !important;
+
+  box-shadow:
+    0 6px 22px rgba(60,20,30,.055) !important;
+}
+
+.quick-grid a strong{
+  font-weight:750 !important;
+}
+
+.quick-grid a:active{
+  transform:scale(.97) !important;
+}
+
+
+/* =========================
+   ALL CONTENT CARDS
+========================= */
+
+.item,
+.resource,
+.about-card{
+  border-radius:20px !important;
+
+  border-color:rgba(123,16,36,.08) !important;
+
+  box-shadow:
+    0 6px 22px rgba(60,20,30,.055) !important;
+}
+
+
+/* =========================
+   LATEST UPDATES
+========================= */
+
+#updates .item{
+  border-left:3px solid var(--modern-maroon) !important;
+  padding:17px !important;
+}
+
+#updates .item b{
+  font-size:16px !important;
+  font-weight:750 !important;
+}
+
+
+/* =========================
+   CIRCULARS
+========================= */
+
+#circulars .item{
+  position:relative;
+  padding:18px 17px !important;
+}
+
+#circulars .item a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:42px;
+
+  padding:0 15px;
+
+  background:#7b1024;
+  color:#fff !important;
+
+  border-radius:12px;
+
+  font-size:12px;
+
+  box-shadow:
+    0 5px 14px rgba(123,16,36,.16);
+}
+
+
+/* =========================
+   EVENTS
+========================= */
+
+#events .item{
+  border-left:3px solid #b9851b !important;
+}
+
+#events .item span{
+  border-radius:10px !important;
+}
+
+
+/* =========================
+   USEFUL INFORMATION
+========================= */
+
+#useful .resource{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.98),
+      rgba(250,247,244,.92)
+    ) !important;
+}
+
+#useful .resource strong{
+  font-weight:750;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+#about .about-card{
+  background:rgba(255,255,255,.93);
+}
+
+
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
+
+.bottom-nav{
+  background:rgba(255,255,255,.92) !important;
+
+  backdrop-filter:blur(22px) !important;
+  -webkit-backdrop-filter:blur(22px) !important;
+
+  border:
+    1px solid rgba(123,16,36,.10) !important;
+
+  box-shadow:
+    0 10px 35px rgba(30,15,20,.18) !important;
+
+  border-radius:22px !important;
+}
+
+.bottom-nav a{
+  border-radius:15px !important;
+}
+
+.bottom-nav a.active{
+  background:#f8e9ed !important;
+  color:#7b1024 !important;
+
+  transform:translateY(-1px) !important;
+}
+
+
+/* =========================
+   TOUCH FEEDBACK
+========================= */
+
+button,
+a,
+.resource,
+.item{
+  -webkit-tap-highlight-color:transparent;
+}
+
+@media(max-width:600px){
+
+  .resource:active,
+  .item:active,
+  .quick-grid a:active{
+    transform:scale(.985);
+  }
+
+}
+
+
+/* =========================
+   MOBILE SPACING
+========================= */
+
+@media(max-width:600px){
+
+  .section{
+    padding-top:24px;
+    padding-bottom:24px;
+  }
+
+  .quick{
+    padding-bottom:35px !important;
+  }
+
+  .quick-grid{
+    gap:11px !important;
+  }
+
+  .quick-grid a{
+    min-height:108px !important;
+    padding:15px !important;
+  }
+
+  .item{
+    margin:10px 0 !important;
+  }
+
+  h2{
+    font-weight:800;
+  }
+
+}
+
+
+/* =========================
+   DESKTOP HOVER
+========================= */
+
+@media(min-width:601px){
+
+  .resource:hover,
+  .item:hover,
+  .quick-grid a:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+      0 14px 30px rgba(60,20,30,.10) !important;
+  }
+
+}
