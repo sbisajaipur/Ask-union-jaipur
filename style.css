@@ -1047,3 +1047,225 @@ section {
   }
 
 }
+/* =========================================
+   ASK UNION – PWA MOBILE APP FEEL
+   SAFE DESIGN PATCH
+========================================= */
+
+/* App-like scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  padding-bottom: 85px;
+}
+
+/* Better touch experience */
+button,
+a,
+.resource,
+.item {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* App-style cards */
+.resource,
+.item,
+.about-card {
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+/* Touch feedback */
+.resource:active,
+.item:active {
+  transform: scale(.985);
+}
+
+/* Cleaner buttons */
+button,
+.hero-btn {
+  min-height: 44px;
+}
+
+/* =========================================
+   MOBILE APP NAVIGATION
+========================================= */
+
+@media(max-width:600px){
+
+  body {
+    padding-bottom: 88px;
+  }
+
+  /* Bottom navigation */
+  .mobile-nav {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    min-height: 64px;
+
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(123,16,36,.12);
+    border-radius: 22px;
+
+    box-shadow:
+      0 10px 35px rgba(40,20,30,.18);
+  }
+
+  .mobile-nav a {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    min-height: 56px;
+
+    color: #777;
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    border-radius: 16px;
+  }
+
+  .mobile-nav a span {
+    font-size: 21px;
+    line-height: 1;
+  }
+
+  .mobile-nav a:active {
+    background: #faf0f3;
+    color: #7b1024;
+    transform: scale(.94);
+  }
+
+  /* App-like sections */
+  .section {
+    scroll-margin-top: 75px;
+  }
+
+  /* Quick access grid */
+  #quick-access .resources,
+  .quick-access .resources {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* Compact resource cards */
+  .resource {
+    min-height: 105px;
+    border-radius: 18px;
+  }
+
+  .resource strong {
+    font-size: 15px;
+  }
+
+  .resource small {
+    font-size: 12px;
+  }
+
+  /* Better content cards */
+  .item {
+    border-radius: 18px;
+    padding: 16px;
+  }
+
+  .item b {
+    font-size: 16px;
+  }
+
+  /* Better section headings */
+  .section-head {
+    align-items: center;
+  }
+
+  .section-head h2 {
+    font-size: 22px;
+  }
+
+  /* Hero */
+  .hero {
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  /* Prevent horizontal overflow */
+  img {
+    max-width: 100%;
+  }
+
+}
+
+
+/* =========================================
+   TABLET / DESKTOP POLISH
+========================================= */
+
+@media(min-width:601px){
+
+  .resource:hover,
+  .item:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+      0 12px 28px rgba(80,20,35,.10);
+  }
+
+}
+
+
+/* =========================================
+   SAFE AREA – ANDROID / iPHONE
+========================================= */
+
+@supports(padding:max(0px)){
+
+  body {
+    padding-bottom:
+      max(85px, calc(85px + env(safe-area-inset-bottom)));
+  }
+
+  .mobile-nav {
+    bottom:
+      max(10px, env(safe-area-inset-bottom));
+  }
+
+}
+
+
+/* =========================================
+   PWA APP-LIKE TEXT SELECTION
+========================================= */
+
+@media(max-width:600px){
+
+  .resource,
+  .hero-btn,
+  .mobile-nav a,
+  button {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+}
