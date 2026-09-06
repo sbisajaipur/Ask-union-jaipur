@@ -10,7 +10,14 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "./file_00000000d4fc8208b088aedd094d513f.png",
+      "src": "./ask-union-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./ask-union-icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
