@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ASK UNION Admin</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="app"><header><div class="brand">ASK UNION</div><div class="sub">ADMIN PANEL — JAIPUR CIRCLE</div></header>
+<main><section class="section"><h2>Content Management</h2>
+<div class="notice">Prototype mode: this panel saves content only in this browser using localStorage. It is <b>not a secure public admin system yet</b>. Do not put confidential/member data here.</div>
+<label>Type</label><select id="type"><option value="updates">Update / Notice</option><option value="circulars">Circular</option><option value="events">Event</option></select>
+<label>Title</label><input id="title" placeholder="Enter title">
+<label>Details</label><textarea id="details" placeholder="Enter details"></textarea>
+<label>PDF / Link (optional)</label><input id="link" placeholder="https://...">
+<button class="btn" onclick="publish()">Publish</button>
+<button class="btn danger" onclick="clearAll()">Clear demo content</button>
+<h3>Current content</h3><div id="adminList"></div></section>
+<p><a href="index.html">← Open Member App</a></p></main><footer>ASK UNION • Admin Prototype</footer></div>
+<script>
+function get(){return JSON.parse(localStorage.getItem('askUnionData')||'{"updates":[],"circulars":[],"events":[]}')}
+function save(x){localStorage.setItem('askUnionData',JSON.stringify(x))}
+function publish(){let d=get(),t=document.getElementById('type').value,title=document.getElementById('title').value.trim(),details=document.getElementById('details').value.trim(),link=document.getElementById('link').value.trim();if(!title){alert('Title is required');return}d[t].unshift({title,details,link,date:new Date().toLocaleDateString('en-IN')});save(d);document.getElementById('title').value='';document.getElementById('details').value='';document.getElementById('link').value='';render();alert('Published in this browser demo.')}
+function render(){let d=get(),all=[...d.updates.map(x=>['Update',x]),...d.circulars.map(x=>['Circular',x]),...d.events.map(x=>['Event',x])];document.getElementById('adminList').innerHTML=all.length?all.map(([t,x])=>`<div class="item"><b>${t}: ${x.title}</b><span>${x.date}</span><p>${x.details||''}</p>${x.link?`<a href="${x.link}" target="_blank">Open link/PDF</a>`:''}</div>`).join(''):'<p>No demo content yet.</p>'}
+function clearAll(){if(confirm('Clear all demo content from this browser?')){localStorage.removeItem('askUnionData');render()}}render();
+</script></body></html>
