@@ -1,6 +1,9 @@
-const PROJECT_ID = "ask-union-jaipur-circle";
+/* =========================================
+   ASK UNION – FIREBASE DATA LOADER
+   SBISA UDAIPUR MODULE
+========================================= */
 
-const FIREBASE_CONFIG = {
+const firebaseConfig = {
   apiKey: "AIzaSyAzMEREwPKnifSIrB5CvaC8-FbVIa5zF0",
   authDomain: "ask-union-jaipur-circle.firebaseapp.com",
   projectId: "ask-union-jaipur-circle",
@@ -9,100 +12,110 @@ const FIREBASE_CONFIG = {
   appId: "1:584327754977:web:7164a85c007165743ef3a"
 };
 
-const FIRESTORE_BASE =
-  "https://firestore.googleapis.com/v1/projects/" +
-  PROJECT_ID +
-  "/databases/(default)/documents";
 
+/* =========================================
+   LOAD FIREBASE SDK
+========================================= */
 
-/* =========================
-   FIRESTORE VALUE
-========================= */
+function loadScript(src) {
 
-function readValue(value) {
-  if (!value) return "";
+  return new Promise((resolve, reject) => {
 
-  if (value.stringValue !== undefined)
-    return value.stringValue;
+    const script = document.createElement("script");
 
-  if (value.integerValue !== undefined)
-    return value.integerValue;
+    script.src = src;
 
-  if (value.doubleValue !== undefined)
-    return value.doubleValue;
+    script.onload = resolve;
 
-  if (value.booleanValue !== undefined)
-    return value.booleanValue;
+    script.onerror = () => {
+      reject(new Error("Firebase SDK failed to load"));
+    };
 
-  if (value.timestampValue !== undefined)
-    return value.timestampValue;
+    document.head.appendChild(script);
 
-  return "";
+  });
+
 }
 
 
-/* =========================
-   SECURITY
-========================= */
+/* =========================================
+   ESCAPE HTML
+========================================= */
 
 function escapeHtml(value) {
+
   return String(value ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+
 }
 
 
-/* =========================
-   CREATE ITEM
-========================= */
+/* =========================================
+   CREATE CARD
+========================================= */
 
-function createItem(fields) {
+function renderItem(data) {
 
   const title =
-    readValue(fields.title) ||
-    readValue(fields.Title) ||
-    readValue(fields.name) ||
-    readValue(fields.Name) ||
+    data.title ||
+    data.Title ||
+    data.name ||
+    data.Name ||
     "Untitled";
 
+
   const date =
-    readValue(fields.date) ||
-    readValue(fields.Date) ||
+    data.date ||
+    data.Date ||
     "";
+
 
   const details =
-    readValue(fields.details) ||
-    readValue(fields.Details) ||
-    readValue(fields.description) ||
-    readValue(fields.Description) ||
-    readValue(fields.message) ||
-    readValue(fields.Message) ||
+    data.details ||
+    data.Details ||
+    data.description ||
+    data.Description ||
+    data.message ||
+    data.Message ||
     "";
 
+
   const link =
-    readValue(fields.link) ||
-    readValue(fields.Link) ||
-    readValue(fields.url) ||
-    readValue(fields.URL) ||
+    data.link ||
+    data.Link ||
+    data.url ||
+    data.URL ||
     "";
+
 
   return `
     <div class="item">
 
-      <b>${escapeHtml(title)}</b>
+      <b>
+        ${escapeHtml(title)}
+      </b>
 
       ${
         date
-          ? `<span>${escapeHtml(date)}</span>`
+          ? `
+            <span>
+              ${escapeHtml(date)}
+            </span>
+          `
           : ""
       }
 
       ${
         details
-          ? `<p>${escapeHtml(details)}</p>`
+          ? `
+            <p>
+              ${escapeHtml(details)}
+            </p>
+          `
           : ""
       }
 
@@ -122,120 +135,45 @@ function createItem(fields) {
 
     </div>
   `;
+
 }
 
 
-/* =========================
-   REST METHOD
-========================= */
+/* =========================================
+   FIREBASE INITIALIZATION
+========================================= */
 
-async function loadFromREST(collection) {
+let db = null;
 
-  const response = await fetch(
-    `${FIRESTORE_BASE}/${collection}?pageSize=100`,
-    {
-      method: "GET",
-      cache: "no-store",
-      headers: {
-        "Accept": "application/json"
-      }
-    }
+
+async function initializeFirebase() {
+
+  if (window.firebase) {
+    return;
+  }
+
+
+  await loadScript(
+    "https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"
   );
 
-  if (!response.ok) {
-    throw new Error(
-      "REST HTTP " + response.status
-    );
-  }
 
-  const data = await response.json();
-
-  return data.documents || [];
-}
+  await loadScript(
+    "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"
+  );
 
 
-/* =========================
-   LOAD FIREBASE SDK
-========================= */
-
-function loadScript(src) {
-
-  return new Promise((resolve, reject) => {
-
-    const script =
-      document.createElement("script");
-
-    script.src = src;
-
-    script.onload = resolve;
-
-    script.onerror = () =>
-      reject(
-        new Error(
-          "Could not load Firebase SDK"
-        )
-      );
-
-    document.head.appendChild(script);
-
-  });
+  firebase.initializeApp(firebaseConfig);
 
 }
 
 
-/* =========================
-   FIREBASE SDK METHOD
-========================= */
-
-let firebaseReady = false;
-
-async function loadFromFirebase(collectionName) {
-
-  if (!firebaseReady) {
-
-    await loadScript(
-      "https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"
-    );
-
-    await loadScript(
-      "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"
-    );
-
-    firebase.initializeApp(
-      FIREBASE_CONFIG
-    );
-
-    firebaseReady = true;
-  }
-
-  const db =
-    firebase.firestore();
-
-  const snapshot =
-    await db
-      .collection(collectionName)
-      .get();
-
-  const documents = [];
-
-  snapshot.forEach(doc => {
-
-    documents.push({
-      fields: doc.data()
-    });
-
-  });
-
-  return documents;
-}
-
-
-/* =========================
-   MAIN LOADER
-========================= */
+/* =========================================
+   LOAD COLLECTION
+========================================= */
 
 async function loadCollection(
-  collection,
+  collectionName,
   elementId,
   emptyMessage
 ) {
@@ -243,120 +181,106 @@ async function loadCollection(
   const element =
     document.getElementById(elementId);
 
-  if (!element) return;
-
-  element.innerHTML =
-    `<div class="item">
-       <p>Loading...</p>
-     </div>`;
+  if (!element) {
+    return;
+  }
 
 
-  let documents = [];
+  element.innerHTML = `
+    <div class="item">
+      <p>Loading...</p>
+    </div>
+  `;
 
-
-  /* FIRST: REST */
 
   try {
 
+    if (!db) {
+      await initializeFirebase();
+
+      db = firebase.firestore();
+    }
+
+
     console.log(
-      "Trying Firestore REST:",
-      collection
+      "ASK UNION loading:",
+      collectionName
     );
 
-    documents =
-      await loadFromREST(collection);
+
+    const snapshot =
+      await db
+        .collection(collectionName)
+        .get();
+
 
     console.log(
-      "REST successful:",
-      collection,
-      documents.length
-    );
-
-  } catch (restError) {
-
-    console.warn(
-      "REST failed:",
-      restError
+      "ASK UNION loaded:",
+      collectionName,
+      snapshot.size
     );
 
 
-    /* SECOND: FIREBASE SDK */
-
-    try {
-
-      console.log(
-        "Trying Firebase SDK:",
-        collection
-      );
-
-      documents =
-        await loadFromFirebase(collection);
-
-      console.log(
-        "Firebase SDK successful:",
-        collection,
-        documents.length
-      );
-
-    } catch (firebaseError) {
-
-      console.error(
-        "Firebase SDK failed:",
-        firebaseError
-      );
+    if (snapshot.empty) {
 
       element.innerHTML = `
         <div class="item">
-
-          <b>
-            Information temporarily unavailable.
-          </b>
-
           <p>
-            Please refresh the page and try again.
+            ${escapeHtml(emptyMessage)}
           </p>
-
         </div>
       `;
 
       return;
     }
-  }
 
 
-  /* =========================
-     NO DOCUMENTS
-  ========================= */
+    let html = "";
 
-  if (!documents.length) {
+
+    snapshot.forEach(doc => {
+
+      html += renderItem(
+        doc.data()
+      );
+
+    });
+
+
+    element.innerHTML = html;
+
+
+  } catch (error) {
+
+    console.error(
+      "ASK UNION Firebase error:",
+      collectionName,
+      error
+    );
+
 
     element.innerHTML = `
       <div class="item">
-        <p>${escapeHtml(emptyMessage)}</p>
+
+        <b>
+          Information temporarily unavailable.
+        </b>
+
+        <p>
+          Please refresh the page and try again.
+        </p>
+
       </div>
     `;
 
-    return;
   }
-
-
-  /* =========================
-     DISPLAY DOCUMENTS
-  ========================= */
-
-  element.innerHTML =
-    documents
-      .map(doc =>
-        createItem(doc.fields || {})
-      )
-      .join("");
 
 }
 
 
-/* =========================
-   START
-========================= */
+/* =========================================
+   START APPLICATION
+========================================= */
 
 document.addEventListener(
   "DOMContentLoaded",
@@ -368,11 +292,13 @@ document.addEventListener(
       "No new updates published yet."
     );
 
+
     loadCollection(
       "circulars",
       "circularsList",
       "No circulars published yet."
     );
+
 
     loadCollection(
       "events",
