@@ -1857,6 +1857,7 @@ header{
    REMOVE EXCESSIVE EMPTY SPACE
 ========================================= */
 
+
 @media(max-width:600px){
 
   #updates,
@@ -1866,6 +1867,33 @@ header{
   #about,
   #useful{
     min-height:auto !important;
+  }
+
+}
+@media(max-width:600px){
+
+  .item a{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+
+    min-height:40px !important;
+    padding:0 16px !important;
+
+    background:#7b1024 !important;
+    color:#ffffff !important;
+
+    border-radius:12px !important;
+
+    font-size:12px !important;
+    font-weight:800 !important;
+
+    text-decoration:none !important;
+  }
+
+  .item a:hover,
+  .item a:visited{
+    color:#ffffff !important;
   }
 
 }
