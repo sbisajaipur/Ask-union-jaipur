@@ -1,24 +1,25 @@
-const CACHE_NAME = "ask-union-v9";
+const CACHE_NAME = "ask-union-v10";
 
-const FILES_TO_CACHE = [
+const STATIC_FILES = [
   "./",
   "./index.html",
   "./style.css",
   "./manifest.json",
   "./icon-192.png",
-  "./icon-512.png"
+  "./icon-512.png",
+  "./udaipur-bg.png"
 ];
 
 
-self.addEventListener("install", function(event) {
+self.addEventListener("install", event => {
 
   event.waitUntil(
 
-    caches.open(CACHE_NAME).then(function(cache) {
-
-      return cache.addAll(FILES_TO_CACHE);
-
-    })
+    caches
+      .open(CACHE_NAME)
+      .then(cache =>
+        cache.addAll(STATIC_FILES)
+      )
 
   );
 
@@ -27,30 +28,25 @@ self.addEventListener("install", function(event) {
 });
 
 
-self.addEventListener("activate", function(event) {
+self.addEventListener("activate", event => {
 
   event.waitUntil(
 
-    caches.keys().then(function(keys) {
+    caches.keys().then(keys =>
 
-      return Promise.all(
+      Promise.all(
 
         keys
-          .filter(function(key) {
+          .filter(
+            key => key !== CACHE_NAME
+          )
+          .map(
+            key => caches.delete(key)
+          )
 
-            return key !== CACHE_NAME;
+      )
 
-          })
-
-          .map(function(key) {
-
-            return caches.delete(key);
-
-          })
-
-      );
-
-    })
+    )
 
   );
 
@@ -59,19 +55,39 @@ self.addEventListener("activate", function(event) {
 });
 
 
-self.addEventListener("fetch", function(event) {
+self.addEventListener("fetch", event => {
 
-  /*
-    Firebase / Firestore requests should
-    always go directly to the network.
-  */
+  const url =
+    new URL(event.request.url);
+
+
+  // HTML, JavaScript और Firestore
+  // हमेशा network से आएंगे.
 
   if (
-    event.request.url.includes("firestore.googleapis.com")
+
+    event.request.mode === "navigate" ||
+
+    url.pathname.endsWith(
+      "/index.html"
+    ) ||
+
+    url.pathname.endsWith(
+      "/app.js"
+    ) ||
+
+    url.hostname ===
+      "firestore.googleapis.com"
+
   ) {
 
     event.respondWith(
+
       fetch(event.request)
+        .catch(() =>
+          caches.match(event.request)
+        )
+
     );
 
     return;
@@ -79,20 +95,15 @@ self.addEventListener("fetch", function(event) {
   }
 
 
-  /*
-    app.js is no longer used by index.html.
-    Other requests use normal cache-first behaviour.
-  */
-
   event.respondWith(
 
-    caches.match(event.request).then(
-      function(response) {
-
-        return response || fetch(event.request);
-
-      }
-    )
+    caches
+      .match(event.request)
+      .then(
+        cached =>
+          cached ||
+          fetch(event.request)
+      )
 
   );
 
