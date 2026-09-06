@@ -891,3 +891,53 @@ section {
 #eventsList .item a:hover {
   opacity: 0.9;
 }
+/* ===== CONTENT SECTION ENHANCEMENT ===== */
+
+#updates .section-head,
+#circulars .section-head,
+#events .section-head {
+  margin-bottom: 20px;
+}
+
+#updatesList .item,
+#circularsList .item,
+#eventsList .item {
+  border-left: 4px solid #7b1024;
+}
+
+#updatesList .item::before {
+  content: "LATEST UPDATE";
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 9px;
+  border-radius: 20px;
+  background: #7b1024;
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .6px;
+}
+
+#circularsList .item::before {
+  content: "📄 CIRCULAR";
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 9px;
+  border-radius: 20px;
+  background: #f4e9ec;
+  color: #7b1024;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+#eventsList .item::before {
+  content: "📅 EVENT";
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 9px;
+  border-radius: 20px;
+  background: #f4e9ec;
+  color: #7b1024;
+  font-size: 10px;
+  font-weight: 800;
+}
