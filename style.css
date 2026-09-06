@@ -1433,3 +1433,105 @@ header{
   }
 
 }
+/* =========================================
+   ASK UNION - PWA HERO
+========================================= */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:420px;
+
+  display:flex;
+  align-items:center;
+
+  border-radius:28px;
+
+  box-shadow:
+    0 15px 40px rgba(60,15,25,.12);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:650px;
+}
+
+.hero h1{
+  font-size:clamp(32px,6vw,52px);
+  line-height:1.08;
+  margin:15px 0;
+  letter-spacing:-.5px;
+}
+
+.hero h1 span{
+  display:inline-block;
+}
+
+.hero p{
+  max-width:580px;
+  font-size:16px;
+  line-height:1.7;
+}
+
+.hero-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:48px;
+  padding:0 22px;
+
+  border-radius:16px;
+
+  font-weight:800;
+  text-decoration:none;
+
+  box-shadow:
+    0 8px 20px rgba(60,15,25,.15);
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.hero-btn:active{
+  transform:scale(.96);
+}
+
+
+/* Mobile PWA */
+
+@media(max-width:600px){
+
+  .hero{
+    min-height:390px;
+    border-radius:23px;
+
+    padding:28px 20px !important;
+
+    margin-left:0;
+    margin-right:0;
+  }
+
+  .hero-content{
+    max-width:100%;
+  }
+
+  .hero h1{
+    font-size:32px;
+    line-height:1.1;
+  }
+
+  .hero p{
+    font-size:14px;
+    line-height:1.65;
+  }
+
+  .hero-btn{
+    width:100%;
+    margin-top:8px;
+  }
+
+}
