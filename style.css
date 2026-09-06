@@ -6,231 +6,558 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --maroon: #7b1024;
+  --dark-maroon: #560817;
+  --light-maroon: #f8e9ed;
+  --gold: #c9a227;
+  --bg: #f7f5f3;
+  --white: #ffffff;
+  --text: #202124;
+  --muted: #77777f;
+  --border: #ebe6e3;
+}
+
 body {
   margin: 0;
+  background: var(--bg);
+  color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
-  background: #f5f5f5;
-  color: #222;
   line-height: 1.6;
 }
 
 .app {
-  max-width: 1000px;
-  margin: 0 auto;
-  background: #fff;
+  max-width: 1120px;
+  margin: auto;
+  background: var(--bg);
   min-height: 100vh;
 }
 
-/* Header */
+/* ================= HEADER ================= */
 
 header {
-  background: #8b0000;
-  color: #fff;
-  text-align: center;
-  padding: 22px 15px;
+  background: linear-gradient(135deg, var(--dark-maroon), var(--maroon));
+  color: white;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 5px 20px rgba(0,0,0,.18);
 }
 
-.brand {
-  font-size: 30px;
-  font-weight: 800;
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.brand-logo {
+  width: 55px;
+  height: 55px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: white;
+}
+
+.brand-title {
+  font-size: 23px;
+  font-weight: 900;
   letter-spacing: 1px;
 }
 
-.sub {
-  margin-top: 4px;
-  font-size: 14px;
+.brand-sub {
+  font-size: 11px;
   letter-spacing: 2px;
+  opacity: .85;
 }
 
-/* Hero */
+.online {
+  font-size: 10px;
+  padding: 6px 10px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+/* ================= HERO ================= */
 
 .hero {
-  background: #fff5f5;
-  text-align: center;
-  padding: 28px 18px;
-  border-bottom: 1px solid #eee;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, #570817, #8d1832 60%, #b12645);
+  color: white;
+  padding: 65px 40px;
+  border-radius: 0 0 25px 25px;
+}
+
+.hero-content {
+  max-width: 760px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  opacity: .8;
+}
+
+.eyebrow.dark {
+  color: var(--maroon);
+  opacity: 1;
 }
 
 .hero h1 {
-  margin: 0;
-  color: #8b0000;
-  font-size: 24px;
+  font-size: 48px;
+  line-height: 1.1;
+  margin: 14px 0;
+  letter-spacing: -1px;
+}
+
+.hero h1 span {
+  opacity: .8;
 }
 
 .hero p {
-  margin: 10px auto 0;
-  max-width: 700px;
-  color: #555;
+  max-width: 650px;
+  font-size: 16px;
+  opacity: .9;
 }
 
-/* Main menu */
+.hero-btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 12px 20px;
+  background: white;
+  color: var(--maroon);
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: 0 7px 20px rgba(0,0,0,.15);
+}
 
-.grid {
+/* ================= QUICK ACCESS ================= */
+
+.quick {
+  padding: 35px 30px;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.section-head h2 {
+  margin: 4px 0 0;
+  font-size: 27px;
+  letter-spacing: -.5px;
+}
+
+.quick-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
-  padding: 20px;
 }
 
-.grid a {
+.quick-card {
+  display: grid;
+  grid-template-columns: 45px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 17px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
   text-decoration: none;
-  color: #8b0000;
-  background: #fff;
-  border: 1px solid #e2d2d2;
+  box-shadow: 0 7px 20px rgba(50,25,20,.05);
+  transition: .2s;
+}
+
+.quick-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(50,25,20,.1);
+}
+
+.quick-card .icon {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  background: var(--light-maroon);
   border-radius: 12px;
-  padding: 18px 10px;
-  text-align: center;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
-  transition: transform 0.15s ease;
+  font-size: 22px;
 }
 
-.grid a:hover {
-  transform: translateY(-2px);
-}
-
-.grid a:first-line {
-  font-size: 26px;
-}
-
-.grid b {
+.quick-card strong {
   display: block;
-  margin-top: 7px;
+  color: var(--text);
+  font-size: 14px;
 }
 
-/* Sections */
+.quick-card small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.quick-card > span {
+  color: var(--maroon);
+  font-weight: bold;
+}
+
+/* ================= SECTIONS ================= */
 
 .section {
-  margin: 20px;
-  padding: 22px;
-  background: #fff;
-  border-radius: 14px;
-  border: 1px solid #eee;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+  margin: 0 30px 25px;
+  padding: 25px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(50,25,20,.045);
 }
 
 .section h2 {
-  margin-top: 0;
-  color: #8b0000;
-  border-bottom: 2px solid #8b0000;
-  padding-bottom: 8px;
+  margin: 0;
+  color: var(--maroon);
 }
 
-/* About Union */
-
-.about-card h3 {
-  color: #8b0000;
-  margin-top: 25px;
-  margin-bottom: 8px;
+.number {
+  color: #aaa;
+  font-size: 12px;
 }
 
-.about-card p {
-  color: #333;
-  margin: 10px 0;
+/* ================= FIREBASE CONTENT ================= */
+
+#updatesList,
+#circularsList,
+#eventsList {
+  display: grid;
+  gap: 12px;
 }
-
-.about-card ul {
-  padding-left: 22px;
-}
-
-.about-card li {
-  margin: 7px 0;
-}
-
-/* Union Motto */
-
-.union-motto {
-  margin-top: 28px;
-  padding: 20px;
-  text-align: center;
-  background: #8b0000;
-  color: #fff;
-  border-radius: 12px;
-  font-size: 18px;
-}
-
-.union-motto span {
-  display: inline-block;
-  margin-top: 6px;
-  font-size: 14px;
-  letter-spacing: 2px;
-}
-
-/* Content cards */
 
 .item,
 .update-card,
 .circular-card,
 .event-card {
-  background: #fafafa;
-  border: 1px solid #e5e5e5;
-  border-radius: 10px;
-  padding: 14px;
-  margin: 10px 0;
+  background: #fffafa;
+  border: 1px solid #eadfe1;
+  border-left: 4px solid var(--maroon);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,.035);
 }
 
-/* Links and buttons */
+/* Links/buttons generated by existing app */
 
 a {
-  color: #8b0000;
+  color: var(--maroon);
 }
 
 .btn {
   display: inline-block;
-  background: #8b0000;
-  color: #fff;
+  background: var(--maroon);
+  color: white;
   text-decoration: none;
   padding: 10px 18px;
-  border-radius: 8px;
+  border-radius: 9px;
   margin-top: 8px;
+  font-weight: 700;
 }
 
 .btn:hover {
-  background: #650000;
+  background: var(--dark-maroon);
 }
 
-/* Footer */
+/* ================= ABOUT UNION ================= */
+
+.about-card {
+  background: white;
+}
+
+.about-card h3 {
+  color: var(--maroon);
+  margin-top: 26px;
+  margin-bottom: 8px;
+  font-size: 19px;
+}
+
+.about-card p {
+  color: #4e4e55;
+}
+
+.history-banner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(100deg, #f7e6ea, #fff);
+  border: 1px solid #ead4d9;
+  border-radius: 14px;
+  padding: 17px;
+  margin-bottom: 22px;
+}
+
+.year {
+  color: var(--maroon);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.history-banner strong,
+.history-banner small {
+  display: block;
+}
+
+.history-banner small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.legacy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 25px;
+  padding-left: 22px;
+}
+
+.legacy li {
+  margin: 4px 0;
+}
+
+.circles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.circles span {
+  background: var(--light-maroon);
+  color: var(--maroon);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.motto {
+  margin-top: 25px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg, var(--dark-maroon), var(--maroon));
+  border-radius: 13px;
+}
+
+.motto div {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+}
+
+.motto strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+/* ================= RESOURCES ================= */
+
+.resources {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+}
+
+.resource {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  font-size: 22px;
+  box-shadow: 0 5px 15px rgba(0,0,0,.04);
+}
+
+.resource strong,
+.resource small {
+  display: block;
+}
+
+.resource strong {
+  margin-top: 7px;
+  font-size: 14px;
+}
+
+.resource small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ================= FOOTER ================= */
 
 footer {
+  background: #4d0717;
+  color: white;
   text-align: center;
-  padding: 22px 15px;
-  margin-top: 30px;
-  background: #8b0000;
-  color: #fff;
-  font-size: 13px;
+  padding: 30px 20px 90px;
+  font-size: 12px;
 }
 
-/* Mobile */
+footer strong {
+  font-size: 23px;
+  letter-spacing: 1px;
+}
 
-@media (max-width: 650px) {
+footer p {
+  opacity: .75;
+}
 
-  .brand {
-    font-size: 25px;
+/* ================= BOTTOM NAV ================= */
+
+.bottom-nav {
+  display: none;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+  body {
+    background: var(--bg);
   }
 
-  .sub {
-    font-size: 12px;
+  header {
+    height: 70px;
+    padding: 9px 14px;
+  }
+
+  .brand-logo {
+    width: 46px;
+    height: 46px;
+  }
+
+  .brand-title {
+    font-size: 19px;
+  }
+
+  .brand-sub {
+    font-size: 9px;
+  }
+
+  .online {
+    font-size: 8px;
+    padding: 5px 8px;
+  }
+
+  .hero {
+    padding: 45px 20px 40px;
+    border-radius: 0 0 20px 20px;
   }
 
   .hero h1 {
-    font-size: 20px;
+    font-size: 35px;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 14px;
-    gap: 10px;
+  .hero p {
+    font-size: 14px;
+  }
+
+  .quick {
+    padding: 27px 14px;
   }
 
   .section {
-    margin: 14px;
-    padding: 17px;
+    margin: 0 14px 18px;
+    padding: 18px;
+    border-radius: 15px;
   }
 
-  .about-card h3 {
+  .section-head h2 {
+    font-size: 23px;
+  }
+
+  .quick-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+  }
+
+  .quick-card {
+    grid-template-columns: 38px 1fr;
+    padding: 12px;
+    gap: 9px;
+  }
+
+  .quick-card .icon {
+    width: 38px;
+    height: 38px;
     font-size: 18px;
   }
 
-  .union-motto {
-    font-size: 16px;
+  .quick-card > span {
+    display: none;
+  }
+
+  .quick-card strong {
+    font-size: 12px;
+  }
+
+  .quick-card small {
+    font-size: 10px;
+  }
+
+  .legacy {
+    grid-template-columns: 1fr;
+  }
+
+  .resources {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .resource {
+    padding: 14px;
+    font-size: 19px;
+  }
+
+  .resource strong {
+    font-size: 12px;
+  }
+
+  .resource small {
+    font-size: 10px;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 62px;
+    background: white;
+    border-top: 1px solid #ddd;
+    z-index: 200;
+    box-shadow: 0 -6px 20px rgba(0,0,0,.1);
+  }
+
+  .bottom-nav a {
+    text-decoration: none;
+    text-align: center;
+    color: #777;
+    padding: 7px 2px;
+    font-size: 18px;
+  }
+
+  .bottom-nav a span {
+    display: block;
+    font-size: 9px;
+  }
+
+  .bottom-nav a:hover {
+    color: var(--maroon);
   }
 }
