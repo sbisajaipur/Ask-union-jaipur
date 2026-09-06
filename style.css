@@ -1897,3 +1897,52 @@ header{
   }
 
 }
+/* =========================================
+   FORCE PDF / LINK BUTTON TEXT
+========================================= */
+
+.item a{
+  font-size:0 !important;
+  color:#fff !important;
+  background:#7b1024 !important;
+
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  min-width:220px !important;
+  min-height:48px !important;
+
+  padding:0 18px !important;
+  border-radius:12px !important;
+
+  text-decoration:none !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+
+.item a::after{
+  content:"Open PDF / Link →";
+
+  display:block !important;
+
+  color:#fff !important;
+  font-size:13px !important;
+  font-weight:800 !important;
+  line-height:1 !important;
+
+  white-space:nowrap !important;
+}
+
+@media(max-width:600px){
+
+  .item a{
+    min-width:205px !important;
+    min-height:44px !important;
+  }
+
+  .item a::after{
+    font-size:12px !important;
+  }
+
+}
