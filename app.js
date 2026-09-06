@@ -132,7 +132,7 @@ function createItem(fields) {
 async function loadFromREST(collection) {
 
   const response = await fetch(
-    `${FIRESTORE_BASE}/${collection}?pageSize=100&v=11`,
+    `${FIRESTORE_BASE}/${collection}?pageSize=100`,
     {
       method: "GET",
       cache: "no-store",
