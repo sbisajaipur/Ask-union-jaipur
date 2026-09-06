@@ -1,19 +1,313 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ASK UNION Admin</title><link rel="stylesheet" href="style.css"></head>
-<body><div class="app"><header><div class="brand">ASK UNION</div><div class="sub">ADMIN PANEL — JAIPUR CIRCLE</div></header>
-<main><section class="section"><h2>Content Management</h2>
-<div class="notice">Prototype mode: this panel saves content only in this browser using localStorage. It is <b>not a secure public admin system yet</b>. Do not put confidential/member data here.</div>
-<label>Type</label><select id="type"><option value="updates">Update / Notice</option><option value="circulars">Circular</option><option value="events">Event</option></select>
-<label>Title</label><input id="title" placeholder="Enter title">
-<label>Details</label><textarea id="details" placeholder="Enter details"></textarea>
-<label>PDF / Link (optional)</label><input id="link" placeholder="https://...">
-<button class="btn" onclick="publish()">Publish</button>
-<button class="btn danger" onclick="clearAll()">Clear demo content</button>
-<h3>Current content</h3><div id="adminList"></div></section>
-<p><a href="index.html">← Open Member App</a></p></main><footer>ASK UNION • Admin Prototype</footer></div>
-<script>
-function get(){return JSON.parse(localStorage.getItem('askUnionData')||'{"updates":[],"circulars":[],"events":[]}')}
-function save(x){localStorage.setItem('askUnionData',JSON.stringify(x))}
-function publish(){let d=get(),t=document.getElementById('type').value,title=document.getElementById('title').value.trim(),details=document.getElementById('details').value.trim(),link=document.getElementById('link').value.trim();if(!title){alert('Title is required');return}d[t].unshift({title,details,link,date:new Date().toLocaleDateString('en-IN')});save(d);document.getElementById('title').value='';document.getElementById('details').value='';document.getElementById('link').value='';render();alert('Published in this browser demo.')}
-function render(){let d=get(),all=[...d.updates.map(x=>['Update',x]),...d.circulars.map(x=>['Circular',x]),...d.events.map(x=>['Event',x])];document.getElementById('adminList').innerHTML=all.length?all.map(([t,x])=>`<div class="item"><b>${t}: ${x.title}</b><span>${x.date}</span><p>${x.details||''}</p>${x.link?`<a href="${x.link}" target="_blank">Open link/PDF</a>`:''}</div>`).join(''):'<p>No demo content yet.</p>'}
-function clearAll(){if(confirm('Clear all demo content from this browser?')){localStorage.removeItem('askUnionData');render()}}render();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASK UNION – Admin</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .box {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    }
+
+    h1 {
+      color: #123b70;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 13px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      background: #1264d8;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .logout {
+      background: #777;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <div class="box" id="loginBox">
+
+    <h1>ASK UNION</h1>
+    <h2>SBISA JAIPUR CIRCLE</h2>
+
+    <p>Union Admin Login</p>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Admin Email"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+    >
+
+    <button onclick="login()">LOGIN</button>
+
+    <div id="loginMessage"></div>
+
+  </div>
+
+
+  <!-- ADMIN PANEL -->
+  <div class="box hidden" id="adminBox">
+
+    <h1>Content Management</h1>
+
+    <p>
+      Logged in as:
+      <b id="adminEmail"></b>
+    </p>
+
+    <button class="logout" onclick="logout()">
+      LOGOUT
+    </button>
+
+    <hr>
+
+    <h2>Publish Content</h2>
+
+    <label>Type</label>
+
+    <select id="type">
+      <option value="updates">Update / Notice</option>
+      <option value="circulars">Circular</option>
+      <option value="events">Event</option>
+    </select>
+
+    <label>Title</label>
+
+    <input
+      type="text"
+      id="title"
+      placeholder="Enter title"
+    >
+
+    <label>Details</label>
+
+    <textarea
+      id="details"
+      placeholder="Enter details"
+    ></textarea>
+
+    <label>PDF / Link (optional)</label>
+
+    <input
+      type="url"
+      id="link"
+      placeholder="https://..."
+    >
+
+    <button onclick="publish()">
+      PUBLISH
+    </button>
+
+    <div id="message"></div>
+
+  </div>
+
+
+  <!-- FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
+  <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",
+      authDomain: "ask-union-jaipur-circle.firebaseapp.com",
+      projectId: "ask-union-jaipur-circle",
+      storageBucket: "ask-union-jaipur-circle.firebasestorage.app",
+      messagingSenderId: "584327754977",
+      appId: "1:584327754977:web:7164a85c007165743ef3a0"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+
+    // LOGIN
+    function login() {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      if (!email || !password) {
+
+        document.getElementById("loginMessage").innerText =
+          "Please enter email and password.";
+
+        return;
+      }
+
+      auth.signInWithEmailAndPassword(email, password)
+
+        .then(() => {
+
+          document.getElementById("loginMessage").innerText = "";
+
+        })
+
+        .catch(error => {
+
+          document.getElementById("loginMessage").innerText =
+            "Login failed: " + error.message;
+
+        });
+    }
+
+
+    // AUTH STATE
+    auth.onAuthStateChanged(user => {
+
+      if (user) {
+
+        document.getElementById("loginBox")
+          .classList.add("hidden");
+
+        document.getElementById("adminBox")
+          .classList.remove("hidden");
+
+        document.getElementById("adminEmail")
+          .innerText = user.email;
+
+      } else {
+
+        document.getElementById("loginBox")
+          .classList.remove("hidden");
+
+        document.getElementById("adminBox")
+          .classList.add("hidden");
+
+      }
+
+    });
+
+
+    // LOGOUT
+    function logout() {
+
+      auth.signOut();
+
+    }
+
+
+    // PUBLISH
+    async function publish() {
+
+      const type =
+        document.getElementById("type").value;
+
+      const title =
+        document.getElementById("title").value.trim();
+
+      const details =
+        document.getElementById("details").value.trim();
+
+      const link =
+        document.getElementById("link").value.trim();
+
+
+      if (!title) {
+
+        alert("Please enter a title.");
+
+        return;
+      }
+
+
+      try {
+
+        await db.collection(type).add({
+
+          title: title,
+
+          details: details,
+
+          link: link,
+
+          date: new Date().toISOString(),
+
+          createdBy: auth.currentUser.email
+
+        });
+
+
+        document.getElementById("message").innerText =
+          "✓ Published successfully!";
+
+
+        document.getElementById("title").value = "";
+
+        document.getElementById("details").value = "";
+
+        document.getElementById("link").value = "";
+
+
+      } catch (error) {
+
+        document.getElementById("message").innerText =
+          "Error: " + error.message;
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
