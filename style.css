@@ -970,4 +970,43 @@ section {
   }
 
 }
-#of
+#of/* =========================
+   SUNIL DABAL - LEADER CARD
+========================= */
+
+#office-bearers .leader-card{
+  width:100% !important;
+  max-width:260px !important;
+  margin:0 auto !important;
+  padding:8px !important;
+  background:#fff !important;
+  border-radius:18px !important;
+  box-shadow:0 6px 18px rgba(80,20,35,.08) !important;
+  overflow:hidden !important;
+  text-align:center !important;
+}
+
+#office-bearers .leader-photo{
+  display:block !important;
+  width:240px !important;
+  height:auto !important;
+  max-width:100% !important;
+  max-height:none !important;
+  object-fit:contain !important;
+  margin:0 auto !important;
+  border-radius:12px !important;
+  box-shadow:none !important;
+}
+
+@media(max-width:600px){
+
+  #office-bearers .leader-card{
+    max-width:250px !important;
+    padding:7px !important;
+  }
+
+  #office-bearers .leader-photo{
+    width:230px !important;
+  }
+
+}
