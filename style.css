@@ -1614,3 +1614,113 @@ header{
   }
 
 }
+/* =========================================
+   ASK UNION - PWA LATEST UPDATES
+========================================= */
+
+#updates .item{
+  position:relative;
+  padding:18px 18px 18px 22px;
+  margin:12px 0;
+
+  background:rgba(255,255,255,.96);
+  border:1px solid rgba(123,16,36,.10);
+  border-left:4px solid #7b1024;
+  border-radius:18px;
+
+  box-shadow:0 6px 20px rgba(50,20,30,.06);
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+#updates .item:active{
+  transform:scale(.985);
+}
+
+#updates .item b{
+  color:#7b1024;
+  font-size:16px;
+  line-height:1.4;
+}
+
+#updates .item span{
+  display:inline-block;
+
+  margin:7px 0 5px;
+
+  padding:4px 9px;
+
+  background:#faf0f3;
+  color:#7b1024;
+
+  border-radius:20px;
+
+  font-size:11px;
+  font-weight:700;
+}
+
+#updates .item p{
+  margin:7px 0 0;
+
+  color:#555;
+  font-size:14px;
+  line-height:1.6;
+}
+
+#updates .item a{
+  display:inline-flex;
+  align-items:center;
+
+  margin-top:10px;
+
+  color:#7b1024;
+  font-size:13px;
+  font-weight:800;
+
+  text-decoration:none;
+}
+
+
+/* Latest update indicator */
+
+#updates .item:first-child::before{
+  content:"LATEST";
+
+  position:absolute;
+  top:12px;
+  right:12px;
+
+  padding:4px 7px;
+
+  background:#7b1024;
+  color:white;
+
+  border-radius:8px;
+
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.4px;
+}
+
+
+/* Mobile */
+
+@media(max-width:600px){
+
+  #updates .item{
+    padding:16px 15px 16px 19px;
+    border-radius:17px;
+  }
+
+  #updates .item b{
+    font-size:15px;
+    padding-right:55px;
+  }
+
+  #updates .item p{
+    font-size:13px;
+  }
+
+}
