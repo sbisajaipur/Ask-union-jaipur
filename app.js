@@ -69,9 +69,11 @@ function renderItem(data) {
 
 
   const date =
+  formatDate(
     data.date ||
     data.Date ||
-    "";
+    ""
+  );
 
 
   const details =
@@ -138,7 +140,58 @@ function renderItem(data) {
 
 }
 
+/* =========================================
+   FORMAT DATE
+========================================= */
 
+function formatDate(value) {
+
+  if (!value) {
+    return "";
+  }
+
+  const text = String(value).trim();
+
+  // YYYY-MM-DD
+  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+
+    const parts = text.split("-");
+
+    return `${parts[2]} ${[
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ][Number(parts[1]) - 1]} ${parts[0]}`;
+
+  }
+
+  // ISO timestamp
+  const date = new Date(text);
+
+  if (!Number.isNaN(date.getTime())) {
+
+    return date.toLocaleDateString(
+      "en-IN",
+      {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+      }
+    );
+
+  }
+
+  return text;
+}
 /* =========================================
    FIREBASE INITIALIZATION
 ========================================= */
