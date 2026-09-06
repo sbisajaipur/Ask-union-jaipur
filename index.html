@@ -1,402 +1,814 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#7b1024">
-<meta name="description" content="ASK UNION – SBISA Jaipur Circle">
+  <meta charset="UTF-8">
 
-<title>ASK UNION – SBISA Jaipur Circle</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#7b1024">
+
+  <meta name="description"
+        content="ASK UNION – SBISA UDAIPUR MODULE. Union information, circulars, events and support – all in one place.">
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" href="./icon-192.png">
+
+  <title>ASK UNION – SBISA UDAIPUR MODULE</title>
+
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
 <div class="app">
 
-<header class="topbar">
+  <!-- ================= HEADER ================= -->
 
-<div class="brand-wrap">
-<img src="icon-192.png" class="brand-logo" alt="SBISA">
+  <header>
 
-<div>
-<div class="brand-title">ASK UNION</div>
-<div class="brand-sub">SBISA JAIPUR CIRCLE</div>
+    <div class="brand-wrap">
+
+      <img
+        src="./icon-192.png"
+        class="brand-logo"
+        alt="SBISA Logo"
+      >
+
+      <div>
+
+        <div class="brand-title">
+          ASK UNION
+        </div>
+
+        <div class="brand-sub">
+          SBISA UDAIPUR MODULE
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="online">
+      ● ONLINE
+    </div>
+
+  </header>
+
+
+  <!-- ================= HERO ================= -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        STATE BANK OF INDIA STAFF ASSOCIATION
+      </div>
+
+      <h1>
+        Welcome to
+        <br>
+        <span>SBISA Udaipur Module</span>
+      </h1>
+
+      <p>
+        Your digital platform for union updates, circulars,
+        events, useful information and member support.
+      </p>
+
+      <a href="#updates" class="hero-btn">
+        Explore Updates →
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= QUICK ACCESS ================= -->
+
+  <section class="quick">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="eyebrow dark">
+          QUICK ACCESS
+        </div>
+
+        <h2>
+          Union Services
+        </h2>
+
+      </div>
+
+      <div class="number">
+        01
+      </div>
+
+    </div>
+
+
+    <div class="quick-grid">
+
+      <a href="#updates" class="quick-card">
+
+        <div class="icon">📢</div>
+
+        <div>
+          <strong>Latest Updates</strong>
+          <small>Latest union information</small>
+        </div>
+
+        <span>→</span>
+
+      </a>
+
+
+      <a href="#circulars" class="quick-card">
+
+        <div class="icon">📄</div>
+
+        <div>
+          <strong>Circulars</strong>
+          <small>Important circulars & letters</small>
+        </div>
+
+        <span>→</span>
+
+      </a>
+
+
+      <a href="#events" class="quick-card">
+
+        <div class="icon">📅</div>
+
+        <div>
+          <strong>Events</strong>
+          <small>Meetings & union events</small>
+        </div>
+
+        <span>→</span>
+
+      </a>
+
+
+      <a href="#office-bearers" class="quick-card">
+
+        <div class="icon">👥</div>
+
+        <div>
+          <strong>Office Bearers</strong>
+          <small>Module representatives</small>
+        </div>
+
+        <span>→</span>
+
+      </a>
+
+
+      <a href="#grievance" class="quick-card">
+
+        <div class="icon">💬</div>
+
+        <div>
+          <strong>Grievance / Suggestion</strong>
+          <small>Share your concern</small>
+        </div>
+
+        <span>→</span>
+
+      </a>
+
+
+      <a href="#useful" class="quick-card">
+
+        <div class="icon">ℹ️</div>
+
+        <div>
+          <strong>Useful Information</strong>
+          <small>Important member resources</small>
+        </div>
+
+        <span>→</span>
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= LATEST UPDATES ================= -->
+
+  <section class="section" id="updates">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="eyebrow dark">
+          NEWS & INFORMATION
+        </div>
+
+        <h2>
+          Latest Updates
+        </h2>
+
+      </div>
+
+      <div class="number">
+        02
+      </div>
+
+    </div>
+
+    <div id="updatesList">
+
+      <p>
+        Loading latest updates...
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= CIRCULARS ================= -->
+
+  <section class="section" id="circulars">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="eyebrow dark">
+          OFFICIAL DOCUMENTS
+        </div>
+
+        <h2>
+          Circulars
+        </h2>
+
+      </div>
+
+      <div class="number">
+        03
+      </div>
+
+    </div>
+
+    <div id="circularsList">
+
+      <p>
+        Loading circulars...
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= EVENTS ================= -->
+
+  <section class="section" id="events">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="eyebrow dark">
+          UNION ACTIVITIES
+        </div>
+
+        <h2>
+          Events
+        </h2>
+
+      </div>
+
+      <div class="number">
+        04
+      </div>
+
+    </div>
+
+    <div id="eventsList">
+
+      <p>
+        Loading events...
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= OFFICE BEARERS ================= -->
+
+  <section class="section" id="office-bearers">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="eyebrow dark">
+          SBISA UDAIPUR MODULE
+        </div>
+
+        <h2>
+          Office Bearers
+        </h2>
+
+      </div>
+
+      <div class="number">
+        05
+      </div>
+
+    </div>
+
+
+    <div class="about-card">
+
+      <div class="history-banner">
+
+        <div class="year">
+          SBISA
+        </div>
+
+        <div>
+
+          <strong>
+            Udaipur Module
+          </strong>
+
+          <small>
+            Serving members • Strengthening unity
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <p>
+        Details of the Udaipur Module office bearers and
+        representatives will be updated here.
+      </p>
+
+
+      <div class="resources">
+
+        <div class="resource">
+
+          👤
+
+          <strong>
+            Module Leadership
+          </strong>
+
+          <small>
+            Office bearers
+          </small>
+
+        </div>
+
+
+        <div class="resource">
+
+          🤝
+
+          <strong>
+            Representatives
+          </strong>
+
+          <small>
+            Member support
+          </small>
+
+        </div>
+
+
+        <div class="resource">
+
+          📞
+
+          <strong>
+            Contact
+          </strong>
+
+          <small>
+            Union assistance
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= ABOUT UNION ================= -->
+
+  <section class="section" id="union">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="eyebrow dark">
+          OUR ORGANISATION
+        </div>
+
+        <h2>
+          About SBISA
+        </h2>
+
+      </div>
+
+      <div class="number">
+        06
+      </div>
+
+    </div>
+
+
+    <div class="about-card">
+
+      <div class="history-banner">
+
+        <div class="year">
+          1920
+        </div>
+
+        <div>
+
+          <strong>
+            A Legacy of Unity
+          </strong>
+
+          <small>
+            More than a century of collective strength
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <h3>
+        Our Legacy
+      </h3>
+
+      <p>
+        State Bank of India Staff Association carries a long
+        tradition of collective representation, unity and
+        service to employees of State Bank of India.
+      </p>
+
+
+      <h3>
+        Our Journey
+      </h3>
+
+      <ul class="legacy">
+
+        <li>
+          Roots of the organisation date back to 1920.
+        </li>
+
+        <li>
+          The association has continued its journey
+          through major developments in Indian banking.
+        </li>
+
+        <li>
+          SBISA has represented the interests and
+          aspirations of SBI employees.
+        </li>
+
+        <li>
+          Collective strength remains at the heart
+          of the organisation.
+        </li>
+
+      </ul>
+
+
+      <h3>
+        SBISA Circles
+      </h3>
+
+      <div class="circles">
+
+        <span>Kolkata</span>
+        <span>Bhubaneswar</span>
+        <span>Patna</span>
+        <span>North Eastern</span>
+        <span>Lucknow</span>
+        <span>Delhi</span>
+        <span>Chandigarh</span>
+        <span>Jaipur</span>
+
+      </div>
+
+
+      <div class="motto">
+
+        <div>
+          UNITY • SERVICE • STRENGTH
+        </div>
+
+        <strong>
+          TOGETHER WE STAND
+        </strong>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= GRIEVANCE ================= -->
+
+  <section class="section" id="grievance">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="eyebrow dark">
+          MEMBER SUPPORT
+        </div>
+
+        <h2>
+          Grievance / Suggestion
+        </h2>
+
+      </div>
+
+      <div class="number">
+        07
+      </div>
+
+    </div>
+
+
+    <div class="about-card">
+
+      <div class="history-banner">
+
+        <div class="year">
+          💬
+        </div>
+
+        <div>
+
+          <strong>
+            Your Voice Matters
+          </strong>
+
+          <small>
+            Share your concern or suggestion
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <p>
+        Members can use this section to submit grievances,
+        suggestions or matters requiring union attention.
+      </p>
+
+
+      <a
+        href="mailto:sbisaudaipur@gmail.com"
+        class="hero-btn"
+      >
+        Contact Union →
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= USEFUL INFORMATION ================= -->
+
+  <section class="section" id="useful">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="eyebrow dark">
+          MEMBER RESOURCES
+        </div>
+
+        <h2>
+          Useful Information
+        </h2>
+
+      </div>
+
+      <div class="number">
+        08
+      </div>
+
+    </div>
+
+
+    <div class="resources">
+
+      <div class="resource">
+
+        📘
+
+        <strong>
+          SBI Staff Rules
+        </strong>
+
+        <small>
+          Quick reference information
+        </small>
+
+      </div>
+
+
+      <div class="resource">
+
+        📋
+
+        <strong>
+          Service Matters
+        </strong>
+
+        <small>
+          Important employee information
+        </small>
+
+      </div>
+
+
+      <div class="resource">
+
+        ⚖️
+
+        <strong>
+          Rights & Benefits
+        </strong>
+
+        <small>
+          Union-related information
+        </small>
+
+      </div>
+
+
+      <div class="resource">
+
+        🏦
+
+        <strong>
+          SBI Information
+        </strong>
+
+        <small>
+          Useful banking resources
+        </small>
+
+      </div>
+
+
+      <div class="resource">
+
+        📑
+
+        <strong>
+          Important Documents
+        </strong>
+
+        <small>
+          Reference documents
+        </small>
+
+      </div>
+
+
+      <div class="resource">
+
+        🤝
+
+        <strong>
+          Member Support
+        </strong>
+
+        <small>
+          Assistance through union
+        </small>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <strong>
+      ASK UNION
+    </strong>
+
+    <p>
+      SBISA UDAIPUR MODULE
+    </p>
+
+    <p>
+      Unity • Service • Strength
+    </p>
+
+    <p>
+      © 2026 SBISA Udaipur Module
+    </p>
+
+  </footer>
+
+
+  <!-- ================= MOBILE BOTTOM NAV ================= -->
+
+  <nav class="bottom-nav">
+
+    <a href="#updates">
+      📢
+      <span>Updates</span>
+    </a>
+
+    <a href="#circulars">
+      📄
+      <span>Circulars</span>
+    </a>
+
+    <a href="#events">
+      📅
+      <span>Events</span>
+    </a>
+
+    <a href="#union">
+      👥
+      <span>Union</span>
+    </a>
+
+    <a href="#useful">
+      ℹ️
+      <span>More</span>
+    </a>
+
+  </nav>
+
 </div>
-</div>
 
-<div class="online">● ONLINE</div>
 
-</header>
+<!-- ================= FIREBASE / APP ================= -->
 
+<script src="./app.js"></script>
 
-<main>
 
-<section class="hero">
-
-<div class="hero-content">
-
-<div class="eyebrow">SBISA • JAIPUR CIRCLE</div>
-
-<h1>
-Our People.<br>
-<span>Our Voice. Our Strength.</span>
-</h1>
-
-<p>
-Union information, circulars, events and useful information — all in one place.
-</p>
-
-<a href="#updates" class="hero-btn">
-Explore Updates →
-</a>
-
-</div>
-
-</section>
-
-
-<section class="quick">
-
-<div class="section-head">
-<div>
-<div class="eyebrow dark">QUICK ACCESS</div>
-<h2>Everything you need</h2>
-</div>
-</div>
-
-
-<div class="quick-grid">
-
-<a href="#updates" class="quick-card">
-<div class="icon">📢</div>
-<div>
-<strong>Latest Updates</strong>
-<small>News & notices</small>
-</div>
-<span>→</span>
-</a>
-
-
-<a href="#circulars" class="quick-card">
-<div class="icon">📄</div>
-<div>
-<strong>Circulars</strong>
-<small>Official documents</small>
-</div>
-<span>→</span>
-</a>
-
-
-<a href="#events" class="quick-card">
-<div class="icon">📅</div>
-<div>
-<strong>Events</strong>
-<small>Meetings & programmes</small>
-</div>
-<span>→</span>
-</a>
-
-
-<a href="#union" class="quick-card">
-<div class="icon">🤝</div>
-<div>
-<strong>About Union</strong>
-<small>Our glorious history</small>
-</div>
-<span>→</span>
-</a>
-
-
-<a href="#union" class="quick-card">
-<div class="icon">👥</div>
-<div>
-<strong>Office Bearers</strong>
-<small>Leadership & contacts</small>
-</div>
-<span>→</span>
-</a>
-
-
-<a href="#useful" class="quick-card">
-<div class="icon">📚</div>
-<div>
-<strong>Useful Info</strong>
-<small>Employee resources</small>
-</div>
-<span>→</span>
-</a>
-
-</div>
-</section>
-
-
-
-<section class="section" id="updates">
-
-<div class="section-head">
-<div>
-<div class="eyebrow dark">STAY INFORMED</div>
-<h2>Latest Updates</h2>
-</div>
-<span class="number">01</span>
-</div>
-
-<div id="updatesList"></div>
-
-</section>
-
-
-
-<section class="section" id="circulars">
-
-<div class="section-head">
-<div>
-<div class="eyebrow dark">OFFICIAL DOCUMENTS</div>
-<h2>Circulars</h2>
-</div>
-<span class="number">02</span>
-</div>
-
-<div id="circularsList"></div>
-
-</section>
-
-
-
-<section class="section" id="events">
-
-<div class="section-head">
-<div>
-<div class="eyebrow dark">WHAT'S HAPPENING</div>
-<h2>Events</h2>
-</div>
-<span class="number">03</span>
-</div>
-
-<div id="eventsList"></div>
-
-</section>
-
-
-
-<section class="section" id="union">
-
-<div class="section-head">
-<div>
-<div class="eyebrow dark">ABOUT SBISA</div>
-<h2>About Union</h2>
-</div>
-<span class="number">04</span>
-</div>
-
-
-<div class="about-card">
-
-<div class="history-banner">
-
-<div class="year">1920</div>
-
-<div>
-<strong>A Legacy of Unity</strong>
-<small>More than a century of collective strength</small>
-</div>
-
-</div>
-
-
-<h3>Our Glorious History</h3>
-
-<p>
-<strong>State Bank of India Staff Association (SBISA)</strong>
-is one of the historic trade union organisations representing employees
-of the State Bank of India.
-</p>
-
-<p>
-The glorious journey of SBISA dates back to <strong>1920</strong>,
-when the Imperial Bank of India Indian Staff Association was formed
-at Calcutta, before the enactment of the Trade Unions Act, 1926.
-</p>
-
-<p>
-The early movement was shaped by pioneering leaders including
-<strong>Comrade Ajit Sen</strong>.
-The transformation of the Imperial Bank of India into the
-<strong>State Bank of India in 1955</strong> marked an important
-turning point. On <strong>22 February 1956</strong>, the Association
-adopted the name <strong>State Bank of India Staff Association (SBISA)</strong>.
-</p>
-
-
-<h3>Our Legacy</h3>
-
-<ul class="legacy">
-
-<li>Fair and equitable service conditions</li>
-<li>Wage and settlement improvements</li>
-<li>Medical and welfare benefits</li>
-<li>Job security and career progression</li>
-<li>Protection of employees' legitimate rights</li>
-<li>Gender equality and safe workplaces</li>
-<li>Effective employee representation</li>
-<li>Dignity, justice and welfare</li>
-
-</ul>
-
-
-<h3>Our Organisation</h3>
-
-<p>SBISA has historically functioned through eight Circle organisations:</p>
-
-<div class="circles">
-
-<span>Kolkata</span>
-<span>Bhubaneswar</span>
-<span>Patna</span>
-<span>North Eastern</span>
-<span>Lucknow</span>
-<span>Delhi</span>
-<span>Chandigarh</span>
-<span>Jaipur</span>
-
-</div>
-
-
-<div class="motto">
-
-<div>OUR PEOPLE • OUR VOICE • OUR STRENGTH</div>
-
-<strong>RIGHT IS MIGHT</strong>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<section class="section" id="useful">
-
-<div class="section-head">
-
-<div>
-<div class="eyebrow dark">RESOURCES</div>
-<h2>Useful Information</h2>
-</div>
-
-<span class="number">05</span>
-
-</div>
-
-
-<div class="resources">
-
-<div class="resource">
-📋
-<strong>Service Matters</strong>
-<small>Employee service information</small>
-</div>
-
-<div class="resource">
-🏖️
-<strong>Leave Rules</strong>
-<small>Leave & related information</small>
-</div>
-
-<div class="resource">
-🔄
-<strong>Transfer & Promotion</strong>
-<small>Career resources</small>
-</div>
-
-<div class="resource">
-🏦
-<strong>Settlement Updates</strong>
-<small>Important information</small>
-</div>
-
-<div class="resource">
-🎓
-<strong>Retirement</strong>
-<small>Useful retirement resources</small>
-</div>
-
-<div class="resource">
-⬇️
-<strong>Downloads</strong>
-<small>Important documents</small>
-</div>
-
-</div>
-
-</section>
-
-</main>
-
-
-<footer>
-
-<strong>ASK UNION</strong>
-
-<div>SBISA JAIPUR CIRCLE</div>
-
-<p>Our People • Our Voice • Our Strength</p>
-
-</footer>
-
-
-<nav class="bottom-nav">
-
-<a href="#">
-⌂
-<span>Home</span>
-</a>
-
-<a href="#updates">
-📢
-<span>Updates</span>
-</a>
-
-<a href="#circulars">
-📄
-<span>Circulars</span>
-</a>
-
-<a href="#union">
-👥
-<span>Union</span>
-</a>
-
-<a href="#useful">
-☰
-<span>More</span>
-</a>
-
-</nav>
-
-
-<script src="app.js"></script>
+<!-- ================= PWA SERVICE WORKER ================= -->
 
 <script>
 
-if ("serviceWorker" in navigator) {
+  if ("serviceWorker" in navigator) {
 
-window.addEventListener("load", function() {
+    window.addEventListener("load", () => {
 
-navigator.serviceWorker.register("./sw.js");
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then(() => {
+          console.log("ASK UNION Service Worker registered");
+        })
+        .catch((error) => {
+          console.log(
+            "Service Worker registration failed:",
+            error
+          );
+        });
 
-});
+    });
 
-}
+  }
 
 </script>
-
-</div>
 
 </body>
 </html>
