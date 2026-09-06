@@ -1946,3 +1946,44 @@ header{
   }
 
 }
+.pdf-button{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  min-height:44px !important;
+  padding:0 17px !important;
+
+  background:#7b1024 !important;
+  color:#ffffff !important;
+
+  border-radius:12px !important;
+
+  text-decoration:none !important;
+  font-size:13px !important;
+  font-weight:800 !important;
+
+  visibility:visible !important;
+  opacity:1 !important;
+}
+
+.pdf-button span{
+  display:block !important;
+  color:#ffffff !important;
+  font-size:13px !important;
+  font-weight:800 !important;
+  visibility:visible !important;
+}
+
+@media(max-width:600px){
+
+  .pdf-button{
+    min-height:42px !important;
+    padding:0 15px !important;
+  }
+
+  .pdf-button span{
+    font-size:12px !important;
+  }
+
+}
