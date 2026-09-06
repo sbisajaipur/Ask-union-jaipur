@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
 
@@ -10,303 +9,742 @@
   <meta name="theme-color" content="#7b1024">
 
   <meta name="description"
-        content="ASK UNION – SBISA UDAIPUR MODULE. Union information, circulars, events and member support – all in one place.">
+        content="ASK UNION – SBISA UDAIPUR MODULE">
 
   <link rel="manifest" href="./manifest.json">
 
-  <link rel="icon"
-        type="image/png"
-        href="./icon-192.png">
+  <link rel="icon" href="./icon-192.png">
+
+  <link rel="stylesheet" href="./style.css">
 
   <title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
-  <link rel="stylesheet" href="./style.css">
+  <style>
+    .item {
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(123, 16, 36, 0.12);
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .item b {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: #7b1024;
+    }
+
+    .item span {
+      display: block;
+      font-size: 13px;
+      opacity: 0.65;
+      margin-bottom: 8px;
+    }
+
+    .item p {
+      margin: 5px 0 10px;
+      line-height: 1.6;
+    }
+
+    .item a {
+      color: #7b1024;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .loading {
+      padding: 20px 0;
+      opacity: 0.65;
+    }
+
+    .error {
+      padding: 20px 0;
+      color: #7b1024;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="app">
+  <!-- HEADER -->
+  <header class="top-header">
 
-  <!-- =====================================================
-       HEADER
-  ====================================================== -->
-
-  <header>
-
-    <div class="brand-wrap">
+    <div class="brand">
 
       <img
         src="./icon-192.png"
+        alt="SBISA"
         class="brand-logo"
-        alt="SBISA Logo"
       >
 
       <div>
-
-        <div class="brand-title">
-          ASK UNION
-        </div>
-
-        <div class="brand-sub">
-          SBISA UDAIPUR MODULE
-        </div>
-
+        <h1>ASK UNION</h1>
+        <p>SBISA UDAIPUR MODULE</p>
       </div>
 
     </div>
 
-    <div class="online">
-      ● ONLINE
+    <div class="online-status">
+      • ONLINE
     </div>
 
   </header>
 
 
-  <!-- =====================================================
-       HERO
-  ====================================================== -->
+  <!-- HERO -->
+  <main>
 
-  <section class="hero">
+    <section class="hero">
 
-    <div class="hero-content">
+      <div class="hero-content">
 
-      <div class="eyebrow">
-        STATE BANK OF INDIA STAFF ASSOCIATION
-      </div>
-
-      <h1>
-        Welcome to
-        <br>
-        <span>SBISA Udaipur Module</span>
-      </h1>
-
-      <p>
-        Your digital platform for union updates, circulars,
-        events, useful information and member support.
-      </p>
-
-      <a href="#updates" class="hero-btn">
-        Explore Updates →
-      </a>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       QUICK ACCESS
-  ====================================================== -->
-
-  <section class="quick">
-
-    <div class="section-head">
-
-      <div>
-
-        <div class="eyebrow dark">
-          QUICK ACCESS
+        <div class="eyebrow">
+          OUR PEOPLE • OUR VOICE • OUR STRENGTH
         </div>
 
         <h2>
-          Union Services
+          Your Union.<br>
+          Your Voice.
         </h2>
 
+        <p>
+          Official member information, union updates,
+          circulars, events and useful forms.
+        </p>
+
       </div>
 
-      <div class="number">
-        01
+    </section>
+
+
+    <!-- QUICK ACCESS -->
+    <section class="quick-section">
+
+      <div class="section-heading">
+        <div>
+          <small>QUICK ACCESS</small>
+          <h2>Member Services</h2>
+        </div>
       </div>
 
-    </div>
+
+      <div class="quick-grid">
+
+        <a href="#updates" class="quick-card">
+          <div class="quick-icon">📰</div>
+          <div>
+            <h3>Latest Updates</h3>
+            <p>Latest union news</p>
+          </div>
+        </a>
 
 
-    <div class="quick-grid">
+        <a href="#circulars" class="quick-card">
+          <div class="quick-icon">📄</div>
+          <div>
+            <h3>Circulars</h3>
+            <p>Official documents</p>
+          </div>
+        </a>
 
-      <a href="#updates" class="quick-card">
 
-        <div class="icon">📢</div>
+        <a href="#events" class="quick-card">
+          <div class="quick-icon">📅</div>
+          <div>
+            <h3>Events</h3>
+            <p>Meetings & union events</p>
+          </div>
+        </a>
+
+
+        <a href="#office-bearers" class="quick-card">
+          <div class="quick-icon">👥</div>
+          <div>
+            <h3>Office Bearers</h3>
+            <p>Module representatives</p>
+          </div>
+        </a>
+
+
+        <a href="#grievance" class="quick-card">
+          <div class="quick-icon">💬</div>
+          <div>
+            <h3>Grievance / Suggestion</h3>
+            <p>Share your concern</p>
+          </div>
+        </a>
+
+
+        <a href="#useful" class="quick-card">
+          <div class="quick-icon">ℹ️</div>
+          <div>
+            <h3>Useful Information</h3>
+            <p>Important member resources</p>
+          </div>
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- LATEST UPDATES -->
+    <section id="updates" class="content-section">
+
+      <div class="section-heading">
 
         <div>
-          <strong>Latest Updates</strong>
-          <small>Latest union information</small>
+          <small>NEWS & INFORMATION</small>
+          <h2>Latest Updates</h2>
         </div>
 
-        <span>→</span>
-
-      </a>
-
-
-      <a href="#circulars" class="quick-card">
-
-        <div class="icon">📄</div>
-
-        <div>
-          <strong>Circulars</strong>
-          <small>Important circulars & letters</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-
-      <a href="#events" class="quick-card">
-
-        <div class="icon">📅</div>
-
-        <div>
-          <strong>Events</strong>
-          <small>Meetings & union events</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-
-      <a href="#office-bearers" class="quick-card">
-
-        <div class="icon">👥</div>
-
-        <div>
-          <strong>Office Bearers</strong>
-          <small>Module representatives</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-
-      <a href="#grievance" class="quick-card">
-
-        <div class="icon">💬</div>
-
-        <div>
-          <strong>Grievance / Suggestion</strong>
-          <small>Share your concern</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-
-      <a href="#useful" class="quick-card">
-
-        <div class="icon">ℹ️</div>
-
-        <div>
-          <strong>Useful Information</strong>
-          <small>Important member resources</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       LATEST UPDATES
-  ====================================================== -->
-
-  <section class="section" id="updates">
-
-    <div class="section-head">
-
-      <div>
-
-        <div class="eyebrow dark">
-          NEWS & INFORMATION
-        </div>
-
-        <h2>
-          Latest Updates
-        </h2>
+        <strong>02</strong>
 
       </div>
 
-      <div class="number">
-        02
+      <div id="updatesList">
+        <div class="loading">
+          Loading latest updates...
+        </div>
       </div>
 
-    </div>
+    </section>
 
 
-    <div id="updatesList">
+    <!-- CIRCULARS -->
+    <section id="circulars" class="content-section">
 
-      <p>
-        Loading latest updates...
-      </p>
+      <div class="section-heading">
 
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       CIRCULARS
-  ====================================================== -->
-
-  <section class="section" id="circulars">
-
-    <div class="section-head">
-
-      <div>
-
-        <div class="eyebrow dark">
-          OFFICIAL DOCUMENTS
+        <div>
+          <small>OFFICIAL DOCUMENTS</small>
+          <h2>Circulars</h2>
         </div>
 
-        <h2>
-          Circulars
-        </h2>
+        <strong>03</strong>
 
       </div>
 
-      <div class="number">
-        03
+      <div id="circularsList">
+        <div class="loading">
+          Loading circulars...
+        </div>
       </div>
 
-    </div>
+    </section>
 
 
-    <div id="circularsList">
+    <!-- EVENTS -->
+    <section id="events" class="content-section">
 
-      <p>
-        Loading circulars...
-      </p>
+      <div class="section-heading">
 
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       EVENTS
-  ====================================================== -->
-
-  <section class="section" id="events">
-
-    <div class="section-head">
-
-      <div>
-
-        <div class="eyebrow dark">
-          UNION ACTIVITIES
+        <div>
+          <small>UNION ACTIVITIES</small>
+          <h2>Events</h2>
         </div>
 
-        <h2>
-          Events
-        </h2>
+        <strong>04</strong>
 
       </div>
 
-      <div class="number">
-        04
-      </
+      <div id="eventsList">
+        <div class="loading">
+          Loading events...
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- OFFICE BEARERS -->
+    <section id="office-bearers" class="content-section">
+
+      <div class="section-heading">
+
+        <div>
+          <small>OUR TEAM</small>
+          <h2>Office Bearers</h2>
+        </div>
+
+        <strong>05</strong>
+
+      </div>
+
+      <div class="item">
+
+        <b>SBISA Udaipur Module</b>
+
+        <p>
+          Union representatives and office bearers
+          will be displayed here.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- GRIEVANCE -->
+    <section id="grievance" class="content-section">
+
+      <div class="section-heading">
+
+        <div>
+          <small>MEMBER SUPPORT</small>
+          <h2>Grievance / Suggestion</h2>
+        </div>
+
+        <strong>06</strong>
+
+      </div>
+
+      <div class="item">
+
+        <b>Have a concern or suggestion?</b>
+
+        <p>
+          Members can contact the union regarding
+          their issues, suggestions and support requirements.
+        </p>
+
+        <a
+          href="mailto:sbisaudaipur@gmail.com"
+          class="hero-btn"
+        >
+          Contact Union →
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- USEFUL INFORMATION -->
+    <section id="useful" class="content-section">
+
+      <div class="section-heading">
+
+        <div>
+          <small>MEMBER RESOURCES</small>
+          <h2>Useful Information</h2>
+        </div>
+
+        <strong>07</strong>
+
+      </div>
+
+
+      <!-- FORMS -->
+
+      <div class="item">
+
+        <b>Personal Loan Application</b>
+
+        <p>
+          Application form for personal loan.
+        </p>
+
+        <a
+          href="./personal-loan.pdf"
+          target="_blank"
+          rel="noopener"
+        >
+          OPEN PDF →
+        </a>
+
+      </div>
+
+
+      <div class="item">
+
+        <b>Transfer Application</b>
+
+        <p>
+          Application form for transfer.
+        </p>
+
+        <a
+          href="./transfer-application.pdf"
+          target="_blank"
+          rel="noopener"
+        >
+          OPEN PDF →
+        </a>
+
+      </div>
+
+
+      <div class="item">
+
+        <b>Medical Application</b>
+
+        <p>
+          Medical / hospitalisation application form.
+        </p>
+
+        <a
+          href="./medical-form.pdf"
+          target="_blank"
+          rel="noopener"
+        >
+          OPEN PDF →
+        </a>
+
+      </div>
+
+
+      <div class="item">
+
+        <b>SBISA Membership Form</b>
+
+        <p>
+          Membership and union subscription authorisation form.
+        </p>
+
+        <a
+          href="./membership-form.pdf"
+          target="_blank"
+          rel="noopener"
+        >
+          OPEN PDF →
+        </a>
+
+      </div>
+
+
+      <div class="item">
+
+        <b>Staff Rules & Information</b>
+
+        <p>
+          Useful staff-related information and documents.
+        </p>
+
+        <a
+          href="./SBI_Staff_Rules_Quick_Reference.pdf"
+          target="_blank"
+          rel="noopener"
+        >
+          OPEN DOCUMENT →
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT UNION -->
+    <section class="content-section">
+
+      <div class="section-heading">
+
+        <div>
+          <small>OUR LEGACY</small>
+          <h2>About SBISA</h2>
+        </div>
+
+        <strong>08</strong>
+
+      </div>
+
+
+      <div class="item">
+
+        <b>SBISA – A Long Union Journey</b>
+
+        <p>
+          The State Bank of India Staff Association has
+          a long history of representing employees and
+          protecting their interests.
+        </p>
+
+        <p>
+          The association's journey traces back to
+          1920 and has continued through generations
+          of banking employees.
+        </p>
+
+        <p>
+          <b>Our People • Our Voice • Our Strength</b>
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      ASK UNION – SBISA UDAIPUR MODULE
+    </p>
+
+    <small>
+      Together for our people. Together for our rights.
+    </small>
+
+  </footer>
+
+
+  <!-- FIRESTORE DIRECT LOADER -->
+  <script>
+
+    const PROJECT_ID = "ask-union-jaipur-circle";
+
+    const FIRESTORE_BASE =
+      "https://firestore.googleapis.com/v1/projects/" +
+      PROJECT_ID +
+      "/databases/(default)/documents";
+
+
+    function readValue(value) {
+
+      if (!value) return "";
+
+      if (value.stringValue !== undefined)
+        return value.stringValue;
+
+      if (value.integerValue !== undefined)
+        return value.integerValue;
+
+      if (value.doubleValue !== undefined)
+        return value.doubleValue;
+
+      if (value.booleanValue !== undefined)
+        return value.booleanValue;
+
+      if (value.timestampValue !== undefined)
+        return value.timestampValue;
+
+      return "";
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    async function loadCollection(
+      collection,
+      elementId,
+      emptyMessage
+    ) {
+
+      const element =
+        document.getElementById(elementId);
+
+      if (!element) return;
+
+
+      try {
+
+        const response =
+          await fetch(
+            FIRESTORE_BASE +
+            "/" +
+            collection +
+            "?v=1"
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Firestore HTTP " +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        const documents =
+          result.documents || [];
+
+
+        if (documents.length === 0) {
+
+          element.innerHTML =
+            '<div class="item">' +
+            escapeHtml(emptyMessage) +
+            '</div>';
+
+          return;
+
+        }
+
+
+        let html = "";
+
+
+        documents.forEach(function(document) {
+
+          const fields =
+            document.fields || {};
+
+
+          const title =
+            readValue(fields.title) ||
+            readValue(fields.Title) ||
+            "Untitled";
+
+
+          const date =
+            readValue(fields.date) ||
+            readValue(fields.Date) ||
+            "";
+
+
+          const details =
+            readValue(fields.details) ||
+            readValue(fields.Details) ||
+            "";
+
+
+          const link =
+            readValue(fields.link) ||
+            readValue(fields.Link) ||
+            "";
+
+
+          html +=
+            '<div class="item">' +
+
+              '<b>' +
+              escapeHtml(title) +
+              '</b>' +
+
+              (
+                date
+                ? '<span>' +
+                  escapeHtml(date) +
+                  '</span>'
+                : ''
+              ) +
+
+              (
+                details
+                ? '<p>' +
+                  escapeHtml(details) +
+                  '</p>'
+                : ''
+              ) +
+
+              (
+                link
+                ? '<a href="' +
+                  escapeHtml(link) +
+                  '" target="_blank" rel="noopener">' +
+                  'Open PDF / Link →' +
+                  '</a>'
+                : ''
+              ) +
+
+            '</div>';
+
+        });
+
+
+        element.innerHTML = html;
+
+
+      } catch (error) {
+
+        console.error(
+          "Error loading " +
+          collection,
+          error
+        );
+
+
+        element.innerHTML =
+          '<div class="error">' +
+
+            '<b>Information temporarily unavailable.</b>' +
+
+            '<p>Please refresh the page.</p>' +
+
+          '</div>';
+
+      }
+
+    }
+
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+
+        loadCollection(
+          "updates",
+          "updatesList",
+          "No new updates published yet."
+        );
+
+
+        loadCollection(
+          "circulars",
+          "circularsList",
+          "No circulars published yet."
+        );
+
+
+        loadCollection(
+          "events",
+          "eventsList",
+          "No upcoming events published yet."
+        );
+
+      }
+    );
+
+
+    /* SERVICE WORKER */
+    if ("serviceWorker" in navigator) {
+
+      window.addEventListener(
+        "load",
+        function() {
+
+          navigator.serviceWorker.register(
+            "./sw.js?v=9"
+          ).catch(function(error) {
+
+            console.log(
+              "Service worker registration failed:",
+              error
+            );
+
+          });
+
+        }
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
