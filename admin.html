@@ -1,504 +1,108 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>ASK UNION – Admin Panel</title>  <style>  
-body{  
-  font-family:Arial,sans-serif;  
-  background:#f5f7fb;  
-  margin:0;  
-  padding:20px;  
-}  
-  
-.box{  
-  max-width:650px;  
-  margin:20px auto;  
-  background:white;  
-  padding:25px;  
-  border-radius:18px;  
-  box-shadow:0 4px 20px rgba(0,0,0,.08);  
-}  
-  
-h1,h2{  
-  color:#123b70;  
-}  
-  
-input,textarea,select,button{  
-  width:100%;  
-  box-sizing:border-box;  
-  padding:13px;  
-  margin:8px 0;  
-  border-radius:10px;  
-  border:1px solid #ccc;  
-  font-size:16px;  
-}  
-  
-textarea{  
-  min-height:110px;  
-}  
-  
-button{  
-  background:#1264d8;  
-  color:white;  
-  border:0;  
-  font-weight:bold;  
-}  
-  
-.logout{  
-  background:#777;  
-}  
-  
-.edit{  
-  background:#f0a000;  
-}  
-  
-.delete{  
-  background:#d93025;  
-}  
-  
-.hidden{  
-  display:none;  
-}  
-  
-.item{  
-  border:1px solid #ddd;  
-  border-radius:12px;  
-  padding:15px;  
-  margin:12px 0;  
-}  
-  
-.item b{  
-  font-size:18px;  
-}  
-  
-.small{  
-  color:#777;  
-  font-size:13px;  
-}  
-  
-.message{  
-  margin-top:10px;  
-  font-weight:bold;  
-}  
-</style>  </head>  <body>  <!-- LOGIN -->  <div class="box" id="loginBox">  <h1>ASK UNION</h1>  
-<h2>SBISA JAIPUR CIRCLE</h2>  <p>Union Admin Login</p>  <input  
-type="email"  
-id="email"  
-placeholder="Admin Email">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7b1024">
+<title>ASK UNION – Admin Panel</title>
+<style>
+:root{--maroon:#7b1024;--ink:#18212f;--muted:#6b7280;--line:#e7e2df;--red:#c62828;--gold:#b97800}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#f6f4f2;color:var(--ink)}
+button,input,textarea,select{font:inherit}.hidden{display:none!important}
+.topbar{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#7b1024,#5e0c1b);color:#fff;padding:14px 18px;box-shadow:0 5px 18px #4610192e}
+.topbar-inner,.container{max-width:1100px;margin:auto}.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:11px}.brand img{width:44px;height:44px;border-radius:12px;background:#fff;padding:4px;object-fit:contain}
+.brand-title{font-weight:800;font-size:18px}.brand-sub{font-size:10px;opacity:.8;letter-spacing:1px}
+.container{padding:22px 14px 45px}.card{background:#fff;border:1px solid #1e232d12;border-radius:20px;box-shadow:0 7px 28px #2314190d}
+.login-card{max-width:460px;margin:8vh auto;padding:28px}.login-card h1{color:var(--maroon);margin:22px 0 5px}
+.field{margin:13px 0}.field label{display:block;font-weight:750;font-size:12px;margin-bottom:6px}
+.field input,.field textarea,.field select{width:100%;border:1px solid #d9d5d2;border-radius:12px;padding:12px 13px;outline:0}
+.field textarea{min-height:125px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:#9b1d3a;box-shadow:0 0 0 4px #7b102414}
+.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:800;min-height:42px;cursor:pointer}.primary{background:var(--maroon);color:#fff}.light{background:#f1eeec;color:#4b5563}.danger{background:#fff0f0;color:var(--red);border:1px solid #ffd0d0}.edit{background:#fff7e8;color:var(--gold);border:1px solid #f3dfb3}.logout{background:#ffffff1c;color:#fff;border:1px solid #ffffff3b}
+.head{padding:18px;margin-bottom:14px;display:flex;justify-content:space-between;gap:12px;align-items:center}.head h1{margin:0;font-size:23px}.head p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:14px}.stat{padding:16px 18px}.label{font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.6px}.num{font-size:29px;font-weight:900;color:var(--maroon);margin-top:3px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.section{padding:18px}.section h2{font-size:18px;margin:0}.section-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:13px}.section-head span{font-size:11px;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 11px}.full{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap}
+.toolbar{display:flex;gap:8px;margin-bottom:11px}.toolbar input{flex:1;border:1px solid var(--line);border-radius:11px;padding:10px 12px}.toolbar select{width:170px;border:1px solid var(--line);border-radius:11px;padding:10px 12px;background:#fff}
+.list{max-height:730px;overflow:auto}.item{border:1px solid var(--line);border-radius:15px;padding:14px;margin:9px 0}.item-top{display:flex;justify-content:space-between;gap:8px}.title{font-weight:850;font-size:15px;line-height:1.35}.badge{background:#f4e7ea;color:var(--maroon);padding:4px 8px;border-radius:99px;font-size:10px;font-weight:800;white-space:nowrap}.meta{font-size:10px;color:var(--muted);margin:6px 0}.details{font-size:13px;color:#4b5563;line-height:1.5;white-space:pre-wrap}.link{display:inline-block;margin-top:7px;color:var(--maroon);font-size:12px;font-weight:800;text-decoration:none}.item-actions{display:flex;gap:7px;margin-top:10px}.item-actions .btn{flex:1;min-height:37px;padding:8px}.empty{text-align:center;padding:25px;color:var(--muted);font-size:13px}.alert{margin-top:10px;padding:10px 12px;border-radius:11px;font-size:12px;font-weight:700}.success{background:#edf9f2;color:#16804b}.error{background:#fff0f0;color:#a61b1b}
+@media(max-width:760px){.container{padding:13px 10px 35px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}.head{align-items:flex-start;flex-direction:column}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.toolbar{flex-direction:column}.toolbar select{width:100%}.section{padding:15px}.topbar{padding:11px}.brand img{width:40px;height:40px}.brand-title{font-size:16px}.logout{font-size:11px;padding:9px 11px}}
+@media(max-width:420px){.stats{grid-template-columns:1fr}.stats .stat:last-child{grid-column:auto}}
+</style>
+</head>
+<body>
 
-<input  
-type="password"  
-id="password"  
-placeholder="Password">
+<div id="loginView" class="container">
+  <div class="card login-card">
+    <div class="brand"><img src="./ask-union-icon-192.png" alt="ASK UNION"><div><div class="brand-title">ASK UNION</div><div class="brand-sub">SBISA UDAIPUR MODULE</div></div></div>
+    <h1>Admin Login</h1>
+    <p style="color:#6b7280">Secure content management panel</p>
+    <div class="field"><label>ADMIN EMAIL</label><input id="email" type="email" autocomplete="username" placeholder="Admin email"></div>
+    <div class="field"><label>PASSWORD</label><input id="password" type="password" autocomplete="current-password" placeholder="Password" onkeydown="if(event.key==='Enter')login()"></div>
+    <button class="btn primary" style="width:100%" onclick="login()">LOGIN →</button>
+    <div id="loginMessage"></div>
+  </div>
+</div>
 
-<button onclick="login()">LOGIN</button>
+<div id="adminView" class="hidden">
+<header class="topbar"><div class="topbar-inner">
+  <div class="brand"><img src="./ask-union-icon-192.png" alt="ASK UNION"><div><div class="brand-title">ASK UNION</div><div class="brand-sub">SBISA UDAIPUR MODULE · ADMIN</div></div></div>
+  <button class="btn logout" onclick="logout()">LOGOUT</button>
+</div></header>
+<main class="container">
+  <div class="card head"><div><h1>Content Dashboard</h1><p>Logged in as <b id="adminEmail"></b></p></div><button class="btn light" onclick="refreshAll()">↻ REFRESH</button></div>
+  <div class="stats">
+    <div class="card stat"><div class="label">Updates / Notices</div><div class="num" id="countUpdates">—</div></div>
+    <div class="card stat"><div class="label">Circulars</div><div class="num" id="countCirculars">—</div></div>
+    <div class="card stat"><div class="label">Events</div><div class="num" id="countEvents">—</div></div>
+  </div>
+  <div class="grid">
+    <section class="card section">
+      <div class="section-head"><h2 id="formHeading">Publish Content</h2><span>Appears on public app</span></div>
+      <div class="form-grid">
+        <div class="field"><label>CONTENT TYPE</label><select id="type"><option value="updates">Update / Notice</option><option value="circulars">Circular</option><option value="events">Event</option></select></div>
+        <div class="field"><label>DATE</label><input id="publishDate" type="date"></div>
+        <div class="field full"><label>TITLE *</label><input id="title" maxlength="180" placeholder="Enter a clear title"></div>
+        <div class="field full"><label>CATEGORY (OPTIONAL)</label><input id="category" maxlength="60" placeholder="Transfer, Pension, Strike, Meeting..."></div>
+        <div class="field full"><label>DETAILS</label><textarea id="details" maxlength="5000" placeholder="Enter details"></textarea></div>
+        <div class="field full"><label>PDF / LINK (OPTIONAL)</label><input id="link" type="url" placeholder="https://..."></div>
+      </div>
+      <div class="actions"><button id="publishButton" class="btn primary" onclick="publish()">PUBLISH</button><button id="cancelButton" class="btn light hidden" onclick="cancelEdit()">CANCEL EDIT</button></div>
+      <div id="message"></div>
+    </section>
+    <section class="card section">
+      <div class="section-head"><h2>Published Content</h2><span id="resultCount"></span></div>
+      <div class="toolbar"><input id="searchBox" type="search" placeholder="Search title, details or category…" oninput="renderList()"><select id="manageType" onchange="loadContent()"><option value="updates">Updates / Notices</option><option value="circulars">Circulars</option><option value="events">Events</option></select></div>
+      <div id="contentList" class="list"><div class="empty">Loading…</div></div>
+    </section>
+  </div>
+</main>
+</div>
 
-<div id="loginMessage"></div>  </div>  <!-- ADMIN -->  <div class="box hidden" id="adminBox">  <h1>Content Management</h1>  <p>  
-Logged in as:  
-<b id="adminEmail"></b>  
-</p>  <button class="logout" onclick="logout()">  
-LOGOUT  
-</button>  <hr>  <h2>Publish / Edit Content</h2>  <select id="type">  
-<option value="updates">Update / Notice</option>  
-<option value="circulars">Circular</option>  
-<option value="events">Event</option>  
-</select>  <input  
-type="text"  
-id="title"  
-placeholder="Enter title">
-
-<textarea  
-id="details"  
-placeholder="Enter details"></textarea>  <input  
-type="url"  
-id="link"  
-placeholder="PDF / Link (optional)">
-
-<button id="publishButton" onclick="publish()">  
-PUBLISH  
-</button>  <button  
-id="cancelButton"  
-class="logout hidden"  
-onclick="cancelEdit()">
-CANCEL EDIT
-</button>
-
-<div id="message" class="message"></div>  <hr>  <h2>Published Content</h2>  <select id="manageType" onchange="loadContent()">  
-<option value="updates">Updates / Notices</option>  
-<option value="circulars">Circulars</option>  
-<option value="events">Events</option>  
-</select>  <div id="contentList">  
-Loading...  
-</div>  </div>  <!-- FIREBASE -->  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>  <script>  
-  
-const firebaseConfig = {  
-  apiKey: "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",  
-  authDomain: "ask-union-jaipur-circle.firebaseapp.com",  
-  projectId: "ask-union-jaipur-circle",  
-  storageBucket: "ask-union-jaipur-circle.firebasestorage.app",  
-  messagingSenderId: "584327754977",  
-  appId: "1:584327754977:web:7164a85c007165743ef3a0"  
-};  
-  
-firebase.initializeApp(firebaseConfig);  
-  
-const auth = firebase.auth();  
-const db = firebase.firestore();  
-  
-let editingId = null;  
-  
-  
-// LOGIN  
-  
-function login(){  
-  
-  const email =  
-    document.getElementById("email").value.trim();  
-  
-  const password =  
-    document.getElementById("password").value;  
-  
-  auth.signInWithEmailAndPassword(email,password)  
-  
-  .catch(error=>{  
-    document.getElementById("loginMessage").innerText =  
-      "Login failed: " + error.message;  
-  });  
-}  
-  
-  
-// AUTH STATE  
-  
-auth.onAuthStateChanged(user=>{  
-  
-  if(user){  
-  
-    document.getElementById("loginBox")  
-      .classList.add("hidden");  
-  
-    document.getElementById("adminBox")  
-      .classList.remove("hidden");  
-  
-    document.getElementById("adminEmail")  
-      .innerText=user.email;  
-  
-    loadContent();  
-  
-  }else{  
-  
-    document.getElementById("loginBox")  
-      .classList.remove("hidden");  
-  
-    document.getElementById("adminBox")  
-      .classList.add("hidden");  
-  
-  }  
-  
-});  
-  
-  
-// LOGOUT  
-  
-function logout(){  
-  auth.signOut();  
-}  
-  
-  
-// PUBLISH  
-  
-async function publish(){  
-  
-  const type =  
-    document.getElementById("type").value;  
-  
-  const title =  
-    document.getElementById("title").value.trim();  
-  
-  const details =  
-    document.getElementById("details").value.trim();  
-  
-  const link =  
-    document.getElementById("link").value.trim();  
-  
-  if(!title){  
-  
-    alert("Please enter a title.");  
-  
-    return;  
-  }  
-  
-  
-  try{  
-  
-    if(editingId){  
-  
-      await db.collection(type)  
-        .doc(editingId)  
-        .update({  
-  
-          title:title,  
-          details:details,  
-          link:link,  
-          updatedAt:new Date().toISOString()  
-  
-        });  
-  
-      showMessage("✓ Updated successfully!");  
-  
-      editingId=null;  
-  
-      document.getElementById("publishButton")  
-        .innerText="PUBLISH";  
-  
-      document.getElementById("cancelButton")  
-        .classList.add("hidden");  
-  
-    }else{  
-  
-      await db.collection(type).add({  
-  
-        title:title,  
-        details:details,  
-        link:link,  
-        date:new Date().toISOString(),  
-        createdBy:auth.currentUser.email  
-  
-      });  
-  
-      showMessage("✓ Published successfully!");  
-  
-    }  
-  
-  
-    clearForm();  
-  
-    loadContent();  
-  
-  }catch(error){  
-  
-    showMessage("Error: "+error.message);  
-  
-  }  
-  
-}  
-  
-  
-// LOAD CONTENT  
-  
-async function loadContent(){  
-  
-  const type =  
-    document.getElementById("manageType").value;  
-  
-  const list =  
-    document.getElementById("contentList");  
-  
-  list.innerHTML="Loading...";  
-  
-  
-  try{  
-  
-    const snapshot =  
-      await db.collection(type).get();  
-  
-    if(snapshot.empty){  
-  
-      list.innerHTML=  
-        "<p>No content published yet.</p>";  
-  
-      return;  
-    }  
-  
-  
-    let html="";  
-  
-  
-    snapshot.forEach(doc=>{  
-  
-      const data=doc.data();  
-  
-      html += `  
-  
-        <div class="item">  
-  
-          <b>${escapeHtml(data.title || "")}</b>  
-  
-          <div class="small">  
-            ${data.date || ""}  
-          </div>  
-  
-          <p>  
-            ${escapeHtml(data.details || "")}  
-          </p>  
-  
-          ${  
-            data.link  
-            ? `<p><a href="${data.link}" target="_blank">  
-                 Open PDF / Link  
-               </a></p>`  
-            : ""  
-          }  
-  
-          <button  
-            class="edit"  
-            onclick="editContent('${type}','${doc.id}')">  
-            EDIT  
-          </button>  
-  
-          <button  
-            class="delete"  
-            onclick="deleteContent('${type}','${doc.id}')">  
-            DELETE  
-          </button>  
-  
-        </div>  
-  
-      `;  
-  
-    });  
-  
-  
-    list.innerHTML=html;  
-  
-  }catch(error){  
-  
-    list.innerHTML=  
-      "Error loading content: "+error.message;  
-  
-  }  
-  
-}  
-  
-  
-// EDIT  
-  
-async function editContent(type,id){  
-  
-  try{  
-  
-    const doc =  
-      await db.collection(type).doc(id).get();  
-  
-    if(!doc.exists){  
-  
-      alert("Content not found.");  
-  
-      return;  
-    }  
-  
-    const data=doc.data();  
-  
-    document.getElementById("type").value=type;  
-  
-    document.getElementById("title").value=  
-      data.title || "";  
-  
-    document.getElementById("details").value=  
-      data.details || "";  
-  
-    document.getElementById("link").value=  
-      data.link || "";  
-  
-    editingId=id;  
-  
-    document.getElementById("publishButton")  
-      .innerText="UPDATE";  
-  
-    document.getElementById("cancelButton")  
-      .classList.remove("hidden");  
-  
-    window.scrollTo({  
-      top:0,  
-      behavior:"smooth"  
-    });  
-  
-  }catch(error){  
-  
-    alert(error.message);  
-  
-  }  
-  
-}  
-  
-  
-// DELETE  
-  
-async function deleteContent(type,id){  
-  
-  const ok =  
-    confirm("Are you sure you want to delete this content?");  
-  
-  if(!ok) return;  
-  
-  
-  try{  
-  
-    await db.collection(type)  
-      .doc(id)  
-      .delete();  
-  
-    showMessage("✓ Deleted successfully!");  
-  
-    loadContent();  
-  
-  }catch(error){  
-  
-    showMessage("Delete error: "+error.message);  
-  
-  }  
-  
-}  
-  
-  
-// CANCEL EDIT  
-  
-function cancelEdit(){  
-  
-  editingId=null;  
-  
-  clearForm();  
-  
-  document.getElementById("publishButton")  
-    .innerText="PUBLISH";  
-  
-  document.getElementById("cancelButton")  
-    .classList.add("hidden");  
-  
-}  
-  
-  
-// CLEAR FORM  
-  
-function clearForm(){  
-  
-  document.getElementById("title").value="";  
-  document.getElementById("details").value="";  
-  document.getElementById("link").value="";  
-  
-}  
-  
-  
-// MESSAGE  
-  
-function showMessage(text){  
-  
-  document.getElementById("message")  
-    .innerText=text;  
-  
-}  
-  
-  
-// BASIC HTML SAFETY  
-  
-function escapeHtml(text){  
-  
-  return String(text)  
-    .replace(/&/g,"&amp;")  
-    .replace(/</g,"&lt;")  
-    .replace(/>/g,"&gt;")  
-    .replace(/"/g,"&quot;")  
-    .replace(/'/g,"&#039;");  
-  
-}  
-  
-</script>  </body>  
-</html>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig={apiKey:"AIzaSyAzMEREwPKnifRSV5cvaC8-FbVIa5zF0",authDomain:"ask-union-jaipur-circle.firebaseapp.com",projectId:"ask-union-jaipur-circle",storageBucket:"ask-union-jaipur-circle.firebasestorage.app",messagingSenderId:"584327754977",appId:"1:584327754977:web:7164a85c007165743ef3a"};
+firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();
+let editingId=null,editingType=null,currentItems=[],busy=false;
+const $=id=>document.getElementById(id);
+function escapeHtml(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function safeUrl(v){try{const u=new URL(v);return["http:","https:"].includes(u.protocol)?u.href:""}catch{return""}}
+function today(){return new Date().toISOString().slice(0,10)}
+function formatDate(v){if(!v)return"";const d=new Date(String(v).length===10?v+"T00:00:00":v);return Number.isNaN(d.getTime())?String(v):d.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}
+function msg(t,type="success",target="message"){$(target).innerHTML=t?`<div class="alert ${type}">${escapeHtml(t)}</div>`:""}
+async function getItems(type){const s=await db.collection(type).get(),a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));return a.sort((x,y)=>String(y.date||y.createdAt||"").localeCompare(String(x.date||x.createdAt||"")))}
+function login(){const e=$("email").value.trim(),p=$("password").value;if(!e||!p){msg("Enter email and password.","error","loginMessage");return}auth.signInWithEmailAndPassword(e,p).catch(()=>msg("Login failed. Check your credentials.","error","loginMessage"))}
+function logout(){auth.signOut()}
+auth.onAuthStateChanged(u=>{if(u){$("loginView").classList.add("hidden");$("adminView").classList.remove("hidden");$("adminEmail").textContent=u.email||"";resetForm();refreshAll()}else{$("loginView").classList.remove("hidden");$("adminView").classList.add("hidden")}})
+async function loadContent(){const t=$("manageType").value;$("contentList").innerHTML='<div class="empty">Loading…</div>';try{currentItems=await getItems(t);renderList()}catch(e){console.error(e);$("contentList").innerHTML='<div class="empty">Unable to load content. Please refresh.</div>'}}
+function renderList(){const q=$("searchBox").value.trim().toLowerCase(),a=currentItems.filter(x=>[x.title,x.details,x.category,x.link].some(v=>String(v||"").toLowerCase().includes(q)));$("resultCount").textContent=a.length+" item"+(a.length===1?"":"s");if(!a.length){$("contentList").innerHTML='<div class="empty">No matching content found.</div>';return}$("contentList").innerHTML=a.map(x=>{const u=safeUrl(x.link||"");return`<article class="item"><div class="item-top"><div class="title">${escapeHtml(x.title||"Untitled")}</div>${x.category?`<span class="badge">${escapeHtml(x.category)}</span>`:""}</div><div class="meta">📅 ${escapeHtml(formatDate(x.date))}</div>${x.details?`<div class="details">${escapeHtml(x.details)}</div>`:""}${u?`<a class="link" href="${escapeHtml(u)}" target="_blank" rel="noopener">📄 Open PDF / Link →</a>`:""}<div class="item-actions"><button class="btn edit" onclick="editContent('${escapeHtml(x.id)}')">EDIT</button><button class="btn danger" onclick="deleteContent('${escapeHtml(x.id)}')">DELETE</button></div></article>`}).join("")}
+async function refreshAll(){try{const[u,c,e]=await Promise.all([getItems("updates"),getItems("circulars"),getItems("events")]);$("countUpdates").textContent=u.length;$("countCirculars").textContent=c.length;$("countEvents").textContent=e.length;const t=$("manageType").value;currentItems=t==="updates"?u:t==="circulars"?c:e;renderList()}catch(e){console.error(e);loadContent()}}
+async function publish(){if(busy)return;const t=$("type").value,title=$("title").value.trim(),details=$("details").value.trim(),link=$("link").value.trim(),category=$("category").value.trim(),date=$("publishDate").value||today();if(!title){msg("Please enter a title.","error");$("title").focus();return}if(link&&!safeUrl(link)){msg("Please enter a valid http/https link.","error");$("link").focus();return}if(editingId&&t!==editingType){msg("Content type cannot be changed while editing.","error");return}busy=true;$("publishButton").disabled=true;try{const d={title,details,link,category,date};if(editingId){d.updatedAt=new Date().toISOString();await db.collection(editingType).doc(editingId).update(d);msg("Updated successfully.")}else{d.createdAt=new Date().toISOString();d.createdBy=auth.currentUser?.email||"";await db.collection(t).add(d);msg("Published successfully.")}resetForm();await refreshAll()}catch(e){console.error(e);msg("Unable to save: "+e.message,"error")}finally{busy=false;$("publishButton").disabled=false}}
+function editContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x)return;editingId=id;editingType=t;$("type").value=t;$("type").disabled=true;$("title").value=x.title||"";$("details").value=x.details||"";$("link").value=x.link||"";$("category").value=x.category||"";$("publishDate").value=/^\d{4}-\d{2}-\d{2}$/.test(String(x.date||""))?x.date:today();$("formHeading").textContent="Edit Content";$("publishButton").textContent="UPDATE";$("cancelButton").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"})}
+async function deleteContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x||!confirm(`Delete “${x.title||"this item"}”? This cannot be undone.`))return;try{await db.collection(t).doc(id).delete();msg("Deleted successfully.");await refreshAll()}catch(e){msg("Delete failed: "+e.message,"error")}}
+function cancelEdit(){resetForm()}
+function resetForm(){editingId=null;editingType=null;$("type").disabled=false;$("formHeading").textContent="Publish Content";$("publishButton").textContent="PUBLISH";$("cancelButton").classList.add("hidden");$("title").value="";$("details").value="";$("link").value="";$("category").value="";$("publishDate").value=today()}
+$("publishDate").value=today();
+</script>
+</body></html>
