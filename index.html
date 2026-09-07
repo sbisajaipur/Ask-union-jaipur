@@ -1,380 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#7b1024">
+<meta name="description" content="ASK UNION – SBISA UDAIPUR MODULE. Union information, circulars, events and support – all in one place.">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" type="image/png" href="./ask-union-icon-192.png">
 
-  <meta name="theme-color" content="#7b1024">
+<title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
-  <meta name="description"
-        content="ASK UNION – SBISA UDAIPUR MODULE. Union information, circulars, events and support – all in one place.">
+<link rel="stylesheet" href="./style.css">
 
-  <link rel="manifest" href="./manifest.json">
+<style>
+/* ================= NOTIFICATION CARD ================= */
 
-  <link rel="icon"
-        type="image/png"
-        href="./icon-192.png">
+.notification-card{
+  margin:18px 16px 8px;
+  padding:16px;
+  background:#fff;
+  border:1px solid #eadfe2;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  box-shadow:0 6px 20px rgba(40,20,25,.08);
+}
 
-  <title>ASK UNION – SBISA UDAIPUR MODULE</title>
+.notification-icon{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  background:#f7e9ed;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  flex-shrink:0;
+}
 
-  <link rel="stylesheet" href="./style.css">
+.notification-content{
+  flex:1;
+}
+
+.notification-content strong{
+  display:block;
+  color:#7b1024;
+  font-size:14px;
+}
+
+.notification-content small{
+  display:block;
+  margin-top:4px;
+  color:#6b7280;
+  font-size:11px;
+  line-height:1.4;
+}
+
+.notification-button{
+  border:0;
+  border-radius:12px;
+  background:#7b1024;
+  color:#fff;
+  padding:10px 13px;
+  font-weight:700;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.notification-button:disabled{
+  opacity:.6;
+}
+
+.notification-enabled{
+  background:#16804b;
+}
+
+@media(max-width:600px){
+  .notification-card{
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+
+  .notification-content{
+    min-width:calc(100% - 60px);
+  }
+
+  .notification-button{
+    width:100%;
+  }
+}
+</style>
+
 </head>
-
 
 <body>
 
 <div class="app">
 
+<!-- ================= HEADER ================= -->
 
-  <!-- ================= HEADER ================= -->
+<header>
 
-  <header>
+  <div class="brand-wrap">
 
-    <div class="brand-wrap">
+    <img
+      src="./ask-union-icon-192.png"
+      class="brand-logo"
+      alt="SBISA Logo"
+    >
 
-      <img
-        src="./ask-union-icon-192.png"
-        class="brand-logo"
-        alt="SBISA Logo"
-      >
+    <div>
+
+      <div class="brand-title">
+        ASK UNION
+      </div>
+
+      <div class="brand-sub">
+        SBISA UDAIPUR MODULE
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="online">
+    ● ONLINE
+  </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      STATE BANK OF INDIA STAFF ASSOCIATION
+    </div>
+
+    <h1>
+      Welcome to
+      <br>
+      <span>SBISA Udaipur Module</span>
+    </h1>
+
+    <p>
+      Your digital platform for union updates, circulars,
+      events, useful information and member support.
+    </p>
+
+    <a href="#updates" class="hero-btn">
+      Explore Updates →
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ================= NOTIFICATIONS ================= -->
+
+<section class="notification-card">
+
+  <div class="notification-icon">
+    🔔
+  </div>
+
+  <div class="notification-content">
+
+    <strong>
+      ASK UNION Notifications
+    </strong>
+
+    <small>
+      नए circulars, updates और union notices की notification पाएँ।
+    </small>
+
+  </div>
+
+  <button
+    id="notificationButton"
+    class="notification-button"
+    onclick="enableAskUnionNotifications()"
+  >
+    🔔 Notifications ON करें
+  </button>
+
+</section>
+
+
+<!-- ================= QUICK ACCESS ================= -->
+
+<section class="quick">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow dark">
+        QUICK ACCESS
+      </div>
+
+      <h2>
+        Union Services
+      </h2>
+
+    </div>
+
+    <div class="number">
+      01
+    </div>
+
+  </div>
+
+
+  <div class="quick-grid">
+
+    <a href="#updates" class="quick-card">
+
+      <div class="icon">
+        📢
+      </div>
 
       <div>
-
-        <div class="brand-title">
-          ASK UNION
-        </div>
-
-        <div class="brand-sub">
-          SBISA UDAIPUR MODULE
-        </div>
-
+        <strong>Latest Updates</strong>
+        <small>Latest union information</small>
       </div>
 
-    </div>
+      <span>→</span>
+
+    </a>
 
 
-    <div class="online">
-      ● ONLINE
-    </div>
+    <a href="#circulars" class="quick-card">
 
-  </header>
-
-
-
-  <!-- ================= HERO ================= -->
-
-  <section class="hero">
-
-    <div class="hero-content">
-
-      <div class="eyebrow">
-        STATE BANK OF INDIA STAFF ASSOCIATION
+      <div class="icon">
+        📄
       </div>
-
-
-      <h1>
-        Welcome to
-        <br>
-        <span>SBISA Udaipur Module</span>
-      </h1>
-
-
-      <p>
-        Your digital platform for union updates, circulars,
-        events, useful information and member support.
-      </p>
-
-
-      <a href="#updates" class="hero-btn">
-        Explore Updates →
-      </a>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ================= QUICK ACCESS ================= -->
-
-  <section class="quick">
-
-    <div class="section-head">
 
       <div>
-
-        <div class="eyebrow dark">
-          QUICK ACCESS
-        </div>
-
-        <h2>
-          Union Services
-        </h2>
-
+        <strong>Circulars</strong>
+        <small>Important circulars & letters</small>
       </div>
 
-      <div class="number">
-        01
+      <span>→</span>
+
+    </a>
+
+
+    <a href="#events" class="quick-card">
+
+      <div class="icon">
+        📅
       </div>
-
-    </div>
-
-
-    <div class="quick-grid">
-
-
-      <a href="#updates" class="quick-card">
-
-        <div class="icon">📢</div>
-
-        <div>
-          <strong>Latest Updates</strong>
-          <small>Latest union information</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-
-
-      <a href="#circulars" class="quick-card">
-
-        <div class="icon">📄</div>
-
-        <div>
-          <strong>Circulars</strong>
-          <small>Important circulars & letters</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-
-
-      <a href="#events" class="quick-card">
-
-        <div class="icon">📅</div>
-
-        <div>
-          <strong>Events</strong>
-          <small>Meetings & union events</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-
-
-      <a href="#office-bearers" class="quick-card">
-
-        <div class="icon">👥</div>
-
-        <div>
-          <strong>Office Bearers</strong>
-          <small>Module representatives</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-
-
-      <a href="#grievance" class="quick-card">
-
-        <div class="icon">💬</div>
-
-        <div>
-          <strong>Grievance / Suggestion</strong>
-          <small>Share your concern</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-
-
-      <a href="#useful" class="quick-card">
-
-        <div class="icon">ℹ️</div>
-
-        <div>
-          <strong>Useful Information</strong>
-          <small>Important member resources</small>
-        </div>
-
-        <span>→</span>
-
-      </a>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ================= LATEST UPDATES ================= -->
-
-  <section class="section" id="updates">
-
-    <div class="section-head">
 
       <div>
-
-        <div class="eyebrow dark">
-          NEWS & INFORMATION
-        </div>
-
-        <h2>
-          Latest Updates
-        </h2>
-
+        <strong>Events</strong>
+        <small>Meetings & union events</small>
       </div>
 
-      <div class="number">
-        02
+      <span>→</span>
+
+    </a>
+
+
+    <a href="#office-bearers" class="quick-card">
+
+      <div class="icon">
+        👥
       </div>
-
-    </div>
-
-
-    <div id="updatesList">
-
-      <p>
-        Loading latest updates...
-      </p>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ================= CIRCULARS ================= -->
-
-  <section class="section" id="circulars">
-
-    <div class="section-head">
 
       <div>
-
-        <div class="eyebrow dark">
-          OFFICIAL DOCUMENTS
-        </div>
-
-        <h2>
-          Circulars
-        </h2>
-
+        <strong>Office Bearers</strong>
+        <small>Module representatives</small>
       </div>
 
-      <div class="number">
-        03
+      <span>→</span>
+
+    </a>
+
+
+    <a href="#grievance" class="quick-card">
+
+      <div class="icon">
+        💬
       </div>
-
-    </div>
-
-
-    <div id="circularsList">
-
-      <p>
-        Loading circulars...
-      </p>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ================= EVENTS ================= -->
-
-  <section class="section" id="events">
-
-    <div class="section-head">
 
       <div>
-
-        <div class="eyebrow dark">
-          UNION ACTIVITIES
-        </div>
-
-        <h2>
-          Events
-        </h2>
-
+        <strong>Grievance / Suggestion</strong>
+        <small>Share your concern</small>
       </div>
 
-      <div class="number">
-        04
+      <span>→</span>
+
+    </a>
+
+
+    <a href="#useful" class="quick-card">
+
+      <div class="icon">
+        ℹ️
+      </div>
+
+      <div>
+        <strong>Useful Information</strong>
+        <small>Important member resources</small>
+      </div>
+
+      <span>→</span>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ================= LATEST UPDATES ================= -->
+
+<section class="section" id="updates">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow dark">
+        NEWS & INFORMATION
+      </div>
+
+      <h2>
+        Latest Updates
+      </h2>
+
+    </div>
+
+    <div class="number">
+      02
+    </div>
+
+  </div>
+
+
+  <div id="updatesList">
+
+    <p>
+      Loading latest updates...
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CIRCULARS ================= -->
+
+<section class="section" id="circulars">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow dark">
+        OFFICIAL DOCUMENTS
+      </div>
+
+      <h2>
+        Circulars
+      </h2>
+
+    </div>
+
+    <div class="number">
+      03
+    </div>
+
+  </div>
+
+
+  <div id="circularsList">
+
+    <p>
+      Loading circulars...
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= EVENTS ================= -->
+
+<section class="section" id="events">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow dark">
+        UNION ACTIVITIES
+      </div>
+
+      <h2>
+        Events
+      </h2>
+
+    </div>
+
+    <div class="number">
+      04
+    </div>
+
+  </div>
+
+
+  <div id="eventsList">
+
+    <p>
+      Loading events...
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= OFFICE BEARERS ================= -->
+
+<section class="section" id="office-bearers">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow dark">
+        UNION LEADERSHIP
+      </div>
+
+      <h2>
+        Office Bearers
+      </h2>
+
+    </div>
+
+    <div class="number">
+      05
+    </div>
+
+  </div>
+
+
+  <div class="resources">
+
+    <div class="resource">
+
+      <div class="resource-icon">
+        👤
+      </div>
+
+      <div class="resource-content">
+
+        <strong>
+          Sunil Dabal
+        </strong>
+
+        <small>
+          Deputy General Secretary (DGS)
+        </small>
+
+        <p>
+          SBISA – Udaipur Module
+        </p>
+
       </div>
 
     </div>
 
 
-    <div id="eventsList">
+    <div class="resource">
 
-      <p>
-        Loading events...
-      </p>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ================= OFFICE BEARERS ================= -->
-
-  
-<div class="resource">
-
-  👤
-
-  <strong>
-    Sunil Dabal
-  </strong>
-
-  <small>
-    Deputy General Secretary (DGS)
-  </small>
-
-  <p>
-    SBISA – Udaipur Module
-  </p>
-
-</div>
-
-      <!-- CONTACT -->
-
-      <div class="resource">
-
-        <div class="resource-icon">
-          📞
-        </div>
-
-        <div class="resource-content">
-
-          <strong>
-            Contact
-          </strong>
-
-          <small>
-            Union assistance
-          </small>
-
-        </div>
-
+      <div class="resource-icon">
+        📞
       </div>
 
+      <div class="resource-content">
+
+        <strong>
+          Contact
+        </strong>
+
+        <small>
+          Union assistance
+        </small>
+
+      </div>
 
     </div>
 
@@ -383,236 +505,231 @@
 </section>
 
 
+<!-- ================= ABOUT UNION ================= -->
 
-  <!-- ================= ABOUT UNION ================= -->
+<section class="section" id="union">
 
-  <section class="section" id="union">
+  <div class="section-head">
 
-    <div class="section-head">
+    <div>
 
-      <div>
-
-        <div class="eyebrow dark">
-          OUR ORGANISATION
-        </div>
-
-        <h2>
-          About SBISA
-        </h2>
-
+      <div class="eyebrow dark">
+        OUR ORGANISATION
       </div>
 
-      <div class="number">
-        06
-      </div>
+      <h2>
+        About SBISA
+      </h2>
 
     </div>
 
+    <div class="number">
+      06
+    </div>
 
-    <div class="about-card">
+  </div>
 
 
-      <div class="history-banner">
+  <div class="about-card">
 
-        <div class="year">
-          1920
-        </div>
+    <div class="history-banner">
 
-        <div>
-
-          <strong>
-            A Legacy of Unity
-          </strong>
-
-          <small>
-            More than a century of collective strength
-          </small>
-
-        </div>
-
+      <div class="year">
+        1920
       </div>
 
-
-      <h3>
-        Our Legacy
-      </h3>
-
-
-      <p>
-        State Bank of India Staff Association carries a long
-        tradition of collective representation, unity and
-        service to employees of State Bank of India.
-      </p>
-
-
-      <h3>
-        Our Journey
-      </h3>
-
-
-      <ul class="legacy">
-
-        <li>
-          Roots of the organisation date back to 1920.
-        </li>
-
-        <li>
-          The association has continued its journey
-          through major developments in Indian banking.
-        </li>
-
-        <li>
-          SBISA has represented the interests and
-          aspirations of SBI employees.
-        </li>
-
-        <li>
-          Collective strength remains at the heart
-          of the organisation.
-        </li>
-
-      </ul>
-
-
-      <h3>
-        SBISA Circles
-      </h3>
-
-
-      <div class="circles">
-
-        <span>Kolkata</span>
-        <span>Bhubaneswar</span>
-        <span>Patna</span>
-        <span>North Eastern</span>
-        <span>Lucknow</span>
-        <span>Delhi</span>
-        <span>Chandigarh</span>
-        <span>Jaipur</span>
-
-      </div>
-
-
-      <div class="motto">
-
-        <div>
-          UNITY • SERVICE • STRENGTH
-        </div>
+      <div>
 
         <strong>
-          TOGETHER WE STAND
+          A Legacy of Unity
         </strong>
 
-      </div>
+        <small>
+          More than a century of collective strength
+        </small>
 
+      </div>
 
     </div>
 
-  </section>
+
+    <h3>
+      Our Legacy
+    </h3>
+
+    <p>
+      State Bank of India Staff Association carries a long
+      tradition of collective representation, unity and
+      service to employees of State Bank of India.
+    </p>
 
 
+    <h3>
+      Our Journey
+    </h3>
 
-  <!-- ================= GRIEVANCE ================= -->
+    <ul class="legacy">
 
-  <section class="section" id="grievance">
+      <li>
+        Roots of the organisation date back to 1920.
+      </li>
 
-    <div class="section-head">
+      <li>
+        The association has continued its journey
+        through major developments in Indian banking.
+      </li>
+
+      <li>
+        SBISA has represented the interests and
+        aspirations of SBI employees.
+      </li>
+
+      <li>
+        Collective strength remains at the heart
+        of the organisation.
+      </li>
+
+    </ul>
+
+
+    <h3>
+      SBISA Circles
+    </h3>
+
+
+    <div class="circles">
+
+      <span>Kolkata</span>
+      <span>Bhubaneswar</span>
+      <span>Patna</span>
+      <span>North Eastern</span>
+      <span>Lucknow</span>
+      <span>Delhi</span>
+      <span>Chandigarh</span>
+      <span>Jaipur</span>
+
+    </div>
+
+
+    <div class="motto">
+
+      <div>
+        UNITY • SERVICE • STRENGTH
+      </div>
+
+      <strong>
+        TOGETHER WE STAND
+      </strong>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= GRIEVANCE ================= -->
+
+<section class="section" id="grievance">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow dark">
+        MEMBER SUPPORT
+      </div>
+
+      <h2>
+        Grievance / Suggestion
+      </h2>
+
+    </div>
+
+    <div class="number">
+      07
+    </div>
+
+  </div>
+
+
+  <div class="about-card">
+
+    <div class="history-banner">
+
+      <div class="year">
+        💬
+      </div>
 
       <div>
 
-        <div class="eyebrow dark">
-          MEMBER SUPPORT
-        </div>
+        <strong>
+          Your Voice Matters
+        </strong>
 
-        <h2>
-          Grievance / Suggestion
-        </h2>
+        <small>
+          Share your concern or suggestion
+        </small>
 
-      </div>
-
-      <div class="number">
-        07
       </div>
 
     </div>
 
 
-    <div class="about-card">
+    <p>
+      Members can use this section to submit grievances,
+      suggestions or matters requiring union attention.
+    </p>
 
 
-      <div class="history-banner">
+    <a
+      href="#"
+      class="hero-btn"
+      onclick="alert('Grievance / Suggestion facility will be available here.'); return false;"
+    >
+      Contact Union →
+    </a>
 
-        <div class="year">
-          💬
-        </div>
+  </div>
 
-        <div>
+</section>
 
-          <strong>
-            Your Voice Matters
-          </strong>
 
-          <small>
-            Share your concern or suggestion
-          </small>
+<!-- ================= USEFUL INFORMATION ================= -->
 
-        </div>
+<section class="section" id="useful">
 
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow dark">
+        MEMBER RESOURCES
       </div>
 
-
-      <p>
-        Members can use this section to submit grievances,
-        suggestions or matters requiring union attention.
-      </p>
-
-
-      <a
-        href="#"
-        class="hero-btn"
-        onclick="alert('Grievance / Suggestion facility will be available here.'); return false;"
-      >
-        Contact Union →
-      </a>
-
+      <h2>
+        Useful Information
+      </h2>
 
     </div>
 
-  </section>
-
-
-
-  <!-- ================= USEFUL INFORMATION ================= -->
-
-  <section class="section" id="useful">
-
-    <div class="section-head">
-
-      <div>
-
-        <div class="eyebrow dark">
-          MEMBER RESOURCES
-        </div>
-
-        <h2>
-          Useful Information
-        </h2>
-
-      </div>
-
-      <div class="number">
-        08
-      </div>
-
+    <div class="number">
+      08
     </div>
 
+  </div>
 
-    <div class="resources">
+
+  <div class="resources">
 
 
-      <div class="resource">
+    <div class="resource">
 
+      <div class="resource-icon">
         📘
+      </div>
+
+      <div class="resource-content">
 
         <strong>
           SBI Staff Rules
@@ -624,11 +741,16 @@
 
       </div>
 
+    </div>
 
 
-      <div class="resource">
+    <div class="resource">
 
+      <div class="resource-icon">
         📋
+      </div>
+
+      <div class="resource-content">
 
         <strong>
           Service Matters
@@ -640,11 +762,16 @@
 
       </div>
 
+    </div>
 
 
-      <div class="resource">
+    <div class="resource">
 
+      <div class="resource-icon">
         ⚖️
+      </div>
+
+      <div class="resource-content">
 
         <strong>
           Rights & Benefits
@@ -656,161 +783,180 @@
 
       </div>
 
+    </div>
 
 
-      <div class="resource">
+    <!-- READY RECKONER -->
 
-        <div class="resource-icon">
-          🏦
-        </div>
+    <div class="resource">
 
-        <div class="resource-content">
+      <div class="resource-icon">
+        📘
+      </div>
 
-          <strong><!-- READY RECKONER FOR AWARD STAFF -->
+      <div class="resource-content">
 
-<div class="resource">
+        <strong>
+          Ready Reckoner for Award Staff
+        </strong>
 
-  <div class="resource-icon">📘</div>
+        <small>
+          Quick reference for service matters
+        </small>
 
-  <div class="resource-content">
-
-    <strong>
-      Ready Reckoner for Award Staff
-    </strong>
-
-    <small>
-      Quick reference for service matters
-    </small>
-
-    <p>
-      Salary & Allowances • Duties • Loans • Leave • LFC • Transfer • Career Progression
-    </p>
-
-  </div>
-
-  <a
-    href="./DOC-20260810-WA0019..pdf"
-    target="_blank"
-    rel="noopener"
-    class="hero-btn">
-    OPEN PDF
-  </a>
-
-</div>
-            Personal Loan Application
-          </strong>
-
-          <small>
-            Personal Loan Form
-          </small>
-
-        </div>
-
-        <a
-          href="./personal-loan.pdf"
-          target="_blank"
-          class="hero-btn"
-        >
-          OPEN PDF
-        </a>
+        <p>
+          Salary & Allowances • Duties • Loans • Leave • LFC • Transfer • Career Progression
+        </p>
 
       </div>
 
+      <a
+        href="./DOC-20260810-WA0019..pdf"
+        target="_blank"
+        rel="noopener"
+        class="hero-btn"
+      >
+        OPEN PDF
+      </a>
+
+    </div>
 
 
-      <div class="resource">
+    <!-- PERSONAL LOAN -->
 
-        <div class="resource-icon">
-          🔄
-        </div>
+    <div class="resource">
 
-        <div class="resource-content">
+      <div class="resource-icon">
+        💳
+      </div>
 
-          <strong>
-            Transfer Application
-          </strong>
+      <div class="resource-content">
 
-          <small>
-            Transfer Request Form
-          </small>
+        <strong>
+          Personal Loan Application
+        </strong>
 
-        </div>
-
-        <a
-          href="./transfer-application.pdf"
-          target="_blank"
-          class="hero-btn"
-        >
-          OPEN PDF
-        </a>
+        <small>
+          Personal Loan Form
+        </small>
 
       </div>
 
+      <a
+        href="./personal-loan.pdf"
+        target="_blank"
+        rel="noopener"
+        class="hero-btn"
+      >
+        OPEN PDF
+      </a>
+
+    </div>
 
 
-      <div class="resource">
+    <!-- TRANSFER -->
 
-        <div class="resource-icon">
-          🏥
-        </div>
+    <div class="resource">
 
-        <div class="resource-content">
+      <div class="resource-icon">
+        🔄
+      </div>
 
-          <strong>
-            Medical / Hospitalisation Form
-          </strong>
+      <div class="resource-content">
 
-          <small>
-            Medical Facility Application
-          </small>
+        <strong>
+          Transfer Application
+        </strong>
 
-        </div>
-
-        <a
-          href="./medical-form.pdf"
-          target="_blank"
-          class="hero-btn"
-        >
-          OPEN PDF
-        </a>
+        <small>
+          Transfer Request Form
+        </small>
 
       </div>
 
+      <a
+        href="./transfer-application.pdf"
+        target="_blank"
+        rel="noopener"
+        class="hero-btn"
+      >
+        OPEN PDF
+      </a>
+
+    </div>
 
 
-      <div class="resource">
+    <!-- MEDICAL -->
 
-        <div class="resource-icon">
-          🤝
-        </div>
+    <div class="resource">
 
-        <div class="resource-content">
+      <div class="resource-icon">
+        🏥
+      </div>
 
-          <strong>
-            SBISA Membership Form
-          </strong>
+      <div class="resource-content">
 
-          <small>
-            Membership & Subscription Form
-          </small>
+        <strong>
+          Medical / Hospitalisation Form
+        </strong>
 
-        </div>
-
-        <a
-          href="./membership-form.pdf"
-          target="_blank"
-          class="hero-btn"
-        >
-          OPEN PDF
-        </a>
+        <small>
+          Medical Facility Application
+        </small>
 
       </div>
 
+      <a
+        href="./medical-form.pdf"
+        target="_blank"
+        rel="noopener"
+        class="hero-btn"
+      >
+        OPEN PDF
+      </a>
+
+    </div>
 
 
-      <div class="resource">
+    <!-- MEMBERSHIP -->
 
+    <div class="resource">
+
+      <div class="resource-icon">
+        🤝
+      </div>
+
+      <div class="resource-content">
+
+        <strong>
+          SBISA Membership Form
+        </strong>
+
+        <small>
+          Membership & Subscription Form
+        </small>
+
+      </div>
+
+      <a
+        href="./membership-form.pdf"
+        target="_blank"
+        rel="noopener"
+        class="hero-btn"
+      >
+        OPEN PDF
+      </a>
+
+    </div>
+
+
+    <div class="resource">
+
+      <div class="resource-icon">
         🏦
+      </div>
+
+      <div class="resource-content">
 
         <strong>
           SBI Information
@@ -822,11 +968,16 @@
 
       </div>
 
+    </div>
 
 
-      <div class="resource">
+    <div class="resource">
 
+      <div class="resource-icon">
         📑
+      </div>
+
+      <div class="resource-content">
 
         <strong>
           Important Documents
@@ -838,11 +989,16 @@
 
       </div>
 
+    </div>
 
 
-      <div class="resource">
+    <div class="resource">
 
+      <div class="resource-icon">
         🤝
+      </div>
+
+      <div class="resource-content">
 
         <strong>
           Member Support
@@ -854,167 +1010,486 @@
 
       </div>
 
-
     </div>
 
-  </section>
+
+  </div>
+
+</section>
 
 
+<!-- ================= FOOTER ================= -->
 
-  <!-- ================= FOOTER ================= -->
+<footer>
 
-  <footer>
+  <strong>
+    ASK UNION
+  </strong>
 
-    <strong>
-      ASK UNION
-    </strong>
+  <p>
+    SBISA UDAIPUR MODULE
+  </p>
 
-    <p>
-      SBISA UDAIPUR MODULE
-    </p>
+  <p>
+    Unity • Service • Strength
+  </p>
 
-    <p>
-      Unity • Service • Strength
-    </p>
+  <p>
+    © 2026 SBISA Udaipur Module
+  </p>
 
-    <p>
-      © 2026 SBISA Udaipur Module
-    </p>
-
-  </footer>
-
+</footer>
 
 
-  <!-- ================= MOBILE BOTTOM NAV ================= -->
+<!-- ================= MOBILE BOTTOM NAV ================= -->
 
-  <nav class="bottom-nav">
+<nav class="bottom-nav">
 
-    <a href="#updates">
-      📢
-      <span>Updates</span>
-    </a>
+  <a href="#updates">
+    📢
+    <span>Updates</span>
+  </a>
 
-    <a href="#circulars">
-      📄
-      <span>Circulars</span>
-    </a>
+  <a href="#circulars">
+    📄
+    <span>Circulars</span>
+  </a>
 
-    <a href="#events">
-      📅
-      <span>Events</span>
-    </a>
+  <a href="#events">
+    📅
+    <span>Events</span>
+  </a>
 
-    <a href="#union">
-      👥
-      <span>Union</span>
-    </a>
+  <a href="#union">
+    👥
+    <span>Union</span>
+  </a>
 
-    <a href="#useful">
-      ℹ️
-      <span>More</span>
-    </a>
+  <a href="#useful">
+    ℹ️
+    <span>More</span>
+  </a>
 
-  </nav>
-
+</nav>
 
 </div>
 
+
+<!-- ================================================== -->
+<!-- FIREBASE -->
+<!-- ================================================== -->
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
+
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
 
-  const navLinks = document.querySelectorAll(".bottom-nav a");
+const askUnionFirebaseConfig = {
 
-  const sections = [
-    "updates",
-    "circulars",
-    "events",
-    "union",
-    "useful"
-  ];
+  apiKey:
+    "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",
 
-  function setActive(id) {
+  authDomain:
+    "ask-union-jaipur-circle.firebaseapp.com",
 
-    navLinks.forEach(function (link) {
+  projectId:
+    "ask-union-jaipur-circle",
 
-      const target =
-        link.getAttribute("href").replace("#", "");
+  storageBucket:
+    "ask-union-jaipur-circle.firebasestorage.app",
 
-      link.classList.toggle(
-        "active",
-        target === id
+  messagingSenderId:
+    "584327754977",
+
+  appId:
+    "1:584327754977:web:7164a85c007165743ef3a"
+
+};
+
+
+if (!firebase.apps.length) {
+
+  firebase.initializeApp(
+    askUnionFirebaseConfig
+  );
+
+}
+
+
+const askUnionMessaging =
+  firebase.messaging();
+
+
+
+/* ==================================================
+   ENABLE NOTIFICATIONS
+   ================================================== */
+
+async function enableAskUnionNotifications() {
+
+  const button =
+    document.getElementById(
+      "notificationButton"
+    );
+
+
+  try {
+
+    if (!("Notification" in window)) {
+
+      alert(
+        "इस device/browser में notifications supported नहीं हैं."
       );
 
-    });
+      return;
 
-  }
+    }
 
-  const observer =
-    new IntersectionObserver(function (entries) {
 
-      entries.forEach(function (entry) {
+    if (!("serviceWorker" in navigator)) {
 
-        if (entry.isIntersecting) {
-          setActive(entry.target.id);
-        }
+      alert(
+        "इस browser में Service Worker supported नहीं है."
+      );
+
+      return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+      "Enabling...";
+
+
+    const permission =
+      await Notification.requestPermission();
+
+
+    if (permission !== "granted") {
+
+      button.disabled = false;
+
+      button.textContent =
+        "🔔 Notifications ON करें";
+
+      alert(
+        "Notifications की permission Allow करें."
+      );
+
+      return;
+
+    }
+
+
+    const registration =
+      await navigator.serviceWorker.register(
+        "./firebase-messaging-sw.js"
+      );
+
+
+    const token =
+      await askUnionMessaging.getToken({
+
+        vapidKey:
+          "BMntGqShsyqbjs7D3SKsCGl6Wo0Tnj_urPEg9wsqjC7aFZxCA5v4RaFbqynnI58s86CmKaD2_9K0ZxuWB4BiEWE",
+
+        serviceWorkerRegistration:
+          registration
 
       });
 
-    }, {
-      threshold: 0.35
-    });
 
-  sections.forEach(function (id) {
+    if (!token) {
 
-    const section =
-      document.getElementById(id);
+      throw new Error(
+        "FCM token नहीं मिला."
+      );
 
-    if (section) {
-      observer.observe(section);
     }
 
-  });
 
-});
+    await firebase
+      .firestore()
+      .collection("fcmTokens")
+      .doc(token)
+      .set({
+
+        token: token,
+
+        createdAt:
+          new Date().toISOString(),
+
+        userAgent:
+          navigator.userAgent,
+
+        platform:
+          navigator.platform
+
+      }, {
+
+        merge: true
+
+      });
+
+
+    button.textContent =
+      "🔔 Notifications ON ✓";
+
+
+    button.classList.add(
+      "notification-enabled"
+    );
+
+
+    localStorage.setItem(
+      "askUnionNotifications",
+      "enabled"
+    );
+
+
+    alert(
+      "ASK UNION notifications successfully ON हो गईं. 🔔"
+    );
+
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "ASK UNION FCM ERROR:",
+      error
+    );
+
+
+    button.disabled = false;
+
+
+    button.textContent =
+      "🔔 Notifications ON करें";
+
+
+    alert(
+      "Notifications enable नहीं हो पाईं.\n\n" +
+      (error.message || error)
+    );
+
+  }
+
+}
+
+
+
+/* ==================================================
+   NOTIFICATION BUTTON STATE
+   ================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+    const button =
+      document.getElementById(
+        "notificationButton"
+      );
+
+
+    if (!button) return;
+
+
+    if (
+
+      localStorage.getItem(
+        "askUnionNotifications"
+      ) === "enabled"
+
+      &&
+
+      "Notification" in window
+
+      &&
+
+      Notification.permission === "granted"
+
+    ) {
+
+      button.textContent =
+        "🔔 Notifications ON ✓";
+
+
+      button.classList.add(
+        "notification-enabled"
+      );
+
+    }
+
+  }
+);
+
 </script>
 
-<!-- ================= APP.JS ================= -->
+
+<!-- ================================================== -->
+<!-- BOTTOM NAV ACTIVE STATE -->
+<!-- ================================================== -->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+
+
+    const navLinks =
+      document.querySelectorAll(
+        ".bottom-nav a"
+      );
+
+
+    const sections = [
+
+      "updates",
+      "circulars",
+      "events",
+      "union",
+      "useful"
+
+    ];
+
+
+    function setActive(id) {
+
+      navLinks.forEach(
+        function(link) {
+
+          const target =
+            link
+              .getAttribute("href")
+              .replace("#","");
+
+
+          link.classList.toggle(
+            "active",
+            target === id
+          );
+
+        }
+      );
+
+    }
+
+
+    const observer =
+      new IntersectionObserver(
+
+        function(entries) {
+
+          entries.forEach(
+            function(entry) {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                setActive(
+                  entry.target.id
+                );
+
+              }
+
+            }
+          );
+
+        },
+
+        {
+          threshold: .35
+        }
+
+      );
+
+
+    sections.forEach(
+      function(id) {
+
+        const section =
+          document.getElementById(id);
+
+
+        if (section) {
+
+          observer.observe(
+            section
+          );
+
+        }
+
+      }
+    );
+
+  }
+);
+
+</script>
+
+
+<!-- ================================================== -->
+<!-- APP.JS -->
+<!-- ================================================== -->
 
 <script src="./app.js?v=10"></script>
 
 
-
-<!-- ================= SERVICE WORKER ================= -->
+<!-- ================================================== -->
+<!-- EXISTING SERVICE WORKER -->
+<!-- ================================================== -->
 
 <script>
 
-if ("serviceWorker" in navigator) {
+if (
+  "serviceWorker" in navigator
+) {
 
-  window.addEventListener("load", function () {
+  window.addEventListener(
+    "load",
+    function() {
 
-    navigator.serviceWorker
-      .register("./sw.js?v=11")
-      .then(function () {
+      navigator.serviceWorker
+        .register("./sw.js?v=11")
 
-        console.log(
-          "ASK UNION Service Worker registered"
+        .then(
+          function() {
+
+            console.log(
+              "ASK UNION Service Worker registered"
+            );
+
+          }
+        )
+
+        .catch(
+          function(error) {
+
+            console.log(
+              "Service Worker registration failed:",
+              error
+            );
+
+          }
         );
 
-      })
-      .catch(function (error) {
-
-        console.log(
-          "Service Worker registration failed:",
-          error
-        );
-
-      });
-
-  });
+    }
+  );
 
 }
 
 </script>
-
 
 </body>
 </html>
