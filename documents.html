@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>ASK UNION – Document Centre</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f6f7f9;
+  color:#182033;
+}
+
+.header{
+  background:#ffffff;
+  padding:18px 18px 14px;
+  border-bottom:1px solid #e5e7eb;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:52px;
+  height:52px;
+  border-radius:14px;
+  object-fit:cover;
+}
+
+.brand-title{
+  font-size:22px;
+  font-weight:800;
+  color:#182033;
+}
+
+.brand-sub{
+  margin-top:4px;
+  font-size:11px;
+  letter-spacing:2px;
+  color:#667085;
+}
+
+.back{
+  display:inline-block;
+  margin-top:14px;
+  text-decoration:none;
+  color:#8b1731;
+  font-size:14px;
+  font-weight:700;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:22px 16px 100px;
+}
+
+.hero{
+  background:linear-gradient(135deg,#ffffff,#f4f7fb);
+  border-radius:22px;
+  padding:24px;
+  margin-bottom:18px;
+  border:1px solid #e7e9ee;
+}
+
+.eyebrow{
+  font-size:11px;
+  letter-spacing:3px;
+  font-weight:800;
+  color:#8b1731;
+  margin-bottom:7px;
+}
+
+h1{
+  margin:0;
+  font-size:30px;
+}
+
+.subtitle{
+  color:#667085;
+  margin:8px 0 0;
+  line-height:1.5;
+}
+
+.search{
+  width:100%;
+  margin-top:20px;
+  padding:15px 17px;
+  border:1px solid #d8dce4;
+  border-radius:14px;
+  font-size:15px;
+  outline:none;
+  background:#fff;
+}
+
+.search:focus{
+  border-color:#8b1731;
+}
+
+.filters{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:3px 0 15px;
+}
+
+.filter{
+  flex:0 0 auto;
+  border:1px solid #d9dde5;
+  background:#fff;
+  padding:10px 15px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:12px;
+  color:#475467;
+  cursor:pointer;
+}
+
+.filter.active{
+  background:#8b1731;
+  color:#fff;
+  border-color:#8b1731;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:10px 0 12px;
+}
+
+.section-title h2{
+  margin:0;
+  font-size:21px;
+}
+
+.count{
+  color:#8b1731;
+  font-size:13px;
+  font-weight:800;
+}
+
+.item{
+  background:#fff;
+  border:1px solid #e6e8ed;
+  border-radius:17px;
+  padding:17px;
+  margin-bottom:12px;
+  box-shadow:0 4px 16px rgba(20,30,50,.04);
+}
+
+.item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.title{
+  font-size:16px;
+  font-weight:800;
+  line-height:1.4;
+}
+
+.badge{
+  flex:0 0 auto;
+  height:max-content;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#f9e9ed;
+  color:#8b1731;
+  font-size:10px;
+  font-weight:800;
+}
+
+.meta{
+  margin-top:8px;
+  color:#667085;
+  font-size:12px;
+}
+
+.details{
+  margin-top:9px;
+  color:#475467;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.open{
+  display:inline-flex;
+  margin-top:13px;
+  padding:11px 15px;
+  border-radius:11px;
+  background:#8b1731;
+  color:#fff;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:800;
+}
+
+.forms{
+  margin-top:24px;
+}
+
+.form-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:#fff;
+  border:1px solid #e6e8ed;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:10px;
+}
+
+.form-icon{
+  width:44px;
+  height:44px;
+  min-width:44px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:#f9e9ed;
+  font-size:21px;
+}
+
+.form-info{
+  flex:1;
+}
+
+.form-info strong{
+  display:block;
+  font-size:14px;
+}
+
+.form-info small{
+  display:block;
+  margin-top:3px;
+  color:#667085;
+  font-size:11px;
+}
+
+.download{
+  padding:10px 12px;
+  border-radius:10px;
+  background:#182033;
+  color:#fff;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:800;
+}
+
+.empty{
+  text-align:center;
+  padding:30px;
+  color:#667085;
+}
+
+.loading{
+  text-align:center;
+  padding:30px;
+  color:#667085;
+}
+
+@media(max-width:600px){
+  h1{
+    font-size:27px;
+  }
+
+  .container{
+    padding:18px 13px 90px;
+  }
+
+  .hero{
+    padding:20px;
+  }
+
+  .item-top{
+    display:block;
+  }
+
+  .badge{
+    display:inline-block;
+    margin-top:8px;
+  }
+
+  .form-card{
+    align-items:flex-start;
+  }
+
+  .download{
+    align-self:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <div class="brand">
+
+    <img
+      src="./ask-union-icon-192.png"
+      class="logo"
+      alt="ASK UNION">
+
+    <div>
+      <div class="brand-title">ASK UNION</div>
+      <div class="brand-sub">
+        SBISA UDAIPUR MODULE
+      </div>
+    </div>
+
+  </div>
+
+  <a href="./" class="back">← Back to Home</a>
+
+</header>
+
+
+<main class="container">
+
+  <section class="hero">
+
+    <div class="eyebrow">
+      DOCUMENT CENTRE
+    </div>
+
+    <h1>Index</h1>
+
+    <p class="subtitle">
+      Circulars, latest updates, events and useful forms
+      — all organised in one place.
+    </p>
+
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="🔎 Search circular, update, form..."
+    >
+
+  </section>
+
+
+  <div class="filters">
+
+    <button
+      class="filter active"
+      data-type="all">
+      All
+    </button>
+
+    <button
+      class="filter"
+      data-type="updates">
+      📢 Latest Updates
+    </button>
+
+    <button
+      class="filter"
+      data-type="circulars">
+      📄 Circulars
+    </button>
+
+    <button
+      class="filter"
+      data-type="events">
+      📅 Events
+    </button>
+
+    <button
+      class="filter"
+      data-type="forms">
+      📥 Forms
+    </button>
+
+  </div>
+
+
+  <section>
+
+    <div class="section-title">
+
+      <h2 id="sectionHeading">
+        All Documents
+      </h2>
+
+      <span
+        class="count"
+        id="count">
+        0
+      </span>
+
+    </div>
+
+    <div id="list">
+      <div class="loading">
+        Loading documents...
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ================= FORMS ================= -->
+
+  <section
+    class="forms"
+    id="formsSection">
+
+    <div class="section-title">
+
+      <h2>📥 Forms & Downloads</h2>
+
+    </div>
+
+
+    <div class="form-card">
+
+      <div class="form-icon">
+        🏦
+      </div>
+
+      <div class="form-info">
+
+        <strong>
+          Personal Loan Application
+        </strong>
+
+        <small>
+          Application form for Personal Loan
+        </small>
+
+      </div>
+
+      <a
+        href="./personal-loan-application.pdf"
+        class="download"
+        download>
+        DOWNLOAD
+      </a>
+
+    </div>
+
+
+    <div class="form-card">
+
+      <div class="form-icon">
+        🔄
+      </div>
+
+      <div class="form-info">
+
+        <strong>
+          Transfer Application
+        </strong>
+
+        <small>
+          Application form for Transfer
+        </small>
+
+      </div>
+
+      <a
+        href="./transfer-application.pdf"
+        class="download"
+        download>
+        DOWNLOAD
+      </a>
+
+    </div>
+
+
+    <div class="form-card">
+
+      <div class="form-icon">
+        🏥
+      </div>
+
+      <div class="form-info">
+
+        <strong>
+          Medical Form
+        </strong>
+
+        <small>
+          Medical related application
+        </small>
+
+      </div>
+
+      <a
+        href="./medical-form.pdf"
+        class="download"
+        download>
+        DOWNLOAD
+      </a>
+
+    </div>
+
+
+    <div class="form-card">
+
+      <div class="form-icon">
+        📝
+      </div>
+
+      <div class="form-info">
+
+        <strong>
+          Membership Form
+        </strong>
+
+        <small>
+          SBISA membership application
+        </small>
+
+      </div>
+
+      <a
+        href="./membership-form.pdf"
+        class="download"
+        download>
+        DOWNLOAD
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- Firebase -->
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+
+<script>
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",
+
+  authDomain:
+    "ask-union-jaipur-circle.firebaseapp.com",
+
+  projectId:
+    "ask-union-jaipur-circle",
+
+  storageBucket:
+    "ask-union-jaipur-circle.firebasestorage.app",
+
+  messagingSenderId:
+    "584327754977",
+
+  appId:
+    "1:584327754977:web:7164a85c007165743ef3a"
+
+};
+
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+
+let allItems = [];
+
+let currentType = "all";
+
+
+function escapeHtml(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function formatDate(value){
+
+  if(!value) return "";
+
+  const d = new Date(value);
+
+  if(isNaN(d.getTime()))
+    return value;
+
+  return d.toLocaleDateString(
+    "en-IN",
+    {
+      day:"2-digit",
+      month:"short",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+async function loadDocuments(){
+
+  try{
+
+    const collections = [
+      "updates",
+      "circulars",
+      "events"
+    ];
+
+    let result = [];
+
+    for(const type of collections){
+
+      const snapshot =
+        await db.collection(type).get();
+
+      snapshot.forEach(doc => {
+
+        const data = doc.data();
+
+        result.push({
+
+          id:doc.id,
+
+          type:type,
+
+          title:data.title || "Untitled",
+
+          details:data.details || "",
+
+          category:data.category || "",
+
+          date:data.date || data.createdAt || "",
+
+          link:data.link || ""
+
+        });
+
+      });
+
+    }
+
+
+    result.sort((a,b) =>
+
+      String(b.date)
+      .localeCompare(String(a.date))
+
+    );
+
+
+    allItems = result;
+
+    render();
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    document.getElementById("list").innerHTML =
+      '<div class="empty">Unable to load documents.</div>';
+
+  }
+
+}
+
+
+function render(){
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  let items = allItems.filter(item => {
+
+    const typeMatch =
+      currentType === "all" ||
+      currentType === item.type;
+
+
+    const searchText = [
+
+      item.title,
+      item.details,
+      item.category,
+      item.date
+
+    ]
+    .join(" ")
+    .toLowerCase();
+
+
+    return typeMatch &&
+           searchText.includes(search);
+
+  });
+
+
+  document.getElementById("count")
+    .textContent = items.length;
+
+
+  if(currentType === "updates")
+    document.getElementById("sectionHeading")
+      .textContent = "📢 Latest Updates";
+
+  else if(currentType === "circulars")
+    document.getElementById("sectionHeading")
+      .textContent = "📄 Circulars";
+
+  else if(currentType === "events")
+    document.getElementById("sectionHeading")
+      .textContent = "📅 Events";
+
+  else if(currentType === "forms")
+    document.getElementById("sectionHeading")
+      .textContent = "📥 Forms";
+
+  else
+    document.getElementById("sectionHeading")
+      .textContent = "All Documents";
+
+
+  if(currentType === "forms"){
+
+    document.getElementById("list").innerHTML =
+      '<div class="empty">Forms are listed below.</div>';
+
+    document.getElementById("formsSection")
+      .style.display = "block";
+
+    return;
+
+  }
+
+
+  document.getElementById("formsSection")
+    .style.display =
+      currentType === "all" ? "block" : "none";
+
+
+  if(!items.length){
+
+    document.getElementById("list").innerHTML =
+      '<div class="empty">No documents found.</div>';
+
+    return;
+
+  }
+
+
+  document.getElementById("list").innerHTML =
+
+    items.map(item => {
+
+      let button = "";
+
+      if(item.link){
+
+        button = `
+          <a
+            class="open"
+            href="${escapeHtml(item.link)}"
+            target="_blank"
+            rel="noopener">
+            📄 OPEN PDF / LINK →
+          </a>
+        `;
+
+      }
+
+
+      return `
+
+        <article class="item">
+
+          <div class="item-top">
+
+            <div class="title">
+              ${escapeHtml(item.title)}
+            </div>
+
+            ${
+              item.category
+              ?
+              `<span class="badge">
+                ${escapeHtml(item.category)}
+              </span>`
+              :
+              ""
+            }
+
+          </div>
+
+          <div class="meta">
+            📅 ${escapeHtml(formatDate(item.date))}
+          </div>
+
+          ${
+            item.details
+            ?
+            `<div class="details">
+              ${escapeHtml(item.details)}
+            </div>`
+            :
+            ""
+          }
+
+          ${button}
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    render
+  );
+
+
+document
+  .querySelectorAll(".filter")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        document
+          .querySelectorAll(".filter")
+          .forEach(x =>
+            x.classList.remove("active")
+          );
+
+        this.classList.add("active");
+
+        currentType =
+          this.dataset.type;
+
+        render();
+
+      }
+    );
+
+  });
+
+
+loadDocuments();
+
+</script>
+
+</body>
+</html>
