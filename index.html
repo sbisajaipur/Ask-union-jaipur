@@ -99,38 +99,149 @@
 
 <div class="app">
 
-<!-- ================= HEADER ================= -->
+<!--
 
-<header>
+<!-- ================= HEADER ================= -->
+<header class="top-header">
 
   <div class="brand-wrap">
-
     <img
       src="./ask-union-icon-192.png"
       class="brand-logo"
-      alt="SBISA Logo"
+      alt="ASK UNION"
     >
 
-    <div>
-
-      <div class="brand-title">
-        ASK UNION
-      </div>
-
-      <div class="brand-sub">
-        SBISA UDAIPUR MODULE
-      </div>
-
+    <div class="brand-text">
+      <div class="brand-title">ASK UNION</div>
+      <div class="brand-sub">SBISA UDAIPUR MODULE</div>
     </div>
-
   </div>
 
-  <div class="online">
-    ● ONLINE
+  <div class="header-actions">
+
+    <button class="notification-btn" type="button" aria-label="Notifications">
+      🔔
+      <span class="notification-badge">3</span>
+    </button>
+
+    <button
+      class="menu-btn"
+      type="button"
+      onclick="openAskUnionMenu()"
+      aria-label="Open menu"
+    >
+      ⋮
+    </button>
+
   </div>
 
 </header>
+<!-- ================= THREE DOT MENU ================= -->
 
+<div id="askUnionOverlay"
+     class="ask-union-overlay"
+     onclick="closeAskUnionMenu()">
+</div>
+
+<aside id="askUnionMenu" class="ask-union-menu">
+
+  <div class="menu-header">
+
+    <div class="menu-logo-wrap">
+      <img
+        src="./ask-union-icon-192.png"
+        alt="ASK UNION"
+      >
+    </div>
+
+    <h2>ASK UNION</h2>
+    <p>SBISA UDAIPUR MODULE</p>
+
+    <button
+      class="menu-close"
+      onclick="closeAskUnionMenu()"
+      aria-label="Close menu"
+    >
+      ×
+    </button>
+
+  </div>
+
+  <div class="menu-links">
+
+    <a href="#" onclick="closeAskUnionMenu()">
+      <span>🏠</span>
+      <strong>Home</strong>
+    </a>
+
+    <a href="#updates" onclick="closeAskUnionMenu()">
+      <span>📢</span>
+      <strong>Latest Updates</strong>
+    </a>
+
+    <a href="#circulars" onclick="closeAskUnionMenu()">
+      <span>📄</span>
+      <strong>Circulars</strong>
+    </a>
+
+    <a href="#events" onclick="closeAskUnionMenu()">
+      <span>📅</span>
+      <strong>Events</strong>
+    </a>
+
+    <a href="#office-bearers" onclick="closeAskUnionMenu()">
+      <span>👥</span>
+      <strong>Office Bearers</strong>
+    </a>
+
+    <a href="#useful" onclick="closeAskUnionMenu()">
+      <span>⬇️</span>
+      <strong>Forms & Downloads</strong>
+    </a>
+
+    <a href="#grievance" onclick="closeAskUnionMenu()">
+      <span>💬</span>
+      <strong>Grievance / Suggestion</strong>
+    </a>
+
+    <a href="#about" onclick="closeAskUnionMenu()">
+      <span>ℹ️</span>
+      <strong>About SBISA</strong>
+    </a>
+
+    <a href="#contact" onclick="closeAskUnionMenu()">
+      <span>📞</span>
+      <strong>Contact</strong>
+    </a>
+
+  </div>
+
+  <div class="menu-divider"></div>
+
+  <div class="menu-extra">
+
+    <a href="#">
+      <span>🔐</span>
+      <strong>Member Login</strong>
+    </a>
+
+    <a href="#">
+      <span>⚙️</span>
+      <strong>Settings</strong>
+    </a>
+
+    <a href="#">
+      <span>↗️</span>
+      <strong>Share Website</strong>
+    </a>
+
+  </div>
+
+  <div class="menu-footer">
+    <strong>Our People • Our Voice • Our Strength</strong>
+  </div>
+
+</aside>
 
 <!-- ================= HERO ================= -->
 
