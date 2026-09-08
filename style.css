@@ -1707,7 +1707,6 @@ header{
 
 /* Mobile */
 
-@media(
 #useful .resource{
   background:
     linear-gradient(
@@ -3367,4 +3366,3 @@ footer {
     grid-template-columns: 1fr !important;
   }
 
-}
