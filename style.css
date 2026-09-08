@@ -2482,7 +2482,445 @@ footer {
   }
 
   .resource p {
-    font-size: 10px !important;
+    font-size: 10px !important;/* =====================================================
+   ASK UNION – PREMIUM 3 DOT MOBILE MENU
+   ===================================================== */
+
+/* ---------- HEADER ---------- */
+
+.top-header {
+  height: 78px !important;
+  padding: 8px 14px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  background: linear-gradient(
+    135deg,
+    #8d0010,
+    #c90012,
+    #e30613
+  ) !important;
+
+  color: #fff !important;
+
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9000 !important;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,.18) !important;
+}
+
+.top-header .brand-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.top-header .brand-logo {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 13px !important;
+  object-fit: cover !important;
+  background: #fff !important;
+}
+
+.top-header .brand-title {
+  color: #fff !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  letter-spacing: .5px !important;
+}
+
+.top-header .brand-sub {
+  color: #fff !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  margin-top: 3px !important;
+}
+
+/* ---------- HEADER BUTTONS ---------- */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.notification-btn,
+.menu-btn {
+  position: relative;
+
+  width: 43px;
+  height: 43px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.16);
+  color: #fff;
+
+  font-size: 21px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: .2s ease;
+}
+
+.notification-btn:active,
+.menu-btn:active {
+  transform: scale(.9);
+}
+
+.menu-btn {
+  font-size: 30px;
+  line-height: 1;
+  padding-bottom: 8px;
+}
+
+.notification-badge {
+  position: absolute;
+
+  top: -3px;
+  right: -2px;
+
+  min-width: 19px;
+  height: 19px;
+
+  padding: 0 5px;
+
+  border-radius: 20px;
+
+  background: #fff;
+  color: #e30613;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =====================================================
+   OVERLAY
+   ===================================================== */
+
+.ask-union-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0,0,0,.48);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: .25s ease;
+
+  z-index: 9990;
+}
+
+.ask-union-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* =====================================================
+   SIDE MENU
+   ===================================================== */
+
+.ask-union-menu {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+
+  width: min(88vw, 390px);
+  height: 100vh;
+
+  background: #fff;
+
+  z-index: 9995;
+
+  transform: translateX(105%);
+
+  transition:
+    transform .30s cubic-bezier(.4,0,.2,1);
+
+  box-shadow:
+    -10px 0 40px rgba(0,0,0,.20);
+
+  overflow-y: auto;
+}
+
+.ask-union-menu.active {
+  transform: translateX(0);
+}
+
+
+/* ---------- MENU HEADER ---------- */
+
+.menu-header {
+  position: relative;
+
+  padding: 30px 20px 22px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #8d0010,
+      #e30613
+    );
+
+  color: #fff;
+}
+
+.menu-logo-wrap img {
+  width: 92px;
+  height: 92px;
+
+  border-radius: 22px;
+
+  object-fit: cover;
+
+  background: #fff;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.20);
+}
+
+.menu-header h2 {
+  margin: 13px 0 2px;
+
+  font-size: 25px;
+
+  font-weight: 900;
+}
+
+.menu-header p {
+  margin: 0;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  opacity: .92;
+}
+
+
+/* ---------- CLOSE ---------- */
+
+.menu-close {
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  width: 40px;
+  height: 40px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.18);
+
+  color: #fff;
+
+  font-size: 29px;
+
+  cursor: pointer;
+}
+
+
+/* ---------- MENU LINKS ---------- */
+
+.menu-links,
+.menu-extra {
+  padding: 12px 14px;
+}
+
+.menu-links a,
+.menu-extra a {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  min-height: 53px;
+
+  padding: 8px 12px;
+
+  margin: 3px 0;
+
+  border-radius: 13px;
+
+  color: #202124;
+
+  text-decoration: none;
+
+  transition: .18s ease;
+}
+
+.menu-links a span,
+.menu-extra a span {
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #fff1f2;
+
+  font-size: 19px;
+}
+
+.menu-links a strong,
+.menu-extra a strong {
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.menu-links a:active,
+.menu-extra a:active {
+
+  background: #fff1f2;
+
+  color: #b4000b;
+
+  transform: scale(.98);
+}
+
+
+/* ---------- DIVIDER ---------- */
+
+.menu-divider {
+
+  height: 1px;
+
+  margin: 5px 20px;
+
+  background: #e7e7e7;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+.menu-footer {
+
+  margin: 20px 16px 30px;
+
+  padding: 18px 14px;
+
+  text-align: center;
+
+  border-radius: 14px;
+
+  background: #fff1f2;
+
+  color: #b4000b;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+/* =====================================================
+   REMOVE OLD MOBILE BOTTOM NAV
+   ===================================================== */
+
+@media(max-width:600px) {
+
+  .bottom-nav,
+  .mobile-nav {
+    display: none !important;
+  }
+
+  body {
+    padding-bottom: 15px !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+  }
+
+  .hero {
+    margin-top: 0 !important;
+  }
+
+}
+
+
+/* =====================================================
+   DESKTOP
+   ===================================================== */
+
+@media(min-width:601px) {
+
+  .ask-union-menu {
+    width: 390px;
+  }
+
+  .menu-btn {
+    cursor: pointer;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+   ===================================================== */
+
+@media(max-width:380px) {
+
+  .top-header {
+    height: 70px !important;
+    padding: 7px 10px !important;
+  }
+
+  .top-header .brand-logo {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .top-header .brand-title {
+    font-size: 17px !important;
+  }
+
+  .top-header .brand-sub {
+    font-size: 8px !important;
+  }
+
+  .notification-btn,
+  .menu-btn {
+    width: 39px;
+    height: 39px;
+  }
+
+}
   }
 
   /* ABOUT */
