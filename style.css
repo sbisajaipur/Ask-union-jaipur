@@ -1247,3 +1247,46 @@ button,
     gap: 10px !important;
   }
 }
+/* ===== FINAL COMPACT PREMIUM RESOURCES ===== */
+
+@media (max-width:600px) {
+
+  #useful .resources {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    align-items: start !important;
+  }
+
+  #useful .resource {
+    height: auto !important;
+    min-height: 108px !important;
+    padding: 11px !important;
+    border-radius: 13px !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;
+  }
+
+  #useful .resource-icon {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 18px !important;
+    margin-bottom: 2px !important;
+  }
+
+  #useful .resource strong {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+  }
+
+  #useful .resource small {
+    font-size: 9px !important;
+    line-height: 1.25 !important;
+  }
+
+  #useful .resource .hero-btn {
+    margin-top: 5px !important;
+    padding: 6px 9px !important;
+    font-size: 9px !important;
+  }
+
+}
