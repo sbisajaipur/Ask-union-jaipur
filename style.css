@@ -1272,3 +1272,143 @@ button,
   border-radius:16px;
 
   transition:
+/* =========================================
+   FINAL COMPACT MEMBER RESOURCES
+   ========================================= */
+
+#grievance {
+  margin-bottom: 18px !important;
+}
+
+#grievance .about-card {
+  padding: 16px !important;
+}
+
+#grievance .history-banner {
+  margin-bottom: 12px !important;
+}
+
+#grievance .about-card p {
+  margin: 10px 0 14px !important;
+  line-height: 1.5 !important;
+}
+
+#grievance .hero-btn {
+  padding: 10px 15px !important;
+  font-size: 12px !important;
+}
+
+
+/* ---------- USEFUL INFORMATION ---------- */
+
+#useful {
+  margin-top: 18px !important;
+}
+
+#useful .section-head {
+  margin-bottom: 14px !important;
+}
+
+/* 2 columns on mobile = much cleaner */
+#useful .resources {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+}
+
+/* Equal compact cards */
+#useful .resource {
+  min-height: 128px !important;
+  height: 128px !important;
+  padding: 13px !important;
+  margin: 0 !important;
+  border-radius: 14px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+}
+
+/* Icons */
+#useful .resource-icon {
+  width: 30px !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 20px !important;
+  margin-bottom: 5px !important;
+}
+
+/* Text */
+#useful .resource-content {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+#useful .resource strong,
+#useful .resource h3 {
+  display: block !important;
+  font-size: 13px !important;
+  line-height: 1.25 !important;
+  margin: 3px 0 !important;
+}
+
+#useful .resource small,
+#useful .resource p {
+  display: block !important;
+  font-size: 10px !important;
+  line-height: 1.35 !important;
+  margin: 3px 0 0 !important;
+}
+
+/* PDF button compact */
+#useful .resource .hero-btn {
+  align-self: flex-start !important;
+  padding: 7px 10px !important;
+  min-height: auto !important;
+  font-size: 10px !important;
+  margin-top: 6px !important;
+  border-radius: 9px !important;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+  #useful .resources {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  #useful .resource {
+    height: 128px !important;
+    min-height: 128px !important;
+  }
+
+}
+
+
+/* ---------- VERY SMALL PHONES ---------- */
+
+@media (max-width: 360px) {
+
+  #useful .resources {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  #useful .resource {
+    height: 122px !important;
+    min-height: 122px !important;
+    padding: 10px !important;
+  }
+
+  #useful .resource strong,
+  #useful .resource h3 {
+    font-size: 12px !important;
+  }
+
+}
