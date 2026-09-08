@@ -1412,3 +1412,67 @@ button,
   }
 
 }
+/* ===== FINAL MOBILE RESOURCE FIX ===== */
+
+@media (max-width: 600px) {
+
+  #useful .resources {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  #useful .resource {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 125px !important;
+    min-height: 125px !important;
+    margin: 0 !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  #useful .resource-icon {
+    margin: 0 0 4px 0 !important;
+    font-size: 19px !important;
+  }
+
+  #useful .resource strong {
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+  }
+
+  #useful .resource small {
+    font-size: 9px !important;
+    line-height: 1.3 !important;
+  }
+
+  #useful .resource .hero-btn {
+    padding: 6px 9px !important;
+    font-size: 9px !important;
+    margin-top: 4px !important;
+  }
+
+}
+
+
+/* ===== SMALL PHONE ===== */
+
+@media (max-width: 380px) {
+
+  #useful .resources {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  #useful .resource {
+    height: 120px !important;
+    min-height: 120px !important;
+    padding: 10px !important;
+  }
+
+}
