@@ -1232,3 +1232,18 @@ button,
 @media (min-width:601px) { #useful .resources { grid-template-columns:repeat(3,minmax(0,1fr)) !important; } }
 @media (max-width:600px) { #useful .resources { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:10px !important; } #useful .resource { height:125px !important; min-height:125px !important; } }
 @media (max-width:360px) { #useful .resources { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:8px !important; } #useful .resource { height:120px !important; min-height:120px !important; padding:10px !important; } }
+/* FINAL RESOURCE CARD FIX */
+
+@media (max-width:600px) {
+  #useful .resource {
+    height: auto !important;
+    min-height: 118px !important;
+    padding: 12px !important;
+    overflow: visible !important;
+  }
+
+  #useful .resources {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+}
