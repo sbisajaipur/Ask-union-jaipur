@@ -1601,6 +1601,24 @@ if (
 }
 
 </script>
+<script>
+function openAskUnionMenu() {
+  document.getElementById("askUnionMenu").classList.add("active");
+  document.getElementById("askUnionOverlay").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
 
+function closeAskUnionMenu() {
+  document.getElementById("askUnionMenu").classList.remove("active");
+  document.getElementById("askUnionOverlay").classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    closeAskUnionMenu();
+  }
+});
+</script>
 </body>
 </html>
