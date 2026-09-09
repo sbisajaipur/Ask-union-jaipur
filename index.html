@@ -1,102 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <meta name="theme-color" content="#7b1024">
-<meta name="description" content="ASK UNION – SBISA UDAIPUR MODULE. Union information, circulars, events and support – all in one place.">
+
+<meta name="description"
+      content="ASK UNION – SBISA UDAIPUR MODULE. Latest union updates and SBISA information.">
 
 <link rel="manifest" href="./manifest.json">
-<link rel="icon" type="image/png" href="./ask-union-icon-192.png">
+
+<link rel="icon"
+      type="image/png"
+      href="./ask-union-icon-192.png">
 
 <title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
 <link rel="stylesheet" href="./style.css?v=12">
-<style>
-/* ================= NOTIFICATION CARD ================= */
-
-.notification-card{
-  margin:18px 16px 8px;
-  padding:16px;
-  background:#fff;
-  border:1px solid #eadfe2;
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  box-shadow:0 6px 20px rgba(40,20,25,.08);
-}
-
-.notification-icon{
-  width:44px;
-  height:44px;
-  border-radius:14px;
-  background:#f7e9ed;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  flex-shrink:0;
-}
-
-.notification-content{
-  flex:1;
-}
-
-.notification-content strong{
-  display:block;
-  color:#7b1024;
-  font-size:14px;
-}
-
-.notification-content small{
-  display:block;
-  margin-top:4px;
-  color:#6b7280;
-  font-size:11px;
-  line-height:1.4;
-}
-
-.notification-button{
-  border:0;
-  border-radius:12px;
-  background:#7b1024;
-  color:#fff;
-  padding:10px 13px;
-  font-weight:700;
-  cursor:pointer;
-  white-space:nowrap;
-}
-
-.notification-button:disabled{
-  opacity:.6;
-}
-
-.notification-enabled{
-  background:#16804b;
-}
-
-@media(max-width:600px){
-  .notification-card{
-    align-items:flex-start;
-    flex-wrap:wrap;
-  }
-
-  .notification-content{
-    min-width:calc(100% - 60px);
-  }
-
-  .notification-button{
-    width:100%;
-  }
-}
-</style>
 
 </head>
+
 
 <body>
 
 <div class="app">
+
 
 <!-- ================= HEADER ================= -->
 
@@ -124,11 +57,13 @@
 
   </div>
 
+
   <div class="online">
     ● ONLINE
   </div>
 
 </header>
+
 
 
 <!-- ================= HERO ================= -->
@@ -141,18 +76,27 @@
       STATE BANK OF INDIA STAFF ASSOCIATION
     </div>
 
+
     <h1>
+
       Welcome to
       <br>
+
       <span>SBISA Udaipur Module</span>
+
     </h1>
 
+
     <p>
-      Your digital platform for union updates, circulars,
-      events, useful information and member support.
+      Your digital platform for the latest union
+      updates and SBISA information.
     </p>
 
-    <a href="#updates" class="hero-btn">
+
+    <a
+      href="#updates"
+      class="hero-btn"
+    >
       Explore Updates →
     </a>
 
@@ -161,167 +105,13 @@
 </section>
 
 
-<!-- ================= NOTIFICATIONS ================= -->
-
-<section class="notification-card">
-
-  <div class="notification-icon">
-    🔔
-  </div>
-
-  <div class="notification-content">
-
-    <strong>
-      ASK UNION Notifications
-    </strong>
-
-    <small>
-      नए circulars, updates और union notices की notification पाएँ।
-    </small>
-
-  </div>
-
-  <button
-    id="notificationButton"
-    class="notification-button"
-    onclick="enableAskUnionNotifications()"
-  >
-    🔔 Notifications ON करें
-  </button>
-
-</section>
-
-
-<!-- ================= QUICK ACCESS ================= -->
-
-<section class="quick">
-
-  <div class="section-head">
-
-    <div>
-
-      <div class="eyebrow dark">
-        QUICK ACCESS
-      </div>
-
-      <h2>
-        Union Services
-      </h2>
-
-    </div>
-
-    <div class="number">
-      01
-    </div>
-
-  </div>
-
-
-  <div class="quick-grid">
-
-    <a href="#updates" class="quick-card">
-
-      <div class="icon">
-        📢
-      </div>
-
-      <div>
-        <strong>Latest Updates</strong>
-        <small>Latest union information</small>
-      </div>
-
-      <span>→</span>
-
-    </a>
-
-
-    <a href="#circulars" class="quick-card">
-
-      <div class="icon">
-        📄
-      </div>
-
-      <div>
-        <strong>Circulars</strong>
-        <small>Important circulars & letters</small>
-      </div>
-
-      <span>→</span>
-
-    </a>
-
-
-    <a href="#events" class="quick-card">
-
-      <div class="icon">
-        📅
-      </div>
-
-      <div>
-        <strong>Events</strong>
-        <small>Meetings & union events</small>
-      </div>
-
-      <span>→</span>
-
-    </a>
-
-
-    <a href="#office-bearers" class="quick-card">
-
-      <div class="icon">
-        👥
-      </div>
-
-      <div>
-        <strong>Office Bearers</strong>
-        <small>Module representatives</small>
-      </div>
-
-      <span>→</span>
-
-    </a>
-
-
-    <a href="#grievance" class="quick-card">
-
-      <div class="icon">
-        💬
-      </div>
-
-      <div>
-        <strong>Grievance / Suggestion</strong>
-        <small>Share your concern</small>
-      </div>
-
-      <span>→</span>
-
-    </a>
-
-
-    <a href="./documents.html" class="quick-card">
-
-  <div class="icon">
-    📚
-  </div>
-
-  <div>
-    <strong>Document Index</strong>
-    <small>Circulars, Updates & Forms</small>
-  </div>
-
-  <span>→</span>
-
-</a>
-
-  </div>
-
-</section>
-
 
 <!-- ================= LATEST UPDATES ================= -->
 
-<section class="section" id="updates">
+<section
+  class="section"
+  id="updates"
+>
 
   <div class="section-head">
 
@@ -337,8 +127,9 @@
 
     </div>
 
+
     <div class="number">
-      02
+      01
     </div>
 
   </div>
@@ -355,158 +146,13 @@
 </section>
 
 
-<!-- ================= CIRCULARS ================= -->
 
-<section class="section" id="circulars">
+<!-- ================= ABOUT SBISA ================= -->
 
-  <div class="section-head">
-
-    <div>
-
-      <div class="eyebrow dark">
-        OFFICIAL DOCUMENTS
-      </div>
-
-      <h2>
-        Circulars
-      </h2>
-
-    </div>
-
-    <div class="number">
-      03
-    </div>
-
-  </div>
-
-
-  <div id="circularsList">
-
-    <p>
-      Loading circulars...
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- ================= EVENTS ================= -->
-
-<section class="section" id="events">
-
-  <div class="section-head">
-
-    <div>
-
-      <div class="eyebrow dark">
-        UNION ACTIVITIES
-      </div>
-
-      <h2>
-        Events
-      </h2>
-
-    </div>
-
-    <div class="number">
-      04
-    </div>
-
-  </div>
-
-
-  <div id="eventsList">
-
-    <p>
-      Loading events...
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- ================= OFFICE BEARERS ================= -->
-
-<section class="section" id="office-bearers">
-
-  <div class="section-head">
-
-    <div>
-
-      <div class="eyebrow dark">
-        UNION LEADERSHIP
-      </div>
-
-      <h2>
-        Office Bearers
-      </h2>
-
-    </div>
-
-    <div class="number">
-      05
-    </div>
-
-  </div>
-
-
-  <div class="resources">
-
-    <div class="resource">
-
-      <div class="resource-icon">
-        👤
-      </div>
-
-      <div class="resource-content">
-
-        <strong>
-          Sunil Dabal
-        </strong>
-
-        <small>
-          Deputy General Secretary (DGS)
-        </small>
-
-        <p>
-          SBISA – Udaipur Module
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div class="resource">
-
-      <div class="resource-icon">
-        📞
-      </div>
-
-      <div class="resource-content">
-
-        <strong>
-          Contact
-        </strong>
-
-        <small>
-          Union assistance
-        </small>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= ABOUT UNION ================= -->
-
-<section class="section" id="union">
+<section
+  class="section"
+  id="union"
+>
 
   <div class="section-head">
 
@@ -522,20 +168,24 @@
 
     </div>
 
+
     <div class="number">
-      06
+      02
     </div>
 
   </div>
 
 
+
   <div class="about-card">
+
 
     <div class="history-banner">
 
       <div class="year">
         1920
       </div>
+
 
       <div>
 
@@ -552,9 +202,11 @@
     </div>
 
 
+
     <h3>
       Our Legacy
     </h3>
+
 
     <p>
       State Bank of India Staff Association carries a long
@@ -563,9 +215,11 @@
     </p>
 
 
+
     <h3>
       Our Journey
     </h3>
+
 
     <ul class="legacy">
 
@@ -591,6 +245,7 @@
     </ul>
 
 
+
     <h3>
       SBISA Circles
     </h3>
@@ -599,15 +254,23 @@
     <div class="circles">
 
       <span>Kolkata</span>
+
       <span>Bhubaneswar</span>
+
       <span>Patna</span>
+
       <span>North Eastern</span>
+
       <span>Lucknow</span>
+
       <span>Delhi</span>
+
       <span>Chandigarh</span>
+
       <span>Jaipur</span>
 
     </div>
+
 
 
     <div class="motto">
@@ -622,72 +285,6 @@
 
     </div>
 
-  </div>
-
-</section>
-
-
-<!-- ================= GRIEVANCE ================= -->
-
-<section class="section" id="grievance">
-
-  <div class="section-head">
-
-    <div>
-
-      <div class="eyebrow dark">
-        MEMBER SUPPORT
-      </div>
-
-      <h2>
-        Grievance / Suggestion
-      </h2>
-
-    </div>
-
-    <div class="number">
-      07
-    </div>
-
-  </div>
-
-
-  <div class="about-card">
-
-    <div class="history-banner">
-
-      <div class="year">
-        💬
-      </div>
-
-      <div>
-
-        <strong>
-          Your Voice Matters
-        </strong>
-
-        <small>
-          Share your concern or suggestion
-        </small>
-
-      </div>
-
-    </div>
-
-
-    <p>
-      Members can use this section to submit grievances,
-      suggestions or matters requiring union attention.
-    </p>
-
-
-    <a
-      href="#"
-      class="hero-btn"
-      onclick="alert('Grievance / Suggestion facility will be available here.'); return false;"
-    >
-      Contact Union →
-    </a>
 
   </div>
 
@@ -703,13 +300,16 @@
     ASK UNION
   </strong>
 
+
   <p>
     SBISA UDAIPUR MODULE
   </p>
 
+
   <p>
     Unity • Service • Strength
   </p>
+
 
   <p>
     © 2026 SBISA Udaipur Module
@@ -718,38 +318,8 @@
 </footer>
 
 
-<!-- ================= MOBILE BOTTOM NAV ================= -->
-
-<nav class="bottom-nav">
-
-  <a href="#updates">
-    📢
-    <span>Updates</span>
-  </a>
-
-  <a href="#circulars">
-    📄
-    <span>Circulars</span>
-  </a>
-
-  <a href="#events">
-    📅
-    <span>Events</span>
-  </a>
-
-  <a href="#union">
-    👥
-    <span>Union</span>
-  </a>
-
-<a href="./documents.html">
-  📚
-  <span>Documents</span>
-</a>
-
-</nav>
-
 </div>
+
 
 
 <!-- ================================================== -->
@@ -760,7 +330,6 @@
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
 
 
 <script>
@@ -788,6 +357,7 @@ const askUnionFirebaseConfig = {
 };
 
 
+
 if (!firebase.apps.length) {
 
   firebase.initializeApp(
@@ -796,324 +366,8 @@ if (!firebase.apps.length) {
 
 }
 
-
-const askUnionMessaging =
-  firebase.messaging();
-
-
-
-/* ==================================================
-   ENABLE NOTIFICATIONS
-   ================================================== */
-
-async function enableAskUnionNotifications() {
-
-  const button =
-    document.getElementById(
-      "notificationButton"
-    );
-
-
-  try {
-
-    if (!("Notification" in window)) {
-
-      alert(
-        "इस device/browser में notifications supported नहीं हैं."
-      );
-
-      return;
-
-    }
-
-
-    if (!("serviceWorker" in navigator)) {
-
-      alert(
-        "इस browser में Service Worker supported नहीं है."
-      );
-
-      return;
-
-    }
-
-
-    button.disabled = true;
-
-    button.textContent =
-      "Enabling...";
-
-
-    const permission =
-      await Notification.requestPermission();
-
-
-    if (permission !== "granted") {
-
-      button.disabled = false;
-
-      button.textContent =
-        "🔔 Notifications ON करें";
-
-      alert(
-        "Notifications की permission Allow करें."
-      );
-
-      return;
-
-    }
-
-
-    const registration =
-      await navigator.serviceWorker.register(
-        "./firebase-messaging-sw.js"
-      );
-
-
-    const token =
-      await askUnionMessaging.getToken({
-
-        vapidKey:
-          "BMntGqShsyqbjs7D3SKsCGl6Wo0Tnj_urPEg9wsqjC7aFZxCA5v4RaFbqynnI58s86CmKaD2_9K0ZxuWB4BiEWE",
-
-        serviceWorkerRegistration:
-          registration
-
-      });
-
-
-    if (!token) {
-
-      throw new Error(
-        "FCM token नहीं मिला."
-      );
-
-    }
-
-
-    await firebase
-      .firestore()
-      .collection("fcmTokens")
-      .doc(token)
-      .set({
-
-        token: token,
-
-        createdAt:
-          new Date().toISOString(),
-
-        userAgent:
-          navigator.userAgent,
-
-        platform:
-          navigator.platform
-
-      }, {
-
-        merge: true
-
-      });
-
-
-    button.textContent =
-      "🔔 Notifications ON ✓";
-
-
-    button.classList.add(
-      "notification-enabled"
-    );
-
-
-    localStorage.setItem(
-      "askUnionNotifications",
-      "enabled"
-    );
-
-
-    alert(
-      "ASK UNION notifications successfully ON हो गईं. 🔔"
-    );
-
-
-  }
-
-  catch (error) {
-
-    console.error(
-      "ASK UNION FCM ERROR:",
-      error
-    );
-
-
-    button.disabled = false;
-
-
-    button.textContent =
-      "🔔 Notifications ON करें";
-
-
-    alert(
-      "Notifications enable नहीं हो पाईं.\n\n" +
-      (error.message || error)
-    );
-
-  }
-
-}
-
-
-
-/* ==================================================
-   NOTIFICATION BUTTON STATE
-   ================================================== */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function() {
-
-    const button =
-      document.getElementById(
-        "notificationButton"
-      );
-
-
-    if (!button) return;
-
-
-    if (
-
-      localStorage.getItem(
-        "askUnionNotifications"
-      ) === "enabled"
-
-      &&
-
-      "Notification" in window
-
-      &&
-
-      Notification.permission === "granted"
-
-    ) {
-
-      button.textContent =
-        "🔔 Notifications ON ✓";
-
-
-      button.classList.add(
-        "notification-enabled"
-      );
-
-    }
-
-  }
-);
-
 </script>
 
-
-<!-- ================================================== -->
-<!-- BOTTOM NAV ACTIVE STATE -->
-<!-- ================================================== -->
-
-<script>
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function() {
-
-
-    const navLinks =
-      document.querySelectorAll(
-        ".bottom-nav a"
-      );
-
-
-    const sections = [
-
-      "updates",
-      "circulars",
-      "events",
-      "union",
-      "useful"
-
-    ];
-
-
-    function setActive(id) {
-
-      navLinks.forEach(
-        function(link) {
-
-          const target =
-            link
-              .getAttribute("href")
-              .replace("#","");
-
-
-          link.classList.toggle(
-            "active",
-            target === id
-          );
-
-        }
-      );
-
-    }
-
-
-    const observer =
-      new IntersectionObserver(
-
-        function(entries) {
-
-          entries.forEach(
-            function(entry) {
-
-              if (
-                entry.isIntersecting
-              ) {
-
-                setActive(
-                  entry.target.id
-                );
-
-              }
-
-            }
-          );
-
-        },
-
-        {
-          threshold: .35
-        }
-
-      );
-
-
-    sections.forEach(
-      function(id) {
-
-        const section =
-          document.getElementById(id);
-
-
-        if (section) {
-
-          observer.observe(
-            section
-          );
-
-        }
-
-      }
-    );
-
-  }
-);
-
-</script>
 
 
 <!-- ================================================== -->
@@ -1123,15 +377,14 @@ document.addEventListener(
 <script src="./app.js?v=10"></script>
 
 
+
 <!-- ================================================== -->
-<!-- EXISTING SERVICE WORKER -->
+<!-- SERVICE WORKER -->
 <!-- ================================================== -->
 
 <script>
 
-if (
-  "serviceWorker" in navigator
-) {
+if ("serviceWorker" in navigator) {
 
   window.addEventListener(
     "load",
@@ -1168,5 +421,7 @@ if (
 
 </script>
 
+
 </body>
+
 </html>
