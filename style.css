@@ -1443,3 +1443,103 @@ button,
   }
 
 }
+/* =========================================
+   ASK UNION – ATTRACTIVE 5 TAB NAV
+========================================= */
+
+.bottom-nav{
+  position:fixed;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+
+  width:calc(100% - 18px);
+  max-width:600px;
+
+  height:76px;
+
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+
+  align-items:center;
+
+  padding:7px;
+
+  background:#ffffff;
+
+  border:1px solid #e3d7db;
+  border-radius:24px;
+
+  box-shadow:
+    0 12px 35px rgba(50,20,30,.20),
+    0 3px 10px rgba(50,20,30,.10);
+
+  z-index:99999;
+}
+
+
+.bottom-nav a{
+  height:62px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  gap:3px;
+
+  text-decoration:none;
+
+  color:#667085;
+
+  border-radius:18px;
+
+  font-size:10px;
+  font-weight:800;
+
+  transition:all .2s ease;
+}
+
+
+.bottom-nav .nav-icon{
+  font-size:22px;
+  line-height:1;
+}
+
+
+.bottom-nav a.active{
+  background:#7b1024;
+  color:#ffffff;
+
+  box-shadow:
+    0 6px 16px rgba(123,16,36,.32);
+
+  transform:translateY(-4px);
+}
+
+
+.bottom-nav a:active{
+  transform:scale(.94);
+}
+
+
+@media(max-width:600px){
+
+  .bottom-nav{
+    width:calc(100% - 12px);
+    bottom:8px;
+    height:72px;
+    border-radius:22px;
+  }
+
+  .bottom-nav a{
+    height:58px;
+    font-size:9px;
+    border-radius:16px;
+  }
+
+  .bottom-nav .nav-icon{
+    font-size:21px;
+  }
+
+}
