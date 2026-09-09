@@ -1547,3 +1547,52 @@ button,
     flex-basis: 50px !important;
   }
 }
+/* ===== DOCUMENT CENTRE TABS FIX ===== */
+
+.filters {
+  display: flex !important;
+  gap: 10px !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: 4px 0 10px !important;
+  box-sizing: border-box !important;
+  scrollbar-width: none !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.filters::-webkit-scrollbar {
+  display: none !important;
+}
+
+.filter {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+  min-width: max-content !important;
+  padding: 13px 18px !important;
+  border-radius: 28px !important;
+}
+
+@media (max-width: 600px) {
+
+  .filters {
+    gap: 8px !important;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+  }
+
+  .filter {
+    font-size: 14px !important;
+    padding: 12px 16px !important;
+  }
+
+  .section-title {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .count {
+    flex-shrink: 0 !important;
+  }
+}
