@@ -1870,3 +1870,40 @@ button,
     transform: scale(.92) !important;
   }
 }
+@media (max-width: 700px) {
+
+  .bottom-nav {
+    position: fixed !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+
+    height: 78px !important;
+    padding: 6px 4px !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+
+    box-sizing: border-box !important;
+    z-index: 99999 !important;
+  }
+
+  .bottom-nav .nav-item {
+    width: auto !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .bottom-nav .nav-icon {
+    flex-shrink: 0 !important;
+  }
+
+  .bottom-nav .nav-label {
+    white-space: nowrap !important;
+  }
+}
