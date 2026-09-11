@@ -1,1977 +1,250 @@
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-:root {
-  --maroon: #7b1024;
-  --dark-maroon: #520817;
-  --light-maroon: #f8e8ec;
-  --cream: #faf7f4;
-  --white: #ffffff;
-  --text: #202124;
-  --muted: #77777f;
-  --border: #e8dfdc;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--text);
-  line-height: 1.6;
-
-  /* UDAIPUR BACKGROUND */
-  background:
-    linear-gradient(
-      rgba(250, 247, 244, 0.72),
-      rgba(250, 247, 244, 0.82)
-    ),
-    url("udaipur-bg.png") center top / cover fixed no-repeat;
-}
-
-.app {
-  max-width: 1120px;
-  margin: 0 auto;
-  min-height: 100vh;
-  background: transparent;
-}
-
-/* ================= HEADER ================= */
-
-header {
-  background: linear-gradient(
-    135deg,
-    #520817,
-    #7b1024,
-    #921d38
-  );
-  color: #fff;
-
-  padding: 13px 28px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  position: sticky;
-  top: 0;
-  z-index: 100;
-
-  box-shadow: 0 6px 22px rgba(50, 0, 15, 0.25);
-}
-
-.brand-wrap {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-}
-
-.brand-logo {
-  width: 55px;
-  height: 55px;
-  border-radius: 12px;
-  object-fit: cover;
-  background: #fff;
-}
-
-.brand-title {
-  font-size: 23px;
-  font-weight: 900;
-  letter-spacing: 1px;
-}
-
-.brand-sub {
-  font-size: 11px;
-  letter-spacing: 2px;
-  opacity: 0.88;
-}
-
-.online {
-  font-size: 10px;
-  padding: 7px 12px;
-  border: 1px solid rgba(255,255,255,.35);
-  border-radius: 20px;
-  letter-spacing: 1px;
-}
-
-/* ================= HERO ================= */
-
-.hero {
-  position: relative;
-  overflow: hidden;
-
-  min-height: 430px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(55, 4, 16, 0.68),
-      rgba(70, 8, 25, 0.35),
-      rgba(40, 4, 12, 0.15)
-    ),
-    url("udaipur-bg.png") center center / cover no-repeat;
-
-  color: #fff;
-
-  padding: 75px 42px;
-
-  border-radius: 0 0 25px 25px;
-
-  display: flex;
-  align-items: center;
-}
-
-.hero-content {
-  max-width: 720px;
-}
-
-.eyebrow {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  opacity: .88;
-}
-
-.eyebrow.dark {
-  color: var(--maroon);
-  opacity: 1;
-}
-
-.hero h1 {
-  margin: 15px 0;
-  font-size: 50px;
-  line-height: 1.08;
-  letter-spacing: -1.5px;
-}
-
-.hero h1 span {
-  opacity: .82;
-}
-
-.hero p {
-  max-width: 650px;
-  font-size: 16px;
-  opacity: .95;
-}
-
-.hero-btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 12px 21px;
-
-  background: #fff;
-  color: var(--maroon);
-
-  border-radius: 11px;
-  text-decoration: none;
-  font-weight: 800;
-
-  box-shadow: 0 8px 22px rgba(0,0,0,.18);
-}
-
-/* ================= QUICK ACCESS ================= */
-
-.quick {
-  margin: -35px 30px 25px;
-  position: relative;
-  z-index: 5;
-
-  padding: 28px;
-
-  background: rgba(255,255,255,.94);
-  backdrop-filter: blur(8px);
-
-  border: 1px solid rgba(255,255,255,.8);
-  border-radius: 19px;
-
-  box-shadow: 0 12px 35px rgba(40,20,15,.12);
-}
-
-.section-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  margin-bottom: 18px;
-}
-
-.section-head h2 {
-  margin: 3px 0 0;
-  font-size: 27px;
-  letter-spacing: -.5px;
-}
-
-.number {
-  color: #cfc4c1;
-  font-size: 22px;
-  font-weight: 800;
-}
-
-.quick-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 13px;
-}
-
-.quick-card {
-  display: grid;
-  grid-template-columns: 45px 1fr auto;
-  align-items: center;
-  gap: 12px;
-
-  padding: 16px;
-
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-
-  text-decoration: none;
-
-  box-shadow: 0 6px 18px rgba(50,25,20,.05);
-
-  transition: .2s ease;
-}
-
-.quick-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(50,25,20,.11);
-}
-
-.quick-card .icon {
-  width: 45px;
-  height: 45px;
-
-  display: grid;
-  place-items: center;
-
-  background: var(--light-maroon);
-  border-radius: 12px;
-
-  font-size: 21px;
-}
-
-.quick-card strong {
-  display: block;
-  color: var(--text);
-  font-size: 14px;
-}
-
-.quick-card small {
-  display: block;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.quick-card > span {
-  color: var(--maroon);
-  font-weight: 900;
-}
-
-/* ================= CONTENT SECTIONS ================= */
-
-.section {
-  margin: 0 30px 22px;
-  padding: 25px;
-
-  background: rgba(255,255,255,.94);
-  backdrop-filter: blur(7px);
-
-  border: 1px solid rgba(232,223,220,.9);
-  border-radius: 18px;
-
-  box-shadow: 0 9px 28px rgba(40,20,15,.08);
-}
-
-.section h2 {
-  color: var(--maroon);
-  margin: 0;
-}
-
-/* ================= FIREBASE CARDS ================= */
-
-#updatesList,
-#circularsList,
-#eventsList {
-  display: grid;
-  gap: 12px;
-}
-
-.item,
-.update-card,
-.circular-card,
-.event-card {
-  margin: 0;
-
-  padding: 16px;
-
-  background: #fffafa;
-
-  border: 1px solid #eadfe1;
-  border-left: 4px solid var(--maroon);
-
-  border-radius: 12px;
-
-  box-shadow: 0 4px 13px rgba(0,0,0,.035);
-}
-
-.item a,
-.update-card a,
-.circular-card a,
-.event-card a {
-  color: var(--maroon);
-  font-weight: 700;
-}
-
-/* ================= ABOUT UNION ================= */
-
-.about-card {
-  background: #fff;
-}
-
-.history-banner {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  padding: 17px;
-
-  background: linear-gradient(
-    100deg,
-    #f7e6ea,
-    #fff
-  );
-
-  border: 1px solid #ead4d9;
-  border-radius: 14px;
-
-  margin-bottom: 22px;
-}
-
-.year {
-  color: var(--maroon);
-  font-size: 30px;
-  font-weight: 900;
-}
-
-.history-banner strong,
-.history-banner small {
-  display: block;
-}
-
-.history-banner small {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.about-card h3 {
-  color: var(--maroon);
-  margin: 25px 0 8px;
-  font-size: 19px;
-}
-
-.about-card p {
-  color: #4d4d54;
-}
-
-.legacy {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  gap: 7px 25px;
-
-  padding-left: 22px;
-}
-
-.legacy li {
-  margin: 4px 0;
-}
-
-.circles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.circles span {
-  background: var(--light-maroon);
-  color: var(--maroon);
-
-  padding: 6px 12px;
-
-  border-radius: 20px;
-
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.motto {
-  margin-top: 25px;
-  padding: 20px;
-
-  text-align: center;
-
-  color: #fff;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--dark-maroon),
-      var(--maroon)
-    );
-
-  border-radius: 13px;
-}
-
-.motto div {
-  font-size: 12px;
-  letter-spacing: 1.5px;
-}
-
-.motto strong {
-  display: block;
-
-  margin-top: 5px;
-
-  font-size: 18px;
-  letter-spacing: 2px;
-}
-
-/* ================= USEFUL INFORMATION ================= */
-
-.resources {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 13px;
-}
-
-.resource {
-  background: #fff;
-
-  border: 1px solid var(--border);
-  border-radius: 14px;
-
-  padding: 18px;
-
-  font-size: 22px;
-
-  box-shadow: 0 5px 15px rgba(0,0,0,.04);
-
-  transition: .2s;
-}
-
-.resource:hover {
-  transform: translateY(-2px);
-}
-
-.resource strong,
-.resource small {
-  display: block;
-}
-
-.resource strong {
-  margin-top: 7px;
-  font-size: 14px;
-}
-
-.resource small {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-/* ================= FOOTER ================= */
-
-footer {
-  position: relative;
-
-  background:
-    linear-gradient(
-      rgba(78, 5, 22, .94),
-      rgba(78, 5, 22, .97)
-    ),
-    url("udaipur-bg.png") center / cover no-repeat;
-
-  color: #fff;
-
-  text-align: center;
-
-  padding: 32px 20px 90px;
-
-  font-size: 12px;
-}
-
-footer strong {
-  font-size: 23px;
-  letter-spacing: 1px;
-}
-
-footer p {
-  opacity: .78;
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 700px) {
-
-  body {
-    background:
-      linear-gradient(
-        rgba(250,247,244,.82),
-        rgba(250,247,244,.88)
-      ),
-      url("udaipur-bg.png") center top / cover fixed no-repeat;
-  }
-
-  header {
-    height: 70px;
-    padding: 9px 14px;
-  }
-
-  .brand-logo {
-    width: 46px;
-    height: 46px;
-  }
-
-  .brand-title {
-    font-size: 19px;
-  }
-
-  .brand-sub {
-    font-size: 9px;
-    letter-spacing: 1.5px;
-  }
-
-  .online {
-    font-size: 8px;
-    padding: 5px 8px;
-  }
-
-  .hero {
-    min-height: 390px;
-
-    padding: 48px 20px 45px;
-
-    background:
-      linear-gradient(
-        rgba(65,5,18,.62),
-        rgba(65,5,18,.48)
-      ),
-      url("udaipur-bg.png") center center / cover no-repeat;
-  }
-
-  .hero h1 {
-    font-size: 36px;
-  }
-
-  .hero p {
-    font-size: 14px;
-  }
-
-  .quick {
-    margin: -25px 14px 18px;
-    padding: 20px 14px;
-    border-radius: 16px;
-  }
-
-  .section {
-    margin: 0 14px 18px;
-    padding: 18px;
-
-    border-radius: 15px;
-  }
-
-  .section-head h2 {
-    font-size: 23px;
-  }
-
-  .quick-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
-  }
-
-  .quick-card {
-    grid-template-columns: 38px 1fr;
-
-    padding: 12px;
-    gap: 9px;
-  }
-
-  .quick-card .icon {
-    width: 38px;
-    height: 38px;
-    font-size: 18px;
-  }
-
-  .quick-card > span {
-    display: none;
-  }
-
-  .quick-card strong {
-    font-size: 12px;
-  }
-
-  .quick-card small {
-    font-size: 10px;
-  }
-
-  .history-banner {
-    padding: 13px;
-  }
-
-  .year {
-    font-size: 25px;
-  }
-
-  .legacy {
-    grid-template-columns: 1fr;
-  }
-
-  .resources {
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
-  }
-
-  .resource {
-    padding: 14px;
-    font-size: 19px;
-  }
-
-  .resource strong {
-    font-size: 12px;
-  }
-
-  .resource small {
-    font-size: 10px;
-  }
-
-  footer {
-    padding-bottom: 82px;
-  }
-
-  /* MOBILE BOTTOM MENU */
-
-  .bottom-nav {
-    position: fixed;
-
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    height: 62px;
-
-    background: rgba(255,255,255,.97);
-    backdrop-filter: blur(10px);
-
-    border-top: 1px solid #ddd;
-
-    z-index: 200;
-
-    box-shadow: 0 -7px 22px rgba(0,0,0,.1);
-  }
-
-  .bottom-nav a {
-    text-decoration: none;
-
-    text-align: center;
-
-    color: #777;
-
-    padding: 7px 2px;
-
-    font-size: 18px;
-  }
-
-  .bottom-nav a span {
-    display: block;
-    font-size: 9px;
-  }
-
-  .bottom-nav a:hover {
-    color: var(--maroon);
-  }
-}
-/* ===== PREMIUM CONTENT CARDS ===== */
-
-#updatesList,
-#circularsList,
-#eventsList {
-  display: grid;
-  gap: 16px;
-}
-
-#updatesList .item,
-#circularsList .item,
-#eventsList .item {
-  position: relative;
-  padding: 20px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(123, 16, 36, 0.08);
-  box-shadow: 0 8px 24px rgba(50, 20, 30, 0.07);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-#updatesList .item:hover,
-#circularsList .item:hover,
-#eventsList .item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(50, 20, 30, 0.12);
-}
-
-#updatesList .item b,
-#circularsList .item b,
-#eventsList .item b {
-  display: block;
-  font-size: 18px;
-  line-height: 1.4;
-  margin-bottom: 7px;
-  color: #7b1024;
-}
-
-#updatesList .item span,
-#circularsList .item span,
-#eventsList .item span {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  padding: 5px 10px;
-  border-radius: 20px;
-  background: #f4e9ec;
-  color: #7b1024;
-}
-
-#updatesList .item p,
-#circularsList .item p,
-#eventsList .item p {
-  margin: 8px 0 12px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #555;
-}
-
-#updatesList .item a,
-#circularsList .item a,
-#eventsList .item a {
-  display: inline-block;
-  margin-top: 5px;
-  padding: 9px 15px;
-  border-radius: 12px;
-  background: #7b1024;
-  color: #fff;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-#updatesList .item a:hover,
-#circularsList .item a:hover,
-#eventsList .item a:hover {
-  opacity: 0.9;
-}
-/* ===== CONTENT SECTION ENHANCEMENT ===== */
-
-#updates .section-head,
-#circulars .section-head,
-#events .section-head {
-  margin-bottom: 20px;
-}
-
-#updatesList .item,
-#circularsList .item,
-#eventsList .item {
-  border-left: 4px solid #7b1024;
-}
-
-#updatesList .item::before {
-  content: "LATEST UPDATE";
-  display: inline-block;
-  margin-bottom: 10px;
-  padding: 4px 9px;
-  border-radius: 20px;
-  background: #7b1024;
-  color: white;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .6px;
-}
-
-#circularsList .item::before {
-  content: "📄 CIRCULAR";
-  display: inline-block;
-  margin-bottom: 10px;
-  padding: 4px 9px;
-  border-radius: 20px;
-  background: #f4e9ec;
-  color: #7b1024;
-  font-size: 10px;
-  font-weight: 800;
-}
-
-#eventsList .item::before {
-  content: "📅 EVENT";
-  display: inline-block;
-  margin-bottom: 10px;
-  padding: 4px 9px;
-  border-radius: 20px;
-  background: #f4e9ec;
-  color: #7b1024;
-  font-size: 10px;
-  font-weight: 800;
-}/* =========================
-   MODULE LEADER CARD
-========================= */
-/* MODULE LEADER PHOTO - COMPACT */
-
-#office-bearers .leader-card{
-  width:100%;
-  padding:10px;
-  margin:0;
-  text-align:center;
-  overflow:hidden;
-}
-
-#office-bearers .leader-photo{
-  display:block;
-  width:180px;
-  height:auto;
-  max-width:100%;
-  margin:0 auto;
-  border-radius:14px;
-  box-shadow:0 5px 15px rgba(80,20,35,.12);
-}
-
-@media(max-width:600px){
-
-  #office-bearers .leader-photo{
-    width:180px;
-  }
-
-}
-/* =========================
-   SUNIL DABAL - LEADER CARD
-========================= */
-
-#office-bearers .leader-card{
-  width:100% !important;
-  max-width:260px !important;
-  margin:0 auto !important;
-  padding:8px !important;
-  background:#fff !important;
-  border-radius:18px !important;
-  box-shadow:0 6px 18px rgba(80,20,35,.08) !important;
-  overflow:hidden !important;
-  text-align:center !important;
-}
-
-#office-bearers .leader-photo{
-  display:block !important;
-  width:240px !important;
-  height:auto !important;
-  max-width:100% !important;
-  max-height:none !important;
-  object-fit:contain !important;
-  margin:0 auto !important;
-  border-radius:12px !important;
-  box-shadow:none !important;
-}
-
-@media(max-width:600px){
-
-  #office-bearers .leader-card{
-    max-width:250px !important;
-    padding:7px !important;
-  }
-
-  #office-bearers .leader-photo{
-    width:230px !important;
-  }
-
-}
-/* SUNIL DABAL PHOTO - FINAL SIZE */
-
-#office-bearers .leader-card{
-  width:260px !important;
-  max-width:260px !important;
-  margin:0 auto !important;
-  padding:8px !important;
-  overflow:hidden !important;
-  text-align:center !important;
-}
-
-#office-bearers .leader-card img.leader-photo{
-  display:block !important;
-  width:220px !important;
-  height:300px !important;
-  max-width:220px !important;
-  max-height:300px !important;
-  object-fit:contain !important;
-  margin:0 auto !important;
-  border-radius:12px !important;
-}
-
-@media(max-width:600px){
-
-  #office-bearers .leader-card{
-    width:240px !important;
-    max-width:240px !important;
-  }
-
-  #office-bearers .leader-card img.leader-photo{
-    width:200px !important;
-    height:270px !important;
-    max-width:200px !important;
-    max-height:270px !important;
-  }
-
-}
-/* =========================================
-   ASK UNION – PWA MOBILE APP FEEL
-   SAFE DESIGN PATCH
-========================================= */
-
-/* App-like scrolling */
-html {
-  scroll-behavior: smooth;
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  padding-bottom: 85px;
-}
-
-/* Better touch experience */
-button,
-a,
-.resource,
-.item {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* App-style cards */
-.resource,
-.item,
-.about-card {
-  transition:
-    transform .18s ease,
-    box-shadow .18s ease;
-}
-
-/* Touch feedback */
-.resource:active,
-.item:active {
-  transform: scale(.985);
-}
-
-/* Cleaner buttons */
-button,
-.hero-btn {
-  min-height: 44px;
-}
-
-/* =========================================
-   MOBILE APP NAVIGATION
-========================================= */
-
-@media(max-width:600px){
-
-  body {
-    padding-bottom: 88px;
-  }
-
-  /* Bottom navigation */
-  .mobile-nav {
-    position: fixed;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    z-index: 9999;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
-    min-height: 64px;
-
-    background: rgba(255,255,255,.94);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-
-    border: 1px solid rgba(123,16,36,.12);
-    border-radius: 22px;
-
-    box-shadow:
-      0 10px 35px rgba(40,20,30,.18);
-  }
-
-  .mobile-nav a {
-    flex: 1;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 3px;
-
-    min-height: 56px;
-
-    color: #777;
-    text-decoration: none;
-
-    font-size: 10px;
-    font-weight: 700;
-
-    border-radius: 16px;
-  }
-
-  .mobile-nav a span {
-    font-size: 21px;
-    line-height: 1;
-  }
-
-  .mobile-nav a:active {
-    background: #faf0f3;
-    color: #7b1024;
-    transform: scale(.94);
-  }
-
-  /* App-like sections */
-  .section {
-    scroll-margin-top: 75px;
-  }
-
-  /* Quick access grid */
-  #quick-access .resources,
-  .quick-access .resources {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  /* Compact resource cards */
-  .resource {
-    min-height: 105px;
-    border-radius: 18px;
-  }
-
-  .resource strong {
-    font-size: 15px;
-  }
-
-  .resource small {
-    font-size: 12px;
-  }
-
-  /* Better content cards */
-  .item {
-    border-radius: 18px;
-    padding: 16px;
-  }
-
-  .item b {
-    font-size: 16px;
-  }
-
-  /* Better section headings */
-  .section-head {
-    align-items: center;
-  }
-
-  .section-head h2 {
-    font-size: 22px;
-  }
-
-  /* Hero */
-  .hero {
-    border-radius: 24px;
-    overflow: hidden;
-  }
-
-  /* Prevent horizontal overflow */
-  img {
-    max-width: 100%;
-  }
-
-}
-
-
-/* =========================================
-   TABLET / DESKTOP POLISH
-========================================= */
-
-@media(min-width:601px){
-
-  .resource:hover,
-  .item:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-      0 12px 28px rgba(80,20,35,.10);
-  }
-
-}
-
-
-/* =========================================
-   SAFE AREA – ANDROID / iPHONE
-========================================= */
-
-@supports(padding:max(0px)){
-
-  body {
-    padding-bottom:
-      max(85px, calc(85px + env(safe-area-inset-bottom)));
-  }
-
-  .mobile-nav {
-    bottom:
-      max(10px, env(safe-area-inset-bottom));
-  }
-
-}
-
-
-/* =========================================
-   PWA APP-LIKE TEXT SELECTION
-========================================= */
-
-@media(max-width:600px){
-
-  .resource,
-  .hero-btn,
-  .mobile-nav a,
-  button {
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
-}
-/* =========================================
-   FINAL MEMBER RESOURCES – CLEAN VERSION
-   ========================================= */
-
-#grievance { margin-bottom: 18px !important; }
-#grievance .about-card { padding: 16px !important; }
-#grievance .history-banner { margin-bottom: 12px !important; }
-#grievance .about-card p { margin: 10px 0 14px !important; line-height: 1.5 !important; }
-#grievance .hero-btn { padding: 10px 15px !important; font-size: 12px !important; }
-
-#useful { margin-top: 18px !important; }
-#useful .section-head { margin-bottom: 14px !important; }
-#useful .resources { display: grid !important; grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 10px !important; width: 100% !important; }
-#useful .resource { width:100% !important; min-width:0 !important; min-height:125px !important; height:125px !important; margin:0 !important; padding:12px !important; box-sizing:border-box !important; border-radius:14px !important; display:flex !important; flex-direction:column !important; justify-content:space-between !important; }
-#useful .resource-icon { width:30px !important; height:30px !important; min-height:30px !important; display:grid !important; place-items:center !important; margin:0 0 4px !important; font-size:19px !important; }
-#useful .resource-content { flex:1 !important; min-width:0 !important; }
-#useful .resource strong, #useful .resource h3 { display:block !important; margin:3px 0 !important; font-size:12px !important; line-height:1.25 !important; }
-#useful .resource small, #useful .resource p { display:block !important; margin:3px 0 0 !important; font-size:9px !important; line-height:1.3 !important; }
-#useful .resource .hero-btn { align-self:flex-start !important; min-height:auto !important; margin-top:4px !important; padding:6px 9px !important; border-radius:9px !important; font-size:9px !important; }
-
-@media (min-width:601px) { #useful .resources { grid-template-columns:repeat(3,minmax(0,1fr)) !important; } }
-@media (max-width:600px) { #useful .resources { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:10px !important; } #useful .resource { height:125px !important; min-height:125px !important; } }
-@media (max-width:360px) { #useful .resources { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:8px !important; } #useful .resource { height:120px !important; min-height:120px !important; padding:10px !important; } }
-/* FINAL RESOURCE CARD FIX */
-
-@media (max-width:600px) {
-  #useful .resource {
-    height: auto !important;
-    min-height: 118px !important;
-    padding: 12px !important;
-    overflow: visible !important;
-  }
-
-  #useful .resources {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
-  }
-}
-/* ===== FINAL COMPACT PREMIUM RESOURCES ===== */
-
-@media (max-width:600px) {
-
-  #useful .resources {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 8px !important;
-    align-items: start !important;
-  }
-
-  #useful .resource {
-    height: auto !important;
-    min-height: 108px !important;
-    padding: 11px !important;
-    border-radius: 13px !important;
-    justify-content: flex-start !important;
-    gap: 4px !important;
-  }
-
-  #useful .resource-icon {
-    width: 28px !important;
-    height: 28px !important;
+/* =====================================================
+   ASK UNION - FINAL MOBILE UI POLISH
+   ===================================================== */
+
+/* ---------- MEMBER LOGIN INPUTS ---------- */
+
+.member-login-card .login-field {
+    position: relative !important;
+    margin-bottom: 18px !important;
+}
+
+.member-login-card .login-field > span {
+    position: absolute !important;
+    left: 14px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 3 !important;
     font-size: 18px !important;
-    margin-bottom: 2px !important;
-  }
-
-  #useful .resource strong {
-    font-size: 12px !important;
-    line-height: 1.2 !important;
-  }
-
-  #useful .resource small {
-    font-size: 9px !important;
-    line-height: 1.25 !important;
-  }
-
-  #useful .resource .hero-btn {
-    margin-top: 5px !important;
-    padding: 6px 9px !important;
-    font-size: 9px !important;
-  }
-
-}
-
-/* =====================================================
-   ASK UNION – FINAL PREMIUM BOTTOM NAVIGATION
-   ===================================================== */
-
-.bottom-nav {
-  position: fixed !important;
-  left: 12px !important;
-  right: 12px !important;
-  bottom: 12px !important;
-  width: auto !important;
-  max-width: 600px !important;
-  height: 84px !important;
-
-  margin: 0 auto !important;
-  padding: 7px 6px !important;
-
-  display: grid !important;
-  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-  align-items: center !important;
-
-  background: rgba(255,255,255,.97) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
-
-  border: 1px solid rgba(255,255,255,.9) !important;
-  border-radius: 40px !important;
-
-  box-shadow:
-    0 10px 30px rgba(70,20,30,.18),
-    0 2px 8px rgba(70,20,30,.08) !important;
-
-  z-index: 99999 !important;
-}
-
-.bottom-nav .nav-item {
-  width: 100% !important;
-  min-width: 0 !important;
-  height: 100% !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  gap: 4px !important;
-
-  color: #666 !important;
-  text-decoration: none !important;
-
-  font-size: 11px !important;
-  font-weight: 700 !important;
-
-  position: relative !important;
-}
-
-.bottom-nav .nav-icon {
-  width: 50px !important;
-  height: 50px !important;
-  flex: 0 0 50px !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  border-radius: 50% !important;
-
-  box-shadow:
-    inset 0 1px 2px rgba(255,255,255,.8),
-    0 5px 12px rgba(0,0,0,.08) !important;
-}
-
-.bottom-nav .nav-icon svg {
-  width: 27px !important;
-  height: 27px !important;
-
-  fill: none !important;
-  stroke: currentColor !important;
-  stroke-width: 1.8 !important;
-  stroke-linecap: round !important;
-  stroke-linejoin: round !important;
-}
-
-.bottom-nav .nav-home {
-  background: linear-gradient(145deg,#b91d43,#8d102c) !important;
-  color: #fff !important;
-}
-
-.bottom-nav .nav-circular {
-  background: linear-gradient(145deg,#eaf4ff,#d8eaff) !important;
-  color: #087be8 !important;
-}
-
-.bottom-nav .nav-events {
-  background: linear-gradient(145deg,#ffe3e6,#ffd0d6) !important;
-  color: #e63d4d !important;
-}
-
-.bottom-nav .nav-union {
-  background: linear-gradient(145deg,#eee2ff,#dfccff) !important;
-  color: #7637d1 !important;
-}
-
-.bottom-nav .nav-documents {
-  background: linear-gradient(145deg,#dff8f1,#ccefe7) !important;
-  color: #159579 !important;
-}
-
-.bottom-nav .nav-label {
-  display: block !important;
-  white-space: nowrap !important;
-  line-height: 1 !important;
-}
-
-.bottom-nav .nav-item.active {
-  color: #8d102c !important;
-}
-
-.bottom-nav .nav-item.active::after {
-  content: "" !important;
-  position: absolute !important;
-  bottom: 2px !important;
-  width: 42px !important;
-  height: 3px !important;
-  border-radius: 10px !important;
-  background: #8d102c !important;
-}
-
-.bottom-nav .nav-item:active .nav-icon {
-  transform: scale(.92) !important;
-}
-
-@media (min-width: 701px) {
-  .bottom-nav {
-    display: grid !important;
-  }
-}
-
-@media (max-width: 700px) {
-  .bottom-nav {
-    left: 12px !important;
-    right: 12px !important;
-    bottom: calc(10px + env(safe-area-inset-bottom)) !important;
-    width: auto !important;
-    height: 84px !important;
-  }
-
-  .bottom-nav .nav-item {
-    font-size: 11px !important;
-    gap: 3px !important;
-  }
-
-  .bottom-nav .nav-icon {
-    width: 50px !important;
-    height: 50px !important;
-    flex-basis: 50px !important;
-  }
-}
-/* =====================================================
-   ASK UNION - FINAL BOTTOM NAV FIX
-   ===================================================== */
-
-.bottom-nav {
-  position: fixed !important;
-  left: 12px !important;
-  right: 12px !important;
-  bottom: 12px !important;
-
-  width: auto !important;
-  max-width: 600px !important;
-  height: 84px !important;
-
-  margin: 0 auto !important;
-  padding: 7px 6px !important;
-
-  display: grid !important;
-  grid-template-columns: repeat(5, 1fr) !important;
-  align-items: center !important;
-
-  background: rgba(255,255,255,0.97) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
-
-  border: 1px solid rgba(255,255,255,0.9) !important;
-  border-radius: 40px !important;
-
-  box-shadow:
-    0 10px 30px rgba(70,20,30,0.18),
-    0 2px 8px rgba(70,20,30,0.08) !important;
-
-  z-index: 999999 !important;
-}
-
-.bottom-nav .nav-item {
-  width: 100% !important;
-  height: 100% !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  gap: 4px !important;
-
-  color: #666 !important;
-  text-decoration: none !important;
-
-  font-size: 11px !important;
-  font-weight: 700 !important;
-
-  position: relative !important;
-}
-
-.bottom-nav .nav-icon {
-  width: 50px !important;
-  height: 50px !important;
-  flex: 0 0 50px !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  border-radius: 50% !important;
-
-  box-shadow:
-    inset 0 1px 2px rgba(255,255,255,.8),
-    0 5px 12px rgba(0,0,0,.08) !important;
-}
-
-.bottom-nav .nav-icon svg {
-  width: 27px !important;
-  height: 27px !important;
-
-  fill: none !important;
-  stroke: currentColor !important;
-  stroke-width: 1.8 !important;
-  stroke-linecap: round !important;
-  stroke-linejoin: round !important;
-}
-
-.bottom-nav .nav-home {
-  background: linear-gradient(145deg,#b91d43,#8d102c) !important;
-  color: white !important;
-}
-
-.bottom-nav .nav-circular {
-  background: linear-gradient(145deg,#eaf4ff,#d8eaff) !important;
-  color: #087be8 !important;
-}
-
-.bottom-nav .nav-events {
-  background: linear-gradient(145deg,#ffe3e6,#ffd0d6) !important;
-  color: #e63d4d !important;
-}
-
-.bottom-nav .nav-union {
-  background: linear-gradient(145deg,#eee2ff,#dfccff) !important;
-  color: #7637d1 !important;
+    line-height: 1 !important;
 }
 
-.bottom-nav .nav-documents {
-  background: linear-gradient(145deg,#dff8f1,#ccefe7) !important;
-  color: #159579 !important;
+.member-login-card .login-field input {
+    width: 100% !important;
+    height: 58px !important;
+    box-sizing: border-box !important;
+    padding: 0 48px !important;
+    border: 1px solid #d8d8d8 !important;
+    border-radius: 14px !important;
+    background: #fff !important;
+    color: #333 !important;
+    font-size: 16px !important;
 }
 
-.bottom-nav .nav-label {
-  display: block !important;
-  white-space: nowrap !important;
-  line-height: 1 !important;
+.member-login-card .login-field input::placeholder {
+    color: #8a8a8a !important;
 }
 
-.bottom-nav .nav-item.active {
-  color: #8d102c !important;
+.member-login-card .login-field input:focus {
+    border-color: #7b1024 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(123,16,36,.08) !important;
 }
 
-.bottom-nav .nav-item.active::after {
-  content: "" !important;
-  position: absolute !important;
-  bottom: 2px !important;
+/* Eye button INSIDE password box */
 
-  width: 42px !important;
-  height: 3px !important;
-
-  border-radius: 10px !important;
-  background: #8d102c !important;
-}
-
-.bottom-nav .nav-item:active .nav-icon {
-  transform: scale(.92) !important;
-}
-
-@media (max-width: 700px) {
-
-  .bottom-nav {
-    left: 12px !important;
-    right: 12px !important;
-    bottom: calc(10px + env(safe-area-inset-bottom)) !important;
-
-    width: auto !important;
-    height: 84px !important;
-
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-  }
-
-  .bottom-nav .nav-item {
-    font-size: 11px !important;
-    gap: 3px !important;
-  }
-
-  .bottom-nav .nav-icon {
-    width: 50px !important;
-    height: 50px !important;
-    flex-basis: 50px !important;
-  }
-}
-/* ===== DOCUMENT CENTRE TABS FIX ===== */
-
-.filters {
-  display: flex !important;
-  gap: 10px !important;
-  width: 100% !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  padding: 4px 0 10px !important;
-  box-sizing: border-box !important;
-  scrollbar-width: none !important;
-  -webkit-overflow-scrolling: touch !important;
-}
-
-.filters::-webkit-scrollbar {
-  display: none !important;
-}
-
-.filter {
-  flex: 0 0 auto !important;
-  white-space: nowrap !important;
-  min-width: max-content !important;
-  padding: 13px 18px !important;
-  border-radius: 28px !important;
-}
-
-@media (max-width: 600px) {
-
-  .filters {
-    gap: 8px !important;
-    padding-left: 2px !important;
-    padding-right: 2px !important;
-  }
-
-  .filter {
-    font-size: 14px !important;
-    padding: 12px 16px !important;
-  }
-
-  .section-title {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-  }
-
-  .count {
-    flex-shrink: 0 !important;
-  }
-}
-/* ================================
-   ASK UNION - MEMBER UI
-   ================================ */
-
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.notification-btn {
-    position: relative;
-    width: 38px;
-    height: 38px;
-    border: 0;
-    border-radius: 50%;
-    background: #fff;
-    color: #7b1024;
-    font-size: 18px;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,.12);
-}
-
-.notification-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    min-width: 16px;
-    height: 16px;
-    padding: 0 4px;
-    border-radius: 10px;
-    background: #d71920;
-    color: #fff;
-    font-size: 10px;
-    line-height: 16px;
-    font-weight: 700;
-}
-
-/* Member section */
-
-.member-area {
-    max-width: 1100px;
-    margin: 25px auto;
-    padding: 0 16px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.member-login-card,
-.featured-update {
-    border-radius: 18px;
-    padding: 24px;
-    background: #fff;
-    box-shadow: 0 5px 20px rgba(0,0,0,.08);
-}
-
-.member-login-card {
-    border-top: 5px solid #7b1024;
-}
-
-.member-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    color: #520817;
-}
-
-.member-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8e8ec;
-    color: #7b1024;
-    font-size: 21px;
-}
-
-.member-title h2 {
-    margin: 0;
-    font-size: 21px;
-}
-
-.member-title p {
-    margin: 3px 0 0;
-    color: #777;
-    font-size: 13px;
-}
-
-.login-field {
-    margin-bottom: 14px;
-}
-
-.login-field label {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #444;
-}
-
-.login-field input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 12px 13px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 14px;
-    outline: none;
-}
-
-.login-field input:focus {
-    border-color: #7b1024;
-    box-shadow: 0 0 0 3px rgba(123,16,36,.08);
-}
-
-.password-box {
-    position: relative;
-}
-
-.password-box input {
-    padding-right: 45px;
-}
-
-.password-toggle {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    color: #777;
-}
-
-.login-options {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 8px 0 16px;
-    font-size: 12px;
-}
-
-.login-options a {
-    color: #7b1024;
-    text-decoration: none;
-}
-
-.member-login-btn,
-.staff-sso-btn {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 14px;
+.member-login-card .login-field > button {
+    position: absolute !important;
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    font-size: 18px !important;
+    z-index: 4 !important;
 }
 
-.member-login-btn {
-    border: 0;
-    background: #7b1024;
-    color: #fff;
-}
-
-.member-login-btn:hover {
-    background: #520817;
-}
-
-.staff-sso-btn {
-    margin-top: 10px;
-    border: 1px solid #7b1024;
-    background: #fff;
-    color: #7b1024;
-}
-
-.login-or {
-    text-align: center;
-    margin: 14px 0;
-    color: #999;
-    font-size: 12px;
-}
-
-.join-member {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 13px;
-}
-
-.join-member a {
-    color: #7b1024;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-/* Featured update */
-
-.featured-update {
-    background: linear-gradient(135deg, #7b1024, #520817);
-    color: #fff;
-}
-
-.update-label {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 20px;
-    background: rgba(255,255,255,.15);
-    font-size: 11px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.featured-update h2 {
-    margin: 0 0 10px;
-    font-size: 21px;
-}
-
-.featured-update p {
-    margin: 7px 0;
-    line-height: 1.6;
-    font-size: 14px;
-}
-
-.important-update {
-    margin-top: 18px;
-    padding: 14px;
-    border-radius: 12px;
-    background: rgba(255,255,255,.12);
-    border-left: 4px solid #fff;
-}
 
-/* Quick actions */
+/* ---------- QUICK ACTIONS ---------- */
 
 .quick-actions {
-    max-width: 1100px;
-    margin: 25px auto;
-    padding: 0 16px;
-}
-
-.quick-header {
-    margin-bottom: 14px;
-}
-
-.quick-header h2 {
-    margin: 0;
-    color: #520817;
-    font-size: 21px;
-}
-
-.quick-header p {
-    margin: 4px 0 0;
-    color: #777;
-    font-size: 13px;
+    margin-top: 25px !important;
 }
 
 .quick-actions .quick-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
 }
 
-.quick-actions .quick-card {
-    min-height: 100px;
-    padding: 18px;
-    border-radius: 15px;
-    background: #fff;
-    box-shadow: 0 4px 15px rgba(0,0,0,.07);
-    transition: .2s;
-}
-
-.quick-actions .quick-card:hover {
-    transform: translateY(-3px);
-}
-
-.quick-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    background: #f8e8ec;
-    color: #7b1024;
-    font-size: 19px;
-}
-
-.quick-card h3 {
-    margin: 0;
-    font-size: 15px;
-    color: #333;
-}
-
-.quick-card p {
-    margin: 4px 0 0;
-    font-size: 12px;
-    color: #888;
-}
-
-/* Mobile */
-
-@media (max-width: 700px) {
-
-    .member-area {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        margin-top: 18px;
-    }
-
-    .member-login-card,
-    .featured-update {
-        padding: 19px;
-    }
-
-    .quick-actions .quick-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .quick-actions .quick-card {
-        min-height: 90px;
-        padding: 14px;
-    }
-
-    .quick-header h2 {
-        font-size: 19px;
-    }
-
-    .header-actions {
-        gap: 6px;
-    }
-}
-/* ===== HEADER FINAL FIX ===== */
-
-header {
+.quick-actions .quick-grid > a {
     display: flex !important;
     align-items: center !important;
-    justify-content: space-between !important;
+    gap: 12px !important;
+    min-height: 72px !important;
+    padding: 13px !important;
+    box-sizing: border-box !important;
+    border-radius: 15px !important;
+    background: rgba(255,255,255,.92) !important;
+    box-shadow: 0 4px 14px rgba(0,0,0,.07) !important;
+    text-decoration: none !important;
+    color: #3d244a !important;
 }
 
-.header-actions {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    margin-left: auto !important;
+.quick-actions .quick-grid > a:active {
+    transform: scale(.98) !important;
 }
 
-.header-actions .online {
-    display: flex !important;
-    align-items: center !important;
-    white-space: nowrap !important;
-}
-
-.notification-btn {
-    position: relative !important;
-    width: 40px !important;
-    height: 40px !important;
-    border: none !important;
-    border-radius: 50% !important;
-    background: #ffffff !important;
-    cursor: pointer !important;
-}
-
-.notification-badge {
-    position: absolute !important;
-    top: -3px !important;
-    right: -3px !important;
-    min-width: 17px !important;
-    height: 17px !important;
-    border-radius: 50% !important;
-    background: #d71920 !important;
-    color: white !important;
-    font-size: 10px !important;
+.quick-actions .quick-icon {
+    flex-shrink: 0 !important;
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 13px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    font-size: 22px !important;
+}
+
+.quick-actions .quick-grid > a span {
+    display: block !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    color: #3d244a !important;
+}
+
+
+/* Remove unwanted underline */
+
+.quick-actions .quick-grid > a,
+.quick-actions .quick-grid > a span {
+    text-decoration: none !important;
+}
+
+
+/* ---------- QUICK ACTION COLORS ---------- */
+
+.quick-icon.red {
+    background: #fde8ec !important;
+}
+
+.quick-icon.purple {
+    background: #eee5ff !important;
+}
+
+.quick-icon.green {
+    background: #e3f5ed !important;
+}
+
+.quick-icon.orange {
+    background: #fff0df !important;
+}
+
+.quick-icon.blue {
+    background: #e4f0ff !important;
+}
+
+.quick-icon.lime {
+    background: #e2f7ee !important;
+}
+
+
+/* ---------- BOTTOM NAVIGATION ---------- */
+
+.bottom-nav {
+    height: 82px !important;
+    padding: 8px 8px !important;
+    border-radius: 30px !important;
+    box-sizing: border-box !important;
+}
+
+.bottom-nav .nav-item {
+    min-width: 0 !important;
+    padding: 4px 3px !important;
+}
+
+.bottom-nav .nav-icon {
+    width: 42px !important;
+    height: 42px !important;
+}
+
+.bottom-nav .nav-label {
+    font-size: 11px !important;
+    margin-top: 2px !important;
+}
+
+
+/* ---------- MOBILE HEADER ---------- */
+
+@media (max-width: 700px) {
+
+    header {
+        padding-left: 20px !important;
+        padding-right: 16px !important;
+    }
+
+    .brand-logo {
+        width: 64px !important;
+        height: 64px !important;
+    }
+
+    .brand-title {
+        font-size: 27px !important;
+    }
+
+    .brand-sub {
+        font-size: 11px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .online {
+        font-size: 11px !important;
+    }
+
+    .notification-btn {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    /* Member card */
+
+    .member-area {
+        margin-top: 22px !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    .member-login-card {
+        padding: 22px 18px !important;
+        border-radius: 22px !important;
+    }
+
+    .member-title {
+        margin-bottom: 22px !important;
+    }
+
+    .member-title h2 {
+        font-size: 24px !important;
+    }
+
+    /* Quick Actions */
+
+    .quick-actions {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    .quick-actions .quick-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .quick-actions .quick-grid > a {
+        min-height: 76px !important;
+    }
+
+    /* Bottom nav */
+
+    .bottom-nav {
+        left: 18px !important;
+        right: 18px !important;
+        bottom: 14px !important;
+        height: 78px !important;
+        border-radius: 28px !important;
+    }
 }
