@@ -21,7 +21,7 @@
 
 <title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
-<link rel="stylesheet" href="./style.css?v=24">
+<link rel="stylesheet" href="./style.css?v=25">
 
 <style id="quick-actions-final-v2">
 /* ===== ASK UNION QUICK ACTIONS FINAL V2 ===== */
@@ -146,100 +146,6 @@
 #quick-actions-final-v2 .qa-purple .qa-icon{color:#7136cf !important}
 #quick-actions-final-v2 .qa-pink .qa-icon{color:#df2d46 !important}
 
-/* ===== MEMBER LOGIN COMPACT FINAL ===== */
-.member-login-card{
-  box-sizing:border-box !important;
-  width:100% !important;
-  padding:14px 16px !important;
-  margin:0 !important;
-  border-radius:15px !important;
-}
-.member-login-card .member-title{
-  display:flex !important;
-  align-items:center !important;
-  gap:8px !important;
-  margin:0 0 9px !important;
-}
-.member-login-card .member-icon{
-  width:34px !important;
-  height:34px !important;
-  min-width:34px !important;
-  border-radius:9px !important;
-  font-size:17px !important;
-}
-.member-login-card .member-title h2{
-  margin:0 !important;
-  font-size:17px !important;
-  line-height:1.1 !important;
-}
-.member-login-card .member-title p{
-  margin:2px 0 0 !important;
-  font-size:10px !important;
-}
-.member-login-card .login-field{
-  margin:0 0 8px !important;
-}
-.member-login-card .login-field input{
-  box-sizing:border-box !important;
-  height:36px !important;
-  padding:7px 10px !important;
-  font-size:11px !important;
-  border-radius:8px !important;
-}
-.member-login-card .login-options{
-  margin:4px 0 8px !important;
-  font-size:9px !important;
-}
-.member-login-card .member-login-btn,
-.member-login-card .staff-sso-btn{
-  min-height:36px !important;
-  padding:7px 10px !important;
-  font-size:11px !important;
-  border-radius:8px !important;
-}
-.member-login-card .login-or{
-  margin:7px 0 !important;
-  font-size:9px !important;
-}
-.member-login-card .join-member{
-  margin:7px 0 0 !important;
-  font-size:9px !important;
-}
-
-/* Desktop: compact two-column login fields, not a tall card */
-@media(min-width:701px){
-  .member-login-card{
-    display:grid !important;
-    grid-template-columns:1fr 1fr !important;
-    column-gap:12px !important;
-    align-items:center !important;
-  }
-  .member-login-card .member-title{
-    grid-column:1 / -1 !important;
-  }
-  .member-login-card .login-field{
-    margin:0 !important;
-  }
-  .member-login-card .login-options{
-    grid-column:1 !important;
-    margin:6px 0 0 !important;
-  }
-  .member-login-card .member-login-btn{
-    grid-column:2 !important;
-    margin:0 !important;
-  }
-  .member-login-card .login-or{
-    grid-column:1 / -1 !important;
-    margin:7px 0 !important;
-  }
-  .member-login-card .staff-sso-btn{
-    grid-column:1 / -1 !important;
-  }
-  .member-login-card .join-member{
-    grid-column:1 / -1 !important;
-  }
-}
-
 @media(max-width:700px){
   #quick-actions-final-v2 .quick-grid{
     grid-template-columns:repeat(2,minmax(0,1fr)) !important;
@@ -265,6 +171,140 @@
   #quick-actions-final-v2 .qa-text small{font-size:8px !important;margin-top:3px !important}
   #quick-actions-final-v2 .qa-arrow{display:none !important}
   .member-login-card{padding:15px !important}
+}
+</style>
+
+
+<style id="member-login-horizontal-final">
+/* ===== MEMBER LOGIN — COMPACT HORIZONTAL BAR ===== */
+.member-login-card{
+  box-sizing:border-box !important;
+  width:100% !important;
+  min-height:0 !important;
+  height:auto !important;
+  padding:12px 14px !important;
+  margin:0 !important;
+  border-radius:14px !important;
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  align-items:center !important;
+  gap:10px !important;
+}
+.member-login-card .member-title{
+  flex:0 0 185px !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  margin:0 !important;
+}
+.member-login-card .member-icon{
+  width:36px !important;
+  height:36px !important;
+  min-width:36px !important;
+  border-radius:9px !important;
+  font-size:17px !important;
+}
+.member-login-card .member-title h2{
+  margin:0 !important;
+  font-size:16px !important;
+  line-height:1.1 !important;
+}
+.member-login-card .member-title p{
+  margin:2px 0 0 !important;
+  font-size:9px !important;
+}
+.member-login-card .login-field{
+  flex:1 1 170px !important;
+  min-width:130px !important;
+  margin:0 !important;
+  position:relative !important;
+}
+.member-login-card .login-field input{
+  box-sizing:border-box !important;
+  width:100% !important;
+  height:36px !important;
+  padding:7px 10px !important;
+  font-size:11px !important;
+  border-radius:8px !important;
+}
+.member-login-card .login-options{
+  flex:0 0 auto !important;
+  margin:0 !important;
+  font-size:9px !important;
+  white-space:nowrap !important;
+}
+.member-login-card .member-login-btn{
+  flex:0 0 105px !important;
+  width:105px !important;
+  min-height:36px !important;
+  padding:7px 8px !important;
+  margin:0 !important;
+  font-size:11px !important;
+  border-radius:8px !important;
+}
+.member-login-card .login-or{
+  flex:0 0 auto !important;
+  margin:0 1px !important;
+  font-size:9px !important;
+}
+.member-login-card .staff-sso-btn{
+  flex:0 0 145px !important;
+  width:145px !important;
+  min-height:36px !important;
+  padding:7px 8px !important;
+  margin:0 !important;
+  font-size:10px !important;
+  border-radius:8px !important;
+}
+.member-login-card .join-member{
+  display:none !important;
+}
+
+/* Forgot link stays compact and does not add vertical height */
+.member-login-card .login-options a{
+  font-size:9px !important;
+}
+
+@media(max-width:1000px){
+  .member-login-card{
+    gap:7px !important;
+    padding:10px !important;
+  }
+  .member-login-card .member-title{flex-basis:145px !important}
+  .member-login-card .member-title h2{font-size:14px !important}
+  .member-login-card .member-title p{font-size:8px !important}
+  .member-login-card .login-field{min-width:105px !important}
+  .member-login-card .member-login-btn{flex-basis:85px !important;width:85px !important}
+  .member-login-card .staff-sso-btn{flex-basis:120px !important;width:120px !important;font-size:9px !important}
+}
+
+@media(max-width:700px){
+  .member-login-card{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:7px !important;
+    padding:12px !important;
+  }
+  .member-login-card .member-title{
+    grid-column:1 / -1 !important;
+    flex:none !important;
+  }
+  .member-login-card .login-field{
+    min-width:0 !important;
+    width:100% !important;
+  }
+  .member-login-card .login-options{
+    grid-column:1 / -1 !important;
+  }
+  .member-login-card .member-login-btn,
+  .member-login-card .staff-sso-btn{
+    width:100% !important;
+    flex:none !important;
+  }
+  .member-login-card .login-or{
+    grid-column:1 / -1 !important;
+    text-align:center !important;
+  }
 }
 </style>
 
@@ -901,21 +941,6 @@ if ("serviceWorker" in navigator) {
 
 </script>
 
-
-
-<style id="member-login-mobile-final">
-@media(max-width:700px){
-  .member-login-card{
-    display:block !important;
-    padding:13px !important;
-  }
-  .member-login-card .member-title{margin-bottom:9px !important}
-  .member-login-card .login-field{margin-bottom:8px !important}
-  .member-login-card .login-field input{height:35px !important}
-  .member-login-card .member-login-btn,
-  .member-login-card .staff-sso-btn{width:100% !important;min-height:35px !important}
-}
-</style>
 
 </body>
 
