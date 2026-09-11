@@ -21,40 +21,10 @@
 
 <title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
-<link rel="stylesheet" href="./style.css?v=21">
+<link rel="stylesheet" href="./style.css?v=22">
 
-
-<style id="quick-actions-final-fix">
-.quick-actions .quick-grid > a{
-display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;
-box-sizing:border-box!important;min-height:108px!important;padding:16px!important;
-background:rgba(255,255,255,.97)!important;border:1px solid rgba(123,16,36,.10)!important;
-border-radius:17px!important;box-shadow:0 7px 20px rgba(50,25,20,.08)!important;
-color:#333!important;text-decoration:none!important;
-}
-.quick-actions .quick-grid > a:hover{transform:translateY(-3px)!important;box-shadow:0 12px 28px rgba(50,25,20,.13)!important}
-.quick-actions .quick-grid > a .quick-icon{
-width:44px!important;height:44px!important;margin:0 0 10px!important;display:flex!important;
-align-items:center!important;justify-content:center!important;border-radius:13px!important;font-size:20px!important;
-}
-.quick-actions .quick-grid > a > span{color:#333!important;text-decoration:none!important;font-size:14px!important;font-weight:800!important;line-height:1.25!important}
-.quick-actions .quick-icon.red{background:#fbe8ed!important;color:#b7193b!important}
-.quick-actions .quick-icon.purple{background:#eee6ff!important;color:#7139c9!important}
-.quick-actions .quick-icon.green{background:#e1f7ef!important;color:#159579!important}
-.quick-actions .quick-icon.orange{background:#fff0df!important;color:#d46b16!important}
-.quick-actions .quick-icon.blue{background:#e5f1ff!important;color:#1478d4!important}
-.quick-actions .quick-icon.lime{background:#eef7d9!important;color:#6b8f19!important}
-@media(max-width:700px){
-.quick-actions .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
-.quick-actions .quick-grid > a{min-height:108px!important;padding:13px!important;border-radius:15px!important}
-.quick-actions .quick-grid > a .quick-icon{width:40px!important;height:40px!important;font-size:18px!important;margin-bottom:9px!important;border-radius:12px!important}
-.quick-actions .quick-grid > a > span{font-size:12px!important}
-}
-</style>
-
-
-<style id="quick-actions-v2">
-/* FINAL QUICK ACTIONS V2 — colorful + compact */
+<style id="quick-actions-final-clean">
+/* ===== QUICK ACTIONS: COLORFUL + COMPACT ===== */
 .quick-actions .quick-grid{
   display:grid!important;
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
@@ -63,106 +33,71 @@ align-items:center!important;justify-content:center!important;border-radius:13px
 .quick-actions .qa-card{
   position:relative!important;
   display:grid!important;
-  grid-template-columns:52px 1fr 34px!important;
+  grid-template-columns:46px 1fr 28px!important;
   align-items:center!important;
-  gap:12px!important;
-  min-height:86px!important;
-  padding:12px 13px!important;
-  box-sizing:border-box!important;
-  border-radius:18px!important;
+  gap:10px!important;
+  min-height:78px!important;
+  padding:10px 11px!important;
   border:1px solid rgba(255,255,255,.9)!important;
+  border-radius:16px!important;
   text-decoration:none!important;
-  color:#202020!important;
+  color:#222!important;
   overflow:hidden!important;
-  box-shadow:0 7px 18px rgba(50,25,20,.10)!important;
+  box-shadow:0 5px 15px rgba(40,20,30,.10)!important;
   transition:transform .18s ease,box-shadow .18s ease!important;
 }
-.quick-actions .qa-card:hover{
-  transform:translateY(-3px)!important;
-  box-shadow:0 12px 25px rgba(50,25,20,.15)!important;
-}
-.quick-actions .qa-card::after{
-  content:""!important;
-  position:absolute!important;
-  width:105px!important;
-  height:105px!important;
-  right:-38px!important;
-  bottom:-55px!important;
-  border-radius:50%!important;
-  background:rgba(255,255,255,.25)!important;
-}
+.quick-actions .qa-card:hover{transform:translateY(-2px)!important;box-shadow:0 10px 22px rgba(40,20,30,.14)!important}
 .quick-actions .qa-icon{
-  width:52px!important;
-  height:52px!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  border-radius:15px!important;
-  font-size:25px!important;
-  background:rgba(255,255,255,.86)!important;
-  box-shadow:0 4px 10px rgba(0,0,0,.08)!important;
+  width:46px!important;height:46px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  border-radius:14px!important;font-size:22px!important;
+  background:rgba(255,255,255,.9)!important;
+  box-shadow:0 3px 8px rgba(0,0,0,.07)!important;
   z-index:1!important;
 }
 .quick-actions .qa-text{min-width:0!important;z-index:1!important}
-.quick-actions .qa-text strong{
-  display:block!important;
-  margin:0!important;
-  font-size:14px!important;
-  line-height:1.15!important;
-  font-weight:850!important;
-  color:#242424!important;
-}
-.quick-actions .qa-text small{
-  display:block!important;
-  margin-top:5px!important;
-  font-size:11px!important;
-  line-height:1.2!important;
-  color:#555!important;
-}
+.quick-actions .qa-text strong{display:block!important;margin:0!important;font-size:13px!important;line-height:1.15!important;font-weight:850!important;color:#222!important}
+.quick-actions .qa-text small{display:block!important;margin-top:4px!important;font-size:9.5px!important;line-height:1.2!important;color:#555!important}
 .quick-actions .qa-arrow{
-  width:34px!important;
-  height:34px!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  border-radius:50%!important;
-  background:rgba(255,255,255,.72)!important;
-  font-size:20px!important;
-  font-weight:800!important;
-  z-index:1!important;
+  width:28px!important;height:28px!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  border-radius:50%!important;background:rgba(255,255,255,.72)!important;
+  font-size:17px!important;font-weight:800!important;z-index:1!important;
 }
-.quick-actions .qa-red{background:linear-gradient(135deg,#fff1f4,#ffd9df)!important}
-.quick-actions .qa-red .qa-icon{color:#c51d42!important}
-.quick-actions .qa-blue{background:linear-gradient(135deg,#eff8ff,#d8ebff)!important}
-.quick-actions .qa-blue .qa-icon{color:#147fe5!important}
-.quick-actions .qa-yellow{background:linear-gradient(135deg,#fff9e8,#ffe8a8)!important}
-.quick-actions .qa-yellow .qa-icon{color:#d88a00!important}
-.quick-actions .qa-green{background:linear-gradient(135deg,#effcf7,#d4f3e7)!important}
-.quick-actions .qa-green .qa-icon{color:#119967!important}
-.quick-actions .qa-purple{background:linear-gradient(135deg,#f7f0ff,#e7d7ff)!important}
-.quick-actions .qa-purple .qa-icon{color:#7336d2!important}
-.quick-actions .qa-pink{background:linear-gradient(135deg,#fff0f2,#ffdadd)!important}
-.quick-actions .qa-pink .qa-icon{color:#e42e43!important}
+.quick-actions .qa-red{background:linear-gradient(135deg,#fff0f3,#ffcbd5)!important}.quick-actions .qa-red .qa-icon{color:#c51d42!important}
+.quick-actions .qa-blue{background:linear-gradient(135deg,#eef8ff,#cce5ff)!important}.quick-actions .qa-blue .qa-icon{color:#1179dc!important}
+.quick-actions .qa-yellow{background:linear-gradient(135deg,#fff9e8,#ffe39a)!important}.quick-actions .qa-yellow .qa-icon{color:#d28600!important}
+.quick-actions .qa-green{background:linear-gradient(135deg,#edfcf5,#c9f0df)!important}.quick-actions .qa-green .qa-icon{color:#109666!important}
+.quick-actions .qa-purple{background:linear-gradient(135deg,#f7efff,#e0ceff)!important}.quick-actions .qa-purple .qa-icon{color:#7136cf!important}
+.quick-actions .qa-pink{background:linear-gradient(135deg,#fff0f3,#ffcfd8)!important}.quick-actions .qa-pink .qa-icon{color:#df2d46!important}
+
+/* ===== MEMBER LOGIN: SMALLER ===== */
+.member-login-card{
+  padding:18px!important;
+  border-radius:16px!important;
+}
+.member-title{gap:9px!important;margin-bottom:13px!important}
+.member-icon{width:38px!important;height:38px!important;border-radius:10px!important;font-size:18px!important}
+.member-title h2{font-size:18px!important}
+.member-title p{font-size:11px!important}
+.login-field{margin-bottom:10px!important}
+.login-field input{padding:9px 11px!important;font-size:12px!important;border-radius:9px!important}
+.login-field label{font-size:11px!important;margin-bottom:4px!important}
+.login-options{margin:6px 0 11px!important;font-size:10px!important}
+.member-login-btn,.staff-sso-btn{padding:9px!important;font-size:12px!important;border-radius:9px!important}
+.login-or{margin:10px 0!important;font-size:10px!important}
+.join-member{margin-top:10px!important;font-size:11px!important}
 
 @media(max-width:700px){
-  .quick-actions .quick-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:9px!important;
-  }
+  .quick-actions .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
   .quick-actions .qa-card{
-    grid-template-columns:40px 1fr!important;
-    gap:9px!important;
-    min-height:82px!important;
-    padding:10px!important;
-    border-radius:15px!important;
+    grid-template-columns:38px 1fr!important;
+    gap:8px!important;min-height:76px!important;padding:9px!important;border-radius:14px!important;
   }
-  .quick-actions .qa-icon{
-    width:40px!important;height:40px!important;
-    border-radius:12px!important;font-size:19px!important;
-  }
-  .quick-actions .qa-text strong{font-size:11.5px!important}
-  .quick-actions .qa-text small{font-size:9.5px!important;margin-top:3px!important}
+  .quick-actions .qa-icon{width:38px!important;height:38px!important;border-radius:11px!important;font-size:18px!important}
+  .quick-actions .qa-text strong{font-size:11px!important}
+  .quick-actions .qa-text small{font-size:8.5px!important;margin-top:3px!important}
   .quick-actions .qa-arrow{display:none!important}
+  .member-login-card{padding:15px!important}
 }
 </style>
 
