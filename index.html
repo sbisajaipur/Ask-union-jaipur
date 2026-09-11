@@ -987,6 +987,62 @@
 }
 </style>
 
+
+<style id="ask-union-fix-modals">
+.au-modal-backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:rgba(0,0,0,.48);
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  box-sizing:border-box;
+}
+.au-modal-backdrop.show{display:flex}
+.au-modal{
+  width:min(460px,100%);
+  max-height:85vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
+  padding:22px;
+  box-sizing:border-box;
+  position:relative;
+}
+.au-modal h3{
+  margin:0 34px 8px 0;
+  color:#7b1024;
+  font-size:22px;
+}
+.au-modal p{margin:8px 0;line-height:1.55;color:#444}
+.au-modal .au-close{
+  position:absolute;
+  right:12px;top:10px;
+  width:34px;height:34px;
+  border:0;border-radius:50%;
+  background:#f4f4f4;
+  font-size:22px;cursor:pointer;
+}
+.au-faq-item{
+  padding:11px 0;
+  border-bottom:1px solid #eee;
+}
+.au-faq-item strong{display:block;color:#333;margin-bottom:4px}
+.au-contact-btn,.au-login-info{
+  display:block;
+  margin-top:12px;
+  padding:11px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  box-sizing:border-box;
+}
+.au-contact-btn{background:#7b1024;color:#fff;text-align:center}
+.au-login-info{background:#f8eef1;color:#6f1025}
+</style>
+
 </head>
 
 
@@ -1118,7 +1174,7 @@
       <div class="qa-arrow">→</div>
     </a>
 
-    <a href="#" onclick="openAskUnion(event)" class="qa-card qa-purple">
+    <a href="#" onclick="openAskUnion(event)" class="qa-card qa-purple" role="button">
       <div class="qa-icon">💬</div>
       <div class="qa-text">
         <strong>Ask Union (FAQ)</strong>
@@ -1127,7 +1183,7 @@
       <div class="qa-arrow">→</div>
     </a>
 
-    <a href="#" class="qa-card qa-pink">
+    <a href="#" onclick="openContactUnion(event)" class="qa-card qa-pink" role="button">
       <div class="qa-icon">📞</div>
       <div class="qa-text">
         <strong>Contact Union</strong>
@@ -1410,6 +1466,44 @@
 
 
 
+
+<!-- ================= ASK UNION WORKING MODALS ================= -->
+<div class="au-modal-backdrop" id="auFaqModal" role="dialog" aria-modal="true" aria-labelledby="auFaqTitle">
+  <div class="au-modal">
+    <button class="au-close" type="button" onclick="closeAuModal('auFaqModal')" aria-label="Close">×</button>
+    <h3 id="auFaqTitle">Ask Union – FAQ</h3>
+    <div class="au-faq-item">
+      <strong>How can I find the latest union updates?</strong>
+      <span>Use the Latest Updates section or Documents page.</span>
+    </div>
+    <div class="au-faq-item">
+      <strong>Where can I find circulars and forms?</strong>
+      <span>Open Documents from Quick Actions or the bottom navigation.</span>
+    </div>
+    <div class="au-faq-item">
+      <strong>How can I raise a query?</strong>
+      <span>Use the Contact Union option to connect with the union representatives.</span>
+    </div>
+  </div>
+</div>
+
+<div class="au-modal-backdrop" id="auContactModal" role="dialog" aria-modal="true" aria-labelledby="auContactTitle">
+  <div class="au-modal">
+    <button class="au-close" type="button" onclick="closeAuModal('auContactModal')" aria-label="Close">×</button>
+    <h3 id="auContactTitle">Contact Union</h3>
+    <p>For union assistance, please contact your respective union representative / office bearer.</p>
+    <a class="au-contact-btn" href="#union" onclick="closeAuModal('auContactModal')">View Union Information →</a>
+  </div>
+</div>
+
+<div class="au-modal-backdrop" id="auMemberModal" role="dialog" aria-modal="true" aria-labelledby="auMemberTitle">
+  <div class="au-modal">
+    <button class="au-close" type="button" onclick="closeAuModal('auMemberModal')" aria-label="Close">×</button>
+    <h3 id="auMemberTitle">Member Login</h3>
+    <p class="au-login-info">Member authentication is not connected yet. The login interface is ready, but member credentials/SSO integration still needs to be configured.</p>
+  </div>
+</div>
+
 <!-- ================= FOOTER ================= -->
 
 <footer>
@@ -1591,6 +1685,42 @@ if ("serviceWorker" in navigator) {
 
 </script>
 
+
+
+<script id="ask-union-working-links">
+function openAskUnion(event){
+  if(event) event.preventDefault();
+  document.getElementById('auFaqModal').classList.add('show');
+}
+function openContactUnion(event){
+  if(event) event.preventDefault();
+  document.getElementById('auContactModal').classList.add('show');
+}
+function closeAuModal(id){
+  const el=document.getElementById(id);
+  if(el) el.classList.remove('show');
+}
+function memberLogin(){
+  document.getElementById('auMemberModal').classList.add('show');
+}
+function staffSSO(){
+  document.getElementById('auMemberModal').classList.add('show');
+}
+function forgotPassword(event){
+  if(event) event.preventDefault();
+  document.getElementById('auMemberModal').classList.add('show');
+}
+document.addEventListener('click',function(e){
+  if(e.target.classList && e.target.classList.contains('au-modal-backdrop')){
+    e.target.classList.remove('show');
+  }
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.au-modal-backdrop.show').forEach(x=>x.classList.remove('show'));
+  }
+});
+</script>
 
 </body>
 
