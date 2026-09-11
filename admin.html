@@ -29,29 +29,6 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
 @media(max-width:420px){.stats{grid-template-columns:1fr}.stats .stat:last-child{grid-column:auto}}
 </style>
 </head>
-<script>
-// ASK UNION: keep login globally available even if Firebase initialization is delayed.
-window.login = function(){
-  const emailEl = document.getElementById("email");
-  const passEl = document.getElementById("password");
-  const target = document.getElementById("loginMessage");
-  const e = emailEl ? emailEl.value.trim() : "";
-  const p = passEl ? passEl.value : "";
-  const show = (text, type) => {
-    if (!target) return;
-    const box = document.createElement("div");
-    box.className = "alert " + type;
-    box.textContent = text;
-    target.replaceChildren(box);
-  };
-  if(!e || !p){ show("Enter email and password.","error"); return; }
-  if(!window.askUnionAuth){ show("Login system is still loading. Please wait 2 seconds and try again.","error"); return; }
-  window.askUnionAuth.signInWithEmailAndPassword(e,p).catch(function(error){
-    console.error("ASK UNION LOGIN ERROR:", error);
-    show("Login failed: "+(error.code||"unknown")+" — "+(error.message||"Unknown Firebase error"),"error");
-  });
-};
-</script>
 <body>
 
 <div id="loginView" class="container">
@@ -61,7 +38,7 @@ window.login = function(){
     <p style="color:#6b7280">Secure content management panel</p>
     <div class="field"><label>ADMIN EMAIL</label><input id="email" type="email" autocomplete="username" placeholder="Admin email"></div>
     <div class="field"><label>PASSWORD</label><input id="password" type="password" autocomplete="current-password" placeholder="Password" onkeydown="if(event.key==='Enter')login()"></div>
-    <button class="btn primary" style="width:100%" onclick="login()">LOGIN →</button>
+    <button class="btn primary" style="width:100%" onclick="askUnionLogin()">LOGIN →</button>
     <div id="loginMessage"></div>
   </div>
 </div>
@@ -106,7 +83,7 @@ window.login = function(){
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script>
 const firebaseConfig={apiKey:"AIzaSyAzMEREwPKnifRSb5cVaC8-FbVIa5zF0",authDomain:"ask-union-jaipur-circle.firebaseapp.com",projectId:"ask-union-jaipur-circle",storageBucket:"ask-union-jaipur-circle.firebasestorage.app",messagingSenderId:"584327754977",appId:"1:584327754977:web:7164a85c007165743ef3a"};
-firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();window.askUnionAuth=auth;window.askUnionDb=db;
+firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();
 let editingId=null,editingType=null,currentItems=[],busy=false;
 const $=id=>document.getElementById(id);
 function escapeHtml(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
@@ -115,7 +92,7 @@ function today(){return new Date().toISOString().slice(0,10)}
 function formatDate(v){if(!v)return"";const d=new Date(String(v).length===10?v+"T00:00:00":v);return Number.isNaN(d.getTime())?String(v):d.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}
 function msg(t,type="success",target="message"){$(target).innerHTML=t?`<div class="alert ${type}">${escapeHtml(t)}</div>`:""}
 async function getItems(type){const s=await db.collection(type).get(),a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));return a.sort((x,y)=>String(y.date||y.createdAt||"").localeCompare(String(x.date||x.createdAt||"")))}
-function login(){ return window.login(); }
+function askUnionLogin(){const e=$("email").value.trim(),p=$("password").value;if(!e||!p){msg("Enter email and password.","error","loginMessage");return}auth.signInWithEmailAndPassword(e,p).catch(error=>{console.error("ASK UNION LOGIN ERROR:",error); const code=error&&error.code?error.code:"unknown"; const detail=error&&error.message?error.message:"Unknown Firebase error"; msg("Login failed: "+code+" — "+detail,"error","loginMessage")})}
 function logout(){auth.signOut()}
 auth.onAuthStateChanged(u=>{if(u){$("loginView").classList.add("hidden");$("adminView").classList.remove("hidden");$("adminEmail").textContent=u.email||"";resetForm();refreshAll()}else{$("loginView").classList.remove("hidden");$("adminView").classList.add("hidden")}})
 async function loadContent(){const t=$("manageType").value;$("contentList").innerHTML='<div class="empty">Loading…</div>';try{currentItems=await getItems(t);renderList()}catch(e){console.error(e);$("contentList").innerHTML='<div class="empty">Unable to load content. Please refresh.</div>'}}
