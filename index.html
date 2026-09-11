@@ -1043,6 +1043,35 @@
 .au-login-info{background:#f8eef1;color:#6f1025}
 </style>
 
+
+<style id="admin-header-link-final">
+.admin-header-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  padding:7px 11px;
+  border:1px solid rgba(123,16,36,.25);
+  border-radius:9px;
+  background:#fff;
+  color:#7b1024;
+  font-size:11px;
+  font-weight:700;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.admin-header-link:hover{
+  background:#f8e8ed;
+}
+@media(max-width:700px){
+  .admin-header-link{
+    padding:6px 8px;
+    font-size:9px;
+    border-radius:8px;
+  }
+}
+</style>
+
 </head>
 
 
@@ -1086,9 +1115,9 @@
       <span class="notification-badge">3</span>
     </button>
 
-    <div class="online">
-      <span>●</span> ONLINE
-    </div>
+    <a href="./admin.html" class="admin-header-link" aria-label="Admin Login">
+      🔐 Admin Login
+    </a>
 
   </div>
 
