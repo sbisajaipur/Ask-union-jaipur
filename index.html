@@ -21,7 +21,7 @@
 
 <title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
-<link rel="stylesheet" href="./style.css?v=33">
+<link rel="stylesheet" href="./style.css?v=34">
 
 <style id="quick-actions-final-v2">
 /* ===== ASK UNION QUICK ACTIONS FINAL V2 ===== */
@@ -582,6 +582,137 @@
   .dashboard-featured .featured-update,.dashboard-important .important-update{
     height:auto !important;min-height:210px !important;
   }
+}
+</style>
+
+
+<style id="ask-union-final-v5">
+/* ===== FINAL V5: reference proportions + no overflow ===== */
+.dashboard-login-bar .member-login-card{
+  display:grid !important;
+  grid-template-columns:190px minmax(150px,1fr) minmax(150px,1fr) 135px 105px 28px 160px !important;
+  align-items:center !important;
+  column-gap:10px !important;
+  width:100% !important;
+  height:78px !important;
+  min-height:78px !important;
+  max-height:78px !important;
+  padding:10px 14px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+.dashboard-login-bar .member-title{
+  grid-column:1 !important;
+  width:100% !important;
+  min-width:0 !important;
+  flex:none !important;
+}
+.dashboard-login-bar .login-field:nth-of-type(1){
+  grid-column:2 !important;
+  min-width:0 !important;
+  width:100% !important;
+}
+.dashboard-login-bar .login-field:nth-of-type(2){
+  grid-column:3 !important;
+  min-width:0 !important;
+  width:100% !important;
+}
+.dashboard-login-bar .login-options{
+  grid-column:4 !important;
+  min-width:0 !important;
+  justify-content:center !important;
+}
+.dashboard-login-bar .member-login-btn{
+  grid-column:5 !important;
+  width:105px !important;
+  min-width:105px !important;
+}
+.dashboard-login-bar .login-or{
+  grid-column:6 !important;
+  text-align:center !important;
+}
+.dashboard-login-bar .staff-sso-btn{
+  grid-column:7 !important;
+  width:160px !important;
+  min-width:160px !important;
+}
+
+/* White Latest Update card must keep its own dark typography */
+.dashboard-featured .featured-update{
+  color:#222 !important;
+  background:#fff !important;
+}
+.dashboard-featured .featured-update h2,
+.dashboard-featured .featured-update p,
+.dashboard-featured .featured-update a,
+.dashboard-featured .featured-update .update-date{
+  color:#222 !important;
+}
+.dashboard-featured .featured-update h2{
+  color:#7b1024 !important;
+}
+.dashboard-featured .featured-update .update-label{
+  color:#fff !important;
+}
+
+/* Keep Important card white text */
+.dashboard-important .important-update,
+.dashboard-important .important-update h3,
+.dashboard-important .important-update p,
+.dashboard-important .important-update div{
+  color:#fff !important;
+}
+
+/* Prevent the lower Latest Updates section from overlapping */
+.dashboard-login-area{
+  position:relative !important;
+  z-index:2 !important;
+  margin-bottom:22px !important;
+}
+#updates{
+  position:relative !important;
+  z-index:1 !important;
+}
+
+/* Medium desktop */
+@media(max-width:1050px) and (min-width:701px){
+  .dashboard-login-bar .member-login-card{
+    grid-template-columns:155px minmax(120px,1fr) minmax(110px,1fr) 105px 85px 20px 125px !important;
+    column-gap:6px !important;
+    padding:9px !important;
+  }
+  .dashboard-login-bar .member-title h2{font-size:15px !important}
+  .dashboard-login-bar .member-title p{font-size:8px !important}
+  .dashboard-login-bar .member-login-btn{
+    width:85px !important;min-width:85px !important;font-size:10px !important;
+  }
+  .dashboard-login-bar .staff-sso-btn{
+    width:125px !important;min-width:125px !important;font-size:9px !important;
+  }
+  .dashboard-login-bar .login-options{font-size:8px !important}
+  .dashboard-login-bar .login-options a{font-size:8px !important}
+}
+
+@media(max-width:700px){
+  .dashboard-login-bar .member-login-card{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    height:auto !important;
+    max-height:none !important;
+    min-height:0 !important;
+    gap:8px !important;
+  }
+  .dashboard-login-bar .member-title,
+  .dashboard-login-bar .login-field,
+  .dashboard-login-bar .login-options,
+  .dashboard-login-bar .member-login-btn,
+  .dashboard-login-bar .login-or,
+  .dashboard-login-bar .staff-sso-btn{
+    grid-column:1 / -1 !important;
+    width:100% !important;
+    min-width:0 !important;
+  }
+  .dashboard-login-bar .member-title{grid-row:auto !important}
 }
 </style>
 
