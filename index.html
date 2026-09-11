@@ -21,7 +21,7 @@
 
 <title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
-<link rel="stylesheet" href="./style.css?v=35">
+<link rel="stylesheet" href="./style.css?v=36">
 
 <style id="quick-actions-final-v2">
 /* ===== ASK UNION QUICK ACTIONS FINAL V2 ===== */
@@ -835,6 +835,205 @@
 }
 </style>
 
+
+<style id="ask-union-login-v7">
+/* ===== MEMBER LOGIN V7 — NO VERTICAL CLIPPING ===== */
+.dashboard-login-bar{
+  width:100% !important;
+  min-width:0 !important;
+}
+.dashboard-login-bar .compact-login-v7{
+  display:grid !important;
+  grid-template-columns:190px minmax(155px,1fr) minmax(145px,1fr) 128px 105px 24px 155px !important;
+  grid-template-rows:1fr !important;
+  align-items:center !important;
+  column-gap:9px !important;
+  width:100% !important;
+  height:88px !important;
+  min-height:88px !important;
+  max-height:88px !important;
+  padding:10px 14px !important;
+  box-sizing:border-box !important;
+  overflow:visible !important;
+  border-radius:16px !important;
+  background:rgba(255,255,255,.98) !important;
+}
+.compact-login-v7 > .login-brand-v7{
+  grid-column:1 !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:9px !important;
+  min-width:0 !important;
+  margin:0 !important;
+}
+.login-brand-icon-v7{
+  width:44px !important;height:44px !important;min-width:44px !important;
+  display:flex !important;align-items:center !important;justify-content:center !important;
+  border-radius:12px !important;font-size:20px !important;
+  background:#f8e8ed !important;
+}
+.login-brand-v7 h2{
+  margin:0 !important;font-size:17px !important;line-height:1.1 !important;
+  color:#7b1024 !important;
+}
+.login-brand-v7 p{
+  margin:3px 0 0 !important;font-size:9px !important;color:#555 !important;
+}
+.compact-login-v7 > .login-input-v7{
+  position:relative !important;
+  grid-column:auto !important;
+  display:flex !important;
+  align-items:center !important;
+  width:100% !important;
+  height:42px !important;
+  min-width:0 !important;
+  margin:0 !important;
+}
+.compact-login-v7 > .login-input-v7:nth-child(2){grid-column:2 !important}
+.compact-login-v7 > .login-input-v7:nth-child(3){grid-column:3 !important}
+.login-input-v7 > span{
+  position:absolute !important;
+  left:11px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  z-index:2 !important;
+  font-size:17px !important;
+  line-height:1 !important;
+  pointer-events:none !important;
+}
+.login-input-v7 > input{
+  width:100% !important;
+  height:42px !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+  padding:8px 11px 8px 36px !important;
+  border:1px solid #d8d8d8 !important;
+  border-radius:9px !important;
+  background:#fff !important;
+  font-size:12px !important;
+  outline:none !important;
+}
+.login-input-v7 > input:focus{
+  border-color:#8e102d !important;
+}
+.password-v7 > input{padding-right:42px !important}
+.password-v7 > button{
+  position:absolute !important;
+  right:5px !important;
+  top:5px !important;
+  width:32px !important;
+  height:32px !important;
+  min-height:32px !important;
+  padding:0 !important;
+  z-index:3 !important;
+}
+.compact-login-v7 > .login-remember-v7{
+  grid-column:4 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:7px !important;
+  white-space:nowrap !important;
+  font-size:9px !important;
+  min-width:0 !important;
+}
+.login-remember-v7 label{
+  display:flex !important;align-items:center !important;gap:3px !important;
+}
+.login-remember-v7 input{margin:0 !important}
+.login-remember-v7 a{font-size:9px !important;color:#8e102d !important}
+.compact-login-v7 > .login-btn-v7{
+  grid-column:5 !important;
+  width:105px !important;
+  min-width:105px !important;
+  height:42px !important;
+  min-height:42px !important;
+  margin:0 !important;
+  padding:8px !important;
+  border-radius:9px !important;
+}
+.compact-login-v7 > .login-or-v7{
+  grid-column:6 !important;
+  text-align:center !important;
+  font-size:9px !important;
+  margin:0 !important;
+  color:#777 !important;
+}
+.compact-login-v7 > .sso-btn-v7{
+  grid-column:7 !important;
+  width:155px !important;
+  min-width:155px !important;
+  height:42px !important;
+  min-height:42px !important;
+  margin:0 !important;
+  padding:8px !important;
+  border-radius:9px !important;
+  font-size:10px !important;
+}
+.compact-login-v7 .join-member{display:none !important}
+
+/* Maintain the desired two-card row */
+.dashboard-login-area{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  grid-template-areas:"login login" "latest important" !important;
+  gap:16px !important;
+  align-items:start !important;
+}
+.dashboard-featured .featured-update{
+  color:#222 !important;background:#fff !important;
+  opacity:1 !important;visibility:visible !important;
+}
+.dashboard-featured .featured-update h2{color:#7b1024 !important}
+.dashboard-featured .featured-update p,
+.dashboard-featured .featured-update a,
+.dashboard-featured .featured-update .update-date{color:#333 !important}
+.dashboard-featured .featured-update .update-label{color:#fff !important}
+
+/* Medium desktop */
+@media(max-width:1100px) and (min-width:701px){
+  .dashboard-login-bar .compact-login-v7{
+    grid-template-columns:155px minmax(120px,1fr) minmax(110px,1fr) 100px 85px 20px 120px !important;
+    column-gap:6px !important;
+    padding:9px !important;
+  }
+  .login-brand-v7 h2{font-size:14px !important}
+  .login-brand-v7 p{font-size:8px !important}
+  .compact-login-v7 > .login-btn-v7{width:85px !important;min-width:85px !important}
+  .compact-login-v7 > .sso-btn-v7{width:120px !important;min-width:120px !important;font-size:9px !important}
+  .compact-login-v7 > .login-remember-v7{font-size:8px !important}
+}
+
+/* Mobile */
+@media(max-width:700px){
+  .dashboard-login-area{display:block !important}
+  .dashboard-login-bar .compact-login-v7{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    grid-template-rows:auto !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    padding:12px !important;
+    gap:8px !important;
+  }
+  .compact-login-v7 > .login-brand-v7,
+  .compact-login-v7 > .login-input-v7,
+  .compact-login-v7 > .login-remember-v7,
+  .compact-login-v7 > .login-btn-v7,
+  .compact-login-v7 > .login-or-v7,
+  .compact-login-v7 > .sso-btn-v7{
+    grid-column:1 / -1 !important;
+    width:100% !important;
+    min-width:0 !important;
+  }
+  .dashboard-featured,.dashboard-important{
+    width:100% !important;margin-top:12px !important;
+  }
+}
+</style>
+
 </head>
 
 
@@ -989,36 +1188,36 @@
 
 <section class="dashboard-login-area" id="dashboard-login-area">
   <div class="dashboard-login-bar">
-    <div class="member-login-card compact-login-final">
-  <div class="member-title">
-    <div class="member-icon">👤</div>
+    <div class="member-login-card compact-login-v7">
+  <div class="login-brand-v7">
+    <div class="login-brand-icon-v7">👤</div>
     <div>
       <h2>Member Login</h2>
       <p>Access exclusive content</p>
     </div>
   </div>
 
-  <label class="compact-login-field">
+  <div class="login-input-v7">
     <span>♙</span>
     <input type="text" id="memberNo" placeholder="Membership No. / Emp No.">
-  </label>
+  </div>
 
-  <label class="compact-login-field password-wrap">
+  <div class="login-input-v7 password-v7">
     <span>🔒</span>
     <input type="password" id="memberPassword" placeholder="Password">
     <button type="button" onclick="togglePassword()" aria-label="Show password">👁</button>
-  </label>
+  </div>
 
-  <div class="login-options">
+  <div class="login-remember-v7">
     <label><input type="checkbox" id="rememberMe"> Remember Me</label>
     <a href="#" onclick="forgotPassword(event)">Forgot?</a>
   </div>
 
-  <button class="member-login-btn" onclick="memberLogin()">Login&nbsp; →</button>
+  <button class="member-login-btn login-btn-v7" onclick="memberLogin()">Login&nbsp; →</button>
 
-  <div class="login-or">OR</div>
+  <div class="login-or-v7">OR</div>
 
-  <button class="staff-sso-btn" onclick="staffSSO()">🏦 Login with Staff SSO</button>
+  <button class="staff-sso-btn sso-btn-v7" onclick="staffSSO()">🏦 Login with Staff SSO</button>
 </div>
   </div>
 
