@@ -21,7 +21,7 @@
 
 <title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
-<link rel="stylesheet" href="./style.css?v=34">
+<link rel="stylesheet" href="./style.css?v=35">
 
 <style id="quick-actions-final-v2">
 /* ===== ASK UNION QUICK ACTIONS FINAL V2 ===== */
@@ -716,6 +716,125 @@
 }
 </style>
 
+
+<style id="ask-union-final-v6">
+/* ===== CLEAN LOGIN BAR ===== */
+.dashboard-login-bar .compact-login-final{
+  display:grid !important;
+  grid-template-columns:185px minmax(150px,1fr) minmax(140px,1fr) 145px 105px 28px 160px !important;
+  align-items:center !important;
+  gap:9px !important;
+  width:100% !important;
+  height:78px !important;
+  min-height:78px !important;
+  max-height:78px !important;
+  padding:10px 14px !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+.compact-login-final .member-title{grid-column:1 !important;min-width:0 !important}
+.compact-login-final .compact-login-field{
+  position:relative !important;
+  display:flex !important;
+  align-items:center !important;
+  width:100% !important;
+  min-width:0 !important;
+  height:40px !important;
+  margin:0 !important;
+}
+.compact-login-final .compact-login-field > span{
+  position:absolute !important;
+  left:11px !important;
+  z-index:2 !important;
+  font-size:17px !important;
+  line-height:1 !important;
+  pointer-events:none !important;
+}
+.compact-login-final .compact-login-field input{
+  width:100% !important;
+  height:40px !important;
+  padding:8px 10px 8px 35px !important;
+  box-sizing:border-box !important;
+  font-size:12px !important;
+  border-radius:9px !important;
+}
+.compact-login-final .compact-login-field:nth-of-type(2){grid-column:2 !important}
+.compact-login-final .compact-login-field:nth-of-type(3){grid-column:3 !important}
+.compact-login-final .password-wrap button{
+  position:absolute !important;
+  right:5px !important;
+  top:4px !important;
+  width:32px !important;
+  height:32px !important;
+  min-height:32px !important;
+  padding:0 !important;
+  z-index:3 !important;
+}
+.compact-login-final .password-wrap input{padding-right:42px !important}
+.compact-login-final .login-options{grid-column:4 !important;white-space:nowrap !important;margin:0 !important;font-size:9px !important}
+.compact-login-final .member-login-btn{grid-column:5 !important;width:105px !important;min-width:105px !important;height:40px !important;min-height:40px !important;margin:0 !important}
+.compact-login-final .login-or{grid-column:6 !important;text-align:center !important;margin:0 !important;font-size:9px !important}
+.compact-login-final .staff-sso-btn{grid-column:7 !important;width:160px !important;min-width:160px !important;height:40px !important;min-height:40px !important;margin:0 !important;font-size:10px !important}
+.compact-login-final .join-member{display:none !important}
+
+/* ===== FORCE LATEST UPDATE LEGIBILITY ===== */
+.dashboard-featured .featured-update,
+.dashboard-featured .featured-update h2,
+.dashboard-featured .featured-update p,
+.dashboard-featured .featured-update a,
+.dashboard-featured .featured-update .update-date{
+  opacity:1 !important;
+  visibility:visible !important;
+  color:#222 !important;
+  text-shadow:none !important;
+}
+.dashboard-featured .featured-update{
+  background:#fff !important;
+}
+.dashboard-featured .featured-update h2{color:#7b1024 !important}
+.dashboard-featured .featured-update .update-label{
+  color:#fff !important;
+  background:#8e102d !important;
+}
+.dashboard-featured .featured-update .update-date{
+  color:#7b1024 !important;
+  background:#f6e8ec !important;
+}
+
+/* ===== TWO EQUAL CONTENT CARDS ===== */
+.dashboard-login-area{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  grid-template-areas:"login login" "latest important" !important;
+}
+.dashboard-featured,.dashboard-important{min-width:0 !important;width:100% !important}
+.dashboard-featured .featured-update,
+.dashboard-important .important-update{
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+
+/* Mobile */
+@media(max-width:700px){
+  .dashboard-login-bar .compact-login-final{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+  }
+  .compact-login-final .member-title,
+  .compact-login-final .compact-login-field,
+  .compact-login-final .login-options,
+  .compact-login-final .member-login-btn,
+  .compact-login-final .login-or,
+  .compact-login-final .staff-sso-btn{
+    grid-column:1 / -1 !important;
+    width:100% !important;
+    min-width:0 !important;
+  }
+}
+</style>
+
 </head>
 
 
@@ -870,67 +989,37 @@
 
 <section class="dashboard-login-area" id="dashboard-login-area">
   <div class="dashboard-login-bar">
-    <div class="member-login-card">
-
-    <div class="member-title">
-      <div class="member-icon">👤</div>
-
-      <div>
-        <h2>Member Login</h2>
-        <p>Access exclusive content</p>
-      </div>
+    <div class="member-login-card compact-login-final">
+  <div class="member-title">
+    <div class="member-icon">👤</div>
+    <div>
+      <h2>Member Login</h2>
+      <p>Access exclusive content</p>
     </div>
-
-    <div class="login-field">
-      <span>👤</span>
-      <input
-        type="text"
-        id="memberNo"
-        placeholder="Membership No. / Emp No."
-      >
-    </div>
-
-    <div class="login-field">
-      <span>🔒</span>
-      <input
-        type="password"
-        id="memberPassword"
-        placeholder="Password"
-      >
-      <button onclick="togglePassword()">👁</button>
-    </div>
-
-    <div class="login-options">
-      <label>
-        <input type="checkbox" id="rememberMe">
-        Remember Me
-      </label>
-
-      <a href="#" onclick="forgotPassword(event)">
-        Forgot?
-      </a>
-    </div>
-
-    <button class="member-login-btn" onclick="memberLogin()">
-      Login&nbsp; →
-    </button>
-
-    <div class="login-or">
-      <span></span>
-      OR
-      <span></span>
-    </div>
-
-    <button class="staff-sso-btn" onclick="staffSSO()">
-      🏦 Login with Staff SSO
-    </button>
-
-    <p class="join-member">
-      Not a member?
-      <a href="#">Join SBISA Today</a>
-    </p>
-
   </div>
+
+  <label class="compact-login-field">
+    <span>♙</span>
+    <input type="text" id="memberNo" placeholder="Membership No. / Emp No.">
+  </label>
+
+  <label class="compact-login-field password-wrap">
+    <span>🔒</span>
+    <input type="password" id="memberPassword" placeholder="Password">
+    <button type="button" onclick="togglePassword()" aria-label="Show password">👁</button>
+  </label>
+
+  <div class="login-options">
+    <label><input type="checkbox" id="rememberMe"> Remember Me</label>
+    <a href="#" onclick="forgotPassword(event)">Forgot?</a>
+  </div>
+
+  <button class="member-login-btn" onclick="memberLogin()">Login&nbsp; →</button>
+
+  <div class="login-or">OR</div>
+
+  <button class="staff-sso-btn" onclick="staffSSO()">🏦 Login with Staff SSO</button>
+</div>
   </div>
 
   <div class="dashboard-featured">
