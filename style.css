@@ -1596,3 +1596,337 @@ button,
     flex-shrink: 0 !important;
   }
 }
+/* ================================
+   ASK UNION - MEMBER UI
+   ================================ */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-btn {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: #7b1024;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 10px;
+    background: #d71920;
+    color: #fff;
+    font-size: 10px;
+    line-height: 16px;
+    font-weight: 700;
+}
+
+/* Member section */
+
+.member-area {
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.member-login-card,
+.featured-update {
+    border-radius: 18px;
+    padding: 24px;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+.member-login-card {
+    border-top: 5px solid #7b1024;
+}
+
+.member-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: #520817;
+}
+
+.member-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8e8ec;
+    color: #7b1024;
+    font-size: 21px;
+}
+
+.member-title h2 {
+    margin: 0;
+    font-size: 21px;
+}
+
+.member-title p {
+    margin: 3px 0 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.login-field {
+    margin-bottom: 14px;
+}
+
+.login-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+.login-field input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 13px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+}
+
+.login-field input:focus {
+    border-color: #7b1024;
+    box-shadow: 0 0 0 3px rgba(123,16,36,.08);
+}
+
+.password-box {
+    position: relative;
+}
+
+.password-box input {
+    padding-right: 45px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: #777;
+}
+
+.login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0 16px;
+    font-size: 12px;
+}
+
+.login-options a {
+    color: #7b1024;
+    text-decoration: none;
+}
+
+.member-login-btn,
+.staff-sso-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.member-login-btn {
+    border: 0;
+    background: #7b1024;
+    color: #fff;
+}
+
+.member-login-btn:hover {
+    background: #520817;
+}
+
+.staff-sso-btn {
+    margin-top: 10px;
+    border: 1px solid #7b1024;
+    background: #fff;
+    color: #7b1024;
+}
+
+.login-or {
+    text-align: center;
+    margin: 14px 0;
+    color: #999;
+    font-size: 12px;
+}
+
+.join-member {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.join-member a {
+    color: #7b1024;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Featured update */
+
+.featured-update {
+    background: linear-gradient(135deg, #7b1024, #520817);
+    color: #fff;
+}
+
+.update-label {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.15);
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.featured-update h2 {
+    margin: 0 0 10px;
+    font-size: 21px;
+}
+
+.featured-update p {
+    margin: 7px 0;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.important-update {
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.12);
+    border-left: 4px solid #fff;
+}
+
+/* Quick actions */
+
+.quick-actions {
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 0 16px;
+}
+
+.quick-header {
+    margin-bottom: 14px;
+}
+
+.quick-header h2 {
+    margin: 0;
+    color: #520817;
+    font-size: 21px;
+}
+
+.quick-header p {
+    margin: 4px 0 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.quick-actions .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.quick-actions .quick-card {
+    min-height: 100px;
+    padding: 18px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,.07);
+    transition: .2s;
+}
+
+.quick-actions .quick-card:hover {
+    transform: translateY(-3px);
+}
+
+.quick-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    background: #f8e8ec;
+    color: #7b1024;
+    font-size: 19px;
+}
+
+.quick-card h3 {
+    margin: 0;
+    font-size: 15px;
+    color: #333;
+}
+
+.quick-card p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #888;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .member-area {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 18px;
+    }
+
+    .member-login-card,
+    .featured-update {
+        padding: 19px;
+    }
+
+    .quick-actions .quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .quick-actions .quick-card {
+        min-height: 90px;
+        padding: 14px;
+    }
+
+    .quick-header h2 {
+        font-size: 19px;
+    }
+
+    .header-actions {
+        gap: 6px;
+    }
+}
