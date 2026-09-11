@@ -288,6 +288,22 @@ h1{
     padding:20px;
   }
 
+  .filters{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    overflow:visible;
+    padding:3px 0 15px;
+  }
+
+  .filter{
+    width:100%;
+    min-width:0;
+    padding:11px 8px;
+    font-size:11px;
+    white-space:nowrap;
+  }
+
   .item-top{
     display:block;
   }
@@ -708,98 +724,96 @@ function render(){
       currentType === "all" ||
       currentType === item.type;
 
+
     const searchText = [
+
       item.title,
       item.details,
       item.category,
       item.date
+
     ]
     .join(" ")
     .toLowerCase();
 
+
     return typeMatch &&
            searchText.includes(search);
+
   });
 
 
-  /* ===== CORRECT COUNT ===== */
+  const formCards =
+    Array.from(document.querySelectorAll("#formsSection .form-card"));
 
-  if(currentType === "forms") {
-
-    document.getElementById("count")
-      .textContent = "4";
-
+  if(currentType === "forms"){
+    const matchingForms = formCards.filter(card => {
+      const text = card.innerText.toLowerCase();
+      return text.includes(search);
+    });
+    document.getElementById("count").textContent = matchingForms.length;
   } else {
-
-    document.getElementById("count")
-      .textContent = items.length;
-
+    document.getElementById("count").textContent = items.length;
   }
 
 
-  /* ===== HEADING ===== */
-
   if(currentType === "updates")
-
     document.getElementById("sectionHeading")
       .textContent = "📢 Latest Updates";
 
   else if(currentType === "circulars")
-
     document.getElementById("sectionHeading")
       .textContent = "📄 Circulars";
 
   else if(currentType === "events")
-
     document.getElementById("sectionHeading")
       .textContent = "📅 Events";
 
   else if(currentType === "forms")
-
     document.getElementById("sectionHeading")
       .textContent = "📥 Forms";
 
   else
-
     document.getElementById("sectionHeading")
       .textContent = "All Documents";
 
 
-  /* ===== FORMS ===== */
-
-  if(currentType === "forms") {
-
-    document.getElementById("list").innerHTML =
-      '<div class="empty">Forms are listed below.</div>';
+  if(currentType === "forms"){
 
     document.getElementById("formsSection")
       .style.display = "block";
 
+    formCards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(search) ? "flex" : "none";
+    });
+
+    document.getElementById("list").innerHTML =
+      '<div class="empty">Forms & Downloads</div>';
+
     return;
+
   }
 
 
-  /* ===== SHOW / HIDE FORMS ===== */
-
   document.getElementById("formsSection")
     .style.display =
-      currentType === "all"
-        ? "block"
-        : "none";
+      currentType === "all" ? "block" : "none";
+
+  formCards.forEach(card => {
+    card.style.display = "flex";
+  });
 
 
-  /* ===== NO RESULT ===== */
-
-  if(!items.length) {
+  if(!items.length){
 
     document.getElementById("list").innerHTML =
       '<div class="empty">No documents found.</div>';
 
     return;
+
   }
 
-
-  /* ===== DOCUMENT LIST ===== */
 
   document.getElementById("list").innerHTML =
 
@@ -807,7 +821,7 @@ function render(){
 
       let button = "";
 
-      if(item.link) {
+      if(item.link){
 
         button = `
           <a
@@ -818,6 +832,7 @@ function render(){
             📄 OPEN PDF / LINK →
           </a>
         `;
+
       }
 
 
@@ -843,11 +858,9 @@ function render(){
 
           </div>
 
-
           <div class="meta">
             📅 ${escapeHtml(formatDate(item.date))}
           </div>
-
 
           ${
             item.details
@@ -859,7 +872,6 @@ function render(){
             ""
           }
 
-
           ${button}
 
         </article>
@@ -867,7 +879,9 @@ function render(){
       `;
 
     }).join("");
+
 }
+
 
 document
   .getElementById("search")
@@ -904,6 +918,7 @@ document
   });
 
 
+document.querySelector(".filters").scrollLeft = 0;
 loadDocuments();
 
 </script>
