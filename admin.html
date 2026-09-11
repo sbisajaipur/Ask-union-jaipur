@@ -27,6 +27,54 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
 .list{max-height:730px;overflow:auto}.item{border:1px solid var(--line);border-radius:15px;padding:14px;margin:9px 0}.item-top{display:flex;justify-content:space-between;gap:8px}.title{font-weight:850;font-size:15px;line-height:1.35}.badge{background:#f4e7ea;color:var(--maroon);padding:4px 8px;border-radius:99px;font-size:10px;font-weight:800;white-space:nowrap}.meta{font-size:10px;color:var(--muted);margin:6px 0}.details{font-size:13px;color:#4b5563;line-height:1.5;white-space:pre-wrap}.link{display:inline-block;margin-top:7px;color:var(--maroon);font-size:12px;font-weight:800;text-decoration:none}.item-actions{display:flex;gap:7px;margin-top:10px}.item-actions .btn{flex:1;min-height:37px;padding:8px}.empty{text-align:center;padding:25px;color:var(--muted);font-size:13px}.alert{margin-top:10px;padding:10px 12px;border-radius:11px;font-size:12px;font-weight:700}.success{background:#edf9f2;color:#16804b}.error{background:#fff0f0;color:#a61b1b}
 @media(max-width:760px){.container{padding:13px 10px 35px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}.head{align-items:flex-start;flex-direction:column}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.toolbar{flex-direction:column}.toolbar select{width:100%}.section{padding:15px}.topbar{padding:11px}.brand img{width:40px;height:40px}.brand-title{font-size:16px}.logout{font-size:11px;padding:9px 11px}}
 @media(max-width:420px){.stats{grid-template-columns:1fr}.stats .stat:last-child{grid-column:auto}}
+
+.pdf-helper{
+  margin-top:8px;
+  padding:11px 12px;
+  border:1px solid #eadfe1;
+  border-radius:12px;
+  background:#fbf7f8;
+}
+.pdf-helper-title{
+  color:var(--maroon);
+  font-size:12px;
+  font-weight:850;
+}
+.pdf-helper-text{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.4;
+}
+.pdf-helper-row{
+  display:flex;
+  gap:7px;
+  margin-top:8px;
+}
+.pdf-helper-row input{
+  flex:1;
+  min-width:0;
+  border:1px solid #d9d5d2;
+  border-radius:10px;
+  padding:9px 10px;
+  font-size:11px;
+}
+.pdf-generate{
+  min-height:38px;
+  padding:8px 11px;
+  white-space:nowrap;
+  font-size:10px;
+}
+.pdf-helper-note{
+  margin-top:6px;
+  color:#777;
+  font-size:9px;
+}
+@media(max-width:760px){
+  .pdf-helper-row{flex-direction:column}
+  .pdf-generate{width:100%}
+}
+
 </style>
 </head>
 <body>
@@ -64,7 +112,19 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
         <div class="field full"><label>TITLE *</label><input id="title" maxlength="180" placeholder="Enter a clear title"></div>
         <div class="field full"><label>CATEGORY (OPTIONAL)</label><input id="category" maxlength="60" placeholder="Transfer, Pension, Strike, Meeting..."></div>
         <div class="field full"><label>DETAILS</label><textarea id="details" maxlength="5000" placeholder="Enter details"></textarea></div>
-        <div class="field full"><label>PDF / LINK (OPTIONAL)</label><input id="link" type="url" placeholder="https://..."></div>
+        <div class="field full">
+          <label>PDF / PUBLIC LINK (OPTIONAL)</label>
+          <input id="link" type="url" placeholder="https://askunion.in/your-file.pdf">
+          <div class="pdf-helper">
+            <div class="pdf-helper-title">📄 Quick PDF Link</div>
+            <div class="pdf-helper-text">First upload the PDF to the GitHub repository, then enter only its filename below.</div>
+            <div class="pdf-helper-row">
+              <input id="pdfFilename" type="text" placeholder="Example: circular-15-41.pdf">
+              <button type="button" class="btn light pdf-generate" onclick="generatePdfLink()">GENERATE LINK</button>
+            </div>
+            <div class="pdf-helper-note">Generated link: <b>https://askunion.in/filename.pdf</b></div>
+          </div>
+        </div>
       </div>
       <div class="actions"><button id="publishButton" class="btn primary" onclick="publish()">PUBLISH</button><button id="cancelButton" class="btn light hidden" onclick="cancelEdit()">CANCEL EDIT</button></div>
       <div id="message"></div>
@@ -83,7 +143,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script>
 const firebaseConfig = {
-  apiKey: "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",
+  apiKey: "AIzaSyAzMEREwPKnifSIrB5cVaC8-FbVIa5zF0",
   authDomain: "ask-union-jaipur-circle.firebaseapp.com",
   projectId: "ask-union-jaipur-circle",
   storageBucket: "ask-union-jaipur-circle.firebasestorage.app",
@@ -109,7 +169,15 @@ async function publish(){if(busy)return;const t=$("type").value,title=$("title")
 function editContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x)return;editingId=id;editingType=t;$("type").value=t;$("type").disabled=true;$("title").value=x.title||"";$("details").value=x.details||"";$("link").value=x.link||"";$("category").value=x.category||"";$("publishDate").value=/^\d{4}-\d{2}-\d{2}$/.test(String(x.date||""))?x.date:today();$("formHeading").textContent="Edit Content";$("publishButton").textContent="UPDATE";$("cancelButton").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"})}
 async function deleteContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x||!confirm(`Delete “${x.title||"this item"}”? This cannot be undone.`))return;try{await db.collection(t).doc(id).delete();msg("Deleted successfully.");await refreshAll()}catch(e){msg("Delete failed: "+e.message,"error")}}
 function cancelEdit(){resetForm()}
-function resetForm(){editingId=null;editingType=null;$("type").disabled=false;$("formHeading").textContent="Publish Content";$("publishButton").textContent="PUBLISH";$("cancelButton").classList.add("hidden");$("title").value="";$("details").value="";$("link").value="";$("category").value="";$("publishDate").value=today()}
+function generatePdfLink(){
+  const raw=$("pdfFilename").value.trim();
+  if(!raw){msg("Enter the PDF filename first.","error");$("pdfFilename").focus();return}
+  const filename=raw.replace(/^https?:\\/\\/[^/]+\\//,"").replace(/^\\/+/,"");
+  const encoded=filename.split("/").map(part=>encodeURIComponent(part)).join("/");
+  $("link").value="https://askunion.in/"+encoded;
+  msg("PDF link generated. Check it, then publish.","success");
+}
+function resetForm(){editingId=null;editingType=null;$("type").disabled=false;$("formHeading").textContent="Publish Content";$("publishButton").textContent="PUBLISH";$("cancelButton").classList.add("hidden");$("title").value="";$("details").value="";$("link").value="";$("category").value="";$("publishDate").value=today();if($("pdfFilename"))$("pdfFilename").value=""}
 $("publishDate").value=today();
 </script>
 </body></html>
