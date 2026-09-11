@@ -63,7 +63,16 @@
   </div>
 
 </header>
+<div class="header-actions">
+  <button class="notification-btn" onclick="showNotifications()">
+    🔔
+    <span class="notification-badge">3</span>
+  </button>
 
+  <div class="online">
+    <span>●</span> ONLINE
+  </div>
+</div>
 
 
 <!-- ================= HERO ================= -->
@@ -103,9 +112,164 @@
   </div>
 
 </section>
+<section class="member-area">
+
+  <!-- MEMBER LOGIN -->
+  <div class="member-login-card">
+
+    <div class="member-title">
+      <div class="member-icon">👤</div>
+
+      <div>
+        <h2>Member Login</h2>
+        <p>Access exclusive content</p>
+      </div>
+    </div>
+
+    <div class="login-field">
+      <span>👤</span>
+      <input
+        type="text"
+        id="memberNo"
+        placeholder="Membership No. / Emp No."
+      >
+    </div>
+
+    <div class="login-field">
+      <span>🔒</span>
+      <input
+        type="password"
+        id="memberPassword"
+        placeholder="Password"
+      >
+      <button onclick="togglePassword()">👁</button>
+    </div>
+
+    <div class="login-options">
+      <label>
+        <input type="checkbox" id="rememberMe">
+        Remember Me
+      </label>
+
+      <a href="#" onclick="forgotPassword(event)">
+        Forgot?
+      </a>
+    </div>
+
+    <button class="member-login-btn" onclick="memberLogin()">
+      Login&nbsp; →
+    </button>
+
+    <div class="login-or">
+      <span></span>
+      OR
+      <span></span>
+    </div>
+
+    <button class="staff-sso-btn" onclick="staffSSO()">
+      🏦 Login with Staff SSO
+    </button>
+
+    <p class="join-member">
+      Not a member?
+      <a href="#">Join SBISA Today</a>
+    </p>
+
+  </div>
 
 
+  <!-- LATEST UPDATE -->
+  <div class="featured-update">
 
+    <div class="update-label">
+      📢 &nbsp; LATEST UPDATE
+    </div>
+
+    <h2>
+      PLI Update for<br>
+      PSB Executives
+    </h2>
+
+    <div class="update-date">
+      📅 &nbsp; 08 September 2026
+    </div>
+
+    <p>
+      FY 2025–26 ka Performance Linked Incentive
+      (Scale IV–VIII) finalize...
+    </p>
+
+    <a href="#">
+      Read More&nbsp; →
+    </a>
+
+    <div class="important-update">
+
+      <div class="important-label">
+        🔔 &nbsp; IMPORTANT
+      </div>
+
+      <h3>
+        Five Day Banking Strike
+      </h3>
+
+      <div>
+        📅 11 September 2026
+      </div>
+
+      <p>
+        Report at RBO, Basant Vihar<br>
+        10:00 AM
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="quick-actions">
+
+  <div class="quick-header">
+    <h2>Quick Actions</h2>
+    <a href="#">View All →</a>
+  </div>
+
+  <div class="quick-grid">
+
+    <a href="./documents.html#circulars">
+      <div class="quick-icon red">📄</div>
+      <span>Latest<br>Circulars</span>
+    </a>
+
+    <a href="./documents.html#events">
+      <div class="quick-icon purple">📅</div>
+      <span>Upcoming<br>Events</span>
+    </a>
+
+    <a href="./documents.html">
+      <div class="quick-icon green">📁</div>
+      <span>Important<br>Documents</span>
+    </a>
+
+    <a href="#union">
+      <div class="quick-icon orange">👥</div>
+      <span>Union<br>Activities</span>
+    </a>
+
+    <a href="#" onclick="openAskUnion(event)">
+      <div class="quick-icon blue">💬</div>
+      <span>Ask Union<br>(FAQ)</span>
+    </a>
+
+    <a href="#">
+      <div class="quick-icon lime">📞</div>
+      <span>Contact<br>Union</span>
+    </a>
+
+  </div>
+
+</section>
 <!-- ================= LATEST UPDATES ================= -->
 
 <section
