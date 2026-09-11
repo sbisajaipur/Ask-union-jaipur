@@ -21,7 +21,7 @@
 
 <title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
-<link rel="stylesheet" href="./style.css?v=32">
+<link rel="stylesheet" href="./style.css?v=33">
 
 <style id="quick-actions-final-v2">
 /* ===== ASK UNION QUICK ACTIONS FINAL V2 ===== */
@@ -173,146 +173,6 @@
   .member-login-card{padding:15px !important}
 }
 </style>
-
-
-<style id="member-login-horizontal-final">
-/* ===== MEMBER LOGIN — COMPACT HORIZONTAL BAR ===== */
-.member-login-card{
-  box-sizing:border-box !important;
-  width:100% !important;
-  min-height:0 !important;
-  height:max-content !important;
-  max-height:90px !important;
-  padding:12px 14px !important;
-  margin:0 !important;
-  border-radius:14px !important;
-  display:flex !important;
-  flex-direction:row !important;
-  flex-wrap:nowrap !important;
-  align-items:center !important;
-  align-self:flex-start !important;
-  justify-self:stretch !important;
-  gap:10px !important;
-}
-.member-login-card .member-title{
-  flex:0 0 185px !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:8px !important;
-  margin:0 !important;
-}
-.member-login-card .member-icon{
-  width:36px !important;
-  height:36px !important;
-  min-width:36px !important;
-  border-radius:9px !important;
-  font-size:17px !important;
-}
-.member-login-card .member-title h2{
-  margin:0 !important;
-  font-size:16px !important;
-  line-height:1.1 !important;
-}
-.member-login-card .member-title p{
-  margin:2px 0 0 !important;
-  font-size:9px !important;
-}
-.member-login-card .login-field{
-  flex:1 1 170px !important;
-  min-width:130px !important;
-  margin:0 !important;
-  position:relative !important;
-}
-.member-login-card .login-field input{
-  box-sizing:border-box !important;
-  width:100% !important;
-  height:36px !important;
-  padding:7px 10px !important;
-  font-size:11px !important;
-  border-radius:8px !important;
-}
-.member-login-card .login-options{
-  flex:0 0 auto !important;
-  margin:0 !important;
-  font-size:9px !important;
-  white-space:nowrap !important;
-}
-.member-login-card .member-login-btn{
-  flex:0 0 105px !important;
-  width:105px !important;
-  min-height:36px !important;
-  padding:7px 8px !important;
-  margin:0 !important;
-  font-size:11px !important;
-  border-radius:8px !important;
-}
-.member-login-card .login-or{
-  flex:0 0 auto !important;
-  margin:0 1px !important;
-  font-size:9px !important;
-}
-.member-login-card .staff-sso-btn{
-  flex:0 0 145px !important;
-  width:145px !important;
-  min-height:36px !important;
-  padding:7px 8px !important;
-  margin:0 !important;
-  font-size:10px !important;
-  border-radius:8px !important;
-}
-.member-login-card .join-member{
-  display:none !important;
-}
-
-/* Forgot link stays compact and does not add vertical height */
-.member-login-card .login-options a{
-  font-size:9px !important;
-}
-
-@media(max-width:1000px){
-  .member-login-card{
-    gap:7px !important;
-    padding:10px !important;
-  }
-  .member-login-card .member-title{flex-basis:145px !important}
-  .member-login-card .member-title h2{font-size:14px !important}
-  .member-login-card .member-title p{font-size:8px !important}
-  .member-login-card .login-field{min-width:105px !important}
-  .member-login-card .member-login-btn{flex-basis:85px !important;width:85px !important}
-  .member-login-card .staff-sso-btn{flex-basis:120px !important;width:120px !important;font-size:9px !important}
-}
-
-@media(max-width:700px){
-  .member-login-card{
-    display:grid !important;
-    grid-template-columns:1fr 1fr !important;
-    gap:7px !important;
-    padding:12px !important;
-  }
-  .member-login-card .member-title{
-    grid-column:1 / -1 !important;
-    flex:none !important;
-  }
-  .member-login-card .login-field{
-    min-width:0 !important;
-    width:100% !important;
-  }
-  .member-login-card .login-options{
-    grid-column:1 / -1 !important;
-  }
-  .member-login-card .member-login-btn,
-  .member-login-card .staff-sso-btn{
-    width:100% !important;
-    flex:none !important;
-  }
-  .member-login-card .login-or{
-    grid-column:1 / -1 !important;
-    text-align:center !important;
-  }
-}
-</style>
-
-
 <style id="member-login-clean-bar-final">
 /* =========================================================
    MEMBER LOGIN — CLEAN FULL-WIDTH COMPACT BAR
@@ -592,675 +452,135 @@
 }
 </style>
 
-
-<style id="member-login-corrected-final">
-.member-area{
-  display:flex !important;
-  flex-direction:row !important;
-  flex-wrap:nowrap !important;
-  align-items:flex-start !important;
-  justify-content:stretch !important;
-  gap:18px !important;
-  width:100% !important;
-  height:auto !important;
-  min-height:0 !important;
-  box-sizing:border-box !important;
-}
-.member-area > .member-login-card{
-  display:flex !important;
-  flex-direction:column !important;
-  flex:0 0 calc(50% - 9px) !important;
-  width:calc(50% - 9px) !important;
-  max-width:calc(50% - 9px) !important;
-  height:auto !important;
-  max-height:none !important;
-  min-height:0 !important;
-  overflow:visible !important;
-  box-sizing:border-box !important;
-  padding:14px !important;
-  gap:0 !important;
-}
-.member-area > .featured-update{
-  display:block !important;
-  flex:0 0 calc(50% - 9px) !important;
-  width:calc(50% - 9px) !important;
-  max-width:calc(50% - 9px) !important;
-  min-width:0 !important;
-  height:auto !important;
-  min-height:0 !important;
-  margin:0 !important;
-  box-sizing:border-box !important;
-}
-
-/* Compact login content inside the left half */
-.member-area > .member-login-card .member-title{
-  display:flex !important;
-  align-items:center !important;
-  gap:8px !important;
-  margin:0 0 11px !important;
-}
-.member-area > .member-login-card .member-icon{
-  width:34px !important;
-  height:34px !important;
-  min-width:34px !important;
-  font-size:16px !important;
-}
-.member-area > .member-login-card .member-title h2{
-  font-size:16px !important;
-  margin:0 !important;
-}
-.member-area > .member-login-card .member-title p{
-  font-size:9px !important;
-  margin:2px 0 0 !important;
-}
-.member-area > .member-login-card .login-field{
-  width:100% !important;
-  margin:0 0 8px !important;
-}
-.member-area > .member-login-card .login-field input{
-  width:100% !important;
-  height:35px !important;
-  box-sizing:border-box !important;
-  font-size:11px !important;
-}
-.member-area > .member-login-card .login-options{
-  display:flex !important;
-  justify-content:space-between !important;
-  align-items:center !important;
-  margin:2px 0 9px !important;
-  font-size:9px !important;
-}
-.member-area > .member-login-card .member-login-btn{
-  width:100% !important;
-  height:35px !important;
-  min-height:35px !important;
-  font-size:11px !important;
-  margin:0 !important;
-}
-.member-area > .member-login-card .login-or{
-  margin:7px 0 !important;
-  font-size:9px !important;
-  text-align:center !important;
-}
-.member-area > .member-login-card .staff-sso-btn{
-  width:100% !important;
-  height:35px !important;
-  min-height:35px !important;
-  font-size:10px !important;
-  margin:0 !important;
-}
-.member-area > .member-login-card .join-member{
-  display:none !important;
-}
-
-@media(max-width:700px){
-  .member-area{
-    display:block !important;
-  }
-  .member-area > .member-login-card,
-  .member-area > .featured-update{
-    width:100% !important;
-    max-width:100% !important;
-    flex:none !important;
-  }
-  .member-area > .featured-update{
-    margin-top:12px !important;
-  }
-}
-</style>
-
-
-<style id="ask-union-design-final">
-/* ===== FINAL ASK UNION HOME LAYOUT ===== */
-#member-area-final{
+<style id="ask-union-authoritative-v4">
+/* ===== AUTHORITATIVE HOME LAYOUT V4 ===== */
+.dashboard-login-area{
   display:grid !important;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
-  grid-template-areas:
-    "login login"
-    "latest important" !important;
+  grid-template-columns:1fr 1fr !important;
+  grid-template-areas:"login login" "latest important" !important;
   gap:16px !important;
   width:100% !important;
-  margin:18px 0 0 !important;
+  margin:16px 0 20px !important;
+  padding:0 !important;
   box-sizing:border-box !important;
   align-items:start !important;
 }
-#member-area-final > .member-login-card{
+.dashboard-login-bar{
   grid-area:login !important;
-  display:grid !important;
-  grid-template-columns:190px minmax(170px,1fr) minmax(150px,1fr) auto auto auto auto !important;
-  align-items:center !important;
-  gap:10px !important;
-  width:100% !important;
-  height:76px !important;
-  min-height:76px !important;
-  max-height:76px !important;
-  padding:10px 16px !important;
-  margin:0 !important;
-  overflow:hidden !important;
-  box-sizing:border-box !important;
-  border-radius:16px !important;
-  background:rgba(255,255,255,.97) !important;
-  box-shadow:0 7px 22px rgba(70,30,40,.12) !important;
-}
-#member-area-final > .member-login-card .member-title{
-  display:flex !important;
-  align-items:center !important;
-  gap:9px !important;
-  margin:0 !important;
-}
-#member-area-final > .member-login-card .member-icon{
-  width:44px !important;height:44px !important;min-width:44px !important;
-  border-radius:12px !important;font-size:20px !important;
-}
-#member-area-final > .member-login-card .member-title h2{
-  margin:0 !important;font-size:18px !important;line-height:1.1 !important;
-}
-#member-area-final > .member-login-card .member-title p{
-  margin:3px 0 0 !important;font-size:10px !important;
-}
-#member-area-final > .member-login-card .login-field{
-  margin:0 !important;min-width:0 !important;width:100% !important;
-}
-#member-area-final > .member-login-card .login-field input{
-  width:100% !important;height:40px !important;box-sizing:border-box !important;
-  padding:8px 11px !important;font-size:12px !important;border-radius:9px !important;
-}
-#member-area-final > .member-login-card .login-field button{
-  height:32px !important;width:32px !important;min-height:32px !important;padding:0 !important;
-}
-#member-area-final > .member-login-card .login-options{
-  display:flex !important;align-items:center !important;gap:8px !important;
-  margin:0 !important;white-space:nowrap !important;font-size:10px !important;
-}
-#member-area-final > .member-login-card .login-options a{font-size:10px !important}
-#member-area-final > .member-login-card .member-login-btn{
-  width:105px !important;min-width:105px !important;height:40px !important;
-  min-height:40px !important;padding:8px !important;margin:0 !important;
-  font-size:12px !important;border-radius:9px !important;
-}
-#member-area-final > .member-login-card .login-or{
-  margin:0 !important;font-size:10px !important;
-}
-#member-area-final > .member-login-card .staff-sso-btn{
-  width:160px !important;min-width:160px !important;height:40px !important;
-  min-height:40px !important;padding:8px !important;margin:0 !important;
-  font-size:11px !important;border-radius:9px !important;
-}
-#member-area-final > .member-login-card .join-member{display:none !important}
-
-#member-area-final > .featured-update{
-  grid-area:latest !important;
   width:100% !important;
   min-width:0 !important;
-  height:235px !important;
-  min-height:235px !important;
-  margin:0 !important;
-  padding:22px 28px !important;
-  box-sizing:border-box !important;
-  border-radius:16px !important;
-  background:rgba(255,255,255,.97) !important;
-  box-shadow:0 7px 22px rgba(70,30,40,.10) !important;
-  overflow:hidden !important;
 }
-#member-area-final > .featured-update .update-label{
-  display:inline-flex !important;
-  margin:0 0 12px !important;
-}
-#member-area-final > .featured-update h2{
-  margin:0 0 10px !important;font-size:24px !important;line-height:1.2 !important;
-}
-#member-area-final > .featured-update .update-date{
-  display:inline-block !important;margin:0 0 10px !important;
-}
-#member-area-final > .featured-update p{
-  margin:0 0 10px !important;font-size:14px !important;line-height:1.45 !important;
-}
-#member-area-final > .featured-update > a{
-  font-size:15px !important;font-weight:700 !important;
-}
-
-#member-area-final > .important-update{
-  grid-area:important !important;
-  width:100% !important;
-  height:235px !important;
-  min-height:235px !important;
-  margin:0 !important;
-  padding:22px 28px !important;
-  box-sizing:border-box !important;
-  border-radius:16px !important;
-  overflow:hidden !important;
-  background:linear-gradient(135deg,#8e102d,#65091f) !important;
-  color:#fff !important;
-  box-shadow:0 7px 22px rgba(70,10,25,.16) !important;
-}
-#member-area-final > .important-update .important-label{
-  display:inline-flex !important;
-  margin:0 0 13px !important;
-  padding:8px 16px !important;
-  border-radius:18px !important;
-  background:rgba(255,255,255,.14) !important;
-  color:#fff !important;
-}
-#member-area-final > .important-update h3{
-  margin:0 0 14px !important;font-size:24px !important;line-height:1.2 !important;color:#fff !important;
-}
-#member-area-final > .important-update p{
-  margin:8px 0 0 !important;font-size:14px !important;line-height:1.45 !important;color:#fff !important;
-}
-
-/* Quick Actions stays above Member Login */
-#quick-actions-final-v2{
-  margin-bottom:0 !important;
-}
-#quick-actions-final-v2 .quick-header{
-  display:flex !important;
-  justify-content:space-between !important;
-  align-items:center !important;
-  margin-bottom:10px !important;
-}
-#quick-actions-final-v2 .quick-header h2{
-  margin:0 !important;
-}
-#quick-actions-final-v2 .quick-grid{
-  gap:12px !important;
-}
-#quick-actions-final-v2 .qa-card{
-  height:82px !important;min-height:82px !important;max-height:82px !important;
-}
-
-/* Desktop wide screenshot proportions */
-@media(min-width:1100px){
-  #quick-actions-final-v2 .qa-card{
-    height:94px !important;min-height:94px !important;max-height:94px !important;
-    grid-template-columns:60px minmax(0,1fr) 40px !important;
-    gap:12px !important;padding:12px 14px !important;
-  }
-  #quick-actions-final-v2 .qa-icon{
-    width:54px !important;height:54px !important;min-width:54px !important;font-size:25px !important;
-  }
-  #quick-actions-final-v2 .qa-text strong{font-size:16px !important}
-  #quick-actions-final-v2 .qa-text small{font-size:12px !important}
-  #quick-actions-final-v2 .qa-arrow{width:38px !important;height:38px !important;font-size:21px !important}
-}
-
-@media(max-width:900px) and (min-width:701px){
-  #member-area-final > .member-login-card{
-    grid-template-columns:150px minmax(120px,1fr) minmax(100px,1fr) auto auto !important;
-    gap:7px !important;
-  }
-  #member-area-final > .member-login-card .login-options,
-  #member-area-final > .member-login-card .login-or{display:none !important}
-  #member-area-final > .member-login-card .staff-sso-btn{
-    width:120px !important;min-width:120px !important;font-size:9px !important;
-  }
-}
-@media(max-width:700px){
-  #member-area-final{
-    display:block !important;
-  }
-  #member-area-final > .member-login-card{
-    display:grid !important;
-    grid-template-columns:1fr 1fr !important;
-    width:100% !important;height:auto !important;max-height:none !important;
-    min-height:0 !important;padding:12px !important;
-  }
-  #member-area-final > .member-login-card .member-title{
-    grid-column:1 / -1 !important;
-  }
-  #member-area-final > .member-login-card .login-options,
-  #member-area-final > .member-login-card .member-login-btn,
-  #member-area-final > .member-login-card .login-or,
-  #member-area-final > .member-login-card .staff-sso-btn{
-    grid-column:1 / -1 !important;width:100% !important;min-width:0 !important;
-  }
-  #member-area-final > .featured-update,
-  #member-area-final > .important-update{
-    width:100% !important;height:auto !important;min-height:210px !important;
-    margin-top:12px !important;
-  }
-}
-</style>
-
-
-<style id="ask-union-reference-v2">
-/* ===== REFERENCE LAYOUT V2 ===== */
-#quick-actions-final-v2{
-  margin:0 0 16px !important;
-  width:100% !important;
-}
-#quick-actions-final-v2 .quick-header{
-  display:flex !important;
-  justify-content:space-between !important;
-  align-items:center !important;
-  margin:0 0 10px !important;
-}
-#quick-actions-final-v2 .quick-grid{
-  display:grid !important;
-  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-  gap:12px !important;
-}
-#quick-actions-final-v2 .qa-card{
-  height:82px !important;
-  min-height:82px !important;
-  max-height:82px !important;
-}
-
-/* Login is one compact full-width bar */
-#member-area-final{
-  display:grid !important;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
-  grid-template-areas:
-    "login login"
-    "latest important" !important;
-  gap:16px !important;
-  width:100% !important;
-  margin:0 0 18px !important;
-  align-items:start !important;
-}
-#member-area-final > .member-login-card{
-  grid-area:login !important;
-  display:flex !important;
-  flex-direction:row !important;
-  flex-wrap:nowrap !important;
-  align-items:center !important;
-  gap:9px !important;
+.dashboard-login-bar .member-login-card{
   width:100% !important;
   height:78px !important;
   min-height:78px !important;
   max-height:78px !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex-direction:row !important;
+  flex-wrap:nowrap !important;
+  align-items:center !important;
+  gap:10px !important;
   padding:10px 14px !important;
   margin:0 !important;
   overflow:hidden !important;
-  box-sizing:border-box !important;
+  border-radius:16px !important;
 }
-#member-area-final > .member-login-card .member-title{
-  flex:0 0 185px !important;
+.dashboard-login-bar .member-title{
+  flex:0 0 190px !important;
   display:flex !important;
   align-items:center !important;
   gap:8px !important;
   margin:0 !important;
+  min-width:0 !important;
 }
-#member-area-final > .member-login-card .member-icon{
+.dashboard-login-bar .member-icon{
   width:44px !important;height:44px !important;min-width:44px !important;
   border-radius:12px !important;font-size:20px !important;
 }
-#member-area-final > .member-login-card .member-title h2{
-  font-size:17px !important;margin:0 !important;line-height:1.1 !important;
+.dashboard-login-bar .member-title h2{font-size:18px !important;margin:0 !important}
+.dashboard-login-bar .member-title p{font-size:10px !important;margin:3px 0 0 !important}
+.dashboard-login-bar .login-field{
+  flex:1 1 0 !important;min-width:0 !important;margin:0 !important;
 }
-#member-area-final > .member-login-card .member-title p{
-  font-size:9px !important;margin:3px 0 0 !important;
+.dashboard-login-bar .login-field input{
+  width:100% !important;height:40px !important;box-sizing:border-box !important;
+  padding:8px 10px !important;font-size:12px !important;border-radius:9px !important;
 }
-#member-area-final > .member-login-card .login-field{
-  flex:1 1 0 !important;
-  width:auto !important;
-  min-width:0 !important;
-  margin:0 !important;
-}
-#member-area-final > .member-login-card .login-field input{
-  width:100% !important;
-  height:40px !important;
-  box-sizing:border-box !important;
-  padding:8px 10px !important;
-  font-size:11px !important;
-  border-radius:9px !important;
-}
-#member-area-final > .member-login-card .login-field button{
+.dashboard-login-bar .login-field button{
   height:32px !important;width:32px !important;min-height:32px !important;
 }
-#member-area-final > .member-login-card .login-options{
-  flex:0 0 auto !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:6px !important;
-  margin:0 !important;
-  white-space:nowrap !important;
-  font-size:9px !important;
+.dashboard-login-bar .login-options{
+  flex:0 0 auto !important;display:flex !important;gap:7px !important;
+  align-items:center !important;margin:0 !important;white-space:nowrap !important;font-size:10px !important;
 }
-#member-area-final > .member-login-card .login-options a{font-size:9px !important}
-#member-area-final > .member-login-card .member-login-btn{
-  flex:0 0 105px !important;width:105px !important;
-  height:40px !important;min-height:40px !important;
-  padding:7px !important;margin:0 !important;font-size:11px !important;
+.dashboard-login-bar .login-options a{font-size:10px !important}
+.dashboard-login-bar .member-login-btn{
+  flex:0 0 105px !important;width:105px !important;height:40px !important;
+  min-height:40px !important;margin:0 !important;padding:7px !important;font-size:12px !important;
   border-radius:9px !important;
 }
-#member-area-final > .member-login-card .login-or{
-  flex:0 0 auto !important;margin:0 !important;font-size:9px !important;
-}
-#member-area-final > .member-login-card .staff-sso-btn{
-  flex:0 0 155px !important;width:155px !important;
-  height:40px !important;min-height:40px !important;
-  padding:7px !important;margin:0 !important;font-size:10px !important;
+.dashboard-login-bar .login-or{flex:0 0 auto !important;margin:0 !important;font-size:10px !important}
+.dashboard-login-bar .staff-sso-btn{
+  flex:0 0 160px !important;width:160px !important;height:40px !important;
+  min-height:40px !important;margin:0 !important;padding:7px !important;font-size:11px !important;
   border-radius:9px !important;
 }
-#member-area-final > .member-login-card .join-member{display:none !important}
+.dashboard-login-bar .join-member{display:none !important}
 
-/* Two equal content cards below */
-#member-area-final > .featured-update{
+.dashboard-featured{
   grid-area:latest !important;
   width:100% !important;
   min-width:0 !important;
-  height:235px !important;
-  min-height:235px !important;
-  margin:0 !important;
-  padding:22px 28px !important;
-  box-sizing:border-box !important;
-  border-radius:16px !important;
-  overflow:hidden !important;
 }
-#member-area-final > .important-update{
+.dashboard-featured .featured-update{
+  width:100% !important;height:235px !important;min-height:235px !important;
+  box-sizing:border-box !important;margin:0 !important;padding:22px 28px !important;
+  border-radius:16px !important;overflow:hidden !important;
+  background:#fff !important;
+}
+.dashboard-featured .featured-update h2{font-size:24px !important}
+.dashboard-important{
   grid-area:important !important;
   width:100% !important;
   min-width:0 !important;
-  height:235px !important;
-  min-height:235px !important;
-  margin:0 !important;
-  padding:22px 28px !important;
-  box-sizing:border-box !important;
-  border-radius:16px !important;
-  overflow:hidden !important;
-  background:linear-gradient(135deg,#8e102d,#65091f) !important;
-  color:#fff !important;
 }
-#member-area-final > .important-update h3{color:#fff !important;font-size:23px !important}
-#member-area-final > .important-update p{color:#fff !important}
-#member-area-final > .important-update .important-label{color:#fff !important}
+.dashboard-important .important-update{
+  width:100% !important;height:235px !important;min-height:235px !important;
+  box-sizing:border-box !important;margin:0 !important;padding:22px 28px !important;
+  border-radius:16px !important;overflow:hidden !important;
+  background:linear-gradient(135deg,#8e102d,#65091f) !important;color:#fff !important;
+}
+.dashboard-important .important-update h3,
+.dashboard-important .important-update p{color:#fff !important}
 
-/* Wide desktop reference proportions */
 @media(min-width:1100px){
   #quick-actions-final-v2 .qa-card{
     height:94px !important;min-height:94px !important;max-height:94px !important;
     grid-template-columns:60px minmax(0,1fr) 40px !important;
     padding:12px 14px !important;
   }
-  #quick-actions-final-v2 .qa-icon{
-    width:54px !important;height:54px !important;min-width:54px !important;font-size:25px !important;
-  }
+  #quick-actions-final-v2 .qa-icon{width:54px !important;height:54px !important;min-width:54px !important;font-size:25px !important}
   #quick-actions-final-v2 .qa-text strong{font-size:16px !important}
   #quick-actions-final-v2 .qa-text small{font-size:12px !important}
   #quick-actions-final-v2 .qa-arrow{width:38px !important;height:38px !important;font-size:21px !important}
 }
-
-@media(max-width:900px) and (min-width:701px){
-  #member-area-final > .member-login-card{
-    gap:6px !important;padding:9px !important;
-  }
-  #member-area-final > .member-login-card .member-title{flex-basis:145px !important}
-  #member-area-final > .member-login-card .member-title h2{font-size:14px !important}
-  #member-area-final > .member-login-card .staff-sso-btn{
-    flex-basis:120px !important;width:120px !important;font-size:9px !important;
-  }
-}
 @media(max-width:700px){
-  #member-area-final{
-    display:block !important;
+  .dashboard-login-area{display:block !important}
+  .dashboard-login-bar .member-login-card{
+    display:grid !important;grid-template-columns:1fr 1fr !important;
+    height:auto !important;min-height:0 !important;max-height:none !important;
   }
-  #member-area-final > .member-login-card{
-    display:grid !important;
-    grid-template-columns:1fr 1fr !important;
-    width:100% !important;height:auto !important;max-height:none !important;
-    min-height:0 !important;padding:12px !important;
-  }
-  #member-area-final > .member-login-card .member-title{grid-column:1/-1 !important;flex:none !important}
-  #member-area-final > .member-login-card .login-field{width:100% !important}
-  #member-area-final > .member-login-card .login-options,
-  #member-area-final > .member-login-card .member-login-btn,
-  #member-area-final > .member-login-card .login-or,
-  #member-area-final > .member-login-card .staff-sso-btn{
+  .dashboard-login-bar .member-title,
+  .dashboard-login-bar .login-options,
+  .dashboard-login-bar .member-login-btn,
+  .dashboard-login-bar .login-or,
+  .dashboard-login-bar .staff-sso-btn{
     grid-column:1/-1 !important;width:100% !important;min-width:0 !important;
   }
-  #member-area-final > .featured-update,
-  #member-area-final > .important-update{
-    width:100% !important;height:auto !important;min-height:210px !important;margin-top:12px !important;
-  }
-}
-</style>
-
-
-<style id="ask-union-structure-final-v3">
-/* ===== STRUCTURE FIX: QUICK ACTIONS -> LOGIN BAR -> TWO CARDS ===== */
-#quick-actions-final-v2{
-  display:block !important;
-  width:100% !important;
-  margin-bottom:16px !important;
-}
-#quick-actions-final-v2 .quick-grid{
-  display:grid !important;
-  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-  gap:12px !important;
-}
-
-#member-area-final{
-  display:grid !important;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
-  grid-template-areas:
-    "login login"
-    "latest important" !important;
-  gap:16px !important;
-  width:100% !important;
-  height:auto !important;
-  min-height:0 !important;
-  margin:0 0 18px !important;
-  align-items:start !important;
-  box-sizing:border-box !important;
-}
-
-#member-area-final > .member-login-card{
-  grid-area:login !important;
-  width:100% !important;
-  height:76px !important;
-  min-height:76px !important;
-  max-height:76px !important;
-  min-width:0 !important;
-  box-sizing:border-box !important;
-  overflow:hidden !important;
-  display:flex !important;
-  flex-direction:row !important;
-  flex-wrap:nowrap !important;
-  align-items:center !important;
-  gap:9px !important;
-  padding:10px 14px !important;
-  margin:0 !important;
-}
-
-#member-area-final > .member-login-card .member-title{
-  flex:0 0 185px !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:8px !important;
-  margin:0 !important;
-  min-width:0 !important;
-}
-#member-area-final > .member-login-card .login-field{
-  flex:1 1 0 !important;
-  min-width:0 !important;
-  width:auto !important;
-  margin:0 !important;
-}
-#member-area-final > .member-login-card .login-field input{
-  width:100% !important;
-  height:40px !important;
-  box-sizing:border-box !important;
-}
-#member-area-final > .member-login-card .login-options{
-  flex:0 0 auto !important;
-  white-space:nowrap !important;
-  margin:0 !important;
-}
-#member-area-final > .member-login-card .member-login-btn{
-  flex:0 0 105px !important;
-  width:105px !important;
-  height:40px !important;
-  min-height:40px !important;
-  margin:0 !important;
-}
-#member-area-final > .member-login-card .login-or{
-  flex:0 0 auto !important;
-  margin:0 !important;
-}
-#member-area-final > .member-login-card .staff-sso-btn{
-  flex:0 0 155px !important;
-  width:155px !important;
-  height:40px !important;
-  min-height:40px !important;
-  margin:0 !important;
-}
-#member-area-final > .member-login-card .join-member{
-  display:none !important;
-}
-
-#member-area-final > .featured-update{
-  grid-area:latest !important;
-  width:100% !important;
-  height:235px !important;
-  min-height:235px !important;
-  min-width:0 !important;
-  margin:0 !important;
-  box-sizing:border-box !important;
-  overflow:hidden !important;
-}
-
-#member-area-final > .important-update{
-  grid-area:important !important;
-  width:100% !important;
-  height:235px !important;
-  min-height:235px !important;
-  min-width:0 !important;
-  margin:0 !important;
-  box-sizing:border-box !important;
-  overflow:hidden !important;
-}
-
-@media(max-width:700px){
-  #quick-actions-final-v2 .quick-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    gap:8px !important;
-  }
-  #member-area-final{
-    display:block !important;
-  }
-  #member-area-final > .member-login-card{
-    display:grid !important;
-    grid-template-columns:1fr 1fr !important;
-    width:100% !important;
-    height:auto !important;
-    max-height:none !important;
-    min-height:0 !important;
-  }
-  #member-area-final > .member-login-card .member-title,
-  #member-area-final > .member-login-card .login-options,
-  #member-area-final > .member-login-card .member-login-btn,
-  #member-area-final > .member-login-card .login-or,
-  #member-area-final > .member-login-card .staff-sso-btn{
-    grid-column:1 / -1 !important;
-    width:100% !important;
-    min-width:0 !important;
-  }
-  #member-area-final > .featured-update,
-  #member-area-final > .important-update{
-    width:100% !important;
-    height:auto !important;
-    min-height:210px !important;
-    margin-top:12px !important;
+  .dashboard-featured,.dashboard-important{width:100% !important;margin-top:12px !important}
+  .dashboard-featured .featured-update,.dashboard-important .important-update{
+    height:auto !important;min-height:210px !important;
   }
 }
 </style>
@@ -1416,10 +736,10 @@
   </div>
 </section>
 
-<section class="member-area" id="member-area-final">
 
-  <!-- MEMBER LOGIN -->
-  <div class="member-login-card">
+<section class="dashboard-login-area" id="dashboard-login-area">
+  <div class="dashboard-login-bar">
+    <div class="member-login-card">
 
     <div class="member-title">
       <div class="member-icon">👤</div>
@@ -1480,8 +800,10 @@
     </p>
 
   </div>
+  </div>
 
-  <div class="featured-update">
+  <div class="dashboard-featured">
+    <div class="featured-update">
     <div class="update-label">
       📢 &nbsp; LATEST UPDATE
     </div>
@@ -1504,8 +826,10 @@
       Read More&nbsp; →
     </a>
   </div>
+  </div>
 
-  <div class="important-update">
+  <div class="dashboard-important">
+    <div class="important-update">
 
       <div class="important-label">
         🔔 &nbsp; IMPORTANT
@@ -1525,7 +849,9 @@
       </p>
 
     </div>
+  </div>
 </section>
+
 <!-- ================= LATEST UPDATES ================= -->
 
 <section
