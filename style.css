@@ -1930,3 +1930,48 @@ button,
         gap: 6px;
     }
 }
+/* ===== HEADER FINAL FIX ===== */
+
+header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-left: auto !important;
+}
+
+.header-actions .online {
+    display: flex !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+}
+
+.notification-btn {
+    position: relative !important;
+    width: 40px !important;
+    height: 40px !important;
+    border: none !important;
+    border-radius: 50% !important;
+    background: #ffffff !important;
+    cursor: pointer !important;
+}
+
+.notification-badge {
+    position: absolute !important;
+    top: -3px !important;
+    right: -3px !important;
+    min-width: 17px !important;
+    height: 17px !important;
+    border-radius: 50% !important;
+    background: #d71920 !important;
+    color: white !important;
+    font-size: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
