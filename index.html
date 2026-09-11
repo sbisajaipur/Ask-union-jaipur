@@ -21,83 +21,172 @@
 
 <title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
-<link rel="stylesheet" href="./style.css?v=22">
+<link rel="stylesheet" href="./style.css?v=23">
 
-<style id="quick-actions-final-clean">
-/* ===== QUICK ACTIONS: COLORFUL + COMPACT ===== */
-.quick-actions .quick-grid{
-  display:grid!important;
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:12px!important;
+<style id="quick-actions-final-v2">
+/* ===== ASK UNION QUICK ACTIONS FINAL V2 ===== */
+#quick-actions-final-v2{
+  width:100% !important;
+  box-sizing:border-box !important;
 }
-.quick-actions .qa-card{
-  position:relative!important;
-  display:grid!important;
-  grid-template-columns:46px 1fr 28px!important;
-  align-items:center!important;
-  gap:10px!important;
-  min-height:78px!important;
-  padding:10px 11px!important;
-  border:1px solid rgba(255,255,255,.9)!important;
-  border-radius:16px!important;
-  text-decoration:none!important;
-  color:#222!important;
-  overflow:hidden!important;
-  box-shadow:0 5px 15px rgba(40,20,30,.10)!important;
-  transition:transform .18s ease,box-shadow .18s ease!important;
+#quick-actions-final-v2 .quick-header{
+  margin-bottom:10px !important;
 }
-.quick-actions .qa-card:hover{transform:translateY(-2px)!important;box-shadow:0 10px 22px rgba(40,20,30,.14)!important}
-.quick-actions .qa-icon{
-  width:46px!important;height:46px!important;
-  display:flex!important;align-items:center!important;justify-content:center!important;
-  border-radius:14px!important;font-size:22px!important;
-  background:rgba(255,255,255,.9)!important;
-  box-shadow:0 3px 8px rgba(0,0,0,.07)!important;
-  z-index:1!important;
+#quick-actions-final-v2 .quick-grid{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:12px !important;
+  align-items:stretch !important;
 }
-.quick-actions .qa-text{min-width:0!important;z-index:1!important}
-.quick-actions .qa-text strong{display:block!important;margin:0!important;font-size:13px!important;line-height:1.15!important;font-weight:850!important;color:#222!important}
-.quick-actions .qa-text small{display:block!important;margin-top:4px!important;font-size:9.5px!important;line-height:1.2!important;color:#555!important}
-.quick-actions .qa-arrow{
-  width:28px!important;height:28px!important;display:flex!important;align-items:center!important;justify-content:center!important;
-  border-radius:50%!important;background:rgba(255,255,255,.72)!important;
-  font-size:17px!important;font-weight:800!important;z-index:1!important;
+#quick-actions-final-v2 .qa-card{
+  position:relative !important;
+  box-sizing:border-box !important;
+  display:grid !important;
+  grid-template-columns:46px minmax(0,1fr) 28px !important;
+  align-items:center !important;
+  gap:9px !important;
+  width:100% !important;
+  height:82px !important;
+  min-height:82px !important;
+  max-height:82px !important;
+  padding:9px 11px !important;
+  margin:0 !important;
+  border:1px solid rgba(255,255,255,.95) !important;
+  border-radius:15px !important;
+  text-decoration:none !important;
+  color:#222 !important;
+  overflow:hidden !important;
+  box-shadow:0 5px 14px rgba(40,20,30,.10) !important;
+  transform:none !important;
 }
-.quick-actions .qa-red{background:linear-gradient(135deg,#fff0f3,#ffcbd5)!important}.quick-actions .qa-red .qa-icon{color:#c51d42!important}
-.quick-actions .qa-blue{background:linear-gradient(135deg,#eef8ff,#cce5ff)!important}.quick-actions .qa-blue .qa-icon{color:#1179dc!important}
-.quick-actions .qa-yellow{background:linear-gradient(135deg,#fff9e8,#ffe39a)!important}.quick-actions .qa-yellow .qa-icon{color:#d28600!important}
-.quick-actions .qa-green{background:linear-gradient(135deg,#edfcf5,#c9f0df)!important}.quick-actions .qa-green .qa-icon{color:#109666!important}
-.quick-actions .qa-purple{background:linear-gradient(135deg,#f7efff,#e0ceff)!important}.quick-actions .qa-purple .qa-icon{color:#7136cf!important}
-.quick-actions .qa-pink{background:linear-gradient(135deg,#fff0f3,#ffcfd8)!important}.quick-actions .qa-pink .qa-icon{color:#df2d46!important}
+#quick-actions-final-v2 .qa-card:hover{
+  transform:translateY(-2px) !important;
+  box-shadow:0 9px 20px rgba(40,20,30,.14) !important;
+}
+#quick-actions-final-v2 .qa-icon{
+  box-sizing:border-box !important;
+  width:44px !important;
+  height:44px !important;
+  min-width:44px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin:0 !important;
+  padding:0 !important;
+  border-radius:13px !important;
+  background:rgba(255,255,255,.90) !important;
+  box-shadow:0 3px 8px rgba(0,0,0,.07) !important;
+  font-size:21px !important;
+}
+#quick-actions-final-v2 .qa-text{
+  min-width:0 !important;
+  overflow:hidden !important;
+}
+#quick-actions-final-v2 .qa-text strong{
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  font-size:13px !important;
+  line-height:1.15 !important;
+  font-weight:800 !important;
+  color:#222 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+#quick-actions-final-v2 .qa-text small{
+  display:block !important;
+  margin:4px 0 0 !important;
+  padding:0 !important;
+  font-size:9px !important;
+  line-height:1.15 !important;
+  color:#555 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+#quick-actions-final-v2 .qa-arrow{
+  width:28px !important;
+  height:28px !important;
+  min-width:28px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin:0 !important;
+  border-radius:50% !important;
+  background:rgba(255,255,255,.72) !important;
+  font-size:16px !important;
+  font-weight:800 !important;
+}
 
-/* ===== MEMBER LOGIN: SMALLER ===== */
+/* Six clearly different pastel backgrounds */
+#quick-actions-final-v2 .qa-red{
+  background:linear-gradient(135deg,#fff0f3,#ffcbd5) !important;
+}
+#quick-actions-final-v2 .qa-blue{
+  background:linear-gradient(135deg,#eef8ff,#cce5ff) !important;
+}
+#quick-actions-final-v2 .qa-yellow{
+  background:linear-gradient(135deg,#fff9e8,#ffe39a) !important;
+}
+#quick-actions-final-v2 .qa-green{
+  background:linear-gradient(135deg,#edfcf5,#c9f0df) !important;
+}
+#quick-actions-final-v2 .qa-purple{
+  background:linear-gradient(135deg,#f7efff,#e0ceff) !important;
+}
+#quick-actions-final-v2 .qa-pink{
+  background:linear-gradient(135deg,#fff0f3,#ffcfd8) !important;
+}
+
+#quick-actions-final-v2 .qa-red .qa-icon{color:#c51d42 !important}
+#quick-actions-final-v2 .qa-blue .qa-icon{color:#1179dc !important}
+#quick-actions-final-v2 .qa-yellow .qa-icon{color:#d28600 !important}
+#quick-actions-final-v2 .qa-green .qa-icon{color:#109666 !important}
+#quick-actions-final-v2 .qa-purple .qa-icon{color:#7136cf !important}
+#quick-actions-final-v2 .qa-pink .qa-icon{color:#df2d46 !important}
+
+/* ===== MEMBER LOGIN SMALLER ===== */
 .member-login-card{
-  padding:18px!important;
-  border-radius:16px!important;
+  padding:18px !important;
+  border-radius:16px !important;
 }
-.member-title{gap:9px!important;margin-bottom:13px!important}
-.member-icon{width:38px!important;height:38px!important;border-radius:10px!important;font-size:18px!important}
-.member-title h2{font-size:18px!important}
-.member-title p{font-size:11px!important}
-.login-field{margin-bottom:10px!important}
-.login-field input{padding:9px 11px!important;font-size:12px!important;border-radius:9px!important}
-.login-field label{font-size:11px!important;margin-bottom:4px!important}
-.login-options{margin:6px 0 11px!important;font-size:10px!important}
-.member-login-btn,.staff-sso-btn{padding:9px!important;font-size:12px!important;border-radius:9px!important}
-.login-or{margin:10px 0!important;font-size:10px!important}
-.join-member{margin-top:10px!important;font-size:11px!important}
+.member-title{gap:9px !important;margin-bottom:13px !important}
+.member-icon{width:38px !important;height:38px !important;border-radius:10px !important;font-size:18px !important}
+.member-title h2{font-size:18px !important}
+.member-title p{font-size:11px !important}
+.login-field{margin-bottom:10px !important}
+.login-field input{padding:9px 11px !important;font-size:12px !important;border-radius:9px !important}
+.login-options{margin:6px 0 11px !important;font-size:10px !important}
+.member-login-btn,.staff-sso-btn{padding:9px !important;font-size:12px !important;border-radius:9px !important}
+.login-or{margin:10px 0 !important;font-size:10px !important}
+.join-member{margin-top:10px !important;font-size:11px !important}
 
 @media(max-width:700px){
-  .quick-actions .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
-  .quick-actions .qa-card{
-    grid-template-columns:38px 1fr!important;
-    gap:8px!important;min-height:76px!important;padding:9px!important;border-radius:14px!important;
+  #quick-actions-final-v2 .quick-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:8px !important;
   }
-  .quick-actions .qa-icon{width:38px!important;height:38px!important;border-radius:11px!important;font-size:18px!important}
-  .quick-actions .qa-text strong{font-size:11px!important}
-  .quick-actions .qa-text small{font-size:8.5px!important;margin-top:3px!important}
-  .quick-actions .qa-arrow{display:none!important}
-  .member-login-card{padding:15px!important}
+  #quick-actions-final-v2 .qa-card{
+    grid-template-columns:36px minmax(0,1fr) !important;
+    height:74px !important;
+    min-height:74px !important;
+    max-height:74px !important;
+    gap:7px !important;
+    padding:8px !important;
+    border-radius:13px !important;
+  }
+  #quick-actions-final-v2 .qa-icon{
+    width:36px !important;
+    height:36px !important;
+    min-width:36px !important;
+    border-radius:10px !important;
+    font-size:17px !important;
+  }
+  #quick-actions-final-v2 .qa-text strong{font-size:10.5px !important}
+  #quick-actions-final-v2 .qa-text small{font-size:8px !important;margin-top:3px !important}
+  #quick-actions-final-v2 .qa-arrow{display:none !important}
+  .member-login-card{padding:15px !important}
 }
 </style>
 
@@ -305,7 +394,7 @@
 
 </section>
 
-<section class="quick-actions">
+<section class="quick-actions" id="quick-actions-final-v2">
   <div class="quick-header">
     <h2>Quick Actions</h2>
     <a href="./documents.html">View All →</a>
