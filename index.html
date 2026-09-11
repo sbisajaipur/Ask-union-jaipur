@@ -21,7 +21,7 @@
 
 <title>ASK UNION – SBISA UDAIPUR MODULE</title>
 
-<link rel="stylesheet" href="./style.css?v=31">
+<link rel="stylesheet" href="./style.css?v=32">
 
 <style id="quick-actions-final-v2">
 /* ===== ASK UNION QUICK ACTIONS FINAL V2 ===== */
@@ -1115,6 +1115,156 @@
 }
 </style>
 
+
+<style id="ask-union-structure-final-v3">
+/* ===== STRUCTURE FIX: QUICK ACTIONS -> LOGIN BAR -> TWO CARDS ===== */
+#quick-actions-final-v2{
+  display:block !important;
+  width:100% !important;
+  margin-bottom:16px !important;
+}
+#quick-actions-final-v2 .quick-grid{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:12px !important;
+}
+
+#member-area-final{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  grid-template-areas:
+    "login login"
+    "latest important" !important;
+  gap:16px !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  margin:0 0 18px !important;
+  align-items:start !important;
+  box-sizing:border-box !important;
+}
+
+#member-area-final > .member-login-card{
+  grid-area:login !important;
+  width:100% !important;
+  height:76px !important;
+  min-height:76px !important;
+  max-height:76px !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+  display:flex !important;
+  flex-direction:row !important;
+  flex-wrap:nowrap !important;
+  align-items:center !important;
+  gap:9px !important;
+  padding:10px 14px !important;
+  margin:0 !important;
+}
+
+#member-area-final > .member-login-card .member-title{
+  flex:0 0 185px !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  margin:0 !important;
+  min-width:0 !important;
+}
+#member-area-final > .member-login-card .login-field{
+  flex:1 1 0 !important;
+  min-width:0 !important;
+  width:auto !important;
+  margin:0 !important;
+}
+#member-area-final > .member-login-card .login-field input{
+  width:100% !important;
+  height:40px !important;
+  box-sizing:border-box !important;
+}
+#member-area-final > .member-login-card .login-options{
+  flex:0 0 auto !important;
+  white-space:nowrap !important;
+  margin:0 !important;
+}
+#member-area-final > .member-login-card .member-login-btn{
+  flex:0 0 105px !important;
+  width:105px !important;
+  height:40px !important;
+  min-height:40px !important;
+  margin:0 !important;
+}
+#member-area-final > .member-login-card .login-or{
+  flex:0 0 auto !important;
+  margin:0 !important;
+}
+#member-area-final > .member-login-card .staff-sso-btn{
+  flex:0 0 155px !important;
+  width:155px !important;
+  height:40px !important;
+  min-height:40px !important;
+  margin:0 !important;
+}
+#member-area-final > .member-login-card .join-member{
+  display:none !important;
+}
+
+#member-area-final > .featured-update{
+  grid-area:latest !important;
+  width:100% !important;
+  height:235px !important;
+  min-height:235px !important;
+  min-width:0 !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+#member-area-final > .important-update{
+  grid-area:important !important;
+  width:100% !important;
+  height:235px !important;
+  min-height:235px !important;
+  min-width:0 !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+}
+
+@media(max-width:700px){
+  #quick-actions-final-v2 .quick-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+  #member-area-final{
+    display:block !important;
+  }
+  #member-area-final > .member-login-card{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    width:100% !important;
+    height:auto !important;
+    max-height:none !important;
+    min-height:0 !important;
+  }
+  #member-area-final > .member-login-card .member-title,
+  #member-area-final > .member-login-card .login-options,
+  #member-area-final > .member-login-card .member-login-btn,
+  #member-area-final > .member-login-card .login-or,
+  #member-area-final > .member-login-card .staff-sso-btn{
+    grid-column:1 / -1 !important;
+    width:100% !important;
+    min-width:0 !important;
+  }
+  #member-area-final > .featured-update,
+  #member-area-final > .important-update{
+    width:100% !important;
+    height:auto !important;
+    min-height:210px !important;
+    margin-top:12px !important;
+  }
+}
+</style>
+
 </head>
 
 
@@ -1267,7 +1417,6 @@
 </section>
 
 <section class="member-area" id="member-area-final">
-  <section class="member-area">
 
   <!-- MEMBER LOGIN -->
   <div class="member-login-card">
