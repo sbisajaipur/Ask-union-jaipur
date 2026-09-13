@@ -45,6 +45,259 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
   .github-pdf-btn{padding:8px 9px}
 }
 </style>
+
+<!-- =========================================================
+     ASK UNION ADMIN — FRIENDLY UI V9
+     Visual/UX layer only. Existing Firebase/JS logic preserved.
+     ========================================================= -->
+<style id="admin-friendly-ui-v9">
+:root{
+  --au-primary:#123b5d;
+  --au-primary-2:#1b5f8a;
+  --au-accent:#e09b2d;
+  --au-bg:#f4f7fa;
+  --au-card:#ffffff;
+  --au-text:#173042;
+  --au-muted:#6b7c89;
+  --au-border:#dce5eb;
+  --au-success:#16805b;
+  --au-danger:#c73b4b;
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 8% 0%,rgba(27,95,138,.08),transparent 28%),
+    linear-gradient(180deg,#f7fafc 0%,var(--au-bg) 100%) !important;
+  color:var(--au-text) !important;
+}
+.topbar{
+  background:linear-gradient(135deg,var(--au-primary),var(--au-primary-2)) !important;
+  box-shadow:0 4px 18px rgba(18,59,93,.18) !important;
+}
+.topbar-inner{
+  min-height:64px !important;
+}
+.card{
+  border:1px solid rgba(220,229,235,.9) !important;
+  box-shadow:0 5px 20px rgba(20,50,70,.07) !important;
+  border-radius:16px !important;
+}
+.head{
+  border-top:4px solid var(--au-accent) !important;
+}
+.head h1{
+  color:var(--au-primary) !important;
+}
+.stats .stat{
+  position:relative;
+  overflow:hidden;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.stats .stat:hover{
+  transform:translateY(-2px);
+  box-shadow:0 9px 24px rgba(20,50,70,.11) !important;
+}
+.stats .stat::after{
+  content:"";
+  position:absolute;
+  right:-22px;
+  top:-22px;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:rgba(224,155,45,.10);
+}
+.stat .num{
+  color:var(--au-primary) !important;
+}
+.section-head h2{
+  color:var(--au-primary) !important;
+}
+.field label{
+  color:#49616f !important;
+  font-weight:800 !important;
+  letter-spacing:.04em;
+}
+.field input,
+.field select,
+.field textarea{
+  border:1px solid var(--au-border) !important;
+  background:#fbfdfe !important;
+  border-radius:10px !important;
+  color:var(--au-text) !important;
+  transition:border-color .15s ease,box-shadow .15s ease,background .15s ease;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--au-primary-2) !important;
+  background:#fff !important;
+  box-shadow:0 0 0 3px rgba(27,95,138,.10) !important;
+  outline:none !important;
+}
+.btn.primary,
+.btn:not(.light),
+.github-pdf-btn{
+  background:linear-gradient(135deg,var(--au-primary),var(--au-primary-2)) !important;
+  border-radius:10px !important;
+  font-weight:800 !important;
+}
+.btn.light{
+  background:#edf3f7 !important;
+  color:var(--au-primary) !important;
+  border:1px solid #d7e2e9 !important;
+}
+.btn:hover,
+.github-pdf-btn:hover{
+  filter:brightness(1.05);
+}
+.logout{
+  background:rgba(255,255,255,.10) !important;
+  border:1px solid rgba(255,255,255,.35) !important;
+}
+.login-card{
+  border-top:5px solid var(--au-accent) !important;
+}
+.login-card h1{
+  color:var(--au-primary) !important;
+}
+.github-pdf-box{
+  background:linear-gradient(180deg,#f7fbfd,#fff) !important;
+  border-color:#d7e4ec !important;
+}
+.github-pdf-head h3{
+  color:var(--au-primary) !important;
+}
+.github-pdf-item{
+  border-color:#e1e9ee !important;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.github-pdf-item:hover{
+  transform:translateY(-1px);
+  box-shadow:0 5px 15px rgba(20,50,70,.07);
+}
+.member-only-note{
+  color:#a66a00 !important;
+  font-weight:700;
+}
+
+/* Clearer audience controls */
+input[type="radio"]:checked,
+input[type="checkbox"]:checked{
+  accent-color:var(--au-primary-2);
+}
+
+/* Keyboard accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible{
+  outline:3px solid rgba(224,155,45,.35) !important;
+  outline-offset:2px !important;
+}
+
+@media(max-width:700px){
+  .container{
+    width:100% !important;
+    padding-left:10px !important;
+    padding-right:10px !important;
+  }
+  .topbar{
+    position:sticky !important;
+    top:0 !important;
+    z-index:1000 !important;
+  }
+  .topbar-inner{
+    padding:10px 12px !important;
+    gap:8px !important;
+  }
+  .brand{
+    min-width:0 !important;
+  }
+  .brand-title{
+    font-size:15px !important;
+  }
+  .brand-sub{
+    font-size:9px !important;
+  }
+  .head{
+    gap:9px !important;
+  }
+  .head h1{
+    font-size:19px !important;
+  }
+  .stats{
+    gap:8px !important;
+  }
+  .stats .stat{
+    padding:13px 10px !important;
+    min-height:78px;
+  }
+  .section{
+    padding:13px !important;
+  }
+  .section-head{
+    gap:7px !important;
+  }
+  .section-head h2{
+    font-size:16px !important;
+  }
+  .form-grid{
+    gap:9px !important;
+  }
+  .field input,
+  .field select,
+  .field textarea{
+    min-height:42px !important;
+    font-size:16px !important;
+  }
+  .btn,
+  button{
+    min-height:40px !important;
+  }
+  .github-pdf-item{
+    flex-direction:column !important;
+    align-items:stretch !important;
+  }
+  .github-pdf-btn{
+    width:100% !important;
+  }
+}
+
+@media(max-width:420px){
+  .container{
+    padding-left:8px !important;
+    padding-right:8px !important;
+  }
+  .topbar-inner{
+    padding:9px 9px !important;
+  }
+  .brand img{
+    width:38px !important;
+    height:38px !important;
+  }
+  .brand-title{
+    font-size:14px !important;
+  }
+  .brand-sub{
+    font-size:8px !important;
+  }
+  .logout{
+    font-size:10px !important;
+    padding:8px 9px !important;
+  }
+  .head h1{
+    font-size:17px !important;
+  }
+  .stats .stat{
+    min-height:72px;
+    padding:11px 8px !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
