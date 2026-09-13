@@ -87,6 +87,15 @@ function initials(name){
  const a=String(name||'Member').trim().split(/\s+/).filter(Boolean);
  return ((a[0]?.[0]||'M')+(a.length>1?(a[a.length-1]?.[0]||''):'')).toUpperCase();
 }
+async function loadMemberCirculars(){
+ const box=document.getElementById('memberCircularList');
+ try{
+  const snap=await db.collection('memberCirculars').orderBy('date','desc').limit(20).get();
+  document.getElementById('noticeCount').textContent=snap.size;
+  if(snap.empty){box.innerHTML='<div style="font-size:13px;color:#777">No members-only circulars or updates available.</div>';return;}
+  box.innerHTML=snap.docs.map(doc=>{const d=doc.data()||{};const link=d.link?esc(d.link):'';return `<article style="padding:12px 0;border-bottom:1px solid #eee"><div style="font-weight:700;color:#7b1024;font-size:15px">${esc(d.title||'Untitled')}</div><div style="font-size:11px;color:#777;margin:4px 0 8px">📅 ${esc(d.date||'')} ${d.contentType?'· '+esc(d.contentType==='circulars'?'Circular':'Update / Notice'):''}</div>${d.category?`<div style="font-size:11px;color:#7b1024;margin-bottom:6px">${esc(d.category)}</div>`:''}${d.details?`<div style="font-size:13px;line-height:1.5;color:#555">${esc(d.details)}</div>`:''}${link?`<div style="margin-top:9px"><a class="btn" href="${link}" target="_blank" rel="noopener">📄 Open PDF / Link</a></div>`:''}</article>`}).join('');
+ }catch(e){console.error(e);box.innerHTML='<div style="font-size:13px;color:#b00020">Unable to load member-only updates.</div>';}
+}
 async function loadDashboard(user){
  try{
   const snap=await db.collection('members').doc(user.uid).get();
@@ -112,7 +121,7 @@ async function loadDashboard(user){
    <section class="grid">
     <div class="stat"><b>0</b><span>My Queries</span></div>
     <div class="stat"><b>0</b><span>In Process</span></div>
-    <div class="stat"><b>0</b><span>Notices</span></div>
+    <div class="stat"><b id="noticeCount">0</b><span>Member Notices</span></div>
     <div class="stat"><b>0</b><span>Events</span></div>
    </section>
 
@@ -136,10 +145,14 @@ async function loadDashboard(user){
     <div class="row"><div class="label">Mobile</div><div class="value">${esc(d.mobile||'—')}</div></div>
    </section>
 
+   <h3 class="section-title">Members Only Circulars & Updates</h3>
+   <section class="info" id="memberCircularList"><div style="font-size:13px;color:#777">Loading member-only updates…</div></section>
+
    <h3 class="section-title">Recent Updates</h3>
    <section class="info"><p style="margin:0;font-size:13px;color:#777">Latest union updates are available on the public Updates section.</p><br><a class="btn" href="./">Go to ASK UNION Home</a></section>
    <div class="notice">Your member account is controlled by the Union Admin. If any profile detail is incorrect, please contact the Union Admin.</div>
   `;
+  await loadMemberCirculars();
  }catch(e){
   console.error(e);
   document.getElementById('app').innerHTML='<div class="error">Unable to load your member profile.<br><br><button class="btn" onclick="logout()">Back to Home</button></div>';
