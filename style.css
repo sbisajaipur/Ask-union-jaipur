@@ -2041,3 +2041,117 @@ header {
     }
     .quick-actions .quick-grid > a > span {font-size:12px !important;}
 }
+
+
+/* =========================================================
+   ASK UNION — MOBILE UX POLISH V1
+   Bottom navigation only; existing visual design preserved.
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  /* Keep the floating navigation clear of device safe areas. */
+  body {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .bottom-nav {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    max-width: none !important;
+
+    /* Slightly shorter than the current 84px while retaining the
+       same rounded/premium appearance. */
+    height: 74px !important;
+    min-height: 74px !important;
+
+    padding: 6px 5px !important;
+    border-radius: 34px !important;
+
+    /* Prevent accidental horizontal overflow on narrow phones. */
+    overflow: hidden !important;
+  }
+
+  .bottom-nav .nav-item {
+    min-width: 0 !important;
+    height: 100% !important;
+    gap: 3px !important;
+
+    /* Larger reliable touch target without enlarging the bar. */
+    padding: 3px 1px !important;
+
+    font-size: 10px !important;
+    line-height: 1 !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .bottom-nav .nav-icon {
+    width: 43px !important;
+    height: 43px !important;
+    flex: 0 0 43px !important;
+  }
+
+  .bottom-nav .nav-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    stroke-width: 1.9 !important;
+  }
+
+  .bottom-nav .nav-label {
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    font-size: 10px !important;
+    line-height: 1 !important;
+  }
+
+  /* Cleaner active indicator on small screens. */
+  .bottom-nav .nav-item.active::after {
+    bottom: 1px !important;
+    width: 30px !important;
+    height: 3px !important;
+  }
+
+  /* Subtle press feedback; no layout shift. */
+  .bottom-nav .nav-item:active {
+    transform: none !important;
+  }
+
+  .bottom-nav .nav-item:active .nav-icon {
+    transform: scale(.90) !important;
+  }
+}
+
+/* Extra-small phones: keep all five items comfortable. */
+@media (max-width: 380px) {
+  .bottom-nav {
+    left: 7px !important;
+    right: 7px !important;
+    height: 70px !important;
+    min-height: 70px !important;
+    padding: 5px 3px !important;
+  }
+
+  .bottom-nav .nav-item {
+    font-size: 9px !important;
+    gap: 2px !important;
+  }
+
+  .bottom-nav .nav-icon {
+    width: 39px !important;
+    height: 39px !important;
+    flex-basis: 39px !important;
+  }
+
+  .bottom-nav .nav-icon svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .bottom-nav .nav-label {
+    font-size: 9px !important;
+  }
+}
