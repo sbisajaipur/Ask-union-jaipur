@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#7b1024">
@@ -23,63 +20,15 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
 .field textarea{min-height:125px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:#9b1d3a;box-shadow:0 0 0 4px #7b102414}
 .btn{border:0;border-radius:12px;padding:11px 15px;font-weight:800;min-height:42px;cursor:pointer}.primary{background:var(--maroon);color:#fff}.light{background:#f1eeec;color:#4b5563}.danger{background:#fff0f0;color:var(--red);border:1px solid #ffd0d0}.edit{background:#fff7e8;color:var(--gold);border:1px solid #f3dfb3}.logout{background:#ffffff1c;color:#fff;border:1px solid #ffffff3b}
 .head{padding:18px;margin-bottom:14px;display:flex;justify-content:space-between;gap:12px;align-items:center}.head h1{margin:0;font-size:23px}.head p{margin:4px 0 0;color:var(--muted);font-size:12px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:14px}.stat{padding:16px 18px}.label{font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.6px}.num{font-size:29px;font-weight:900;color:var(--maroon);margin-top:3px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:14px}.stats-four{grid-template-columns:repeat(4,1fr)}.member-stat{border-top:3px solid var(--maroon)}.stat{padding:16px 18px}.label{font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.6px}.num{font-size:29px;font-weight:900;color:var(--maroon);margin-top:3px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.section{padding:18px}.section h2{font-size:18px;margin:0}.section-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:13px}.section-head span{font-size:11px;color:var(--muted)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 11px}.full{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap}
 .toolbar{display:flex;gap:8px;margin-bottom:11px}.toolbar input{flex:1;border:1px solid var(--line);border-radius:11px;padding:10px 12px}.toolbar select{width:170px;border:1px solid var(--line);border-radius:11px;padding:10px 12px;background:#fff}
 .list{max-height:730px;overflow:auto}.item{border:1px solid var(--line);border-radius:15px;padding:14px;margin:9px 0}.item-top{display:flex;justify-content:space-between;gap:8px}.title{font-weight:850;font-size:15px;line-height:1.35}.badge{background:#f4e7ea;color:var(--maroon);padding:4px 8px;border-radius:99px;font-size:10px;font-weight:800;white-space:nowrap}.meta{font-size:10px;color:var(--muted);margin:6px 0}.details{font-size:13px;color:#4b5563;line-height:1.5;white-space:pre-wrap}.link{display:inline-block;margin-top:7px;color:var(--maroon);font-size:12px;font-weight:800;text-decoration:none}.item-actions{display:flex;gap:7px;margin-top:10px}.item-actions .btn{flex:1;min-height:37px;padding:8px}.empty{text-align:center;padding:25px;color:var(--muted);font-size:13px}.alert{margin-top:10px;padding:10px 12px;border-radius:11px;font-size:12px;font-weight:700}.success{background:#edf9f2;color:#16804b}.error{background:#fff0f0;color:#a61b1b}
-@media(max-width:760px){.container{padding:13px 10px 35px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}.head{align-items:flex-start;flex-direction:column}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.toolbar{flex-direction:column}.toolbar select{width:100%}.section{padding:15px}.topbar{padding:11px}.brand img{width:40px;height:40px}.brand-title{font-size:16px}.logout{font-size:11px;padding:9px 11px}}
+@media(max-width:760px){.container{padding:13px 10px 35px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stats-four{grid-template-columns:1fr 1fr}.head{align-items:flex-start;flex-direction:column}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.toolbar{flex-direction:column}.toolbar select{width:100%}.section{padding:15px}.topbar{padding:11px}.brand img{width:40px;height:40px}.brand-title{font-size:16px}.logout{font-size:11px;padding:9px 11px}}
 @media(max-width:420px){.stats{grid-template-columns:1fr}.stats .stat:last-child{grid-column:auto}}
-
-.pdf-helper{
-  margin-top:8px;
-  padding:11px 12px;
-  border:1px solid #eadfe1;
-  border-radius:12px;
-  background:#fbf7f8;
-}
-.pdf-helper-title{
-  color:var(--maroon);
-  font-size:12px;
-  font-weight:850;
-}
-.pdf-helper-text{
-  margin-top:3px;
-  color:var(--muted);
-  font-size:10px;
-  line-height:1.4;
-}
-.pdf-helper-row{
-  display:flex;
-  gap:7px;
-  margin-top:8px;
-}
-.pdf-helper-row input{
-  flex:1;
-  min-width:0;
-  border:1px solid #d9d5d2;
-  border-radius:10px;
-  padding:9px 10px;
-  font-size:11px;
-}
-.pdf-generate{
-  min-height:38px;
-  padding:8px 11px;
-  white-space:nowrap;
-  font-size:10px;
-}
-.pdf-helper-note{
-  margin-top:6px;
-  color:#777;
-  font-size:9px;
-}
-@media(max-width:760px){
-  .pdf-helper-row{flex-direction:column}
-  .pdf-generate{width:100%}
-}
-
+.member-only-note{font-size:11px;color:#7b1024;margin-top:6px}
 </style>
-
 <style id="github-circular-library">
 .github-pdf-box{margin-top:16px;padding:14px;border:1px solid #ead6dc;border-radius:14px;background:#fff9fa}
 .github-pdf-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
@@ -96,7 +45,6 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
   .github-pdf-btn{padding:8px 9px}
 }
 </style>
-
 </head>
 <body>
 
@@ -107,7 +55,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
     <p style="color:#6b7280">Secure content management panel</p>
     <div class="field"><label>ADMIN EMAIL</label><input id="email" type="email" autocomplete="username" placeholder="Admin email"></div>
     <div class="field"><label>PASSWORD</label><input id="password" type="password" autocomplete="current-password" placeholder="Password" onkeydown="if(event.key==='Enter')login()"></div>
-    <button class="btn primary" style="width:100%" id="loginButton">LOGIN →</button>
+    <button class="btn primary" style="width:100%" onclick="askUnionLogin()">LOGIN →</button>
     <div id="loginMessage"></div>
   </div>
 </div>
@@ -115,43 +63,49 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
 <div id="adminView" class="hidden">
 <header class="topbar"><div class="topbar-inner">
   <div class="brand"><img src="./ask-union-icon-192.png" alt="ASK UNION"><div><div class="brand-title">ASK UNION</div><div class="brand-sub">SBISA UDAIPUR MODULE · ADMIN</div></div></div>
-  <button class="btn logout" id="logoutButton">LOGOUT</button>
+  <button class="btn logout" onclick="logout()">LOGOUT</button>
 </div></header>
 <main class="container">
-  <div class="card head"><div><h1>Content Dashboard</h1><p>Logged in as <b id="adminEmail"></b></p></div><button class="btn light" id="refreshAllButton">↻ REFRESH</button></div>
-  <div class="stats">
+  <div class="card head"><div><h1>Content Dashboard</h1><p>Logged in as <b id="adminEmail"></b></p></div><button class="btn light" onclick="refreshAll()">↻ REFRESH</button></div>
+  <div class="stats stats-four">
     <div class="card stat"><div class="label">Updates / Notices</div><div class="num" id="countUpdates">—</div></div>
     <div class="card stat"><div class="label">Circulars</div><div class="num" id="countCirculars">—</div></div>
     <div class="card stat"><div class="label">Events</div><div class="num" id="countEvents">—</div></div>
+    <div class="card stat member-stat"><div class="label">Members Only</div><div class="num" id="countMemberCirculars">—</div></div>
   </div>
+
+  <section class="card section" style="margin-bottom:14px">
+    <div class="section-head"><h2>Member Management</h2><span>Only Admin can add or deactivate members</span></div>
+    <div class="form-grid">
+      <div class="field"><label>NAME *</label><input id="mName" placeholder="Member name"></div>
+      <div class="field"><label>EMPLOYEE NO. *</label><input id="mEmp" placeholder="Employee No."></div>
+      <div class="field"><label>MEMBERSHIP NO.</label><input id="mMembership" placeholder="Membership No."></div>
+      <div class="field"><label>DESIGNATION</label><input id="mDesignation" placeholder="Designation"></div>
+      <div class="field"><label>BRANCH</label><input id="mBranch" placeholder="Branch"></div>
+      <div class="field"><label>MOBILE</label><input id="mMobile" inputmode="numeric" placeholder="Mobile"></div>
+      <div class="field"><label>INITIAL PASSWORD *</label><input id="mPassword" type="password" minlength="6" placeholder="Minimum 6 characters"></div>
+    </div>
+    <div class="actions"><button class="btn primary" onclick="addMember()">ADD MEMBER</button><button class="btn light" onclick="loadMembers()">↻ REFRESH MEMBERS</button></div>
+    <div id="memberMessage"></div>
+    <div class="toolbar" style="margin-top:12px"><input id="memberSearch" type="search" placeholder="Search members…" oninput="renderMembers()"></div>
+    <div id="memberList" class="list"><div class="empty">No members loaded.</div></div>
+  </section>
   <div class="grid">
     <section class="card section">
-      <div class="section-head"><h2 id="formHeading">Publish Content</h2><span>Appears on public app</span></div>
+      <div class="section-head"><h2 id="formHeading">Publish Content</h2><span>Choose Public or Members Only</span></div>
       <div class="form-grid">
         <div class="field"><label>CONTENT TYPE</label><select id="type"><option value="updates">Update / Notice</option><option value="circulars">Circular</option><option value="events">Event</option></select></div>
+        <div class="field"><label>AUDIENCE</label><select id="audience"><option value="public">PUBLIC — Everyone</option><option value="members">MEMBERS ONLY — Logged-in Members</option></select></div>
         <div class="field"><label>DATE</label><input id="publishDate" type="date"></div>
         <div class="field full"><label>TITLE *</label><input id="title" maxlength="180" placeholder="Enter a clear title"></div>
         <div class="field full"><label>CATEGORY (OPTIONAL)</label><input id="category" maxlength="60" placeholder="Transfer, Pension, Strike, Meeting..."></div>
         <div class="field full"><label>DETAILS</label><textarea id="details" maxlength="5000" placeholder="Enter details"></textarea></div>
-        <div class="field full">
-          <label>PDF / PUBLIC LINK (OPTIONAL)</label>
-          <input id="link" type="url" placeholder="https://askunion.in/your-file.pdf">
-          <div class="pdf-helper">
-            <div class="pdf-helper-title">📄 Quick PDF Link</div>
-            <div class="pdf-helper-text">First upload the PDF to the GitHub repository, then enter only its filename below.</div>
-            <div class="pdf-helper-row">
-              <input id="pdfFilename" type="text" placeholder="Example: circular-15-41.pdf">
-              <button type="button" class="btn light pdf-generate" id="generatePdfButton">GENERATE LINK</button>
-            </div>
-            <div class="pdf-helper-note">Generated link: <b>https://askunion.in/filename.pdf</b></div>
-          </div>
-        </div>
+        <div class="field full"><label>PDF / LINK (OPTIONAL)</label><input id="link" type="text" placeholder="PDF filename.pdf — link will be created automatically"><div style="font-size:11px;color:#6b7280;margin-top:6px">PDF filename डालें (जैसे <b>SBI CARES COMPENDIUM OF STAFF BENEFITS BY SBSC.pdf</b>) — link अपने-आप https://askunion.in/ से बनेगा.</div></div>
       </div>
-
       <div class="github-pdf-box">
         <div class="github-pdf-head">
           <h3>📚 GitHub Circular Library</h3>
-          <button type="button" class="btn light" id="refreshGithubButton">↻ REFRESH</button>
+          <button type="button" class="btn light" onclick="loadGithubPdfs()">↻ REFRESH</button>
         </div>
         <div id="githubPdfStatus" class="github-pdf-status">Loading PDFs from GitHub…</div>
         <div id="githubPdfList" class="github-pdf-list">
@@ -159,12 +113,12 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
         </div>
       </div>
 
-      <div class="actions"><button id="publishButton" class="btn primary" id="publishButton">PUBLISH</button><button id="cancelButton" class="btn light hidden" id="cancelButton">CANCEL EDIT</button></div>
+    <div class="actions"><button id="publishButton" class="btn primary" onclick="publish()">PUBLISH</button><button id="cancelButton" class="btn light hidden" onclick="cancelEdit()">CANCEL EDIT</button></div>
       <div id="message"></div>
     </section>
     <section class="card section">
       <div class="section-head"><h2>Published Content</h2><span id="resultCount"></span></div>
-      <div class="toolbar"><input id="searchBox" type="search" placeholder="Search title, details or category…" oninput="renderList()"><select id="manageType" onchange="loadContent()"><option value="updates">Updates / Notices</option><option value="circulars">Circulars</option><option value="events">Events</option></select></div>
+      <div class="toolbar"><input id="searchBox" type="search" placeholder="Search title, details or category…" oninput="renderList()"><select id="manageType" onchange="loadContent()"><option value="updates">Updates / Notices</option><option value="circulars">Circulars</option><option value="events">Events</option><option value="memberCirculars">Members Only</option></select></div>
       <div id="contentList" class="list"><div class="empty">Loading…</div></div>
     </section>
   </div>
@@ -175,15 +129,10 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",
-  authDomain: "ask-union-jaipur-circle.firebaseapp.com",
-  projectId: "ask-union-jaipur-circle",
-  storageBucket: "ask-union-jaipur-circle.firebasestorage.app",
-  messagingSenderId: "584327754977",
-  appId: "1:584327754977:web:7164a85c007165743ef3a"
-};
+const firebaseConfig={apiKey:"AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",authDomain:"ask-union-jaipur-circle.firebaseapp.com",projectId:"ask-union-jaipur-circle",storageBucket:"ask-union-jaipur-circle.firebasestorage.app",messagingSenderId:"584327754977",appId:"1:584327754977:web:7164a85c007165743ef3a"};
 firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();
+// Require a fresh admin login whenever admin.html is opened or reloaded.
+auth.setPersistence(firebase.auth.Auth.Persistence.NONE).then(function(){ return auth.signOut(); }).catch(function(e){ console.warn("Admin auth reset:",e); });
 let editingId=null,editingType=null,currentItems=[],busy=false;
 const $=id=>document.getElementById(id);
 function escapeHtml(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
@@ -192,25 +141,28 @@ function today(){return new Date().toISOString().slice(0,10)}
 function formatDate(v){if(!v)return"";const d=new Date(String(v).length===10?v+"T00:00:00":v);return Number.isNaN(d.getTime())?String(v):d.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}
 function msg(t,type="success",target="message"){$(target).innerHTML=t?`<div class="alert ${type}">${escapeHtml(t)}</div>`:""}
 async function getItems(type){const s=await db.collection(type).get(),a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));return a.sort((x,y)=>String(y.date||y.createdAt||"").localeCompare(String(x.date||x.createdAt||"")))}
-function login(){const e=$("email").value.trim(),p=$("password").value;if(!e||!p){msg("Enter email and password.","error","loginMessage");return}auth.signInWithEmailAndPassword(e,p).catch(error=>{console.error("ASK UNION LOGIN ERROR:",error); const code=error&&error.code?error.code:"unknown"; const detail=error&&error.message?error.message:"Unknown Firebase error"; msg("Login failed: "+code+" — "+detail,"error","loginMessage")})}
+function askUnionLogin(){const e=$("email").value.trim(),p=$("password").value;if(!e||!p){msg("Enter email and password.","error","loginMessage");return}auth.signInWithEmailAndPassword(e,p).catch(error=>{console.error("ASK UNION LOGIN ERROR:",error);const code=error&&error.code?error.code:"unknown";const detail=error&&error.message?error.message:"Unknown Firebase error";msg("Login failed: "+code+" — "+detail,"error","loginMessage")})}
+
+// Compatibility: keep both login names available for older cached markup.
+window.login = askUnionLogin;
+window.askUnionLogin = askUnionLogin;
+window.logout = logout;
 function logout(){auth.signOut()}
-auth.onAuthStateChanged(u=>{if(u){$("loginView").classList.add("hidden");$("adminView").classList.remove("hidden");$("adminEmail").textContent=u.email||"";resetForm();refreshAll();loadGithubPdfs()}else{$("loginView").classList.remove("hidden");$("adminView").classList.add("hidden")}})
+auth.onAuthStateChanged(u=>{if(u){$("loginView").classList.add("hidden");$("adminView").classList.remove("hidden");$("adminEmail").textContent=u.email||"";resetForm();refreshAll()}else{$("loginView").classList.remove("hidden");$("adminView").classList.add("hidden")}})
 async function loadContent(){const t=$("manageType").value;$("contentList").innerHTML='<div class="empty">Loading…</div>';try{currentItems=await getItems(t);renderList()}catch(e){console.error(e);$("contentList").innerHTML='<div class="empty">Unable to load content. Please refresh.</div>'}}
-function renderList(){const q=$("searchBox").value.trim().toLowerCase(),a=currentItems.filter(x=>[x.title,x.details,x.category,x.link].some(v=>String(v||"").toLowerCase().includes(q)));$("resultCount").textContent=a.length+" item"+(a.length===1?"":"s");if(!a.length){$("contentList").innerHTML='<div class="empty">No matching content found.</div>';return}$("contentList").innerHTML=a.map(x=>{const u=safeUrl(x.link||"");return`<article class="item"><div class="item-top"><div class="title">${escapeHtml(x.title||"Untitled")}</div>${x.category?`<span class="badge">${escapeHtml(x.category)}</span>`:""}</div><div class="meta">📅 ${escapeHtml(formatDate(x.date))}</div>${x.details?`<div class="details">${escapeHtml(x.details)}</div>`:""}${u?`<a class="link" href="${escapeHtml(u)}" target="_blank" rel="noopener">📄 Open PDF / Link →</a>`:""}<div class="item-actions"><button class="btn edit edit-content-btn" data-id="${escapeHtml(x.id)}">EDIT</button><button class="btn danger delete-content-btn" data-id="${escapeHtml(x.id)}">DELETE</button></div></article>`}).join("")}
-async function refreshAll(){try{const[u,c,e]=await Promise.all([getItems("updates"),getItems("circulars"),getItems("events")]);$("countUpdates").textContent=u.length;$("countCirculars").textContent=c.length;$("countEvents").textContent=e.length;const t=$("manageType").value;currentItems=t==="updates"?u:t==="circulars"?c:e;renderList()}catch(e){console.error(e);loadContent()}}
-async function publish(){if(busy)return;const t=$("type").value,title=$("title").value.trim(),details=$("details").value.trim(),link=$("link").value.trim(),category=$("category").value.trim(),date=$("publishDate").value||today();if(!title){msg("Please enter a title.","error");$("title").focus();return}if(link&&!safeUrl(link)){msg("Please enter a valid http/https link.","error");$("link").focus();return}if(editingId&&t!==editingType){msg("Content type cannot be changed while editing.","error");return}busy=true;$("publishButton").disabled=true;try{const d={title,details,link,category,date};if(editingId){d.updatedAt=new Date().toISOString();await db.collection(editingType).doc(editingId).update(d);msg("Updated successfully.")}else{d.createdAt=new Date().toISOString();d.createdBy=auth.currentUser?.email||"";await db.collection(t).add(d);msg("Published successfully.")}resetForm();await refreshAll()}catch(e){console.error(e);msg("Unable to save: "+e.message,"error")}finally{busy=false;$("publishButton").disabled=false}}
-function editContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x)return;editingId=id;editingType=t;$("type").value=t;$("type").disabled=true;$("title").value=x.title||"";$("details").value=x.details||"";$("link").value=x.link||"";$("category").value=x.category||"";$("publishDate").value=/^\d{4}-\d{2}-\d{2}$/.test(String(x.date||""))?x.date:today();$("formHeading").textContent="Edit Content";$("publishButton").textContent="UPDATE";$("cancelButton").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"})}
+function renderList(){const q=$("searchBox").value.trim().toLowerCase(),a=currentItems.filter(x=>[x.title,x.details,x.category,x.link].some(v=>String(v||"").toLowerCase().includes(q)));$("resultCount").textContent=a.length+" item"+(a.length===1?"":"s");if(!a.length){$("contentList").innerHTML='<div class="empty">No matching content found.</div>';return}$("contentList").innerHTML=a.map(x=>{const u=safeUrl(x.link||"");const member=$("manageType").value==="memberCirculars";return`<article class="item"><div class="item-top"><div class="title">${escapeHtml(x.title||"Untitled")}</div>${member?'<span class="badge">MEMBERS ONLY</span>':(x.category?`<span class="badge">${escapeHtml(x.category)}</span>`:"")}</div><div class="meta">📅 ${escapeHtml(formatDate(x.date))}${x.contentType?` · ${escapeHtml(x.contentType==="circulars"?"Circular":"Update / Notice")}`:""}</div>${x.details?`<div class="details">${escapeHtml(x.details)}</div>`:""}${u?`<a class="link" href="${escapeHtml(u)}" target="_blank" rel="noopener">📄 Open PDF / Link →</a>`:""}<div class="item-actions"><button class="btn edit" onclick="editContent('${escapeHtml(x.id)}')">EDIT</button><button class="btn danger" onclick="deleteContent('${escapeHtml(x.id)}')">DELETE</button></div></article>`}).join("")}
+async function refreshAll(){try{const[u,c,e,m]=await Promise.all([getItems("updates"),getItems("circulars"),getItems("events"),getItems("memberCirculars")]);loadMembers();$("countUpdates").textContent=u.length;$("countCirculars").textContent=c.length;$("countEvents").textContent=e.length;$("countMemberCirculars").textContent=m.length;const t=$("manageType").value;currentItems=t==="updates"?u:t==="circulars"?c:t==="events"?e:m;renderList();loadGithubPdfs()}catch(e){console.error(e);loadContent()}}
+function makePdfLink(value){const v=String(value||"").trim();if(!v)return"";if(/^https?:\/\//i.test(v))return v;const clean=v.replace(/^\.\//,"").replace(/^\//,"");return "https://askunion.in/"+clean.split("/").map(part=>encodeURIComponent(part)).join("/")}
+let memberItems=[];let memberApp=null,memberAuth=null;try{memberApp=firebase.initializeApp(firebaseConfig,'memberCreator');memberAuth=memberApp.auth();memberAuth.setPersistence(firebase.auth.Auth.Persistence.NONE)}catch(e){console.warn('Member creator init:',e)}
+function memberEmail(emp){const clean=String(emp||'').replace(/[^a-zA-Z0-9]/g,'').toLowerCase();return 'emp'+clean+'@members.askunion.in'}
+async function addMember(){const name=$('mName').value.trim(),emp=$('mEmp').value.trim(),membership=$('mMembership').value.trim(),designation=$('mDesignation').value.trim(),branch=$('mBranch').value.trim(),mobile=$('mMobile').value.trim(),password=$('mPassword').value;if(!name||!emp||!password){msg('Name, Employee No. and password are required.','error','memberMessage');return}if(password.length<6){msg('Password must be at least 6 characters.','error','memberMessage');return}if(!memberAuth){msg('Member account system is not available.','error','memberMessage');return}try{const cred=await memberAuth.createUserWithEmailAndPassword(memberEmail(emp),password);await db.collection('members').doc(cred.user.uid).set({name,employeeNo:emp,membershipNo:membership,designation,branch,mobile,active:true,createdAt:new Date().toISOString(),createdBy:auth.currentUser?.email||''});await memberAuth.signOut();['mName','mEmp','mMembership','mDesignation','mBranch','mMobile','mPassword'].forEach(id=>$(id).value='');msg('Member added successfully. Login ID: '+emp,'success','memberMessage');loadMembers()}catch(e){console.error(e);msg(e.code==='auth/email-already-in-use'?'This Employee No. already has a member account.':('Unable to add member: '+e.message),'error','memberMessage')}}
+async function loadMembers(){try{const s=await db.collection('members').get();memberItems=[];s.forEach(d=>memberItems.push({id:d.id,...d.data()}));memberItems.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));renderMembers()}catch(e){console.error(e);$('memberList').innerHTML='<div class="empty">Unable to load members.</div>'}}
+function renderMembers(){const q=($('memberSearch')?.value||'').trim().toLowerCase(),a=memberItems.filter(x=>[x.name,x.employeeNo,x.membershipNo,x.branch,x.designation].some(v=>String(v||'').toLowerCase().includes(q)));if(!a.length){$('memberList').innerHTML='<div class="empty">No members found.</div>';return}$('memberList').innerHTML=a.map(x=>`<article class="item"><div class="item-top"><div class="title">${escapeHtml(x.name||'Unnamed')}</div><span class="badge">${x.active===true?'ACTIVE':'INACTIVE'}</span></div><div class="meta">Employee: ${escapeHtml(x.employeeNo||'—')} · Membership: ${escapeHtml(x.membershipNo||'—')}</div><div class="details">${escapeHtml(x.designation||'')} ${x.branch?'· '+escapeHtml(x.branch):''}${x.mobile?' · '+escapeHtml(x.mobile):''}</div><div class="item-actions"><button class="btn ${x.active===true?'danger':'edit'}" onclick="toggleMember('${x.id}',${x.active===true})">${x.active===true?'DEACTIVATE':'ACTIVATE'}</button></div></article>`).join('')}
+async function toggleMember(id,current){try{await db.collection('members').doc(id).update({active:!current,updatedAt:new Date().toISOString()});loadMembers()}catch(e){msg('Unable to change member status: '+e.message,'error','memberMessage')}}
+async function publish(){if(busy)return;const t=$("type").value,audience=$("audience").value,title=$("title").value.trim(),rawLink=$("link").value.trim(),details=$("details").value.trim(),category=$("category").value.trim(),date=$("publishDate").value||today();if(!title){msg("Please enter a title.","error");$("title").focus();return}if(audience==="members"&&t==="events"){msg("Members Only is available for Updates and Circulars, not Events.","error");return}const collection=editingId?editingType:(audience==="members"?"memberCirculars":t);const link=makePdfLink(rawLink);if(rawLink&&!safeUrl(link)){msg("Please enter a valid PDF filename or http/https link.","error");$("link").focus();return}busy=true;$("publishButton").disabled=true;try{const d={title,details,link,category,date};if(collection==="memberCirculars"){d.audience="members";d.contentType=t}if(editingId){d.updatedAt=new Date().toISOString();await db.collection(collection).doc(editingId).update(d);msg("Updated successfully.")}else{d.createdAt=new Date().toISOString();d.createdBy=auth.currentUser?.email||"";await db.collection(collection).add(d);msg(audience==="members"?"Members Only content published successfully.":"Published successfully.")}resetForm();await refreshAll()}catch(e){console.error(e);msg("Unable to save: "+e.message,"error")}finally{busy=false;$("publishButton").disabled=false}}
+function editContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x)return;editingId=id;editingType=t;$("type").value=x.contentType||t;$("type").disabled=t==="memberCirculars";$("audience").value=t==="memberCirculars"?"members":"public";$("audience").disabled=t==="memberCirculars";$("title").value=x.title||"";$("details").value=x.details||"";$("link").value=x.link||"";$("category").value=x.category||"";$("publishDate").value=/^\d{4}-\d{2}-\d{2}$/.test(String(x.date||""))?x.date:today();$("formHeading").textContent=t==="memberCirculars"?"Edit Members Only Content":"Edit Content";$("publishButton").textContent="UPDATE";$("cancelButton").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"})}
 async function deleteContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x||!confirm(`Delete “${x.title||"this item"}”? This cannot be undone.`))return;try{await db.collection(t).doc(id).delete();msg("Deleted successfully.");await refreshAll()}catch(e){msg("Delete failed: "+e.message,"error")}}
 function cancelEdit(){resetForm()}
-function generatePdfLink(){
-  const raw=$("pdfFilename").value.trim();
-  if(!raw){msg("Enter the PDF filename first.","error");$("pdfFilename").focus();return}
-  const filename=raw.replace(/^https?:\/\/[^/]+\//,"").replace(/^\/+/ ,"");
-  const encoded=filename.split("/").map(part=>encodeURIComponent(part)).join("/");
-  $("link").value="https://askunion.in/"+encoded;
-  msg("PDF link generated. Check it, then publish.","success");
-}
-
 const GITHUB_OWNER = "sbisajaipur";
 const GITHUB_REPO = "Ask-union-jaipur";
 const GITHUB_BRANCH = "main";
@@ -261,7 +213,8 @@ async function loadGithubPdfs(){
       return `
         <div class="github-pdf-item">
           <div class="github-pdf-name">📄 ${escapeHtml(file.path)}</div>
-          <button type="button" class="github-pdf-btn" data-path="${escapeHtml(file.path)}" data-title="${escapeHtml(title)}" data-url="${escapeHtml(url)}">
+          <button type="button" class="github-pdf-btn"
+            onclick='useGithubPdf(${JSON.stringify(file.path)},${JSON.stringify(title)},${JSON.stringify(url)})'>
             ADD TO CIRCULAR
           </button>
         </div>`;
@@ -285,40 +238,15 @@ function useGithubPdf(path,title,url){
   $("title").focus();
 }
 
-function resetForm(){editingId=null;editingType=null;$("type").disabled=false;$("formHeading").textContent="Publish Content";$("publishButton").textContent="PUBLISH";$("cancelButton").classList.add("hidden");$("title").value="";$("details").value="";$("link").value="";$("category").value="";$("publishDate").value=today();if($("pdfFilename"))$("pdfFilename").value=""}
+function resetForm(){editingId=null;editingType=null;$("type").disabled=false;$("audience").disabled=false;$("audience").value="public";$("formHeading").textContent="Publish Content";$("publishButton").textContent="PUBLISH";$("cancelButton").classList.add("hidden");$("title").value="";$("details").value="";$("link").value="";$("category").value="";$("publishDate").value=today()}
 $("publishDate").value=today();
 
-// Event wiring: no inline onclick handlers, so admin actions remain available globally.
-document.addEventListener("DOMContentLoaded", () => {
-  $("loginButton")?.addEventListener("click", login);
-  $("logoutButton")?.addEventListener("click", logout);
-  $("refreshAllButton")?.addEventListener("click", refreshAll);
-  $("generatePdfButton")?.addEventListener("click", generatePdfLink);
-  $("refreshGithubButton")?.addEventListener("click", loadGithubPdfs);
-  $("publishButton")?.addEventListener("click", publish);
-  $("cancelButton")?.addEventListener("click", cancelEdit);
+// Robust login button binding (does not depend on inline onclick).
+document.addEventListener("DOMContentLoaded",function(){
+  const loginBtn=document.querySelector('#loginView button');
+  if(loginBtn){loginBtn.onclick=function(e){e.preventDefault();askUnionLogin();};}
+  const pw=document.getElementById('password');
+  if(pw) pw.addEventListener('keydown',function(e){if(e.key==='Enter') askUnionLogin();});
 });
-
-document.addEventListener("click", (event) => {
-  const editBtn = event.target.closest(".edit-content-btn");
-  if(editBtn){ editContent(editBtn.dataset.id); return; }
-  const deleteBtn = event.target.closest(".delete-content-btn");
-  if(deleteBtn){ deleteContent(deleteBtn.dataset.id); return; }
-  const pdfBtn = event.target.closest(".github-pdf-btn");
-  if(pdfBtn && pdfBtn.dataset.path){
-    useGithubPdf(pdfBtn.dataset.path, pdfBtn.dataset.title, pdfBtn.dataset.url);
-  }
-});
-
-// Explicit window exports for compatibility with any older cached markup.
-window.login = login;
-window.logout = logout;
-window.refreshAll = refreshAll;
-window.generatePdfLink = generatePdfLink;
-window.loadGithubPdfs = loadGithubPdfs;
-window.publish = publish;
-window.cancelEdit = cancelEdit;
-window.editContent = editContent;
-window.deleteContent = deleteContent;
 </script>
 </body></html>
