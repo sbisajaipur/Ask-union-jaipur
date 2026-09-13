@@ -2376,3 +2376,148 @@ header {
     font-size: 13px !important;
   }
 }
+
+
+/* =========================================================
+   ASK UNION — MOBILE UX POLISH V4
+   Documents page: tabs + document cards.
+   Existing Udaipur layout/design preserved.
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  /* Documents filter tabs — horizontal, thumb-friendly scrolling */
+  .document-tabs,
+  .filter-tabs,
+  .documents-tabs,
+  .doc-tabs {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 7px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 3px 2px 7px !important;
+    margin-bottom: 12px !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .document-tabs::-webkit-scrollbar,
+  .filter-tabs::-webkit-scrollbar,
+  .documents-tabs::-webkit-scrollbar,
+  .doc-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .document-tabs > *,
+  .filter-tabs > *,
+  .documents-tabs > *,
+  .doc-tabs > * {
+    flex: 0 0 auto !important;
+    min-height: 40px !important;
+    white-space: nowrap !important;
+  }
+
+  /* Generic document/filter buttons */
+  .document-tabs button,
+  .filter-tabs button,
+  .documents-tabs button,
+  .doc-tabs button,
+  .document-tab,
+  .filter-tab,
+  .doc-tab {
+    min-height: 40px !important;
+    padding: 8px 13px !important;
+    border-radius: 20px !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  /* Document cards */
+  .document-card,
+  .doc-card,
+  .form-card,
+  .document-item {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+    padding: 14px !important;
+    margin-bottom: 10px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  .document-card h3,
+  .doc-card h3,
+  .form-card h3,
+  .document-item h3 {
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .document-card p,
+  .doc-card p,
+  .form-card p,
+  .document-item p {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .document-card a,
+  .doc-card a,
+  .form-card a,
+  .document-item a,
+  .document-card button,
+  .doc-card button,
+  .form-card button,
+  .document-item button {
+    min-height: 38px !important;
+    padding: 8px 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Prevent mobile document grids from becoming cramped */
+  .documents-grid,
+  .document-grid,
+  .docs-grid,
+  .forms-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px !important;
+  }
+}
+
+@media (max-width: 380px) {
+
+  .document-tabs,
+  .filter-tabs,
+  .documents-tabs,
+  .doc-tabs {
+    gap: 5px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .document-tabs button,
+  .filter-tabs button,
+  .documents-tabs button,
+  .doc-tabs button,
+  .document-tab,
+  .filter-tab,
+  .doc-tab {
+    min-height: 38px !important;
+    padding: 7px 11px !important;
+    font-size: 10px !important;
+  }
+
+  .document-card,
+  .doc-card,
+  .form-card,
+  .document-item {
+    padding: 12px !important;
+    border-radius: 15px !important;
+  }
+}
