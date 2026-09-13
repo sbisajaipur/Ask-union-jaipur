@@ -585,6 +585,27 @@
 }
 </style>
 
+
+<style id="ask-union-final-member-admin-fix">
+/* Admin access remains visible in the main header. */
+.admin-header-link{
+  display:inline-flex;align-items:center;justify-content:center;gap:5px;
+  padding:7px 11px;border:1px solid rgba(123,16,36,.25);
+  border-radius:9px;background:#fff;color:#7b1024;font-size:11px;
+  font-weight:700;text-decoration:none;white-space:nowrap;
+}
+.admin-header-link:hover{background:#f8e8ed}
+/* Member login: no Staff SSO. */
+.member-login-card .login-or,.member-login-card .staff-sso-btn{display:none !important}
+@media(max-width:700px){
+ .admin-header-link{padding:6px 8px;font-size:9px;border-radius:8px}
+ .dashboard-login-bar .compact-login-v7{grid-template-columns:1fr 1fr !important;height:auto !important;max-height:none !important}
+ .dashboard-login-bar .compact-login-v7 > .login-brand-v7,
+ .dashboard-login-bar .compact-login-v7 .login-remember-v7,
+ .dashboard-login-bar .compact-login-v7 .login-btn-v7,
+ .dashboard-login-bar .compact-login-v7 .join-member{grid-column:1 / -1 !important}
+}
+</style>
 </head>
 
 
@@ -627,6 +648,10 @@
       🔔
       <span class="notification-badge">3</span>
     </button>
+
+    <a href="./admin.html" class="admin-header-link" aria-label="Admin Login">
+      🔐 Admin Login
+    </a>
 
     <div class="online">
       <span>●</span> ONLINE
@@ -755,7 +780,11 @@
       <input
         type="text"
         id="memberNo"
+        name="member-employee-number"
         placeholder="Membership No. / Emp No."
+        autocomplete="off"
+        readonly
+        onfocus="this.removeAttribute('readonly')"
       >
     </div>
 
@@ -764,7 +793,11 @@
       <input
         type="password"
         id="memberPassword"
+        name="member-password"
         placeholder="Password"
+        autocomplete="new-password"
+        readonly
+        onfocus="this.removeAttribute('readonly')"
       >
       <button onclick="togglePassword()">👁</button>
     </div>
@@ -784,19 +817,8 @@
       Login&nbsp; →
     </button>
 
-    <div class="login-or">
-      <span></span>
-      OR
-      <span></span>
-    </div>
-
-    <button class="staff-sso-btn" onclick="staffSSO()">
-      🏦 Login with Staff SSO
-    </button>
-
     <p class="join-member">
-      Not a member?
-      <a href="#">Join SBISA Today</a>
+      Member access is available only for accounts added by Union Admin.
     </p>
 
   </div>
@@ -1175,8 +1197,9 @@ async function memberLogin(){
   const password=document.getElementById('memberPassword')?.value||'';
   const remember=!!document.getElementById('rememberMe')?.checked;
   if(!memberNo||!password){alert('Please enter Membership No. / Employee No. and Password.');return;}
+  if(memberNo.includes('@')){alert('Please enter your Membership No. / Employee No., not an email address.');return;}
   const cleanNo=memberNo.replace(/[^a-zA-Z0-9]/g,'').toLowerCase();
-  const email=memberNo.includes('@')?memberNo.toLowerCase():'emp'+cleanNo+'@members.askunion.in';
+  const email='emp'+cleanNo+'@members.askunion.in';
   try{
     await firebase.auth().setPersistence(remember?firebase.auth.Auth.Persistence.LOCAL:firebase.auth.Auth.Persistence.SESSION);
     const cred=await firebase.auth().signInWithEmailAndPassword(email,password);
@@ -1189,7 +1212,6 @@ async function memberLogin(){
 }
 function togglePassword(){const x=document.getElementById('memberPassword');if(x)x.type=x.type==='password'?'text':'password';}
 function forgotPassword(e){if(e)e.preventDefault();alert('For password reset, please contact the Union Admin.');}
-function staffSSO(){alert('Staff SSO is not enabled. Please use your Member Login credentials.');}
 </script>
 <!-- ================================================== -->
 <!-- APP.JS -->
