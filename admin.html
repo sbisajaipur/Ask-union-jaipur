@@ -205,7 +205,7 @@ function cancelEdit(){resetForm()}
 function generatePdfLink(){
   const raw=$("pdfFilename").value.trim();
   if(!raw){msg("Enter the PDF filename first.","error");$("pdfFilename").focus();return}
-  const filename=raw.replace(/^https?:\\/\\/[^/]+\\//,"").replace(/^\\/+/,"");
+  const filename=raw.replace(/^https?:\/\/[^/]+\//,"").replace(/^\/+/ ,"");
   const encoded=filename.split("/").map(part=>encodeURIComponent(part)).join("/");
   $("link").value="https://askunion.in/"+encoded;
   msg("PDF link generated. Check it, then publish.","success");
