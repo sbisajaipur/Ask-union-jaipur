@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#7b1024">
@@ -104,7 +107,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
     <p style="color:#6b7280">Secure content management panel</p>
     <div class="field"><label>ADMIN EMAIL</label><input id="email" type="email" autocomplete="username" placeholder="Admin email"></div>
     <div class="field"><label>PASSWORD</label><input id="password" type="password" autocomplete="current-password" placeholder="Password" onkeydown="if(event.key==='Enter')login()"></div>
-    <button class="btn primary" style="width:100%" onclick="login()">LOGIN →</button>
+    <button class="btn primary" style="width:100%" id="loginButton">LOGIN →</button>
     <div id="loginMessage"></div>
   </div>
 </div>
@@ -112,10 +115,10 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
 <div id="adminView" class="hidden">
 <header class="topbar"><div class="topbar-inner">
   <div class="brand"><img src="./ask-union-icon-192.png" alt="ASK UNION"><div><div class="brand-title">ASK UNION</div><div class="brand-sub">SBISA UDAIPUR MODULE · ADMIN</div></div></div>
-  <button class="btn logout" onclick="logout()">LOGOUT</button>
+  <button class="btn logout" id="logoutButton">LOGOUT</button>
 </div></header>
 <main class="container">
-  <div class="card head"><div><h1>Content Dashboard</h1><p>Logged in as <b id="adminEmail"></b></p></div><button class="btn light" onclick="refreshAll()">↻ REFRESH</button></div>
+  <div class="card head"><div><h1>Content Dashboard</h1><p>Logged in as <b id="adminEmail"></b></p></div><button class="btn light" id="refreshAllButton">↻ REFRESH</button></div>
   <div class="stats">
     <div class="card stat"><div class="label">Updates / Notices</div><div class="num" id="countUpdates">—</div></div>
     <div class="card stat"><div class="label">Circulars</div><div class="num" id="countCirculars">—</div></div>
@@ -138,7 +141,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
             <div class="pdf-helper-text">First upload the PDF to the GitHub repository, then enter only its filename below.</div>
             <div class="pdf-helper-row">
               <input id="pdfFilename" type="text" placeholder="Example: circular-15-41.pdf">
-              <button type="button" class="btn light pdf-generate" onclick="generatePdfLink()">GENERATE LINK</button>
+              <button type="button" class="btn light pdf-generate" id="generatePdfButton">GENERATE LINK</button>
             </div>
             <div class="pdf-helper-note">Generated link: <b>https://askunion.in/filename.pdf</b></div>
           </div>
@@ -148,7 +151,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
       <div class="github-pdf-box">
         <div class="github-pdf-head">
           <h3>📚 GitHub Circular Library</h3>
-          <button type="button" class="btn light" onclick="loadGithubPdfs()">↻ REFRESH</button>
+          <button type="button" class="btn light" id="refreshGithubButton">↻ REFRESH</button>
         </div>
         <div id="githubPdfStatus" class="github-pdf-status">Loading PDFs from GitHub…</div>
         <div id="githubPdfList" class="github-pdf-list">
@@ -156,7 +159,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
         </div>
       </div>
 
-      <div class="actions"><button id="publishButton" class="btn primary" onclick="publish()">PUBLISH</button><button id="cancelButton" class="btn light hidden" onclick="cancelEdit()">CANCEL EDIT</button></div>
+      <div class="actions"><button id="publishButton" class="btn primary" id="publishButton">PUBLISH</button><button id="cancelButton" class="btn light hidden" id="cancelButton">CANCEL EDIT</button></div>
       <div id="message"></div>
     </section>
     <section class="card section">
@@ -173,7 +176,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script>
 const firebaseConfig = {
-  apiKey: "AIzaSyAzMEREwPKnifSIrB5cVaC8-FbVIa5zF0",
+  apiKey: "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",
   authDomain: "ask-union-jaipur-circle.firebaseapp.com",
   projectId: "ask-union-jaipur-circle",
   storageBucket: "ask-union-jaipur-circle.firebasestorage.app",
@@ -193,7 +196,7 @@ function login(){const e=$("email").value.trim(),p=$("password").value;if(!e||!p
 function logout(){auth.signOut()}
 auth.onAuthStateChanged(u=>{if(u){$("loginView").classList.add("hidden");$("adminView").classList.remove("hidden");$("adminEmail").textContent=u.email||"";resetForm();refreshAll();loadGithubPdfs()}else{$("loginView").classList.remove("hidden");$("adminView").classList.add("hidden")}})
 async function loadContent(){const t=$("manageType").value;$("contentList").innerHTML='<div class="empty">Loading…</div>';try{currentItems=await getItems(t);renderList()}catch(e){console.error(e);$("contentList").innerHTML='<div class="empty">Unable to load content. Please refresh.</div>'}}
-function renderList(){const q=$("searchBox").value.trim().toLowerCase(),a=currentItems.filter(x=>[x.title,x.details,x.category,x.link].some(v=>String(v||"").toLowerCase().includes(q)));$("resultCount").textContent=a.length+" item"+(a.length===1?"":"s");if(!a.length){$("contentList").innerHTML='<div class="empty">No matching content found.</div>';return}$("contentList").innerHTML=a.map(x=>{const u=safeUrl(x.link||"");return`<article class="item"><div class="item-top"><div class="title">${escapeHtml(x.title||"Untitled")}</div>${x.category?`<span class="badge">${escapeHtml(x.category)}</span>`:""}</div><div class="meta">📅 ${escapeHtml(formatDate(x.date))}</div>${x.details?`<div class="details">${escapeHtml(x.details)}</div>`:""}${u?`<a class="link" href="${escapeHtml(u)}" target="_blank" rel="noopener">📄 Open PDF / Link →</a>`:""}<div class="item-actions"><button class="btn edit" onclick="editContent('${escapeHtml(x.id)}')">EDIT</button><button class="btn danger" onclick="deleteContent('${escapeHtml(x.id)}')">DELETE</button></div></article>`}).join("")}
+function renderList(){const q=$("searchBox").value.trim().toLowerCase(),a=currentItems.filter(x=>[x.title,x.details,x.category,x.link].some(v=>String(v||"").toLowerCase().includes(q)));$("resultCount").textContent=a.length+" item"+(a.length===1?"":"s");if(!a.length){$("contentList").innerHTML='<div class="empty">No matching content found.</div>';return}$("contentList").innerHTML=a.map(x=>{const u=safeUrl(x.link||"");return`<article class="item"><div class="item-top"><div class="title">${escapeHtml(x.title||"Untitled")}</div>${x.category?`<span class="badge">${escapeHtml(x.category)}</span>`:""}</div><div class="meta">📅 ${escapeHtml(formatDate(x.date))}</div>${x.details?`<div class="details">${escapeHtml(x.details)}</div>`:""}${u?`<a class="link" href="${escapeHtml(u)}" target="_blank" rel="noopener">📄 Open PDF / Link →</a>`:""}<div class="item-actions"><button class="btn edit edit-content-btn" data-id="${escapeHtml(x.id)}">EDIT</button><button class="btn danger delete-content-btn" data-id="${escapeHtml(x.id)}">DELETE</button></div></article>`}).join("")}
 async function refreshAll(){try{const[u,c,e]=await Promise.all([getItems("updates"),getItems("circulars"),getItems("events")]);$("countUpdates").textContent=u.length;$("countCirculars").textContent=c.length;$("countEvents").textContent=e.length;const t=$("manageType").value;currentItems=t==="updates"?u:t==="circulars"?c:e;renderList()}catch(e){console.error(e);loadContent()}}
 async function publish(){if(busy)return;const t=$("type").value,title=$("title").value.trim(),details=$("details").value.trim(),link=$("link").value.trim(),category=$("category").value.trim(),date=$("publishDate").value||today();if(!title){msg("Please enter a title.","error");$("title").focus();return}if(link&&!safeUrl(link)){msg("Please enter a valid http/https link.","error");$("link").focus();return}if(editingId&&t!==editingType){msg("Content type cannot be changed while editing.","error");return}busy=true;$("publishButton").disabled=true;try{const d={title,details,link,category,date};if(editingId){d.updatedAt=new Date().toISOString();await db.collection(editingType).doc(editingId).update(d);msg("Updated successfully.")}else{d.createdAt=new Date().toISOString();d.createdBy=auth.currentUser?.email||"";await db.collection(t).add(d);msg("Published successfully.")}resetForm();await refreshAll()}catch(e){console.error(e);msg("Unable to save: "+e.message,"error")}finally{busy=false;$("publishButton").disabled=false}}
 function editContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x)return;editingId=id;editingType=t;$("type").value=t;$("type").disabled=true;$("title").value=x.title||"";$("details").value=x.details||"";$("link").value=x.link||"";$("category").value=x.category||"";$("publishDate").value=/^\d{4}-\d{2}-\d{2}$/.test(String(x.date||""))?x.date:today();$("formHeading").textContent="Edit Content";$("publishButton").textContent="UPDATE";$("cancelButton").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"})}
@@ -258,8 +261,7 @@ async function loadGithubPdfs(){
       return `
         <div class="github-pdf-item">
           <div class="github-pdf-name">📄 ${escapeHtml(file.path)}</div>
-          <button type="button" class="github-pdf-btn"
-            onclick='useGithubPdf(${JSON.stringify(file.path)},${JSON.stringify(title)},${JSON.stringify(url)})'>
+          <button type="button" class="github-pdf-btn" data-path="${escapeHtml(file.path)}" data-title="${escapeHtml(title)}" data-url="${escapeHtml(url)}">
             ADD TO CIRCULAR
           </button>
         </div>`;
@@ -285,5 +287,38 @@ function useGithubPdf(path,title,url){
 
 function resetForm(){editingId=null;editingType=null;$("type").disabled=false;$("formHeading").textContent="Publish Content";$("publishButton").textContent="PUBLISH";$("cancelButton").classList.add("hidden");$("title").value="";$("details").value="";$("link").value="";$("category").value="";$("publishDate").value=today();if($("pdfFilename"))$("pdfFilename").value=""}
 $("publishDate").value=today();
+
+// Event wiring: no inline onclick handlers, so admin actions remain available globally.
+document.addEventListener("DOMContentLoaded", () => {
+  $("loginButton")?.addEventListener("click", login);
+  $("logoutButton")?.addEventListener("click", logout);
+  $("refreshAllButton")?.addEventListener("click", refreshAll);
+  $("generatePdfButton")?.addEventListener("click", generatePdfLink);
+  $("refreshGithubButton")?.addEventListener("click", loadGithubPdfs);
+  $("publishButton")?.addEventListener("click", publish);
+  $("cancelButton")?.addEventListener("click", cancelEdit);
+});
+
+document.addEventListener("click", (event) => {
+  const editBtn = event.target.closest(".edit-content-btn");
+  if(editBtn){ editContent(editBtn.dataset.id); return; }
+  const deleteBtn = event.target.closest(".delete-content-btn");
+  if(deleteBtn){ deleteContent(deleteBtn.dataset.id); return; }
+  const pdfBtn = event.target.closest(".github-pdf-btn");
+  if(pdfBtn && pdfBtn.dataset.path){
+    useGithubPdf(pdfBtn.dataset.path, pdfBtn.dataset.title, pdfBtn.dataset.url);
+  }
+});
+
+// Explicit window exports for compatibility with any older cached markup.
+window.login = login;
+window.logout = logout;
+window.refreshAll = refreshAll;
+window.generatePdfLink = generatePdfLink;
+window.loadGithubPdfs = loadGithubPdfs;
+window.publish = publish;
+window.cancelEdit = cancelEdit;
+window.editContent = editContent;
+window.deleteContent = deleteContent;
 </script>
 </body></html>
