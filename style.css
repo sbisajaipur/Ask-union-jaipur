@@ -2896,3 +2896,158 @@ header {
     font-size: 15px !important;
   }
 }
+
+/* =========================================================
+   ASK UNION — WEBSITE FINISHING V8
+   Safe global polish: accessibility, touch, overflow,
+   loading/error states, and PWA-style interaction.
+   Existing Udaipur layout is preserved.
+   ========================================================= */
+
+/* Prevent accidental horizontal page overflow */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Smooth anchor navigation without changing layout */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Accessible keyboard focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(123,16,36,.28) !important;
+  outline-offset: 2px !important;
+}
+
+/* Consistent image behaviour */
+img {
+  max-width: 100%;
+}
+
+/* Prevent long URLs/text from breaking cards */
+.item,
+.resource,
+.card,
+.notice,
+.about-card,
+.info,
+section {
+  overflow-wrap: anywhere;
+}
+
+/* Disabled controls should look and behave clearly */
+button:disabled,
+button[disabled] {
+  opacity: .6 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Better tap behaviour */
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Avoid accidental text selection on navigation/buttons */
+button,
+.bottom-nav a,
+.hero-btn {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Clean loading state */
+.loading,
+.loading-state {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Clean empty/error states */
+.error,
+.empty-state {
+  overflow-wrap: anywhere;
+}
+
+/* Respect accessibility preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Final mobile safety polish */
+@media (max-width:700px) {
+  body {
+    min-width: 0 !important;
+  }
+
+  main,
+  header,
+  footer,
+  section,
+  article,
+  nav {
+    max-width: 100%;
+  }
+
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  button,
+  .hero-btn,
+  .btn,
+  a.btn {
+    touch-action: manipulation;
+  }
+
+  /* Keep fixed bottom navigation above browser/device safe area */
+  .bottom-nav {
+    padding-bottom: max(6px, env(safe-area-inset-bottom)) !important;
+  }
+
+  /* Long headings should never push the viewport sideways */
+  h1, h2, h3, h4, h5, h6, p, span, a {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Very narrow devices */
+@media (max-width:380px) {
+  .bottom-nav {
+    left: 7px !important;
+    right: 7px !important;
+  }
+
+  button,
+  .btn,
+  .hero-btn {
+    min-width: 0 !important;
+  }
+}
