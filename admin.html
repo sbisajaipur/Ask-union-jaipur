@@ -298,6 +298,65 @@ textarea:focus-visible{
 }
 </style>
 
+
+<style id="admin-v10-workflow">
+/* ASK UNION ADMIN V10 — clearer workflow/navigation */
+.admin-v10-toolbar{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 0 14px;
+}
+.admin-v10-jump{
+  border:1px solid #d8e3ea;
+  background:#fff;
+  color:#123b5d;
+  border-radius:10px;
+  padding:9px 12px;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(20,50,70,.05);
+}
+.admin-v10-jump:hover{background:#edf4f8}
+.admin-v10-step{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:25px;
+  height:25px;
+  border-radius:50%;
+  background:#123b5d;
+  color:#fff;
+  font-size:11px;
+  margin-right:7px;
+}
+.admin-v10-help{
+  margin:0 0 12px;
+  padding:10px 12px;
+  border-left:4px solid #e09b2d;
+  background:#fff9ed;
+  color:#5f512f;
+  border-radius:9px;
+  font-size:11px;
+  line-height:1.5;
+}
+#publishContentSection,
+#memberManagementSection{
+  scroll-margin-top:82px;
+}
+@media(max-width:700px){
+  .admin-v10-toolbar{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  .admin-v10-jump{
+    width:100%;
+    min-height:42px;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -319,7 +378,14 @@ textarea:focus-visible{
   <button class="btn logout" onclick="logout()">LOGOUT</button>
 </div></header>
 <main class="container">
-  <div class="card head"><div><h1>Content Dashboard</h1><p>Logged in as <b id="adminEmail"></b></p></div><button class="btn light" onclick="refreshAll()">↻ REFRESH</button></div>
+<div class="admin-v10-toolbar" aria-label="Admin shortcuts">
+  <button type="button" class="admin-v10-jump" onclick="document.getElementById('publishContentSection')?.scrollIntoView({behavior:'smooth'})">✚ Publish Content</button>
+  <button type="button" class="admin-v10-jump" onclick="document.getElementById('memberManagementSection')?.scrollIntoView({behavior:'smooth'})">👥 Manage Members</button>
+  <button type="button" class="admin-v10-jump" onclick="document.getElementById('githubPdfBox')?.scrollIntoView({behavior:'smooth'})">📄 GitHub PDFs</button>
+  <button type="button" class="admin-v10-jump" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Dashboard</button>
+</div>
+
+  <div class="card head"><div><h1>Content Dashboard</h1><p>Logged in as <b id="adminEmail"></b></p><div class="admin-v10-help">Quick workflow: <b>Add/Manage Member</b> → <b>Publish Content</b> → <b>Refresh</b>. For a PDF, select it from GitHub PDFs first, then publish.</div></div><button class="btn light" onclick="refreshAll()">↻ REFRESH</button></div>
   <div class="stats stats-four">
     <div class="card stat"><div class="label">Updates / Notices</div><div class="num" id="countUpdates">—</div></div>
     <div class="card stat"><div class="label">Circulars</div><div class="num" id="countCirculars">—</div></div>
@@ -327,7 +393,7 @@ textarea:focus-visible{
     <div class="card stat member-stat"><div class="label">Members Only</div><div class="num" id="countMemberCirculars">—</div></div>
   </div>
 
-  <section class="card section" style="margin-bottom:14px">
+  <section id="memberManagementSection" class="card section" style="margin-bottom:14px">
     <div class="section-head"><h2>Member Management</h2><span>Only Admin can add or deactivate members</span></div>
     <div class="form-grid">
       <div class="field"><label>NAME *</label><input id="mName" placeholder="Member name"></div>
@@ -355,7 +421,7 @@ textarea:focus-visible{
         <div class="field full"><label>DETAILS</label><textarea id="details" maxlength="5000" placeholder="Enter details"></textarea></div>
         <div class="field full"><label>PDF / LINK (OPTIONAL)</label><input id="link" type="text" placeholder="PDF filename.pdf — link will be created automatically"><div style="font-size:11px;color:#6b7280;margin-top:6px">PDF filename डालें (जैसे <b>SBI CARES COMPENDIUM OF STAFF BENEFITS BY SBSC.pdf</b>) — link अपने-आप https://askunion.in/ से बनेगा.</div></div>
       </div>
-      <div class="github-pdf-box">
+      <div id="githubPdfBox" class="github-pdf-box">
         <div class="github-pdf-head">
           <h3>📚 GitHub Circular Library</h3>
           <button type="button" class="btn light" onclick="loadGithubPdfs()">↻ REFRESH</button>
