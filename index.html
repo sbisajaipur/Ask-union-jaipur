@@ -705,7 +705,7 @@
 
 
 <style id="true-50-50-final">
-/* FINAL: two equal columns directly below Quick Actions */
+/* FINAL TRUE 50/50 — preserve login functionality, fix only layout */
 .dashboard-login-area{
   display:block !important;
   width:100% !important;
@@ -714,51 +714,106 @@
   padding:0 !important;
   box-sizing:border-box !important;
 }
-
 .dashboard-login-area .below-quick-grid{
   display:grid !important;
-  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
   gap:16px !important;
   width:100% !important;
-  max-width:none !important;
   margin:0 !important;
   padding:0 !important;
-  box-sizing:border-box !important;
   align-items:stretch !important;
+  box-sizing:border-box !important;
 }
-
-.dashboard-login-area .below-quick-grid > *{
+.dashboard-login-area .below-quick-member,
+.dashboard-login-area .below-quick-important{
   width:100% !important;
-  max-width:none !important;
   min-width:0 !important;
+  max-width:none !important;
   margin:0 !important;
   box-sizing:border-box !important;
 }
 
-/* Do NOT change the original Member Login internals */
+/* Member card: same height as Important, with its original fields intact */
 .dashboard-login-area .below-quick-member .member-login-card{
   width:100% !important;
-  max-width:none !important;
+  height:190px !important;
+  min-height:190px !important;
+  max-height:190px !important;
+  margin:0 !important;
+  padding:16px !important;
   box-sizing:border-box !important;
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  grid-template-rows:auto 42px auto !important;
+  gap:8px !important;
+  align-items:center !important;
+  overflow:hidden !important;
+  border-radius:16px !important;
+}
+.dashboard-login-area .below-quick-member .member-title{
+  grid-column:1 / -1 !important;
+  grid-row:1 !important;
+  width:auto !important;
+  margin:0 !important;
+  display:flex !important;
+  align-items:center !important;
+}
+.dashboard-login-area .below-quick-member .member-icon{
+  flex:0 0 auto !important;
+}
+.dashboard-login-area .below-quick-member .login-field{
+  grid-row:2 !important;
+  width:100% !important;
+  min-width:0 !important;
   margin:0 !important;
 }
+.dashboard-login-area .below-quick-member .login-field input{
+  width:100% !important;
+  height:42px !important;
+  box-sizing:border-box !important;
+}
+.dashboard-login-area .below-quick-member .login-options{
+  grid-column:1 !important;
+  grid-row:3 !important;
+  width:100% !important;
+  margin:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+  white-space:nowrap !important;
+}
+.dashboard-login-area .below-quick-member .member-login-btn{
+  grid-column:2 !important;
+  grid-row:3 !important;
+  width:100% !important;
+  height:42px !important;
+  min-height:42px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+}
+.dashboard-login-area .below-quick-member .join-member{
+  display:none !important;
+}
 
-/* Keep Important Update as the other equal-width column */
+/* Important card matches the Member card height */
 .dashboard-login-area .below-quick-important .important-update{
   width:100% !important;
-  max-width:none !important;
-  box-sizing:border-box !important;
+  height:190px !important;
+  min-height:190px !important;
+  max-height:190px !important;
   margin:0 !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
 }
 
-/* Tablet/mobile */
-@media (max-width: 700px){
-  .dashboard-login-area .below-quick-grid{
-    grid-template-columns:1fr !important;
+@media(max-width:700px){
+  .dashboard-login-area .below-quick-grid{grid-template-columns:1fr !important;gap:12px !important}
+  .dashboard-login-area .below-quick-member .member-login-card{
+    height:auto !important;min-height:190px !important;max-height:none !important;
   }
-
-  .dashboard-login-area .below-quick-grid > *{
-    width:100% !important;
+  .dashboard-login-area .below-quick-important .important-update{
+    height:auto !important;min-height:190px !important;max-height:none !important;
   }
 }
 </style>
