@@ -54,7 +54,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
     <h1>Admin Login</h1>
     <p style="color:#6b7280">Secure content management panel</p>
     <div class="field"><label>ADMIN EMAIL</label><input id="email" type="email" autocomplete="username" placeholder="Admin email"></div>
-    <div class="field"><label>PASSWORD</label><input id="password" type="password" autocomplete="current-password" placeholder="Password" onkeydown="if(event.key==='Enter')login()"></div>
+    <div class="field"><label>PASSWORD</label><input id="password" type="password" autocomplete="current-password" placeholder="Password" onkeydown="if(event.key==='Enter')askUnionLogin()"></div>
     <button class="btn primary" style="width:100%" onclick="askUnionLogin()">LOGIN →</button>
     <div id="loginMessage"></div>
   </div>
@@ -113,7 +113,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
         </div>
       </div>
 
-    <div class="actions"><button id="publishButton" class="btn primary" onclick="publish()">PUBLISH</button><button id="cancelButton" class="btn light hidden" onclick="cancelEdit()">CANCEL EDIT</button></div>
+      <div class="actions"><button id="publishButton" class="btn primary" onclick="publish()">PUBLISH</button><button id="cancelButton" class="btn light hidden" onclick="cancelEdit()">CANCEL EDIT</button></div>
       <div id="message"></div>
     </section>
     <section class="card section">
@@ -142,16 +142,11 @@ function formatDate(v){if(!v)return"";const d=new Date(String(v).length===10?v+"
 function msg(t,type="success",target="message"){$(target).innerHTML=t?`<div class="alert ${type}">${escapeHtml(t)}</div>`:""}
 async function getItems(type){const s=await db.collection(type).get(),a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));return a.sort((x,y)=>String(y.date||y.createdAt||"").localeCompare(String(x.date||x.createdAt||"")))}
 function askUnionLogin(){const e=$("email").value.trim(),p=$("password").value;if(!e||!p){msg("Enter email and password.","error","loginMessage");return}auth.signInWithEmailAndPassword(e,p).catch(error=>{console.error("ASK UNION LOGIN ERROR:",error);const code=error&&error.code?error.code:"unknown";const detail=error&&error.message?error.message:"Unknown Firebase error";msg("Login failed: "+code+" — "+detail,"error","loginMessage")})}
-
-// Compatibility: keep both login names available for older cached markup.
-window.login = askUnionLogin;
-window.askUnionLogin = askUnionLogin;
-window.logout = logout;
 function logout(){auth.signOut()}
 auth.onAuthStateChanged(u=>{if(u){$("loginView").classList.add("hidden");$("adminView").classList.remove("hidden");$("adminEmail").textContent=u.email||"";resetForm();refreshAll()}else{$("loginView").classList.remove("hidden");$("adminView").classList.add("hidden")}})
 async function loadContent(){const t=$("manageType").value;$("contentList").innerHTML='<div class="empty">Loading…</div>';try{currentItems=await getItems(t);renderList()}catch(e){console.error(e);$("contentList").innerHTML='<div class="empty">Unable to load content. Please refresh.</div>'}}
 function renderList(){const q=$("searchBox").value.trim().toLowerCase(),a=currentItems.filter(x=>[x.title,x.details,x.category,x.link].some(v=>String(v||"").toLowerCase().includes(q)));$("resultCount").textContent=a.length+" item"+(a.length===1?"":"s");if(!a.length){$("contentList").innerHTML='<div class="empty">No matching content found.</div>';return}$("contentList").innerHTML=a.map(x=>{const u=safeUrl(x.link||"");const member=$("manageType").value==="memberCirculars";return`<article class="item"><div class="item-top"><div class="title">${escapeHtml(x.title||"Untitled")}</div>${member?'<span class="badge">MEMBERS ONLY</span>':(x.category?`<span class="badge">${escapeHtml(x.category)}</span>`:"")}</div><div class="meta">📅 ${escapeHtml(formatDate(x.date))}${x.contentType?` · ${escapeHtml(x.contentType==="circulars"?"Circular":"Update / Notice")}`:""}</div>${x.details?`<div class="details">${escapeHtml(x.details)}</div>`:""}${u?`<a class="link" href="${escapeHtml(u)}" target="_blank" rel="noopener">📄 Open PDF / Link →</a>`:""}<div class="item-actions"><button class="btn edit" onclick="editContent('${escapeHtml(x.id)}')">EDIT</button><button class="btn danger" onclick="deleteContent('${escapeHtml(x.id)}')">DELETE</button></div></article>`}).join("")}
-async function refreshAll(){try{const[u,c,e,m]=await Promise.all([getItems("updates"),getItems("circulars"),getItems("events"),getItems("memberCirculars")]);loadMembers();$("countUpdates").textContent=u.length;$("countCirculars").textContent=c.length;$("countEvents").textContent=e.length;$("countMemberCirculars").textContent=m.length;const t=$("manageType").value;currentItems=t==="updates"?u:t==="circulars"?c:t==="events"?e:m;renderList();loadGithubPdfs()}catch(e){console.error(e);loadContent()}}
+async function refreshAll(){try{const[u,c,e,m]=await Promise.all([getItems("updates"),getItems("circulars"),getItems("events"),getItems("memberCirculars")]);loadMembers();$("countUpdates").textContent=u.length;$("countCirculars").textContent=c.length;$("countEvents").textContent=e.length;$("countMemberCirculars").textContent=m.length;const t=$("manageType").value;currentItems=t==="updates"?u:t==="circulars"?c:t==="events"?e:m;renderList()}catch(e){console.error(e);loadContent()}}
 function makePdfLink(value){const v=String(value||"").trim();if(!v)return"";if(/^https?:\/\//i.test(v))return v;const clean=v.replace(/^\.\//,"").replace(/^\//,"");return "https://askunion.in/"+clean.split("/").map(part=>encodeURIComponent(part)).join("/")}
 let memberItems=[];let memberApp=null,memberAuth=null;try{memberApp=firebase.initializeApp(firebaseConfig,'memberCreator');memberAuth=memberApp.auth();memberAuth.setPersistence(firebase.auth.Auth.Persistence.NONE)}catch(e){console.warn('Member creator init:',e)}
 function memberEmail(emp){const clean=String(emp||'').replace(/[^a-zA-Z0-9]/g,'').toLowerCase();return 'emp'+clean+'@members.askunion.in'}
@@ -163,23 +158,6 @@ async function publish(){if(busy)return;const t=$("type").value,audience=$("audi
 function editContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x)return;editingId=id;editingType=t;$("type").value=x.contentType||t;$("type").disabled=t==="memberCirculars";$("audience").value=t==="memberCirculars"?"members":"public";$("audience").disabled=t==="memberCirculars";$("title").value=x.title||"";$("details").value=x.details||"";$("link").value=x.link||"";$("category").value=x.category||"";$("publishDate").value=/^\d{4}-\d{2}-\d{2}$/.test(String(x.date||""))?x.date:today();$("formHeading").textContent=t==="memberCirculars"?"Edit Members Only Content":"Edit Content";$("publishButton").textContent="UPDATE";$("cancelButton").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"})}
 async function deleteContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x||!confirm(`Delete “${x.title||"this item"}”? This cannot be undone.`))return;try{await db.collection(t).doc(id).delete();msg("Deleted successfully.");await refreshAll()}catch(e){msg("Delete failed: "+e.message,"error")}}
 function cancelEdit(){resetForm()}
-const GITHUB_OWNER = "sbisajaipur";
-const GITHUB_REPO = "Ask-union-jaipur";
-const GITHUB_BRANCH = "main";
-const GITHUB_SITE = "https://askunion.in/";
-
-function githubPdfUrl(path){
-  return GITHUB_SITE + path.split("/").map(part => encodeURIComponent(part)).join("/");
-}
-
-function githubPdfTitle(path){
-  const name = path.split("/").pop().replace(/\.pdf$/i,"");
-  return name
-    .replace(/[_-]+/g," ")
-    .replace(/\s+/g," ")
-    .trim();
-}
-
 async function loadGithubPdfs(){
   const status = $("githubPdfStatus");
   const list = $("githubPdfList");
@@ -238,15 +216,8 @@ function useGithubPdf(path,title,url){
   $("title").focus();
 }
 
+
 function resetForm(){editingId=null;editingType=null;$("type").disabled=false;$("audience").disabled=false;$("audience").value="public";$("formHeading").textContent="Publish Content";$("publishButton").textContent="PUBLISH";$("cancelButton").classList.add("hidden");$("title").value="";$("details").value="";$("link").value="";$("category").value="";$("publishDate").value=today()}
 $("publishDate").value=today();
-
-// Robust login button binding (does not depend on inline onclick).
-document.addEventListener("DOMContentLoaded",function(){
-  const loginBtn=document.querySelector('#loginView button');
-  if(loginBtn){loginBtn.onclick=function(e){e.preventDefault();askUnionLogin();};}
-  const pw=document.getElementById('password');
-  if(pw) pw.addEventListener('keydown',function(e){if(e.key==='Enter') askUnionLogin();});
-});
 </script>
 </body></html>
