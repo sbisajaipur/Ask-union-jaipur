@@ -704,8 +704,14 @@
 
 
 
-<style id="true-50-50-final">
-/* FINAL TRUE 50/50 — preserve login functionality, fix only layout */
+
+
+
+
+
+
+<style id="true-50-50-final-v4">
+/* EXACT 50/50 section */
 .dashboard-login-area{
   display:block !important;
   width:100% !important;
@@ -722,81 +728,118 @@
   margin:0 !important;
   padding:0 !important;
   align-items:stretch !important;
-  box-sizing:border-box !important;
 }
-.dashboard-login-area .below-quick-member,
-.dashboard-login-area .below-quick-important{
+.dashboard-login-area .below-quick-grid > *{
   width:100% !important;
   min-width:0 !important;
   max-width:none !important;
   margin:0 !important;
+  padding:0 !important;
   box-sizing:border-box !important;
 }
 
-/* Member card: same height as Important, with its original fields intact */
+/* Member card: title / fields / options+button */
 .dashboard-login-area .below-quick-member .member-login-card{
   width:100% !important;
   height:190px !important;
   min-height:190px !important;
   max-height:190px !important;
+  padding:15px 16px !important;
   margin:0 !important;
-  padding:16px !important;
   box-sizing:border-box !important;
   display:grid !important;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
-  grid-template-rows:auto 42px auto !important;
-  gap:8px !important;
+  grid-template-rows:auto 40px 38px !important;
+  column-gap:8px !important;
+  row-gap:8px !important;
   align-items:center !important;
   overflow:hidden !important;
-  border-radius:16px !important;
 }
+
+/* Header spans full card */
 .dashboard-login-area .below-quick-member .member-title{
   grid-column:1 / -1 !important;
   grid-row:1 !important;
-  width:auto !important;
+  width:100% !important;
   margin:0 !important;
   display:flex !important;
   align-items:center !important;
 }
-.dashboard-login-area .below-quick-member .member-icon{
-  flex:0 0 auto !important;
-}
+
+/* BOTH columns use the exact same internal alignment */
 .dashboard-login-area .below-quick-member .login-field{
   grid-row:2 !important;
   width:100% !important;
   min-width:0 !important;
   margin:0 !important;
-}
-.dashboard-login-area .below-quick-member .login-field input{
-  width:100% !important;
-  height:42px !important;
+  padding:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  position:relative !important;
   box-sizing:border-box !important;
 }
+
+/* Same icon width in both columns */
+.dashboard-login-area .below-quick-member .login-field > span{
+  flex:0 0 20px !important;
+  width:20px !important;
+  min-width:20px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:15px !important;
+  line-height:1 !important;
+}
+
+/* Same input width/height in both columns */
+.dashboard-login-area .below-quick-member .login-field input{
+  flex:1 1 auto !important;
+  width:auto !important;
+  min-width:0 !important;
+  height:38px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  padding:7px 9px !important;
+  font-size:11px !important;
+}
+
+/* Password eye remains inside the password column */
+.dashboard-login-area .below-quick-member .login-field button{
+  flex:0 0 30px !important;
+  width:30px !important;
+  height:30px !important;
+  min-width:30px !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+
+/* Bottom row: equal left/right halves */
 .dashboard-login-area .below-quick-member .login-options{
   grid-column:1 !important;
   grid-row:3 !important;
   width:100% !important;
   margin:0 !important;
+  min-width:0 !important;
   display:flex !important;
   align-items:center !important;
   justify-content:flex-start !important;
-  gap:10px !important;
+  gap:7px !important;
   white-space:nowrap !important;
+  font-size:9px !important;
+  box-sizing:border-box !important;
 }
 .dashboard-login-area .below-quick-member .member-login-btn{
   grid-column:2 !important;
   grid-row:3 !important;
   width:100% !important;
-  height:42px !important;
-  min-height:42px !important;
+  min-width:0 !important;
+  height:38px !important;
   margin:0 !important;
   box-sizing:border-box !important;
 }
-.dashboard-login-area .below-quick-member .join-member{
-  display:none !important;
-}
 
-/* Important card matches the Member card height */
+/* Important Update is exactly the same outer height */
 .dashboard-login-area .below-quick-important .important-update{
   width:100% !important;
   height:190px !important;
@@ -808,12 +851,18 @@
 }
 
 @media(max-width:700px){
-  .dashboard-login-area .below-quick-grid{grid-template-columns:1fr !important;gap:12px !important}
+  .dashboard-login-area .below-quick-grid{
+    grid-template-columns:1fr !important;
+  }
   .dashboard-login-area .below-quick-member .member-login-card{
-    height:auto !important;min-height:190px !important;max-height:none !important;
+    height:auto !important;
+    min-height:190px !important;
+    max-height:none !important;
   }
   .dashboard-login-area .below-quick-important .important-update{
-    height:auto !important;min-height:190px !important;max-height:none !important;
+    height:auto !important;
+    min-height:190px !important;
+    max-height:none !important;
   }
 }
 </style>
