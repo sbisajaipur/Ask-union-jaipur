@@ -606,6 +606,100 @@
  .dashboard-login-bar .compact-login-v7 .join-member{grid-column:1 / -1 !important}
 }
 </style>
+
+<style id="below-quick-member-important-final">
+/* Member Login + Important Update: directly below Quick Actions */
+.dashboard-login-area{
+  width:100% !important;
+  margin:16px auto 18px !important;
+}
+.below-quick-grid{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:14px !important;
+  align-items:stretch !important;
+}
+.below-quick-member,
+.below-quick-important{
+  min-width:0 !important;
+}
+.below-quick-member .member-login-card{
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  display:grid !important;
+  grid-template-columns:175px minmax(0,1fr) minmax(0,1fr) auto !important;
+  align-items:center !important;
+  gap:8px !important;
+  padding:12px !important;
+  border-radius:16px !important;
+  box-sizing:border-box !important;
+}
+.below-quick-member .member-title{
+  min-width:0 !important;
+}
+.below-quick-member .login-field{
+  min-width:0 !important;
+}
+.below-quick-member .login-field input{
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+.below-quick-member .login-options{
+  grid-column:2 / 4 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+  font-size:10px !important;
+}
+.below-quick-member .member-login-btn{
+  grid-column:4 !important;
+  grid-row:1 / 3 !important;
+  width:96px !important;
+  height:42px !important;
+  margin:0 !important;
+}
+.below-quick-member .join-member{
+  display:none !important;
+}
+.below-quick-important .important-update{
+  height:100% !important;
+  min-height:150px !important;
+  box-sizing:border-box !important;
+  margin:0 !important;
+}
+@media(max-width:900px){
+  .below-quick-grid{grid-template-columns:1fr 1fr !important}
+  .below-quick-member .member-login-card{
+    grid-template-columns:1fr 1fr !important;
+  }
+  .below-quick-member .member-title,
+  .below-quick-member .login-options{
+    grid-column:1/-1 !important;
+  }
+  .below-quick-member .member-login-btn{
+    grid-column:1/-1 !important;
+    grid-row:auto !important;
+    width:100% !important;
+  }
+}
+@media(max-width:700px){
+  .below-quick-grid{grid-template-columns:1fr !important;gap:12px !important}
+  .dashboard-login-area{margin:12px auto 16px !important}
+  .below-quick-member .member-login-card{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+  }
+  .below-quick-member .member-title,
+  .below-quick-member .login-options,
+  .below-quick-member .member-login-btn{
+    grid-column:1/-1 !important;
+  }
+}
+</style>
+
 </head>
 
 
@@ -763,8 +857,9 @@
 
 
 <section class="dashboard-login-area" id="dashboard-login-area">
-  <div class="dashboard-login-bar">
-    <div class="member-login-card">
+  <div class="below-quick-grid">
+    <div class="below-quick-member">
+      <div class="member-login-card">
 
     <div class="member-title">
       <div class="member-icon">👤</div>
@@ -822,36 +917,9 @@
     </p>
 
   </div>
-  </div>
-
-  <div class="dashboard-featured">
-    <div class="featured-update">
-    <div class="update-label">
-      📢 &nbsp; LATEST UPDATE
     </div>
-
-    <h2>
-      PLI Update for<br>
-      PSB Executives
-    </h2>
-
-    <div class="update-date">
-      📅 &nbsp; 08 September 2026
-    </div>
-
-    <p>
-      FY 2025–26 ka Performance Linked Incentive
-      (Scale IV–VIII) finalize...
-    </p>
-
-    <a href="#">
-      Read More&nbsp; →
-    </a>
-  </div>
-  </div>
-
-  <div class="dashboard-important">
-    <div class="important-update">
+    <div class="below-quick-important">
+      <div class="important-update">
 
       <div class="important-label">
         🔔 &nbsp; IMPORTANT
@@ -870,6 +938,7 @@
         10:00 AM
       </p>
 
+    </div>
     </div>
   </div>
 </section>
