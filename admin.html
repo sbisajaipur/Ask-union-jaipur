@@ -161,9 +161,52 @@ body{background:linear-gradient(180deg,#f8f6f4 0%,#f4f1ef 100%);color:var(--ink)
 .admin-main{min-width:0;flex:1}
 .nav-section{scroll-margin-top:82px}
 @media(max-width:820px){
- .admin-shell{display:block}.admin-sidebar{position:sticky;top:66px;z-index:15;width:100%;height:auto;border-right:0;border-bottom:1px solid #e9e3e0;padding:8px 10px}
- .sidebar-label,.sidebar-divider,.sidebar-footer{display:none}.sidebar-nav{display:flex;overflow-x:auto;gap:6px;scrollbar-width:none}.sidebar-nav::-webkit-scrollbar{display:none}
- .sidebar-btn{width:auto;white-space:nowrap;padding:9px 11px}.admin-main .container{padding-top:14px}
+ .admin-shell{display:block}
+ .admin-sidebar{position:sticky;top:66px;z-index:15;width:100%;height:auto;border-right:0;border-bottom:1px solid #e9e3e0;padding:8px 9px;background:#fff}
+ .sidebar-label,.sidebar-divider,.sidebar-footer{display:none}
+ .sidebar-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;overflow:visible}
+ .sidebar-btn{width:100%;white-space:normal;padding:8px 3px;min-height:54px;text-align:center;justify-content:center;flex-direction:column;gap:3px;font-size:9px;line-height:1.05}
+ .sidebar-btn.active{box-shadow:inset 0 -3px 0 var(--maroon)}
+ .sidebar-icon{width:auto;font-size:16px;line-height:1}
+ .admin-main .container{padding-top:14px}
+}
+@media(max-width:430px){
+ .sidebar-nav{grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+ .sidebar-btn{padding:7px 1px;font-size:8px;min-height:52px}
+ .sidebar-icon{font-size:15px}
+}
+
+
+.github-pdf-box{scroll-margin-top:82px}
+.github-pdf-head{position:sticky;top:0;background:inherit;padding-bottom:8px;z-index:2}
+.github-pdf-list{max-height:500px;overflow:auto}
+.github-pdf-item{min-width:0}
+.github-pdf-name{flex:1;min-width:0}
+@media(max-width:600px){
+ .github-pdf-head{align-items:flex-start;flex-direction:column}
+ .github-pdf-head .btn{width:100%}
+ .github-pdf-item{flex-direction:column;align-items:stretch}
+ .github-pdf-btn{width:100%}
+ .github-pdf-list{max-height:60vh}
+}
+
+
+/* MEMBER VISIBILITY FIX */
+@media(max-width:820px){
+  .admin-main .container{display:flex;flex-direction:column}
+  #dashboardSection{order:1}
+  .stats{order:2}
+  .card[style*="QUICK ACTIONS"]{order:3}
+  #memberSection{order:4}
+  .grid{order:5}
+}
+#memberSection .member-list{min-height:120px}
+#memberSection .member-list-wrap{min-height:160px}
+#memberSection .member-empty{border:1px dashed #e2dadd;border-radius:11px;background:#fcfafb}
+@media(max-width:600px){
+  #memberSection{margin-top:0}
+  #memberSection .member-list{max-height:none;overflow:visible}
+  #memberSection .member-list-wrap{min-height:200px}
 }
 
 </style>
@@ -211,7 +254,7 @@ body{background:linear-gradient(180deg,#f8f6f4 0%,#f4f1ef 100%);color:var(--ink)
 <button class="sidebar-btn active" data-target="dashboardSection" onclick="goAdminSection('dashboardSection',this)"><span class="sidebar-icon">▦</span>Dashboard</button>
 <button class="sidebar-btn" data-target="publishSection" onclick="goAdminSection('publishSection',this)"><span class="sidebar-icon">＋</span>Publish Content</button>
 <button class="sidebar-btn" data-target="publishedSection" onclick="goAdminSection('publishedSection',this)"><span class="sidebar-icon">☷</span>Published Content</button>
-<button class="sidebar-btn" data-target="memberSection" onclick="goAdminSection('memberSection',this)"><span class="sidebar-icon">♙</span>Members</button>
+<button class="sidebar-btn" id="membersNavButton" data-target="memberSection" onclick="goAdminSection('memberSection',this)"><span class="sidebar-icon">♙</span>Members</button>
 <button class="sidebar-btn" data-target="librarySection" onclick="goAdminSection('librarySection',this)"><span class="sidebar-icon">▤</span>Circular Library</button>
 </nav>
 <div class="sidebar-divider"></div>
@@ -296,6 +339,7 @@ body{background:linear-gradient(180deg,#f8f6f4 0%,#f4f1ef 100%);color:var(--ink)
 <div class="member-layout">
 <div class="member-form">
 <h3 id="memberFormHeading">Add New Member</h3>
+<div style="font-size:10px;color:#6b7280;margin:-6px 0 10px">Create or update the member profile below.</div>
 <div class="field"><label>MEMBER NAME *</label><input id="memberName" type="text" maxlength="100" placeholder="Full name"></div>
 <div class="field"><label>EMAIL *</label><input id="memberEmail" type="email" maxlength="160" placeholder="member@example.com"></div>
 <div class="field"><label>PASSWORD *</label><input id="memberPassword" type="password" minlength="6" autocomplete="new-password" placeholder="Minimum 6 characters"></div>
@@ -307,7 +351,7 @@ body{background:linear-gradient(180deg,#f8f6f4 0%,#f4f1ef 100%);color:var(--ink)
 <div class="member-note">Only members marked <b>Active</b> should be allowed by the member login page. Deactivating a member changes the authorisation record immediately.</div>
 </div>
 <div class="member-list-wrap">
-<div class="member-toolbar"><input id="memberSearch" type="search" placeholder="Search member name or email…" oninput="renderMembers()"><button class="btn light" type="button" onclick="loadMembers()">↻ REFRESH</button></div>
+<div class="member-toolbar"><input id="memberSearch" type="search" placeholder="Search member name or email…" oninput="renderMembers()"><button class="btn light" type="button" onclick="loadMembers()">↻ REFRESH MEMBERS</button></div>
 <div id="memberList" class="member-list"><div class="member-empty">Loading members…</div></div>
 </div></div></section>
 
@@ -380,10 +424,10 @@ function githubPdfTitle(path){
 }
 
 async function githubFetchJson(url){
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 12000);
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),15000);
   try{
-    const r = await fetch(url, {
+    const r=await fetch(url,{
       method:"GET",
       headers:{
         "Accept":"application/vnd.github+json",
@@ -392,74 +436,66 @@ async function githubFetchJson(url){
       cache:"no-store",
       signal:controller.signal
     });
-    if(!r.ok) throw new Error("GitHub HTTP " + r.status);
+    if(!r.ok) throw new Error("GitHub HTTP "+r.status);
     return await r.json();
-  }finally{
-    clearTimeout(timer);
-  }
+  }finally{clearTimeout(timer)}
 }
 
-async function getGithubPdfFiles(path=""){
-  const api = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}?ref=${encodeURIComponent(GITHUB_BRANCH)}`;
-  const data = await githubFetchJson(api);
-  const entries = Array.isArray(data) ? data : [data];
-  let result = [];
-
-  for(const item of entries){
-    if(item.type === "file" && /\.pdf$/i.test(item.name)){
-      result.push({path:item.path, sha:item.sha});
-    }else if(item.type === "dir"){
-      try{
-        const nested = await getGithubPdfFiles(item.path);
-        result = result.concat(nested);
-      }catch(e){
-        console.warn("Skipping GitHub folder:", item.path, e);
-      }
+async function getGithubPdfFiles(){
+  // Git Trees API returns the repository tree in one request, including nested folders.
+  const api=`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees/${encodeURIComponent(GITHUB_BRANCH)}?recursive=1`;
+  try{
+    const data=await githubFetchJson(api);
+    if(!Array.isArray(data.tree)) throw new Error("GitHub repository tree unavailable.");
+    return data.tree
+      .filter(item=>item.type==="blob" && /\.pdf$/i.test(item.path))
+      .map(item=>({path:item.path,sha:item.sha}));
+  }catch(treeError){
+    console.warn("GitHub tree API failed, trying contents API:",treeError);
+    const api2=`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/?ref=${encodeURIComponent(GITHUB_BRANCH)}`;
+    const data=await githubFetchJson(api2);
+    const entries=Array.isArray(data)?data:[data];
+    let result=[];
+    for(const item of entries){
+      if(item.type==="file" && /\.pdf$/i.test(item.name)) result.push({path:item.path,sha:item.sha});
     }
+    return result;
   }
-  return result;
 }
 
 async function loadGithubPdfs(){
-  const status = $("githubPdfStatus");
-  const list = $("githubPdfList");
-  if(!status || !list) return;
-
-  status.textContent = "Checking GitHub repository…";
-  list.innerHTML = '<div class="github-pdf-empty">Loading…</div>';
-
+  const status=$("githubPdfStatus"),list=$("githubPdfList");
+  if(!status||!list)return;
+  status.textContent="Checking GitHub repository…";
+  list.innerHTML='<div class="github-pdf-empty">Loading circulars…</div>';
   try{
-    const pdfs = await getGithubPdfFiles("");
-    pdfs.sort((a,b) => a.path.localeCompare(b.path, undefined, {sensitivity:"base"}));
-
+    const pdfs=await getGithubPdfFiles();
+    pdfs.sort((a,b)=>a.path.localeCompare(b.path,undefined,{sensitivity:"base"}));
     if(!pdfs.length){
-      status.textContent = "No PDF files found in GitHub.";
-      list.innerHTML = '<div class="github-pdf-empty">Upload the circular PDF to the repository, commit it to main, then press REFRESH.</div>';
+      status.textContent="No PDF files found in GitHub.";
+      list.innerHTML='<div class="github-pdf-empty">No PDF files found in the repository <b>'+escapeHtml(GITHUB_REPO)+'</b> on <b>'+escapeHtml(GITHUB_BRANCH)+'</b>.</div>';
       return;
     }
-
-    status.textContent = `${pdfs.length} PDF${pdfs.length===1?"":"s"} found in GitHub`;
-
-    list.innerHTML = pdfs.map(file => {
-      const title = githubPdfTitle(file.path);
-      const url = githubPdfUrl(file.path);
-      return `
-        <div class="github-pdf-item">
-          <div class="github-pdf-name">📄 ${escapeHtml(file.path)}</div>
-          <button type="button" class="github-pdf-btn"
-            onclick='useGithubPdf(${JSON.stringify(file.path)},${JSON.stringify(title)},${JSON.stringify(url)})'>
-            ADD TO CIRCULAR
-          </button>
-        </div>`;
+    status.textContent=`${pdfs.length} PDF${pdfs.length===1?"":"s"} found`;
+    list.innerHTML=pdfs.map(file=>{
+      const title=githubPdfTitle(file.path),url=githubPdfUrl(file.path);
+      return `<div class="github-pdf-item">
+        <div class="github-pdf-name">📄 ${escapeHtml(file.path)}</div>
+        <button type="button" class="github-pdf-btn"
+          onclick='useGithubPdf(${JSON.stringify(file.path)},${JSON.stringify(title)},${JSON.stringify(url)})'>
+          ADD TO CIRCULAR
+        </button>
+      </div>`;
     }).join("");
   }catch(error){
-    console.error("GitHub PDF library error:", error);
-    status.textContent = "GitHub connection failed.";
-    list.innerHTML = `
-      <div class="github-pdf-empty">
-        ${escapeHtml(error.message || "Unable to read GitHub files.")}
-        <br><br>Press REFRESH to try again.
-      </div>`;
+    console.error("GitHub PDF library error:",error);
+    status.textContent="GitHub connection failed.";
+    list.innerHTML=`<div class="github-pdf-empty">
+      <b>Unable to load GitHub circulars.</b><br>
+      ${escapeHtml(error.message||"Unknown GitHub error.")}
+      <br><br>
+      <button type="button" class="btn light" onclick="loadGithubPdfs()">↻ TRY AGAIN</button>
+    </div>`;
   }
 }
 
@@ -497,7 +533,7 @@ async function loadMembers(){
     snap.forEach(d=>members.push({id:d.id,...d.data()}));
     members.sort((a,b)=>String(a.name||"").localeCompare(String(b.name||"")));
     renderMembers();
-  }catch(e){console.error(e);list.innerHTML='<div class="member-empty">Unable to load members. Check Firestore rules.</div>'}
+  }catch(e){console.error(e);list.innerHTML='<div class="member-empty">Members could not be loaded. Check Firestore access for the members collection.</div>'}
 }
 function renderMembers(){
   const q=($("memberSearch")?.value||"").trim().toLowerCase();
@@ -519,7 +555,7 @@ async function saveMember(){
   try{
     if(editingMemberId){
       await db.collection("members").doc(editingMemberId).update({name,role,active,updatedAt:new Date().toISOString()});
-      msg("Member updated successfully.","success","memberMessage");
+      msg("Member profile updated successfully.","success","memberMessage");
     }else{
       const cred=await memberAuth.createUserWithEmailAndPassword(email,password);
       await db.collection("members").doc(cred.user.uid).set({uid:cred.user.uid,name,email,role,active,createdAt:new Date().toISOString(),createdBy:auth.currentUser?.email||""});
@@ -536,12 +572,27 @@ async function saveMember(){
   }finally{memberBusy=false;$("memberSaveButton").disabled=false}
 }
 function editMember(id){
-  const m=members.find(x=>x.id===id);if(!m)return;editingMemberId=id;
-  $("memberFormHeading").textContent="Edit Member";$("memberName").value=m.name||"";$("memberEmail").value=m.email||"";$("memberEmail").disabled=true;
-  $("memberPassword").value="";$("memberPassword").disabled=true;$("memberPassword").placeholder="Use Reset Password instead";
-  $("memberPasswordHint").textContent="Credentials are managed by Firebase Authentication.";
-  $("memberRole").value=m.role||"Member";$("memberStatus").value=m.active===false?"inactive":"active";
-  $("memberSaveButton").textContent="UPDATE MEMBER";$("memberCancelButton").classList.remove("hidden");$("memberName").focus();
+  const m=members.find(x=>String(x.id)===String(id));
+  if(!m){
+    msg("Member record not found. Please refresh the member list.","error","memberMessage");
+    return;
+  }
+  editingMemberId=m.id;
+  $("memberFormHeading").textContent="Edit Member";
+  $("memberName").value=m.name||"";
+  $("memberEmail").value=m.email||"";
+  $("memberEmail").disabled=true;
+  $("memberPassword").value="";
+  $("memberPassword").disabled=true;
+  $("memberPassword").placeholder="Use RESET PASSWORD instead";
+  $("memberPasswordHint").textContent="Password is managed securely by Firebase Authentication.";
+  $("memberRole").value=m.role||"Member";
+  $("memberStatus").value=m.active===false?"inactive":"active";
+  $("memberSaveButton").textContent="UPDATE MEMBER";
+  $("memberCancelButton").classList.remove("hidden");
+  $("memberMessage").innerHTML="";
+  $("memberSection").scrollIntoView({behavior:"smooth",block:"start"});
+  setTimeout(()=>$("memberName").focus(),350);
 }
 function resetMemberForm(){
   editingMemberId=null;if(!$("memberFormHeading"))return;
@@ -557,10 +608,21 @@ async function toggleMember(id){
   try{await db.collection("members").doc(id).update({active:next,updatedAt:new Date().toISOString()});msg(`Member ${next?"activated":"deactivated"} successfully.`,"success","memberMessage");await loadMembers()}
   catch(e){msg("Unable to change member status: "+e.message,"error","memberMessage")}
 }
-async function sendMemberReset(email){
-  if(!email)return;if(!confirm(`Send a password reset email to ${email}?`))return;
-  try{await auth.sendPasswordResetEmail(email);msg("Password reset email sent successfully.","success","memberMessage")}
-  catch(e){msg("Unable to send reset email: "+(e.message||"Unknown error"),"error","memberMessage")}
+async async function sendMemberReset(email){
+  if(!email)return;
+  if(!confirm(`Send a password reset email to ${email}?`))return;
+  try{
+    await auth.sendPasswordResetEmail(email);
+    msg("Password reset email sent successfully to "+email+".","success","memberMessage");
+  }catch(e){
+    console.error("Password reset error:",e);
+    let detail=e?.message||"Unable to send reset email.";
+    if(e?.code==="auth/user-not-found") detail="This member email is not registered in Firebase Authentication.";
+    if(e?.code==="auth/invalid-email") detail="The member email address is invalid.";
+    if(e?.code==="auth/too-many-requests") detail="Too many reset attempts. Please wait and try again.";
+    if(e?.code==="auth/unauthorized-continue-uri") detail="Firebase password-reset settings need the website domain to be authorised.";
+    msg(detail,"error","memberMessage");
+  }
 }
 /* END MEMBER MANAGEMENT */
 
