@@ -408,10 +408,16 @@ function generatePdfLink(){
 }
 
 /* ================= GITHUB PDF / CIRCULAR LIBRARY ================= */
+/*
+  Circular Library uses jsDelivr's public GitHub directory listing instead
+  of api.github.com. This avoids browser-side GitHub API rate-limit/403 issues.
+  PDFs themselves remain served from askunion.in.
+*/
 const GITHUB_OWNER = "sbisajaipur";
 const GITHUB_REPO = "Ask-union-jaipur";
 const GITHUB_BRANCH = "main";
 const GITHUB_SITE = "https://askunion.in/";
+const JSDELIVR_ROOT = `https://cdn.jsdelivr.net/gh/${GITHUB_OWNER}/${GITHUB_REPO}@${GITHUB_BRANCH}/`;
 
 function githubPdfUrl(path){
   return GITHUB_SITE + path.split("/").map(encodeURIComponent).join("/");
@@ -422,60 +428,101 @@ function githubPdfTitle(path){
   return name.replace(/[_-]+/g," ").replace(/\s+/g," ").trim();
 }
 
-async function githubFetchJson(url){
-  const controller=new AbortController();
-  const timer=setTimeout(()=>controller.abort(),15000);
-  try{
-    const r=await fetch(url,{
-      method:"GET",
-      headers:{
-        "Accept":"application/vnd.github+json",
-        "X-GitHub-Api-Version":"2022-11-28"
-      },
-      cache:"no-store",
-      signal:controller.signal
+async function fetchJsDelivrDirectory(path=""){
+  const clean=String(path||"").replace(/^\/+|\/+$/g,"");
+  const url=JSDELIVR_ROOT+(clean?clean+"/":"");
+  const r=await fetch(url,{method:"GET",cache:"no-store"});
+  if(!r.ok) throw new Error("Circular Library HTTP "+r.status);
+  return await r.text();
+}
+
+function extractJsDelivrEntries(html, currentPath=""){
+  const doc=new DOMParser().parseFromString(html,"text/html");
+  const result=[];
+  const base=currentPath?currentPath.replace(/\/+$/,"")+"/":"";
+
+  doc.querySelectorAll("a[href]").forEach(a=>{
+    const href=a.getAttribute("href")||"";
+    if(!href || href==="../" || href==="./") return;
+
+    let value=href;
+    try{
+      value=decodeURIComponent(value);
+    }catch(_){}
+
+    // Directory listings normally expose relative hrefs.
+    // Ignore external links and query/hash links.
+    if(/^(https?:|mailto:|#|\?)/i.test(value)) return;
+    value=value.split("#")[0].split("?")[0];
+    value=value.replace(/^\/+/,"");
+
+    // Remove the current directory prefix if the listing emits it.
+    const marker=base;
+    if(marker && value.startsWith(marker)) value=value.slice(marker.length);
+
+    if(!value) return;
+
+    const isDir=value.endsWith("/");
+    const clean=value.replace(/^\/+|\/+$/g,"");
+    if(!clean) return;
+
+    result.push({
+      path:base+clean,
+      isDir
     });
-    if(!r.ok) throw new Error("GitHub HTTP "+r.status);
-    return await r.json();
-  }finally{clearTimeout(timer)}
+  });
+
+  return result;
 }
 
 async function getGithubPdfFiles(){
-  // Git Trees API returns the repository tree in one request, including nested folders.
-  const api=`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees/${encodeURIComponent(GITHUB_BRANCH)}?recursive=1`;
-  try{
-    const data=await githubFetchJson(api);
-    if(!Array.isArray(data.tree)) throw new Error("GitHub repository tree unavailable.");
-    return data.tree
-      .filter(item=>item.type==="blob" && /\.pdf$/i.test(item.path))
-      .map(item=>({path:item.path,sha:item.sha}));
-  }catch(treeError){
-    console.warn("GitHub tree API failed, trying contents API:",treeError);
-    const api2=`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/?ref=${encodeURIComponent(GITHUB_BRANCH)}`;
-    const data=await githubFetchJson(api2);
-    const entries=Array.isArray(data)?data:[data];
-    let result=[];
-    for(const item of entries){
-      if(item.type==="file" && /\.pdf$/i.test(item.name)) result.push({path:item.path,sha:item.sha});
+  const queue=[""];
+  const visited=new Set();
+  const pdfs=new Map();
+  const maxDirectories=100;
+
+  while(queue.length && visited.size<maxDirectories){
+    const current=queue.shift();
+    if(visited.has(current)) continue;
+    visited.add(current);
+
+    const html=await fetchJsDelivrDirectory(current);
+    const entries=extractJsDelivrEntries(html,current);
+
+    for(const entry of entries){
+      const path=entry.path.replace(/^\/+|\/+$/g,"");
+      if(!path) continue;
+
+      if(entry.isDir){
+        if(!visited.has(path)) queue.push(path);
+      }else if(/\.pdf$/i.test(path)){
+        pdfs.set(path,{path});
+      }
     }
-    return result;
   }
+
+  return [...pdfs.values()];
 }
 
 async function loadGithubPdfs(){
   const status=$("githubPdfStatus"),list=$("githubPdfList");
   if(!status||!list)return;
-  status.textContent="Checking GitHub repository…";
+
+  status.textContent="Checking circular library…";
   list.innerHTML='<div class="github-pdf-empty">Loading circulars…</div>';
+
   try{
     const pdfs=await getGithubPdfFiles();
     pdfs.sort((a,b)=>a.path.localeCompare(b.path,undefined,{sensitivity:"base"}));
+
     if(!pdfs.length){
       status.textContent="No PDF files found in GitHub.";
       list.innerHTML='<div class="github-pdf-empty">No PDF files found in the repository <b>'+escapeHtml(GITHUB_REPO)+'</b> on <b>'+escapeHtml(GITHUB_BRANCH)+'</b>.</div>';
       return;
     }
+
     status.textContent=`${pdfs.length} PDF${pdfs.length===1?"":"s"} found`;
+
     list.innerHTML=pdfs.map(file=>{
       const title=githubPdfTitle(file.path),url=githubPdfUrl(file.path);
       return `<div class="github-pdf-item">
@@ -487,11 +534,11 @@ async function loadGithubPdfs(){
       </div>`;
     }).join("");
   }catch(error){
-    console.error("GitHub PDF library error:",error);
-    status.textContent="GitHub connection failed.";
+    console.error("Circular Library error:",error);
+    status.textContent="Circular Library connection failed.";
     list.innerHTML=`<div class="github-pdf-empty">
       <b>Unable to load GitHub circulars.</b><br>
-      ${escapeHtml(error.message||"Unknown GitHub error.")}
+      ${escapeHtml(error.message||"Unknown library error.")}
       <br><br>
       <button type="button" class="btn light" onclick="loadGithubPdfs()">↻ TRY AGAIN</button>
     </div>`;
@@ -499,10 +546,10 @@ async function loadGithubPdfs(){
 }
 
 function useGithubPdf(path,title,url){
-  $("type").value = "circulars";
-  $("title").value = title;
-  $("link").value = url;
-  if($("pdfFilename")) $("pdfFilename").value = path;
+  $("type").value="circulars";
+  $("title").value=title;
+  $("link").value=url;
+  if($("pdfFilename")) $("pdfFilename").value=path;
   msg("GitHub circular selected. Check the date/details, then click PUBLISH.","success");
   $("title").focus();
 }
