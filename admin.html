@@ -339,7 +339,6 @@ body{background:linear-gradient(180deg,#f8f6f4 0%,#f4f1ef 100%);color:var(--ink)
 <div class="member-layout">
 <div class="member-form">
 <h3 id="memberFormHeading">Add New Member</h3>
-<div style="font-size:10px;color:#6b7280;margin:-6px 0 10px">Create or update the member profile below.</div>
 <div class="field"><label>MEMBER NAME *</label><input id="memberName" type="text" maxlength="100" placeholder="Full name"></div>
 <div class="field"><label>EMAIL *</label><input id="memberEmail" type="email" maxlength="160" placeholder="member@example.com"></div>
 <div class="field"><label>PASSWORD *</label><input id="memberPassword" type="password" minlength="6" autocomplete="new-password" placeholder="Minimum 6 characters"></div>
@@ -555,7 +554,7 @@ async function saveMember(){
   try{
     if(editingMemberId){
       await db.collection("members").doc(editingMemberId).update({name,role,active,updatedAt:new Date().toISOString()});
-      msg("Member profile updated successfully.","success","memberMessage");
+      msg("Member updated successfully.","success","memberMessage");
     }else{
       const cred=await memberAuth.createUserWithEmailAndPassword(email,password);
       await db.collection("members").doc(cred.user.uid).set({uid:cred.user.uid,name,email,role,active,createdAt:new Date().toISOString(),createdBy:auth.currentUser?.email||""});
@@ -572,27 +571,12 @@ async function saveMember(){
   }finally{memberBusy=false;$("memberSaveButton").disabled=false}
 }
 function editMember(id){
-  const m=members.find(x=>String(x.id)===String(id));
-  if(!m){
-    msg("Member record not found. Please refresh the member list.","error","memberMessage");
-    return;
-  }
-  editingMemberId=m.id;
-  $("memberFormHeading").textContent="Edit Member";
-  $("memberName").value=m.name||"";
-  $("memberEmail").value=m.email||"";
-  $("memberEmail").disabled=true;
-  $("memberPassword").value="";
-  $("memberPassword").disabled=true;
-  $("memberPassword").placeholder="Use RESET PASSWORD instead";
-  $("memberPasswordHint").textContent="Password is managed securely by Firebase Authentication.";
-  $("memberRole").value=m.role||"Member";
-  $("memberStatus").value=m.active===false?"inactive":"active";
-  $("memberSaveButton").textContent="UPDATE MEMBER";
-  $("memberCancelButton").classList.remove("hidden");
-  $("memberMessage").innerHTML="";
-  $("memberSection").scrollIntoView({behavior:"smooth",block:"start"});
-  setTimeout(()=>$("memberName").focus(),350);
+  const m=members.find(x=>x.id===id);if(!m)return;editingMemberId=id;
+  $("memberFormHeading").textContent="Edit Member";$("memberName").value=m.name||"";$("memberEmail").value=m.email||"";$("memberEmail").disabled=true;
+  $("memberPassword").value="";$("memberPassword").disabled=true;$("memberPassword").placeholder="Use Reset Password instead";
+  $("memberPasswordHint").textContent="Credentials are managed by Firebase Authentication.";
+  $("memberRole").value=m.role||"Member";$("memberStatus").value=m.active===false?"inactive":"active";
+  $("memberSaveButton").textContent="UPDATE MEMBER";$("memberCancelButton").classList.remove("hidden");$("memberName").focus();
 }
 function resetMemberForm(){
   editingMemberId=null;if(!$("memberFormHeading"))return;
@@ -608,7 +592,7 @@ async function toggleMember(id){
   try{await db.collection("members").doc(id).update({active:next,updatedAt:new Date().toISOString()});msg(`Member ${next?"activated":"deactivated"} successfully.`,"success","memberMessage");await loadMembers()}
   catch(e){msg("Unable to change member status: "+e.message,"error","memberMessage")}
 }
-async async function sendMemberReset(email){
+async function sendMemberReset(email){
   if(!email)return;
   if(!confirm(`Send a password reset email to ${email}?`))return;
   try{
