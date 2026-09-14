@@ -76,6 +76,28 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
   .pdf-generate{width:100%}
 }
 
+
+/* FINISHED UI + MEMBER MANAGEMENT */
+.dashboard-hero{padding:20px 22px;margin-bottom:14px;background:linear-gradient(135deg,#fff,#fff8fa)}
+.dashboard-kicker{font-size:10px;font-weight:850;letter-spacing:1.1px;color:var(--maroon);text-transform:uppercase}
+.dashboard-title{font-size:25px;font-weight:900;margin:3px 0 4px}
+.dashboard-sub{font-size:12px;color:var(--muted)}
+.hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.section.full-section{margin-top:14px;padding:20px}
+.section-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:15px}
+.section-title-row h2{margin:0;font-size:19px}.section-title-row p{margin:4px 0 0;color:var(--muted);font-size:11px}
+.member-summary{display:flex;gap:8px;flex-wrap:wrap}.mini-stat{background:#f7f2f3;border:1px solid #eadfe2;border-radius:11px;padding:8px 11px;font-size:11px;font-weight:800}.mini-stat b{color:var(--maroon);font-size:15px;margin-right:3px}
+.member-layout{display:grid;grid-template-columns:330px 1fr;gap:16px}
+.member-form{border:1px solid var(--line);background:#fbf8f8;border-radius:15px;padding:16px}.member-form h3{margin:0 0 12px;font-size:15px}
+.member-list-wrap{min-width:0}.member-toolbar{display:flex;gap:8px;margin-bottom:10px}.member-toolbar input{flex:1;border:1px solid var(--line);border-radius:11px;padding:10px 12px;outline:0}
+.member-list{max-height:430px;overflow:auto}.member-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid var(--line);border-radius:13px;margin:8px 0;background:#fff}
+.member-main{min-width:0}.member-name{font-weight:850;font-size:13px}.member-email{font-size:10px;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.member-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:7px}.status{font-size:9px;font-weight:850;padding:4px 7px;border-radius:99px}.status.active{background:#eaf8f0;color:#16804b}.status.inactive{background:#fff0f0;color:#b42318}
+.role-badge{font-size:9px;font-weight:800;padding:4px 7px;border-radius:99px;background:#f4e7ea;color:var(--maroon)}
+.member-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.member-actions .btn{min-height:34px;padding:7px 9px;font-size:10px}
+.member-note{font-size:10px;line-height:1.45;color:var(--muted);margin-top:10px}.password-hint{font-size:9px;color:var(--muted);margin-top:-7px;margin-bottom:10px}.member-empty{text-align:center;padding:25px;color:var(--muted);font-size:12px}
+@media(max-width:820px){.member-layout{grid-template-columns:1fr}}@media(max-width:600px){.section-title-row{flex-direction:column}.member-toolbar{flex-direction:column}.member-row{align-items:flex-start;flex-direction:column}.member-actions{width:100%;justify-content:flex-start}}
+
 </style>
 
 <style id="github-circular-library">
@@ -115,7 +137,12 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
   <button class="btn logout" onclick="logout()">LOGOUT</button>
 </div></header>
 <main class="container">
-  <div class="card head"><div><h1>Content Dashboard</h1><p>Logged in as <b id="adminEmail"></b></p></div><button class="btn light" onclick="refreshAll()">↻ REFRESH</button></div>
+  <div class="card dashboard-hero">
+<div class="dashboard-kicker">ASK UNION · SBISA UDAIPUR MODULE</div>
+<div class="section-title-row" style="margin:2px 0 0">
+<div><div class="dashboard-title">Admin Dashboard</div><div class="dashboard-sub">Logged in as <b id="adminEmail"></b> · Manage members, notices, circulars and events.</div></div>
+<div class="hero-actions"><button class="btn light" onclick="refreshAll()">↻ REFRESH</button></div>
+</div></div>
   <div class="stats">
     <div class="card stat"><div class="label">Updates / Notices</div><div class="num" id="countUpdates">—</div></div>
     <div class="card stat"><div class="label">Circulars</div><div class="num" id="countCirculars">—</div></div>
@@ -165,6 +192,33 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
       <div id="contentList" class="list"><div class="empty">Loading…</div></div>
     </section>
   </div>
+
+<section class="card section full-section">
+<div class="section-title-row">
+<div><h2>👥 Member Management</h2><p>Add authorised members and control who can use the member area.</p></div>
+<div class="member-summary">
+<div class="mini-stat"><b id="memberTotal">0</b>Total</div>
+<div class="mini-stat"><b id="memberActive">0</b>Active</div>
+<div class="mini-stat"><b id="memberInactive">0</b>Inactive</div>
+</div></div>
+<div class="member-layout">
+<div class="member-form">
+<h3 id="memberFormHeading">Add New Member</h3>
+<div class="field"><label>MEMBER NAME *</label><input id="memberName" type="text" maxlength="100" placeholder="Full name"></div>
+<div class="field"><label>EMAIL *</label><input id="memberEmail" type="email" maxlength="160" placeholder="member@example.com"></div>
+<div class="field"><label>PASSWORD *</label><input id="memberPassword" type="password" minlength="6" autocomplete="new-password" placeholder="Minimum 6 characters"></div>
+<div class="password-hint" id="memberPasswordHint">Used only to create the Firebase account; not stored in Firestore.</div>
+<div class="field"><label>ROLE</label><select id="memberRole"><option>Member</option><option>Office Bearer</option></select></div>
+<div class="field"><label>STATUS</label><select id="memberStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
+<div class="actions"><button id="memberSaveButton" class="btn primary" onclick="saveMember()">ADD MEMBER</button><button id="memberCancelButton" class="btn light hidden" onclick="cancelMemberEdit()">CANCEL</button></div>
+<div id="memberMessage"></div>
+<div class="member-note">Only members marked <b>Active</b> should be allowed by the member login page. Deactivating a member changes the authorisation record immediately.</div>
+</div>
+<div class="member-list-wrap">
+<div class="member-toolbar"><input id="memberSearch" type="search" placeholder="Search member name or email…" oninput="renderMembers()"><button class="btn light" type="button" onclick="loadMembers()">↻ REFRESH</button></div>
+<div id="memberList" class="member-list"><div class="member-empty">Loading members…</div></div>
+</div></div></section>
+
 </main>
 </div>
 
@@ -180,8 +234,12 @@ const firebaseConfig = {
   messagingSenderId: "584327754977",
   appId: "1:584327754977:web:7164a85c007165743ef3a"
 };
-firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore();
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth(),db=firebase.firestore();
+const memberApp=firebase.initializeApp(firebaseConfig,"memberManager");
+const memberAuth=memberApp.auth();
 let editingId=null,editingType=null,currentItems=[],busy=false;
+let editingMemberId=null,members=[],memberBusy=false;
 const $=id=>document.getElementById(id);
 function escapeHtml(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
 function safeUrl(v){try{const u=new URL(v);return["http:","https:"].includes(u.protocol)?u.href:""}catch{return""}}
@@ -191,7 +249,10 @@ function msg(t,type="success",target="message"){$(target).innerHTML=t?`<div clas
 async function getItems(type){const s=await db.collection(type).get(),a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));return a.sort((x,y)=>String(y.date||y.createdAt||"").localeCompare(String(x.date||x.createdAt||"")))}
 function login(){const e=$("email").value.trim(),p=$("password").value;if(!e||!p){msg("Enter email and password.","error","loginMessage");return}auth.signInWithEmailAndPassword(e,p).catch(error=>{console.error("ASK UNION LOGIN ERROR:",error); const code=error&&error.code?error.code:"unknown"; const detail=error&&error.message?error.message:"Unknown Firebase error"; msg("Login failed: "+code+" — "+detail,"error","loginMessage")})}
 function logout(){auth.signOut()}
-auth.onAuthStateChanged(u=>{if(u){$("loginView").classList.add("hidden");$("adminView").classList.remove("hidden");$("adminEmail").textContent=u.email||"";resetForm();refreshAll();loadGithubPdfs();}else{$("loginView").classList.remove("hidden");$("adminView").classList.add("hidden")}})
+auth.onAuthStateChanged(u=>{
+if(u){$("loginView").classList.add("hidden");$("adminView").classList.remove("hidden");$("adminEmail").textContent=u.email||"";resetForm();resetMemberForm();refreshAll();loadGithubPdfs();loadMembers();}
+else{$("loginView").classList.remove("hidden");$("adminView").classList.add("hidden")}
+})
 async function loadContent(){const t=$("manageType").value;$("contentList").innerHTML='<div class="empty">Loading…</div>';try{currentItems=await getItems(t);renderList()}catch(e){console.error(e);$("contentList").innerHTML='<div class="empty">Unable to load content. Please refresh.</div>'}}
 function renderList(){const q=$("searchBox").value.trim().toLowerCase(),a=currentItems.filter(x=>[x.title,x.details,x.category,x.link].some(v=>String(v||"").toLowerCase().includes(q)));$("resultCount").textContent=a.length+" item"+(a.length===1?"":"s");if(!a.length){$("contentList").innerHTML='<div class="empty">No matching content found.</div>';return}$("contentList").innerHTML=a.map(x=>{const u=safeUrl(x.link||"");return`<article class="item"><div class="item-top"><div class="title">${escapeHtml(x.title||"Untitled")}</div>${x.category?`<span class="badge">${escapeHtml(x.category)}</span>`:""}</div><div class="meta">📅 ${escapeHtml(formatDate(x.date))}</div>${x.details?`<div class="details">${escapeHtml(x.details)}</div>`:""}${u?`<a class="link" href="${escapeHtml(u)}" target="_blank" rel="noopener">📄 Open PDF / Link →</a>`:""}<div class="item-actions"><button class="btn edit" onclick="editContent('${escapeHtml(x.id)}')">EDIT</button><button class="btn danger" onclick="deleteContent('${escapeHtml(x.id)}')">DELETE</button></div></article>`}).join("")}
 async function refreshAll(){try{const[u,c,e]=await Promise.all([getItems("updates"),getItems("circulars"),getItems("events")]);$("countUpdates").textContent=u.length;$("countCirculars").textContent=c.length;$("countEvents").textContent=e.length;const t=$("manageType").value;currentItems=t==="updates"?u:t==="circulars"?c:e;renderList()}catch(e){console.error(e);loadContent()}}
@@ -316,6 +377,83 @@ function useGithubPdf(path,title,url){
   $("title").focus();
 }
 /* ================= END GITHUB PDF / CIRCULAR LIBRARY ================= */
+
+
+/* MEMBER MANAGEMENT */
+async function loadMembers(){
+  const list=$("memberList"); if(!list)return;
+  list.innerHTML='<div class="member-empty">Loading members…</div>';
+  try{
+    const snap=await db.collection("members").get(); members=[];
+    snap.forEach(d=>members.push({id:d.id,...d.data()}));
+    members.sort((a,b)=>String(a.name||"").localeCompare(String(b.name||"")));
+    renderMembers();
+  }catch(e){console.error(e);list.innerHTML='<div class="member-empty">Unable to load members. Check Firestore rules.</div>'}
+}
+function renderMembers(){
+  const q=($("memberSearch")?.value||"").trim().toLowerCase();
+  const f=members.filter(m=>[m.name,m.email,m.role].some(v=>String(v||"").toLowerCase().includes(q)));
+  const active=members.filter(m=>m.active!==false).length;
+  $("memberTotal").textContent=members.length;$("memberActive").textContent=active;$("memberInactive").textContent=members.length-active;
+  if(!f.length){$("memberList").innerHTML='<div class="member-empty">'+(members.length?'No matching members found.':'No members added yet.')+'</div>';return}
+  $("memberList").innerHTML=f.map(m=>{
+    const a=m.active!==false;
+    return `<div class="member-row"><div class="member-main"><div class="member-name">${escapeHtml(m.name||"Unnamed member")}</div><div class="member-email">${escapeHtml(m.email||"")}</div><div class="member-meta"><span class="status ${a?"active":"inactive"}">${a?"● ACTIVE":"● INACTIVE"}</span><span class="role-badge">${escapeHtml(m.role||"Member")}</span></div></div><div class="member-actions"><button class="btn edit" onclick="editMember('${escapeHtml(m.id)}')">EDIT</button><button class="btn ${a?"danger":"primary"}" onclick="toggleMember('${escapeHtml(m.id)}')">${a?"DEACTIVATE":"ACTIVATE"}</button><button class="btn light" onclick="sendMemberReset('${escapeHtml(m.email||"")}')">RESET PASSWORD</button></div></div>`;
+  }).join("");
+}
+async function saveMember(){
+  if(memberBusy)return;
+  const name=$("memberName").value.trim(),email=$("memberEmail").value.trim().toLowerCase(),password=$("memberPassword").value,role=$("memberRole").value,active=$("memberStatus").value==="active";
+  if(!name||!email){msg("Enter member name and email.","error","memberMessage");return}
+  if(!editingMemberId&&password.length<6){msg("Password must be at least 6 characters.","error","memberMessage");return}
+  memberBusy=true;$("memberSaveButton").disabled=true;
+  try{
+    if(editingMemberId){
+      await db.collection("members").doc(editingMemberId).update({name,role,active,updatedAt:new Date().toISOString()});
+      msg("Member updated successfully.","success","memberMessage");
+    }else{
+      const cred=await memberAuth.createUserWithEmailAndPassword(email,password);
+      await db.collection("members").doc(cred.user.uid).set({uid:cred.user.uid,name,email,role,active,createdAt:new Date().toISOString(),createdBy:auth.currentUser?.email||""});
+      await memberAuth.signOut();
+      msg("Member added successfully.","success","memberMessage");
+    }
+    resetMemberForm();await loadMembers();
+  }catch(e){
+    console.error(e);let d=e?.message||"Unable to save member.";
+    if(e?.code==="auth/email-already-in-use")d="This email is already registered in Firebase Authentication.";
+    if(e?.code==="auth/invalid-email")d="Please enter a valid email address.";
+    if(e?.code==="auth/weak-password")d="Password must be at least 6 characters.";
+    msg(d,"error","memberMessage");
+  }finally{memberBusy=false;$("memberSaveButton").disabled=false}
+}
+function editMember(id){
+  const m=members.find(x=>x.id===id);if(!m)return;editingMemberId=id;
+  $("memberFormHeading").textContent="Edit Member";$("memberName").value=m.name||"";$("memberEmail").value=m.email||"";$("memberEmail").disabled=true;
+  $("memberPassword").value="";$("memberPassword").disabled=true;$("memberPassword").placeholder="Use Reset Password instead";
+  $("memberPasswordHint").textContent="Credentials are managed by Firebase Authentication.";
+  $("memberRole").value=m.role||"Member";$("memberStatus").value=m.active===false?"inactive":"active";
+  $("memberSaveButton").textContent="UPDATE MEMBER";$("memberCancelButton").classList.remove("hidden");$("memberName").focus();
+}
+function resetMemberForm(){
+  editingMemberId=null;if(!$("memberFormHeading"))return;
+  $("memberFormHeading").textContent="Add New Member";$("memberName").value="";$("memberEmail").value="";$("memberEmail").disabled=false;
+  $("memberPassword").value="";$("memberPassword").disabled=false;$("memberPassword").placeholder="Minimum 6 characters";
+  $("memberPasswordHint").textContent="Used only to create the Firebase account; not stored in Firestore.";
+  $("memberRole").value="Member";$("memberStatus").value="active";$("memberSaveButton").textContent="ADD MEMBER";$("memberCancelButton").classList.add("hidden");
+}
+function cancelMemberEdit(){resetMemberForm();msg("","success","memberMessage")}
+async function toggleMember(id){
+  const m=members.find(x=>x.id===id);if(!m)return;const next=m.active===false;
+  if(!confirm(`${next?"Activate":"Deactivate"} ${m.name||m.email}?`))return;
+  try{await db.collection("members").doc(id).update({active:next,updatedAt:new Date().toISOString()});msg(`Member ${next?"activated":"deactivated"} successfully.`,"success","memberMessage");await loadMembers()}
+  catch(e){msg("Unable to change member status: "+e.message,"error","memberMessage")}
+}
+async function sendMemberReset(email){
+  if(!email)return;if(!confirm(`Send a password reset email to ${email}?`))return;
+  try{await auth.sendPasswordResetEmail(email);msg("Password reset email sent successfully.","success","memberMessage")}
+  catch(e){msg("Unable to send reset email: "+(e.message||"Unknown error"),"error","memberMessage")}
+}
+/* END MEMBER MANAGEMENT */
 
 function resetForm(){editingId=null;editingType=null;$("type").disabled=false;$("formHeading").textContent="Publish Content";$("publishButton").textContent="PUBLISH";$("cancelButton").classList.add("hidden");$("title").value="";$("details").value="";$("link").value="";$("category").value="";$("publishDate").value=today();if($("pdfFilename"))$("pdfFilename").value=""}
 $("publishDate").value=today();
