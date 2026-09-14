@@ -408,16 +408,13 @@ function generatePdfLink(){
 }
 
 /* ================= GITHUB PDF / CIRCULAR LIBRARY ================= */
-/*
-  Circular Library uses jsDelivr's public GitHub directory listing instead
-  of api.github.com. This avoids browser-side GitHub API rate-limit/403 issues.
-  PDFs themselves remain served from askunion.in.
-*/
+/* PDF manifest is generated automatically by GitHub Actions.
+   This avoids browser-side GitHub API rate-limit/CORS/403 issues. */
 const GITHUB_OWNER = "sbisajaipur";
 const GITHUB_REPO = "Ask-union-jaipur";
 const GITHUB_BRANCH = "main";
 const GITHUB_SITE = "https://askunion.in/";
-const JSDELIVR_ROOT = `https://cdn.jsdelivr.net/gh/${GITHUB_OWNER}/${GITHUB_REPO}@${GITHUB_BRANCH}/`;
+const PDF_MANIFEST_URL = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/pdf-manifest.json`;
 
 function githubPdfUrl(path){
   return GITHUB_SITE + path.split("/").map(encodeURIComponent).join("/");
@@ -428,101 +425,32 @@ function githubPdfTitle(path){
   return name.replace(/[_-]+/g," ").replace(/\s+/g," ").trim();
 }
 
-async function fetchJsDelivrDirectory(path=""){
-  const clean=String(path||"").replace(/^\/+|\/+$/g,"");
-  const url=JSDELIVR_ROOT+(clean?clean+"/":"");
-  const r=await fetch(url,{method:"GET",cache:"no-store"});
-  if(!r.ok) throw new Error("Circular Library HTTP "+r.status);
-  return await r.text();
-}
-
-function extractJsDelivrEntries(html, currentPath=""){
-  const doc=new DOMParser().parseFromString(html,"text/html");
-  const result=[];
-  const base=currentPath?currentPath.replace(/\/+$/,"")+"/":"";
-
-  doc.querySelectorAll("a[href]").forEach(a=>{
-    const href=a.getAttribute("href")||"";
-    if(!href || href==="../" || href==="./") return;
-
-    let value=href;
-    try{
-      value=decodeURIComponent(value);
-    }catch(_){}
-
-    // Directory listings normally expose relative hrefs.
-    // Ignore external links and query/hash links.
-    if(/^(https?:|mailto:|#|\?)/i.test(value)) return;
-    value=value.split("#")[0].split("?")[0];
-    value=value.replace(/^\/+/,"");
-
-    // Remove the current directory prefix if the listing emits it.
-    const marker=base;
-    if(marker && value.startsWith(marker)) value=value.slice(marker.length);
-
-    if(!value) return;
-
-    const isDir=value.endsWith("/");
-    const clean=value.replace(/^\/+|\/+$/g,"");
-    if(!clean) return;
-
-    result.push({
-      path:base+clean,
-      isDir
-    });
-  });
-
-  return result;
-}
-
 async function getGithubPdfFiles(){
-  const queue=[""];
-  const visited=new Set();
-  const pdfs=new Map();
-  const maxDirectories=100;
-
-  while(queue.length && visited.size<maxDirectories){
-    const current=queue.shift();
-    if(visited.has(current)) continue;
-    visited.add(current);
-
-    const html=await fetchJsDelivrDirectory(current);
-    const entries=extractJsDelivrEntries(html,current);
-
-    for(const entry of entries){
-      const path=entry.path.replace(/^\/+|\/+$/g,"");
-      if(!path) continue;
-
-      if(entry.isDir){
-        if(!visited.has(path)) queue.push(path);
-      }else if(/\.pdf$/i.test(path)){
-        pdfs.set(path,{path});
-      }
-    }
-  }
-
-  return [...pdfs.values()];
+  const r=await fetch(PDF_MANIFEST_URL+"?v="+Date.now(),{
+    method:"GET",
+    cache:"no-store",
+    headers:{"Accept":"application/json"}
+  });
+  if(!r.ok) throw new Error("PDF manifest HTTP "+r.status);
+  const data=await r.json();
+  if(!Array.isArray(data)) throw new Error("PDF manifest format is invalid.");
+  return data.filter(x=>x&&typeof x.path==="string"&&/\.pdf$/i.test(x.path));
 }
 
 async function loadGithubPdfs(){
   const status=$("githubPdfStatus"),list=$("githubPdfList");
   if(!status||!list)return;
-
   status.textContent="Checking circular library…";
   list.innerHTML='<div class="github-pdf-empty">Loading circulars…</div>';
-
   try{
     const pdfs=await getGithubPdfFiles();
     pdfs.sort((a,b)=>a.path.localeCompare(b.path,undefined,{sensitivity:"base"}));
-
     if(!pdfs.length){
       status.textContent="No PDF files found in GitHub.";
-      list.innerHTML='<div class="github-pdf-empty">No PDF files found in the repository <b>'+escapeHtml(GITHUB_REPO)+'</b> on <b>'+escapeHtml(GITHUB_BRANCH)+'</b>.</div>';
+      list.innerHTML='<div class="github-pdf-empty">No PDF files found in the repository <b>'+escapeHtml(GITHUB_REPO)+'</b>.</div>';
       return;
     }
-
     status.textContent=`${pdfs.length} PDF${pdfs.length===1?"":"s"} found`;
-
     list.innerHTML=pdfs.map(file=>{
       const title=githubPdfTitle(file.path),url=githubPdfUrl(file.path);
       return `<div class="github-pdf-item">
@@ -537,8 +465,8 @@ async function loadGithubPdfs(){
     console.error("Circular Library error:",error);
     status.textContent="Circular Library connection failed.";
     list.innerHTML=`<div class="github-pdf-empty">
-      <b>Unable to load GitHub circulars.</b><br>
-      ${escapeHtml(error.message||"Unknown library error.")}
+      <b>Unable to load circulars.</b><br>
+      ${escapeHtml(error.message||"PDF manifest could not be loaded.")}
       <br><br>
       <button type="button" class="btn light" onclick="loadGithubPdfs()">↻ TRY AGAIN</button>
     </div>`;
