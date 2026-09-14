@@ -408,33 +408,54 @@ function generatePdfLink(){
 }
 
 /* ================= GITHUB PDF / CIRCULAR LIBRARY ================= */
-/* PDF manifest is generated automatically by GitHub Actions.
-   This avoids browser-side GitHub API rate-limit/CORS/403 issues. */
+/*
+  Circular Library reads a tiny JSON manifest from the repository instead of
+  calling api.github.com. GitHub Actions can regenerate that manifest whenever
+  PDFs are added/removed. A built-in fallback keeps the library usable even
+  before the first manifest is generated.
+*/
 const GITHUB_OWNER = "sbisajaipur";
 const GITHUB_REPO = "Ask-union-jaipur";
 const GITHUB_BRANCH = "main";
 const GITHUB_SITE = "https://askunion.in/";
 const PDF_MANIFEST_URL = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/pdf-manifest.json`;
+const FALLBACK_PDFS = [
+  "DOC-20260809-WA0046..pdf",
+  "DOC-20260810-WA0019..pdf",
+  "SBI CARES COMPENDIUM OF STAFF BENEFITS BY SBSC.pdf",
+  "SBI_Award_clerical_Duties_Career_Progression_30_May_2021 (2).pdf",
+  "SBI_Staff_Rules_Quick_Reference_Hindi_FIXED.pdf",
+  "Uniform Transfer policy for award staff.pdf",
+  "medical-form.pdf",
+  "membership-form.pdf",
+  "personal-loan.pdf",
+  "transfer-application.pdf",
+  "union letter.pdf"
+];
 
 function githubPdfUrl(path){
   return GITHUB_SITE + path.split("/").map(encodeURIComponent).join("/");
 }
-
 function githubPdfTitle(path){
   const name = path.split("/").pop().replace(/\.pdf$/i,"");
   return name.replace(/[_-]+/g," ").replace(/\s+/g," ").trim();
 }
 
 async function getGithubPdfFiles(){
-  const r=await fetch(PDF_MANIFEST_URL+"?v="+Date.now(),{
-    method:"GET",
-    cache:"no-store",
-    headers:{"Accept":"application/json"}
-  });
-  if(!r.ok) throw new Error("PDF manifest HTTP "+r.status);
-  const data=await r.json();
-  if(!Array.isArray(data)) throw new Error("PDF manifest format is invalid.");
-  return data.filter(x=>x&&typeof x.path==="string"&&/\.pdf$/i.test(x.path));
+  try{
+    const r=await fetch(PDF_MANIFEST_URL+"?v="+Date.now(),{
+      method:"GET",cache:"no-store",headers:{"Accept":"application/json"}
+    });
+    if(!r.ok) throw new Error("manifest HTTP "+r.status);
+    const data=await r.json();
+    if(!Array.isArray(data)) throw new Error("invalid manifest format");
+    const files=data.filter(x=>x&&typeof x.path==="string"&&/\.pdf$/i.test(x.path));
+    if(files.length)return {files,source:"manifest"};
+    throw new Error("manifest contains no PDFs");
+  }catch(error){
+    console.warn("PDF manifest unavailable; using built-in fallback.",error);
+    return {files:FALLBACK_PDFS.map(path=>({path})),source:"fallback"};
+  }
 }
 
 async function loadGithubPdfs(){
@@ -443,14 +464,15 @@ async function loadGithubPdfs(){
   status.textContent="Checking circular library…";
   list.innerHTML='<div class="github-pdf-empty">Loading circulars…</div>';
   try{
-    const pdfs=await getGithubPdfFiles();
+    const result=await getGithubPdfFiles();
+    const pdfs=result.files;
     pdfs.sort((a,b)=>a.path.localeCompare(b.path,undefined,{sensitivity:"base"}));
     if(!pdfs.length){
       status.textContent="No PDF files found in GitHub.";
-      list.innerHTML='<div class="github-pdf-empty">No PDF files found in the repository <b>'+escapeHtml(GITHUB_REPO)+'</b>.</div>';
+      list.innerHTML='<div class="github-pdf-empty">No PDF files found.</div>';
       return;
     }
-    status.textContent=`${pdfs.length} PDF${pdfs.length===1?"":"s"} found`;
+    status.textContent=`${pdfs.length} PDF${pdfs.length===1?"":"s"} found${result.source==="fallback"?" · fallback list":""}`;
     list.innerHTML=pdfs.map(file=>{
       const title=githubPdfTitle(file.path),url=githubPdfUrl(file.path);
       return `<div class="github-pdf-item">
@@ -466,9 +488,8 @@ async function loadGithubPdfs(){
     status.textContent="Circular Library connection failed.";
     list.innerHTML=`<div class="github-pdf-empty">
       <b>Unable to load circulars.</b><br>
-      ${escapeHtml(error.message||"PDF manifest could not be loaded.")}
-      <br><br>
-      <button type="button" class="btn light" onclick="loadGithubPdfs()">↻ TRY AGAIN</button>
+      ${escapeHtml(error.message||"Unknown library error.")}
+      <br><br><button type="button" class="btn light" onclick="loadGithubPdfs()">↻ TRY AGAIN</button>
     </div>`;
   }
 }
