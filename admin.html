@@ -98,6 +98,54 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
 .member-note{font-size:10px;line-height:1.45;color:var(--muted);margin-top:10px}.password-hint{font-size:9px;color:var(--muted);margin-top:-7px;margin-bottom:10px}.member-empty{text-align:center;padding:25px;color:var(--muted);font-size:12px}
 @media(max-width:820px){.member-layout{grid-template-columns:1fr}}@media(max-width:600px){.section-title-row{flex-direction:column}.member-toolbar{flex-direction:column}.member-row{align-items:flex-start;flex-direction:column}.member-actions{width:100%;justify-content:flex-start}}
 
+
+/* ================= PREMIUM FINISH ================= */
+:root{
+  --maroon:#7b1024;--maroon2:#5d0b1b;--ink:#172033;--muted:#697386;
+  --line:#e8e3e1;--soft:#faf7f8;--white:#fff;--green:#16804b;--amber:#a96800;
+}
+body{background:linear-gradient(180deg,#f8f6f4 0%,#f4f1ef 100%);color:var(--ink)}
+.topbar{padding:11px 18px;background:linear-gradient(135deg,#7b1024 0%,#620c1c 55%,#4f0917 100%);box-shadow:0 8px 24px rgba(70,16,25,.18)}
+.topbar-inner{max-width:1180px}
+.brand{gap:10px}.brand img{box-shadow:0 2px 10px rgba(0,0,0,.16)}
+.brand-title{letter-spacing:.2px}.brand-sub{letter-spacing:1.2px}
+.container{max-width:1180px;padding:20px 14px 50px}
+.dashboard-hero{position:relative;overflow:hidden;padding:22px 24px;margin-bottom:15px;border:1px solid #eadfe2;background:linear-gradient(135deg,#fff 0%,#fff9fa 62%,#f7eef1 100%);box-shadow:0 10px 32px rgba(35,20,25,.08)}
+.dashboard-hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-70px;top:-80px;background:#7b102410}
+.dashboard-kicker{font-size:9px;font-weight:900;letter-spacing:1.5px;color:var(--maroon);text-transform:uppercase}
+.dashboard-title{font-size:27px;line-height:1.15;font-weight:950;margin:4px 0 5px;letter-spacing:-.4px}
+.dashboard-sub{font-size:11px;color:var(--muted);max-width:720px;line-height:1.5}
+.hero-actions{position:relative;z-index:2}
+.btn{transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease}.btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,0,0,.08)}.btn:active{transform:translateY(0)}
+.stats{gap:13px;margin-bottom:15px}
+.stat{position:relative;overflow:hidden;padding:17px 19px;border:1px solid #ebe6e4}
+.stat:after{content:"";position:absolute;right:-22px;bottom:-30px;width:90px;height:90px;border-radius:50%;background:#7b102408}
+.num{font-size:30px}
+.label{font-size:10px}
+.grid{gap:15px}.section{padding:19px;border:1px solid #ebe6e4}
+.section-head{margin-bottom:14px}.section-head h2{letter-spacing:-.15px}
+.field{margin:11px 0}.field label{font-size:10px;letter-spacing:.25px;color:#263043}
+.field input,.field textarea,.field select{background:#fff;border-color:#ddd8d5;transition:border-color .15s,box-shadow .15s}
+.field input:hover,.field textarea:hover,.field select:hover{border-color:#c7bfbc}
+.toolbar{padding:4px;background:#faf8f7;border:1px solid #eee9e7;border-radius:13px}.toolbar input,.toolbar select{border:0;background:transparent}.toolbar input:focus,.toolbar select:focus{outline:none}
+.item{border-color:#e9e3e0;background:linear-gradient(180deg,#fff,#fffdfc);transition:box-shadow .15s,transform .15s}
+.item:hover{box-shadow:0 5px 18px rgba(35,20,25,.06);transform:translateY(-1px)}
+.item-actions .btn{font-size:10px}
+.github-pdf-box{background:linear-gradient(180deg,#fffafa,#fff);border-color:#eadde1}
+.full-section{border-color:#eadfe2!important;background:linear-gradient(180deg,#fff,#fffdfd)}
+.section-title-row h2{letter-spacing:-.2px}
+.member-form{background:linear-gradient(180deg,#fcf8f9,#faf7f7);border-color:#eadfe2}
+.member-toolbar{padding:4px;background:#faf8f7;border:1px solid #eee9e7;border-radius:13px}
+.member-toolbar input{border:0;background:transparent}
+.member-toolbar input:focus{outline:none}
+.member-row{border-color:#e9e3e0;transition:box-shadow .15s,transform .15s}
+.member-row:hover{box-shadow:0 5px 18px rgba(35,20,25,.06);transform:translateY(-1px)}
+.mini-stat{background:#fff;border-color:#e9dfe2}
+@media(max-width:760px){
+  .container{padding:13px 10px 35px}.dashboard-title{font-size:23px}.dashboard-hero{padding:18px}
+}
+/* ================= END PREMIUM FINISH ================= */
+
 </style>
 
 <style id="github-circular-library">
@@ -148,14 +196,25 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
     <div class="card stat"><div class="label">Circulars</div><div class="num" id="countCirculars">—</div></div>
     <div class="card stat"><div class="label">Events</div><div class="num" id="countEvents">—</div></div>
   </div>
+  <div class="card" style="padding:12px 14px;margin-bottom:15px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#fff;border:1px solid #ebe6e4">
+    <div>
+      <div style="font-size:11px;font-weight:900;color:#18212f">QUICK ACTIONS</div>
+      <div style="font-size:10px;color:#6b7280;margin-top:2px">Publish content or manage authorised members.</div>
+    </div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap">
+      <button class="btn primary" type="button" onclick="document.getElementById('title').focus()">＋ PUBLISH CONTENT</button>
+      <button class="btn light" type="button" onclick="document.getElementById('memberName').focus()">＋ ADD MEMBER</button>
+      <button class="btn light" type="button" onclick="loadGithubPdfs()">📚 CIRCULAR LIBRARY</button>
+    </div>
+  </div>
   <div class="grid">
     <section class="card section">
-      <div class="section-head"><h2 id="formHeading">Publish Content</h2><span>Appears on public app</span></div>
+      <div class="section-head"><div><h2 id="formHeading">Publish Content</h2><span>CREATE · EDIT · PUBLISH</span></div><span style="color:#7b1024;font-weight:800">● LIVE</span></div>
       <div class="form-grid">
         <div class="field"><label>CONTENT TYPE</label><select id="type"><option value="updates">Update / Notice</option><option value="circulars">Circular</option><option value="events">Event</option></select></div>
         <div class="field"><label>DATE</label><input id="publishDate" type="date"></div>
         <div class="field full"><label>TITLE *</label><input id="title" maxlength="180" placeholder="Enter a clear title"></div>
-        <div class="field full"><label>CATEGORY (OPTIONAL)</label><input id="category" maxlength="60" placeholder="Transfer, Pension, Strike, Meeting..."></div><div class="field full"><label>VISIBILITY</label><select id="visibility"><option value="public">🌐 Everyone</option><option value="members">🔐 Members Only</option></select></div>
+        <div class="field full"><label>CATEGORY (OPTIONAL)</label><input id="category" maxlength="60" placeholder="Transfer, Pension, Strike, Meeting..."></div><div class="field full"><label>VISIBILITY · WHO CAN SEE THIS?</label><select id="visibility"><option value="public">🌐 Everyone</option><option value="members">🔐 Members Only</option></select></div>
         <div class="field full"><label>DETAILS</label><textarea id="details" maxlength="5000" placeholder="Enter details"></textarea></div>
         <div class="field full">
           <label>PDF / PUBLIC LINK (OPTIONAL)</label>
@@ -187,7 +246,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
       <div id="message"></div>
     </section>
     <section class="card section">
-      <div class="section-head"><h2>Published Content</h2><span id="resultCount"></span></div>
+      <div class="section-head"><div><h2>Published Content</h2><span>MANAGE YOUR LIVE CONTENT</span></div><span id="resultCount"></span></div>
       <div class="toolbar"><input id="searchBox" type="search" placeholder="Search title, details or category…" oninput="renderList()"><select id="manageType" onchange="loadContent()"><option value="updates">Updates / Notices</option><option value="circulars">Circulars</option><option value="events">Events</option></select></div>
       <div id="contentList" class="list"><div class="empty">Loading…</div></div>
     </section>
