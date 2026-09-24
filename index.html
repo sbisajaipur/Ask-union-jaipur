@@ -1655,7 +1655,269 @@ function openAskUnion(e){
   );
 }
 </script>
+<!-- ASK UNION FAQ MODAL -->
+<div id="askUnionFAQModal" class="ask-union-faq-overlay">
 
+  <div class="ask-union-faq-box">
+
+    <button class="ask-union-faq-close"
+            onclick="closeAskUnionFAQ()">
+      ×
+    </button>
+
+    <div class="ask-union-faq-header">
+      <div class="ask-union-faq-icon">💬</div>
+
+      <div>
+        <h2>Ask Union</h2>
+        <p>Frequently Asked Questions</p>
+      </div>
+    </div>
+
+
+    <div class="ask-union-faq-list">
+
+      <details>
+        <summary>How can I access member content?</summary>
+        <p>
+          Use your Employee Number and password in the Member Login section.
+        </p>
+      </details>
+
+      <details>
+        <summary>I forgot my password. What should I do?</summary>
+        <p>
+          Enter your Employee Number and click Forgot? to request a password reset.
+        </p>
+      </details>
+
+      <details>
+        <summary>Where can I find circulars?</summary>
+        <p>
+          Open Circulars from the bottom navigation menu.
+        </p>
+      </details>
+
+      <details>
+        <summary>Where can I find documents?</summary>
+        <p>
+          Open Documents from the bottom navigation menu.
+        </p>
+      </details>
+
+      <details>
+        <summary>How can I contact the Union?</summary>
+        <p>
+          Use the Contact Union option to get in touch with representatives.
+        </p>
+      </details>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<style>
+
+.ask-union-faq-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:rgba(30,15,25,.65);
+  padding:18px;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+}
+
+.ask-union-faq-overlay.show{
+  display:flex;
+}
+
+.ask-union-faq-box{
+  position:relative;
+  width:100%;
+  max-width:520px;
+  max-height:85vh;
+  overflow-y:auto;
+  background:#fff;
+  border-radius:22px;
+  padding:22px 18px;
+  box-sizing:border-box;
+  box-shadow:0 20px 60px rgba(0,0,0,.30);
+}
+
+.ask-union-faq-close{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:#f5e6eb;
+  color:#7b1024;
+  font-size:26px;
+  line-height:38px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.ask-union-faq-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding-right:40px;
+  margin-bottom:18px;
+}
+
+.ask-union-faq-icon{
+  width:52px;
+  height:52px;
+  min-width:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eadcff;
+  border-radius:15px;
+  font-size:27px;
+}
+
+.ask-union-faq-header h2{
+  margin:0;
+  color:#7b1024;
+  font-size:23px;
+}
+
+.ask-union-faq-header p{
+  margin:3px 0 0;
+  color:#777;
+  font-size:12px;
+}
+
+.ask-union-faq-list details{
+  background:#faf7fb;
+  border:1px solid #eadfe7;
+  border-radius:14px;
+  margin:9px 0;
+  overflow:hidden;
+}
+
+.ask-union-faq-list summary{
+  padding:14px 15px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:13px;
+  color:#292929;
+  list-style:none;
+}
+
+.ask-union-faq-list summary::-webkit-details-marker{
+  display:none;
+}
+
+.ask-union-faq-list summary::after{
+  content:"+";
+  float:right;
+  color:#7b1024;
+  font-size:19px;
+  font-weight:700;
+}
+
+.ask-union-faq-list details[open] summary::after{
+  content:"−";
+}
+
+.ask-union-faq-list details p{
+  margin:0;
+  padding:0 15px 15px;
+  color:#5f6368;
+  font-size:12px;
+  line-height:1.55;
+}
+
+@media(max-width:600px){
+
+  .ask-union-faq-overlay{
+    padding:12px;
+  }
+
+  .ask-union-faq-box{
+    max-height:88vh;
+    border-radius:20px;
+    padding:18px 14px;
+  }
+
+  .ask-union-faq-header h2{
+    font-size:21px;
+  }
+
+  .ask-union-faq-list summary{
+    font-size:12px;
+    padding:13px;
+  }
+
+  .ask-union-faq-list details p{
+    font-size:11px;
+  }
+
+}
+
+</style>
+
+
+<script>
+
+function openAskUnion(e){
+
+  if(e){
+    e.preventDefault();
+  }
+
+  const modal =
+    document.getElementById("askUnionFAQModal");
+
+  if(modal){
+
+    modal.classList.add("show");
+
+    document.body.style.overflow="hidden";
+
+  }
+
+}
+
+
+function closeAskUnionFAQ(){
+
+  const modal =
+    document.getElementById("askUnionFAQModal");
+
+  if(modal){
+
+    modal.classList.remove("show");
+
+    document.body.style.overflow="";
+
+  }
+
+}
+
+
+document.addEventListener("keydown",function(e){
+
+  if(e.key==="Escape"){
+
+    closeAskUnionFAQ();
+
+  }
+
+});
+
+</script>
 </body>
 
 </html>
