@@ -646,6 +646,7 @@ async function saveMember(){
         createdBy:auth.currentUser?.email||""
       });
 
+    
       await memberAuth.signOut();
       msg("Member added successfully.","success","memberMessage");
     }
