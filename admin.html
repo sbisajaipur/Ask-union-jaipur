@@ -756,24 +756,69 @@ async function deleteMember(id){
 
   const name=m.name||"this member";
   const employeeNo=m.employeeNo||"";
+
   const warning=
-    `Delete ${name}${employeeNo?` (Employee No. ${employeeNo})`:""}?\n\n`+
-    `This will permanently remove the member's ASK UNION authorisation record.\n`+
-    `The Firebase Authentication account cannot be deleted from this browser-only admin panel.\n\n`+
-    `Continue?`;
+    `PERMANENTLY DELETE ${name}${employeeNo?` (Employee No. ${employeeNo})`:""}?\n\n`+
+    `This will delete BOTH:\n`+
+    `• Firebase Authentication account\n`+
+    `• ASK UNION member record\n\n`+
+    `This action cannot be undone.`;
 
   if(!confirm(warning))return;
 
   try{
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-functions-compat.js"></script>    msg(
-      "Member record deleted. Note: the Firebase Authentication account still exists; use a secure backend/Cloud Function if you also want to permanently delete that login account.",
+    if(!firebase.functions){
+      throw new Error("Firebase Functions SDK is not loaded.");
+    }
+
+    const deleteMemberFn=
+      firebase.functions().httpsCallable("deleteMember");
+
+    const result=
+      await deleteMemberFn({uid:id});
+
+    const data=result.data||{};
+
+    if(data.success!==true){
+      throw new Error(
+        data.message||"Member deletion failed."
+      );
+    }
+
+    msg(
+      `Member ${name} permanently deleted.`,
       "success",
       "memberMessage"
     );
+
     await loadMembers();
+    resetMemberForm();
+
   }catch(e){
-    console.error("Delete member error:",e);
-    msg("Unable to delete member: "+e.message,"error","memberMessage");
+    console.error(
+      "PERMANENT MEMBER DELETE ERROR:",
+      e
+    );
+
+    let detail=
+      e?.message||
+      "Unable to permanently delete member.";
+
+    if(e?.code==="functions/unauthenticated"){
+      detail="Admin session expired. Please login again.";
+    }else if(e?.code==="functions/permission-denied"){
+      detail="You are not authorised to delete members.";
+    }else if(e?.code==="functions/not-found"){
+      detail="Member record was not found.";
+    }else if(e?.code==="functions/failed-precondition"){
+      detail="This member cannot be deleted.";
+    }
+
+    msg(
+      detail,
+      "error",
+      "memberMessage"
+    );
   }
 }
 /* END MEMBER MANAGEMENT */
