@@ -1043,7 +1043,7 @@
         type="text"
         id="memberNo"
         name="member-employee-number"
-        placeholder="Membership No. / Emp No."
+        placeholder="Employee Number"
         autocomplete="off"
         readonly
         onfocus="this.removeAttribute('readonly')"
@@ -1428,26 +1428,163 @@ if (!firebase.apps.length) {
 
 
 <script id="ask-union-member-auth">
+async function findMemberByLoginNo(loginNo){
+  const raw=String(loginNo||'').trim();
+  if(!raw||raw.includes('@')) return null;
+
+  const membersRef=firebase.firestore().collection('members');
+
+  let snap=await membersRef.where('employeeNo','==',raw).limit(1).get();
+  if(!snap.empty) return {doc:snap.docs[0],field:'employeeNo'};
+
+  const normalized=raw.replace(/\\s+/g,'');
+  if(normalized!==raw){
+    snap=await membersRef.where('employeeNo','==',normalized).limit(1).get();
+    if(!snap.empty) return {doc:snap.docs[0],field:'employeeNo'};
+  }
+
+  // Backward compatibility for older records.
+  snap=await membersRef.where('membershipNo','==',raw).limit(1).get();
+  if(!snap.empty) return {doc:snap.docs[0],field:'membershipNo'};
+
+  return null;
+}
+
 async function memberLogin(){
   const memberNo=(document.getElementById('memberNo')?.value||'').trim();
   const password=document.getElementById('memberPassword')?.value||'';
   const remember=!!document.getElementById('rememberMe')?.checked;
-  if(!memberNo||!password){alert('Please enter Membership No. / Employee No. and Password.');return;}
-  if(memberNo.includes('@')){alert('Please enter your Membership No. / Employee No., not an email address.');return;}
-  const cleanNo=memberNo.replace(/[^a-zA-Z0-9]/g,'').toLowerCase();
-  const email='emp'+cleanNo+'@members.askunion.in';
+
+  if(!memberNo||!password){
+    alert('Please enter Employee Number and Password.');
+    return;
+  }
+
+  if(memberNo.includes('@')){
+    alert('Please enter your Employee Number, not an email address.');
+    return;
+  }
+
   try{
-    await firebase.auth().setPersistence(remember?firebase.auth.Auth.Persistence.LOCAL:firebase.auth.Auth.Persistence.SESSION);
-    const cred=await firebase.auth().signInWithEmailAndPassword(email,password);
-    const snap=await firebase.firestore().collection('members').doc(cred.user.uid).get();
-    if(!snap.exists||snap.data().active!==true){await firebase.auth().signOut();alert('Your member account is not active. Please contact the Union Admin.');return;}
-    const d=snap.data()||{};
-    sessionStorage.setItem('askUnionMember',JSON.stringify({uid:cred.user.uid,employeeNo:d.employeeNo||memberNo,membershipNo:d.membershipNo||'',name:d.name||'',designation:d.designation||'',branch:d.branch||'',mobile:d.mobile||''}));
+    const found=await findMemberByLoginNo(memberNo);
+
+    if(!found){
+      alert('Employee Number not found. Please check your Employee Number.');
+      return;
+    }
+
+    const d=found.doc.data()||{};
+
+    if(d.active!==true){
+      alert('Your member account is inactive. Please contact the Union Admin.');
+      return;
+    }
+
+    if(!d.email){
+      alert('No login email is linked to this member record. Please contact the Union Admin.');
+      return;
+    }
+
+    await firebase.auth().setPersistence(
+      remember
+        ? firebase.auth.Auth.Persistence.LOCAL
+        : firebase.auth.Auth.Persistence.SESSION
+    );
+
+    const cred=await firebase.auth().signInWithEmailAndPassword(d.email,password);
+
+    if(cred.user.uid!==found.doc.id){
+      await firebase.auth().signOut();
+      alert('Member account mapping is incorrect. Please contact the Union Admin.');
+      return;
+    }
+
+    sessionStorage.setItem('askUnionMember',JSON.stringify({
+      uid:cred.user.uid,
+      employeeNo:d.employeeNo||memberNo,
+      membershipNo:d.membershipNo||'',
+      name:d.name||'',
+      designation:d.designation||'',
+      branch:d.branch||'',
+      mobile:d.mobile||''
+    }));
+
     location.href='./member-dashboard.html';
-  }catch(e){console.error(e);alert(e.code==='auth/user-not-found'||e.code==='auth/wrong-password'?'Invalid Employee/Membership No. or password.':'Login failed. Please try again.');}
+
+  }catch(e){
+    console.error('ASK UNION MEMBER LOGIN ERROR:',e);
+
+    let message='Login failed. Please try again.';
+    if(e?.code==='auth/user-not-found'){
+      message='No Firebase login account is linked to this member. Please contact the Union Admin.';
+    }else if(e?.code==='auth/wrong-password'||e?.code==='auth/invalid-credential'){
+      message='Incorrect password. Please try again.';
+    }else if(e?.code==='auth/too-many-requests'){
+      message='Too many login attempts. Please wait and try again.';
+    }
+
+    alert(message);
+  }
 }
-function togglePassword(){const x=document.getElementById('memberPassword');if(x)x.type=x.type==='password'?'text':'password';}
-function forgotPassword(e){if(e)e.preventDefault();alert('For password reset, please contact the Union Admin.');}
+
+function togglePassword(){
+  const x=document.getElementById('memberPassword');
+  if(x)x.type=x.type==='password'?'text':'password';
+}
+
+async function forgotPassword(e){
+  if(e)e.preventDefault();
+
+  const memberNo=(document.getElementById('memberNo')?.value||'').trim();
+
+  if(!memberNo){
+    alert('Enter your Employee Number first, then click Forgot?.');
+    document.getElementById('memberNo')?.focus();
+    return;
+  }
+
+  if(memberNo.includes('@')){
+    alert('Please enter your Employee Number, not an email address.');
+    return;
+  }
+
+  try{
+    const found=await findMemberByLoginNo(memberNo);
+
+    if(!found){
+      alert('Employee Number not found.');
+      return;
+    }
+
+    const d=found.doc.data()||{};
+
+    if(d.active!==true){
+      alert('Your member account is inactive. Please contact the Union Admin.');
+      return;
+    }
+
+    if(!d.email){
+      alert('No email is linked to this member account. Please contact the Union Admin.');
+      return;
+    }
+
+    await firebase.auth().sendPasswordResetEmail(d.email);
+    alert('Password reset email has been sent to your registered email address.');
+
+  }catch(e){
+    console.error('ASK UNION PASSWORD RESET ERROR:',e);
+    let message='Unable to send password reset email. Please try again.';
+    if(e?.code==='auth/invalid-email'){
+      message='The registered member email is invalid.';
+    }else if(e?.code==='auth/too-many-requests'){
+      message='Too many reset attempts. Please wait and try again.';
+    }else if(e?.code==='auth/unauthorized-continue-uri'){
+      message='Password reset settings need the website domain to be authorised in Firebase.';
+    }
+    alert(message);
+  }
+}
+</script>
 </script>
 <!-- ================================================== -->
 <!-- APP.JS -->
