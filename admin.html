@@ -91,7 +91,7 @@ button,input,textarea,select{font:inherit}.hidden{display:none!important}
 .member-form{border:1px solid var(--line);background:#fbf8f8;border-radius:15px;padding:16px}.member-form h3{margin:0 0 12px;font-size:15px}
 .member-list-wrap{min-width:0}.member-toolbar{display:flex;gap:8px;margin-bottom:10px}.member-toolbar input{flex:1;border:1px solid var(--line);border-radius:11px;padding:10px 12px;outline:0}
 .member-list{max-height:430px;overflow:auto}.member-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid var(--line);border-radius:13px;margin:8px 0;background:#fff}
-.member-main{min-width:0}.member-name{font-weight:850;font-size:13px}.member-email{font-size:10px;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.member-main{min-width:0}.member-name{font-weight:850;font-size:13px}.member-email{font-size:10px;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.member-employee{font-size:10px;color:#475569;margin-top:3px;font-weight:700}
 .member-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:7px}.status{font-size:9px;font-weight:850;padding:4px 7px;border-radius:99px}.status.active{background:#eaf8f0;color:#16804b}.status.inactive{background:#fff0f0;color:#b42318}
 .role-badge{font-size:9px;font-weight:800;padding:4px 7px;border-radius:99px;background:#f4e7ea;color:var(--maroon)}.visibility-badge{font-size:9px;font-weight:850;padding:4px 7px;border-radius:99px;background:#f1f5f9;color:#475569}
 .member-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.member-actions .btn{min-height:34px;padding:7px 9px;font-size:10px}
@@ -339,6 +339,7 @@ body{background:linear-gradient(180deg,#f8f6f4 0%,#f4f1ef 100%);color:var(--ink)
 <div class="member-layout">
 <div class="member-form">
 <h3 id="memberFormHeading">Add New Member</h3>
+<div class="field"><label>EMPLOYEE NUMBER *</label><input id="memberEmployeeNo" type="text" maxlength="30" inputmode="numeric" placeholder="Employee number"></div>
 <div class="field"><label>MEMBER NAME *</label><input id="memberName" type="text" maxlength="100" placeholder="Full name"></div>
 <div class="field"><label>EMAIL *</label><input id="memberEmail" type="email" maxlength="160" placeholder="member@example.com"></div>
 <div class="field"><label>PASSWORD *</label><input id="memberPassword" type="password" minlength="6" autocomplete="new-password" placeholder="Minimum 6 characters"></div>
@@ -347,10 +348,10 @@ body{background:linear-gradient(180deg,#f8f6f4 0%,#f4f1ef 100%);color:var(--ink)
 <div class="field"><label>STATUS</label><select id="memberStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
 <div class="actions"><button id="memberSaveButton" class="btn primary" onclick="saveMember()">ADD MEMBER</button><button id="memberCancelButton" class="btn light hidden" onclick="cancelMemberEdit()">CANCEL</button></div>
 <div id="memberMessage"></div>
-<div class="member-note">Only members marked <b>Active</b> should be allowed by the member login page. Deactivating a member changes the authorisation record immediately.</div>
+<div class="member-note">Only members marked <b>Active</b> should be allowed by the member login page. Members should log in using their <b>Employee Number + Password</b>. Employee Number must be unique.</div>
 </div>
 <div class="member-list-wrap">
-<div class="member-toolbar"><input id="memberSearch" type="search" placeholder="Search member name or email…" oninput="renderMembers()"><button class="btn light" type="button" onclick="loadMembers()">↻ REFRESH MEMBERS</button></div>
+<div class="member-toolbar"><input id="memberSearch" type="search" placeholder="Search employee no., name or email…" oninput="renderMembers()"><button class="btn light" type="button" onclick="loadMembers()">↻ REFRESH MEMBERS</button></div>
 <div id="memberList" class="member-list"><div class="member-empty">Loading members…</div></div>
 </div></div></section>
 
@@ -520,77 +521,220 @@ window.addEventListener("scroll",()=>{
 });
 
 /* MEMBER MANAGEMENT */
+function normalizeEmployeeNo(v){
+  return String(v||"").trim().replace(/\s+/g,"");
+}
+
 async function loadMembers(){
   const list=$("memberList"); if(!list)return;
   list.innerHTML='<div class="member-empty">Loading members…</div>';
   try{
-    const snap=await db.collection("members").get(); members=[];
+    const snap=await db.collection("members").get();
+    members=[];
     snap.forEach(d=>members.push({id:d.id,...d.data()}));
-    members.sort((a,b)=>String(a.name||"").localeCompare(String(b.name||"")));
+    members.sort((a,b)=>String(a.employeeNo||"").localeCompare(String(b.employeeNo||"")) ||
+                         String(a.name||"").localeCompare(String(b.name||"")));
     renderMembers();
-  }catch(e){console.error(e);list.innerHTML='<div class="member-empty">Members could not be loaded. Check Firestore access for the members collection.</div>'}
+  }catch(e){
+    console.error(e);
+    list.innerHTML='<div class="member-empty">Members could not be loaded. Check Firestore access for the members collection.</div>';
+  }
 }
+
 function renderMembers(){
   const q=($("memberSearch")?.value||"").trim().toLowerCase();
-  const f=members.filter(m=>[m.name,m.email,m.role].some(v=>String(v||"").toLowerCase().includes(q)));
+  const f=members.filter(m=>[
+    m.employeeNo,m.name,m.email,m.role
+  ].some(v=>String(v||"").toLowerCase().includes(q)));
+
   const active=members.filter(m=>m.active!==false).length;
-  $("memberTotal").textContent=members.length;$("memberActive").textContent=active;$("memberInactive").textContent=members.length-active;
-  if(!f.length){$("memberList").innerHTML='<div class="member-empty">'+(members.length?'No matching members found.':'No members added yet.')+'</div>';return}
+  $("memberTotal").textContent=members.length;
+  $("memberActive").textContent=active;
+  $("memberInactive").textContent=members.length-active;
+
+  if(!f.length){
+    $("memberList").innerHTML='<div class="member-empty">'+
+      (members.length?'No matching members found.':'No members added yet.')+
+      '</div>';
+    return;
+  }
+
   $("memberList").innerHTML=f.map(m=>{
     const a=m.active!==false;
-    return `<div class="member-row"><div class="member-main"><div class="member-name">${escapeHtml(m.name||"Unnamed member")}</div><div class="member-email">${escapeHtml(m.email||"")}</div><div class="member-meta"><span class="status ${a?"active":"inactive"}">${a?"● ACTIVE":"● INACTIVE"}</span><span class="role-badge">${escapeHtml(m.role||"Member")}</span></div></div><div class="member-actions"><button class="btn edit" onclick="editMember('${escapeHtml(m.id)}')">EDIT</button><button class="btn ${a?"danger":"primary"}" onclick="toggleMember('${escapeHtml(m.id)}')">${a?"DEACTIVATE":"ACTIVATE"}</button><button class="btn light" onclick="sendMemberReset('${escapeHtml(m.email||"")}')">RESET PASSWORD</button></div></div>`;
+    return `<div class="member-row">
+      <div class="member-main">
+        <div class="member-name">${escapeHtml(m.name||"Unnamed member")}</div>
+        <div class="member-email">Employee No.: <b>${escapeHtml(m.employeeNo||"—")}</b> · ${escapeHtml(m.email||"")}</div>
+        <div class="member-meta">
+          <span class="status ${a?"active":"inactive"}">${a?"● ACTIVE":"● INACTIVE"}</span>
+          <span class="role-badge">${escapeHtml(m.role||"Member")}</span>
+        </div>
+      </div>
+      <div class="member-actions">
+        <button class="btn edit" onclick="editMember('${escapeHtml(m.id)}')">EDIT</button>
+        <button class="btn ${a?"danger":"primary"}" onclick="toggleMember('${escapeHtml(m.id)}')">${a?"DEACTIVATE":"ACTIVATE"}</button>
+        <button class="btn light" onclick="sendMemberReset('${escapeHtml(m.email||"")}')">RESET PASSWORD</button>
+        <button class="btn danger" onclick="deleteMember('${escapeHtml(m.id)}')">DELETE</button>
+      </div>
+    </div>`;
   }).join("");
 }
+
 async function saveMember(){
   if(memberBusy)return;
-  const name=$("memberName").value.trim(),email=$("memberEmail").value.trim().toLowerCase(),password=$("memberPassword").value,role=$("memberRole").value,active=$("memberStatus").value==="active";
-  if(!name||!email){msg("Enter member name and email.","error","memberMessage");return}
-  if(!editingMemberId&&password.length<6){msg("Password must be at least 6 characters.","error","memberMessage");return}
-  memberBusy=true;$("memberSaveButton").disabled=true;
+
+  const employeeNo=normalizeEmployeeNo($("memberEmployeeNo").value);
+  const name=$("memberName").value.trim();
+  const email=$("memberEmail").value.trim().toLowerCase();
+  const password=$("memberPassword").value;
+  const role=$("memberRole").value;
+  const active=$("memberStatus").value==="active";
+
+  if(!employeeNo){
+    msg("Enter employee number.","error","memberMessage");
+    $("memberEmployeeNo").focus();
+    return;
+  }
+  if(!name||!email){
+    msg("Enter member name and email.","error","memberMessage");
+    return;
+  }
+  if(!editingMemberId&&password.length<6){
+    msg("Password must be at least 6 characters.","error","memberMessage");
+    return;
+  }
+
+  // Employee number must be unique.
+  try{
+    const existing=await db.collection("members")
+      .where("employeeNo","==",employeeNo).get();
+
+    const duplicate=existing.docs.find(d=>d.id!==editingMemberId);
+    if(duplicate){
+      msg("This employee number is already registered.","error","memberMessage");
+      $("memberEmployeeNo").focus();
+      return;
+    }
+  }catch(e){
+    console.error("Employee number check failed:",e);
+    msg("Could not verify employee number uniqueness: "+e.message,"error","memberMessage");
+    return;
+  }
+
+  memberBusy=true;
+  $("memberSaveButton").disabled=true;
+
   try{
     if(editingMemberId){
-      await db.collection("members").doc(editingMemberId).update({name,role,active,updatedAt:new Date().toISOString()});
+      await db.collection("members").doc(editingMemberId).update({
+        employeeNo,name,role,active,
+        updatedAt:new Date().toISOString()
+      });
       msg("Member updated successfully.","success","memberMessage");
     }else{
       const cred=await memberAuth.createUserWithEmailAndPassword(email,password);
-      await db.collection("members").doc(cred.user.uid).set({uid:cred.user.uid,name,email,role,active,createdAt:new Date().toISOString(),createdBy:auth.currentUser?.email||""});
+
+      await db.collection("members").doc(cred.user.uid).set({
+        uid:cred.user.uid,
+        employeeNo,
+        name,
+        email,
+        role,
+        active,
+        createdAt:new Date().toISOString(),
+        createdBy:auth.currentUser?.email||""
+      });
+
       await memberAuth.signOut();
       msg("Member added successfully.","success","memberMessage");
     }
-    resetMemberForm();await loadMembers();
+
+    resetMemberForm();
+    await loadMembers();
   }catch(e){
-    console.error(e);let d=e?.message||"Unable to save member.";
+    console.error(e);
+    let d=e?.message||"Unable to save member.";
     if(e?.code==="auth/email-already-in-use")d="This email is already registered in Firebase Authentication.";
     if(e?.code==="auth/invalid-email")d="Please enter a valid email address.";
     if(e?.code==="auth/weak-password")d="Password must be at least 6 characters.";
     msg(d,"error","memberMessage");
-  }finally{memberBusy=false;$("memberSaveButton").disabled=false}
+  }finally{
+    memberBusy=false;
+    $("memberSaveButton").disabled=false;
+  }
 }
+
 function editMember(id){
-  const m=members.find(x=>x.id===id);if(!m)return;editingMemberId=id;
-  $("memberFormHeading").textContent="Edit Member";$("memberName").value=m.name||"";$("memberEmail").value=m.email||"";$("memberEmail").disabled=true;
-  $("memberPassword").value="";$("memberPassword").disabled=true;$("memberPassword").placeholder="Use Reset Password instead";
-  $("memberPasswordHint").textContent="Credentials are managed by Firebase Authentication.";
-  $("memberRole").value=m.role||"Member";$("memberStatus").value=m.active===false?"inactive":"active";
-  $("memberSaveButton").textContent="UPDATE MEMBER";$("memberCancelButton").classList.remove("hidden");$("memberName").focus();
+  const m=members.find(x=>x.id===id);
+  if(!m)return;
+
+  editingMemberId=id;
+  $("memberFormHeading").textContent="Edit Member";
+  $("memberEmployeeNo").value=m.employeeNo||"";
+  $("memberEmployeeNo").disabled=false;
+  $("memberName").value=m.name||"";
+  $("memberEmail").value=m.email||"";
+  $("memberEmail").disabled=true;
+  $("memberPassword").value="";
+  $("memberPassword").disabled=true;
+  $("memberPassword").placeholder="Use Reset Password instead";
+  $("memberPasswordHint").textContent="Password is managed by Firebase Authentication. Use RESET PASSWORD to send a reset email.";
+  $("memberRole").value=m.role||"Member";
+  $("memberStatus").value=m.active===false?"inactive":"active";
+  $("memberSaveButton").textContent="UPDATE MEMBER";
+  $("memberCancelButton").classList.remove("hidden");
+  $("memberEmployeeNo").focus();
 }
+
 function resetMemberForm(){
-  editingMemberId=null;if(!$("memberFormHeading"))return;
-  $("memberFormHeading").textContent="Add New Member";$("memberName").value="";$("memberEmail").value="";$("memberEmail").disabled=false;
-  $("memberPassword").value="";$("memberPassword").disabled=false;$("memberPassword").placeholder="Minimum 6 characters";
+  editingMemberId=null;
+  if(!$("memberFormHeading"))return;
+
+  $("memberFormHeading").textContent="Add New Member";
+  $("memberEmployeeNo").value="";
+  $("memberEmployeeNo").disabled=false;
+  $("memberName").value="";
+  $("memberEmail").value="";
+  $("memberEmail").disabled=false;
+  $("memberPassword").value="";
+  $("memberPassword").disabled=false;
+  $("memberPassword").placeholder="Minimum 6 characters";
   $("memberPasswordHint").textContent="Used only to create the Firebase account; not stored in Firestore.";
-  $("memberRole").value="Member";$("memberStatus").value="active";$("memberSaveButton").textContent="ADD MEMBER";$("memberCancelButton").classList.add("hidden");
+  $("memberRole").value="Member";
+  $("memberStatus").value="active";
+  $("memberSaveButton").textContent="ADD MEMBER";
+  $("memberCancelButton").classList.add("hidden");
 }
-function cancelMemberEdit(){resetMemberForm();msg("","success","memberMessage")}
+
+function cancelMemberEdit(){
+  resetMemberForm();
+  msg("","success","memberMessage");
+}
+
 async function toggleMember(id){
-  const m=members.find(x=>x.id===id);if(!m)return;const next=m.active===false;
+  const m=members.find(x=>x.id===id);
+  if(!m)return;
+
+  const next=m.active===false;
   if(!confirm(`${next?"Activate":"Deactivate"} ${m.name||m.email}?`))return;
-  try{await db.collection("members").doc(id).update({active:next,updatedAt:new Date().toISOString()});msg(`Member ${next?"activated":"deactivated"} successfully.`,"success","memberMessage");await loadMembers()}
-  catch(e){msg("Unable to change member status: "+e.message,"error","memberMessage")}
+
+  try{
+    await db.collection("members").doc(id).update({
+      active:next,
+      updatedAt:new Date().toISOString()
+    });
+    msg(`Member ${next?"activated":"deactivated"} successfully.`,"success","memberMessage");
+    await loadMembers();
+  }catch(e){
+    msg("Unable to change member status: "+e.message,"error","memberMessage");
+  }
 }
+
 async function sendMemberReset(email){
   if(!email)return;
+
   if(!confirm(`Send a password reset email to ${email}?`))return;
+
   try{
     await auth.sendPasswordResetEmail(email);
     msg("Password reset email sent successfully to "+email+".","success","memberMessage");
@@ -602,6 +746,34 @@ async function sendMemberReset(email){
     if(e?.code==="auth/too-many-requests") detail="Too many reset attempts. Please wait and try again.";
     if(e?.code==="auth/unauthorized-continue-uri") detail="Firebase password-reset settings need the website domain to be authorised.";
     msg(detail,"error","memberMessage");
+  }
+}
+
+async function deleteMember(id){
+  const m=members.find(x=>x.id===id);
+  if(!m)return;
+
+  const name=m.name||"this member";
+  const employeeNo=m.employeeNo||"";
+  const warning=
+    `Delete ${name}${employeeNo?` (Employee No. ${employeeNo})`:""}?\n\n`+
+    `This will permanently remove the member's ASK UNION authorisation record.\n`+
+    `The Firebase Authentication account cannot be deleted from this browser-only admin panel.\n\n`+
+    `Continue?`;
+
+  if(!confirm(warning))return;
+
+  try{
+    await db.collection("members").doc(id).delete();
+    msg(
+      "Member record deleted. Note: the Firebase Authentication account still exists; use a secure backend/Cloud Function if you also want to permanently delete that login account.",
+      "success",
+      "memberMessage"
+    );
+    await loadMembers();
+  }catch(e){
+    console.error("Delete member error:",e);
+    msg("Unable to delete member: "+e.message,"error","memberMessage");
   }
 }
 /* END MEMBER MANAGEMENT */
