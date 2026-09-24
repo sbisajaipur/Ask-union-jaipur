@@ -764,8 +764,7 @@ async function deleteMember(id){
   if(!confirm(warning))return;
 
   try{
-    await db.collection("members").doc(id).delete();
-    msg(
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-functions-compat.js"></script>    msg(
       "Member record deleted. Note: the Firebase Authentication account still exists; use a secure backend/Cloud Function if you also want to permanently delete that login account.",
       "success",
       "memberMessage"
