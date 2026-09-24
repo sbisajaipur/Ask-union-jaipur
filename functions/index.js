@@ -35,8 +35,8 @@ exports.deleteMember = onCall(async (request) => {
   // Only allow users whose email is registered as an admin.
   // IMPORTANT: Replace/add your actual admin email(s) here.
   const allowedAdmins = [
-    "YOUR_ADMIN_EMAIL@example.com"
-  ];
+  "pareeksunil001@gmail.com"
+];
 
   if (
     !adminUser.email ||
