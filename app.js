@@ -277,17 +277,35 @@ async function loadCollection(
 
     let html = "";
 
+const items = [];
 
-    snapshot.forEach(doc => {
+snapshot.forEach(doc => {
 
-      html += renderItem(
-        doc.data()
-      );
+  items.push(doc.data());
 
-    });
+});
 
+items.sort((a, b) => {
 
-    element.innerHTML = html;
+  const dateA = new Date(
+    a.date || a.Date || 0
+  ).getTime();
+
+  const dateB = new Date(
+    b.date || b.Date || 0
+  ).getTime();
+
+  return dateB - dateA;
+
+});
+
+items.forEach(data => {
+
+  html += renderItem(data);
+
+});
+
+element.innerHTML = html;
 
 
   } catch (error) {
