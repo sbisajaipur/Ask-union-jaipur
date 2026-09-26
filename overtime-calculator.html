@@ -173,21 +173,21 @@ $("form").addEventListener("submit",function(e){
   doc.line(20,82,190,82);
 
   // Clean tabular calculation
-  const tx=20, ty=88, tw=170, labelW=112, valueW=58, rh=11;
+  const tx=20, ty=88, tw=170, labelW=108, valueW=62, rh=11;
   doc.setDrawColor(190,190,190);
   doc.setLineWidth(.25);
   doc.rect(tx,ty,tw,rh*8);
   doc.line(tx+labelW,ty,tx+labelW,ty+rh*8);
 
   const tableRows=[
-    ["Gross Salary","₹ "+money(gross)],
-    ["Hourly Salary (Gross ÷ 150)","₹ "+money(hourly)],
+    ["Gross Salary","Rs. "+money(gross)],
+    ["Hourly Salary (Gross ÷ 150)","Rs. "+money(hourly)],
     ["OT Type",holiday?"Sunday / Holiday":"Week Day - After Business Hours"],
     ["OT Time",hours+" Hour(s) "+minutes+" Minute(s)"],
     ["First Hour / Rate",firstHours.toFixed(2)+" hr × "+(firstRate*100)+"%"],
-    ["First Hour Amount","₹ "+money(firstAmount)],
+    ["First Hour Amount","Rs. "+money(firstAmount)],
     ["Remaining Time / Rate",remainingHours.toFixed(2)+" hr × "+(remainingRate*100)+"%"],
-    ["Remaining Amount","₹ "+money(remainingAmount)]
+    ["Remaining Amount","Rs. "+money(remainingAmount)]
   ];
 
   tableRows.forEach((r,i)=>{
@@ -208,7 +208,7 @@ $("form").addEventListener("submit",function(e){
   doc.setFontSize(10.5);
   doc.setTextColor(255,255,255);
   doc.text("TOTAL OVERTIME AMOUNT",27,192);
-  doc.text("₹ "+money(total),183,192,{align:"right"});
+  doc.text("Rs. "+money(total),183,192,{align:"right"});
 
   // Basis
   text(doc,"Calculation Basis",20,214,9,true);
