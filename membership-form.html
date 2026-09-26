@@ -90,7 +90,9 @@ addText(doc,label,L,y,9,false);doc.line(x,y+1,R,y+1);addText(doc,value||"",x+2,y
 };
 
 // ---------- PAGE 1 ----------
-addText(doc,"APPENDIX-'A'",105,17,11,true);doc.setLineWidth(.4);line(21);
+doc.setFont("helvetica","bold");doc.setFontSize(11);doc.setTextColor(25,25,25);
+doc.text("APPENDIX-'A'",105,17,{align:"center"});
+doc.setLineWidth(.4);line(21);
 let y=33;
 addText(doc,"To,",L,y);y+=5;
 addText(doc,"The Chief Secretary,",L,y);y+=5;
@@ -127,7 +129,8 @@ addText(doc,"Prepared through ASK UNION - SBISA UDAIPUR MODULE",L,287,7,false);
 
 // ---------- PAGE 2 ----------
 doc.addPage();
-addText(doc,"AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION",105,18,11,true);
+doc.setFont("helvetica","bold");doc.setFontSize(10.5);doc.setTextColor(25,25,25);
+doc.text("AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION",105,18,{align:"center"});
 line(23);
 
 addText(doc,"The Asstt. General Manager/ Chief Manager/ Branch Manager",L,37,9);
@@ -160,7 +163,8 @@ addText(doc,"Prepared through ASK UNION - SBISA UDAIPUR MODULE",L,287,7,false);
 
 // ---------- PAGE 3 ----------
 doc.addPage();
-addText(doc,"AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION",105,18,11,true);
+doc.setFont("helvetica","bold");doc.setFontSize(10.5);doc.setTextColor(25,25,25);
+doc.text("AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION",105,18,{align:"center"});
 line(23);
 
 addText(doc,"The Asstt. General Manager/ Chief Manager/ Branch Manager",L,37,9);
