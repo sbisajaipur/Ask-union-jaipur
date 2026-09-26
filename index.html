@@ -1184,9 +1184,10 @@
 
 </section>
 
+<!-- ===== ABOUT SBISA ===== -->
 
-<!-- ABOUT SBISA -->
 <section class="about-sbisa" id="about-sbisa">
+
   <div class="about-sbisa-card">
 
     <div class="about-sbisa-title">
@@ -1195,164 +1196,74 @@
 
     <div class="about-sbisa-text">
 
-      <!-- First 2 lines -->
-      <div class="about-sbisa-short">
-        State Bank of India Staff Association (SBISA) represents the interests
-        and welfare of SBI employees and works for their collective rights and
-        professional concerns.
-      </div>
+      <!-- ORIGINAL FULL CONTENT -->
+      <div class="about-sbisa-content" id="aboutSbisaContent">
 
-      <!-- Full Content -->
-      <div class="about-sbisa-full" id="aboutSbisaFull">
-        <p>
-          State Bank of India Staff Association (SBISA) represents the interests
-          and welfare of SBI employees and works for their collective rights and
-          professional concerns.
-        </p>
+        <div class="about-sbisa-preview">
+          State Bank of India Staff Association carries a long
+          tradition of collective representation, unity and
+          service to employees of State Bank of India.
+        </div>
 
-        <p>
-          The association provides a platform for employees to raise issues,
-          communicate with members and stay informed about important
-          organisational and service-related developments.
-        </p>
+        <div class="about-sbisa-full">
+
+          <h3>Our Legacy</h3>
+
+          <p>
+            State Bank of India Staff Association carries a long
+            tradition of collective representation, unity and
+            service to employees of State Bank of India.
+          </p>
+
+          <h3>Our Journey</h3>
+
+          <ul class="legacy">
+            <li>
+              Roots of the organisation date back to 1920.
+            </li>
+
+            <li>
+              The association has continued its journey
+              through major developments in Indian banking.
+            </li>
+
+            <li>
+              SBISA has represented the interests and
+              aspirations of SBI employees.
+            </li>
+
+            <li>
+              Collective strength remains at the heart
+              of the organisation.
+            </li>
+          </ul>
+
+          <h3>SBISA Circles</h3>
+
+          <div class="circles">
+            <span>Kolkata</span>
+            <span>Bhubaneswar</span>
+            <span>Patna</span>
+            <span>North Eastern</span>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
 
     <button
-      class="about-sbisa-toggle"
-      id="aboutSbisaToggle"
       type="button"
+      class="about-sbisa-toggle"
       onclick="toggleAboutSbisa()"
-      aria-expanded="false"
-      aria-controls="aboutSbisaFull"
-    >
-      Read More <span id="aboutSbisaIcon">+</span>
+      id="aboutSbisaToggle">
+      Read More +
     </button>
 
   </div>
+
 </section>
-
-
-<style>
-/* ABOUT SBISA */
-
-.about-sbisa {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px 16px;
-  box-sizing: border-box;
-}
-
-.about-sbisa-card {
-  background: #ffffff;
-  border: 1px solid #e6eaf0;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-}
-
-.about-sbisa-title {
-  font-size: 20px;
-  font-weight: 800;
-  color: #123d73;
-  margin-bottom: 10px;
-}
-
-.about-sbisa-text {
-  color: #4b5563;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* Only first 2 lines visible */
-.about-sbisa-short {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Hidden initially */
-.about-sbisa-full {
-  display: none;
-}
-
-.about-sbisa-full p {
-  margin: 8px 0;
-}
-
-.about-sbisa-toggle {
-  margin-top: 10px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: #1261b5;
-  font-size: 14px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.about-sbisa-toggle:hover {
-  text-decoration: underline;
-}
-
-
-/* MOBILE */
-@media (max-width: 700px) {
-
-  .about-sbisa {
-    padding: 16px 12px;
-  }
-
-  .about-sbisa-card {
-    padding: 16px;
-    border-radius: 14px;
-  }
-
-  .about-sbisa-title {
-    font-size: 18px;
-  }
-
-  .about-sbisa-text {
-    font-size: 13.5px;
-  }
-
-}
-</style>
-
-
-<script>
-function toggleAboutSbisa() {
-
-  const full = document.getElementById("aboutSbisaFull");
-  const toggle = document.getElementById("aboutSbisaToggle");
-
-  const isOpen = full.style.display === "block";
-
-  if (isOpen) {
-
-    full.style.display = "none";
-
-    toggle.innerHTML =
-      'Read More <span id="aboutSbisaIcon">+</span>';
-
-    toggle.setAttribute("aria-expanded", "false");
-
-  } else {
-
-    full.style.display = "block";
-
-    toggle.innerHTML =
-      'Read Less <span id="aboutSbisaIcon">−</span>';
-
-    toggle.setAttribute("aria-expanded", "true");
-
-  }
-}
-</script>
-
 
 
 <!-- ================= FOOTER ================= -->
