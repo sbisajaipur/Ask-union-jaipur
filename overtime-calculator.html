@@ -5,127 +5,186 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SBISA Overtime Calculator</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f5f7;color:#222}
-.wrap{max-width:900px;margin:auto;padding:16px}.head{background:#7b1024;color:#fff;padding:20px;border-radius:16px}
-.head h1{margin:0;font-size:24px}.head p{margin:6px 0 0;font-size:13px}
-.card{background:#fff;margin-top:14px;padding:18px;border-radius:15px;box-shadow:0 3px 15px #0001}
-h2{font-size:17px;color:#7b1024;margin:0 0 14px;border-bottom:1px solid #ddd;padding-bottom:8px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;font-size:12px;font-weight:700;margin-bottom:5px}
-input,select{width:100%;padding:11px;border:1px solid #cfd4dc;border-radius:9px;font-size:15px}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}button{border:0;border-radius:9px;padding:12px 18px;font-weight:700;cursor:pointer}
-.primary{background:#7b1024;color:#fff}.secondary{background:#eee}.result{display:none;margin-top:14px;background:#f8fafc;border:1px solid #ddd;border-radius:12px;padding:14px}
-.row{display:flex;justify-content:space-between;padding:9px 4px;border-bottom:1px solid #eee;gap:15px}.row strong{white-space:nowrap}.total{margin-top:12px;background:#7b1024;color:#fff;border-radius:10px;padding:15px;display:flex;justify-content:space-between;font-weight:700}
-@media(max-width:600px){.grid{grid-template-columns:1fr}.wrap{padding:10px}}
+*{box-sizing:border-box}
+body{margin:0;background:#eef1f5;font-family:Arial,Helvetica,sans-serif;color:#222}
+.wrap{max-width:760px;margin:auto;padding:14px}
+.header{background:#8a1027;color:#fff;padding:18px;border-radius:14px;margin-bottom:12px}
+.header h1{margin:0;font-size:22px}.header p{margin:4px 0 0;font-size:12px}
+.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 12px #0001}
+h2{font-size:16px;color:#8a1027;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-size:12px;font-weight:700;margin-bottom:4px}
+input,select{width:100%;padding:10px;border:1px solid #cbd0d7;border-radius:8px;font-size:15px}
+.full{grid-column:1/-1}
+button{padding:11px 16px;border:0;border-radius:8px;font-weight:700;cursor:pointer}
+.primary{background:#8a1027;color:white}.secondary{background:#e9e9e9}
+#status{font-size:12px;margin-top:8px}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="head"><h1>🧮 Overtime Calculator</h1><p>SBISA UDAIPUR MODULE</p></div>
+<div class="header"><h1>🧮 Overtime Calculator</h1><p>SBISA UDAIPUR MODULE</p></div>
 
 <form id="otForm">
-<div class="card"><h2>Employee Details</h2><div class="grid">
-<div><label>Name *</label><input id="name" required></div>
+<div class="card">
+<h2>Employee Details</h2>
+<div class="grid">
+<div><label>Employee Name *</label><input id="name" required></div>
 <div><label>PF No. *</label><input id="pf" required></div>
-<div><label>Branch *</label><input id="branch" required></div>
+<div><label>Branch Name *</label><input id="branch" required></div>
 <div><label>Branch Code *</label><input id="branchCode" required></div>
-<div><label>Date *</label><input id="date" type="date" required></div>
+<div><label>OT Date *</label><input id="date" type="date" required></div>
 <div><label>Day *</label><select id="day"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option><option>Holiday</option></select></div>
-</div></div>
+</div>
+</div>
 
-<div class="card"><h2>Overtime Calculation</h2><div class="grid">
+<div class="card">
+<h2>Overtime Details</h2>
+<div class="grid">
 <div><label>Gross Salary *</label><input id="gross" type="number" min="0" step="0.01" required></div>
-<div><label>OT Type *</label><select id="type"><option value="weekday">Week Day - After Business Hours</option><option value="holiday">Sunday / Holiday</option></select></div>
+<div><label>OT Type *</label><select id="otType"><option value="weekday">Week Day - After Business Hours</option><option value="holiday">Sunday / Holiday</option></select></div>
 <div><label>OT Hours *</label><input id="hours" type="number" min="0" step="1" value="0" required></div>
 <div><label>OT Minutes *</label><input id="minutes" type="number" min="0" max="59" step="1" value="0" required></div>
 </div>
-<div class="actions"><button class="primary" type="submit">Calculate OT</button><button class="secondary" type="button" id="pdfBtn" disabled>Download PDF</button><button class="secondary" type="reset">Reset</button></div>
-<div class="result" id="result"></div>
+</div>
+
+<div class="card">
+<button class="primary" type="submit">Calculate & Generate PDF</button>
+<button class="secondary" type="reset">Reset</button>
+<div id="status"></div>
 </div>
 </form>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-let calc=null;
 const $=id=>document.getElementById(id);
-const money=n=>"₹"+Number(n).toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2});
-function getDate(){
- const s=$("date").value;if(!s)return "";
- const [y,m,d]=s.split("-");return d+"-"+m+"-"+y;
+const v=id=>$(id).value.trim();
+
+function indian(n){
+  n=Number(n)||0;
+  const fixed=n.toFixed(2);
+  let [a,b]=fixed.split(".");
+  let sign="";
+  if(a.startsWith("-")){sign="-";a=a.slice(1)}
+  if(a.length>3){
+    const last=a.slice(-3), rest=a.slice(0,-3);
+    a=rest.replace(/\B(?=(\d{2})+(?!\d))/g,",")+","+last;
+  }
+  return sign+a+"."+b;
 }
-function calculate(){
- const gross=Number($("gross").value), hours=Math.max(0,Number($("hours").value)||0), minutes=Math.min(59,Math.max(0,Number($("minutes").value)||0));
- if(!Number.isFinite(gross)||gross<=0){alert("Please enter a valid Gross Salary.");return}
- const totalHours=hours+minutes/60;
- if(totalHours<=0){alert("Please enter OT hours or minutes.");return}
- const hourly=gross/150;
- const type=$("type").value;
- const firstHours=Math.min(totalHours,1);
- const remaining=Math.max(totalHours-1,0);
- const firstRate=type==="holiday"?2:1.5;
- const remainingRate=type==="holiday"?2:1.7;
- const firstAmount=hourly*firstHours*firstRate;
- const remainingAmount=hourly*remaining*remainingRate;
- const total=firstAmount+remainingAmount;
- calc={gross,hourly,totalHours,firstHours,remaining,firstRate,remainingRate,firstAmount,remainingAmount,total};
- const r=$("result");r.style.display="block";
- r.innerHTML=
- `<div class="row"><span>Gross Salary</span><strong>${money(gross)}</strong></div>
- <div class="row"><span>Hourly Salary (Gross ÷ 150)</span><strong>${money(hourly)}</strong></div>
- <div class="row"><span>OT Type</span><strong>${type==="holiday"?"Sunday / Holiday":"Week Day - After Business Hours"}</strong></div>
- <div class="row"><span>OT Time</span><strong>${hours} Hour(s) ${minutes} Minute(s)</strong></div>
- <div class="row"><span>First Hour / Rate</span><strong>${firstHours.toFixed(2)} hr × ${(firstRate*100).toFixed(0)}%</strong></div>
- <div class="row"><span>First Hour Amount</span><strong>${money(firstAmount)}</strong></div>
- <div class="row"><span>Remaining Time / Rate</span><strong>${remaining.toFixed(2)} hr × ${(remainingRate*100).toFixed(0)}%</strong></div>
- <div class="row"><span>Remaining Amount</span><strong>${money(remainingAmount)}</strong></div>
- <div class="total"><span>TOTAL OVERTIME AMOUNT</span><span>${money(total)}</span></div>`;
- $("pdfBtn").disabled=false;
+function dateText(){
+  const s=v("date"); if(!s)return "";
+  const a=s.split("-"); return a.length===3?a[2]+"-"+a[1]+"-"+a[0]:s;
 }
-$("otForm").addEventListener("submit",e=>{e.preventDefault();calculate()});
-$("pdfBtn").addEventListener("click",()=>{
- if(!calc) return;
- const {jsPDF}=window.jspdf,doc=new jsPDF({unit:"mm",format:"a4",orientation:"portrait"});
- const W=210,L=15,R=195;
- const navy=[123,16,36], light=[247,247,247], grey=[80,80,80];
- doc.setFillColor(...navy);doc.rect(0,0,W,18,"F");
- doc.setTextColor(255,255,255);doc.setFont("helvetica","bold");doc.setFontSize(15);doc.text("OVERTIME PAYMENT CALCULATION",L,11);
- doc.setTextColor(...grey);doc.setFont("helvetica","bold");doc.setFontSize(9);doc.text("SBISA UDAIPUR MODULE",R,11,{align:"right"});
- let y=31;
- doc.setTextColor(35,35,35);doc.setFontSize(11);doc.text("EMPLOYEE DETAILS",L,y);doc.line(L,y+3,R,y+3);y+=14;
- const leftX=15,rightX=108,valLX=48,valRX=140;
- const details=[
-  ["Name",$("name").value.trim(),leftX,valLX],["PF No.",$("pf").value.trim(),rightX,valRX],
-  ["Branch",$("branch").value.trim(),leftX,valLX],["Branch Code",$("branchCode").value.trim(),rightX,valRX],
-  ["Date",getDate(),leftX,valLX],["Day",$("day").value,rightX,valRX]
- ];
- details.forEach((d,i)=>{doc.setFont("helvetica","bold");doc.text(d[0]+":",d[2],y);doc.setFont("helvetica","normal");doc.text(d[1]||"-",d[3],y);if(i%2===1)y+=10});
- y+=9;doc.setTextColor(...navy);doc.setFont("helvetica","bold");doc.setFontSize(11);doc.text("OVERTIME CALCULATION",L,y);doc.line(L,y+3,R,y+3);y+=12;
- const rows=[
-  ["Gross Salary",money(calc.gross)],
-  ["Hourly Salary (Gross ÷ 150)",money(calc.hourly)],
-  ["OT Type",$("type").value==="holiday"?"Sunday / Holiday":"Week Day - After Business Hours"],
-  ["OT Time",`${$("hours").value} Hour(s) ${$("minutes").value} Minute(s)`],
-  ["First Hour / Rate",`${calc.firstHours.toFixed(2)} hr × ${(calc.firstRate*100).toFixed(0)}%`],
-  ["First Hour Amount",money(calc.firstAmount)],
-  ["Remaining Time / Rate",`${calc.remaining.toFixed(2)} hr × ${(calc.remainingRate*100).toFixed(0)}%`],
-  ["Remaining Amount",money(calc.remainingAmount)]
- ];
- const rowH=11;
- rows.forEach((r,i)=>{
-  if(i%2===0){doc.setFillColor(...light);doc.rect(L,y-7,R-L,rowH,"F")}
-  doc.setTextColor(70,70,70);doc.setFont("helvetica","normal");doc.setFontSize(10);doc.text(r[0],L+5,y);
-  doc.setTextColor(20,20,20);doc.setFont("helvetica","bold");doc.text(r[1],R-5,y,{align:"right"});y+=rowH;
- });
- y+=5;doc.setFillColor(...navy);doc.roundedRect(L,y,R-L,18,3,3,"F");doc.setTextColor(255,255,255);doc.setFont("helvetica","bold");doc.setFontSize(11);
- doc.text("TOTAL OVERTIME AMOUNT",L+6,y+11);doc.text(money(calc.total),R-6,y+11,{align:"right"});
- y+=31;doc.setTextColor(60,60,60);doc.setFont("helvetica","normal");doc.setFontSize(9);
- doc.text("Calculation Basis:",L,y);y+=6;
- doc.text("Hourly Salary = Gross Salary ÷ 150",L,y);y+=5;
- doc.text("Week Day: first 1 hour @ 150%, remaining hours @ 170%.",L,y);y+=5;
- doc.text("Sunday / Holiday: all overtime hours @ 200%.",L,y);
- doc.setFontSize(8);doc.setTextColor(110,110,110);doc.text("Prepared By: SBISA UDAIPUR MODULE",R,287,{align:"right"});
- const safe=($("name").value.trim()||"Employee").replace(/[^a-z0-9]+/gi,"_");
- doc.save("Overtime_"+safe+"_"+getDate().replace(/-/g,"")+"_"+".pdf");
+function cleanNum(n){return Number(n).toFixed(2)}
+function add(doc,t,x,y,size=9,bold=false){
+  doc.setFont("helvetica",bold?"bold":"normal");
+  doc.setFontSize(size); doc.setTextColor(35,35,35);
+  doc.text(String(t),x,y);
+}
+function right(doc,t,x,y,size=9,bold=false){
+  doc.setFont("helvetica",bold?"bold":"normal");
+  doc.setFontSize(size); doc.setTextColor(35,35,35);
+  const w=doc.getTextWidth(String(t));
+  doc.text(String(t),x-w,y);
+}
+function row(doc,label,value,y,shade){
+  if(shade){
+    doc.setFillColor(247,247,247);
+    doc.rect(18,y-7,174,11,"F");
+  }
+  add(doc,label,23,y,9,false);
+  right(doc,value,188,y,9,true);
+}
+
+$("otForm").addEventListener("submit",e=>{
+  e.preventDefault();
+
+  const gross=Number(v("gross"));
+  const hours=Math.max(0,Number(v("hours"))||0);
+  const minutes=Math.min(59,Math.max(0,Number(v("minutes"))||0));
+  if(!Number.isFinite(gross)||gross<=0){
+    $("status").textContent="Please enter a valid Gross Salary.";
+    $("status").style.color="#b00020"; return;
+  }
+
+  const totalHours=hours+minutes/60;
+  const holiday=$("otType").value==="holiday";
+  const hourly=gross/150;
+  const firstHours=Math.min(totalHours,1);
+  const remaining=Math.max(totalHours-1,0);
+  const firstRate=holiday?2:1.5;
+  const remainingRate=holiday?2:1.7;
+  const firstAmount=hourly*firstHours*firstRate;
+  const remainingAmount=hourly*remaining*remainingRate;
+  const total=firstAmount+remainingAmount;
+
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:"mm",format:"a4"});
+  const W=210;
+
+  // Header
+  doc.setFillColor(138,16,39);
+  doc.rect(0,0,W,14,"F");
+  add(doc,"OVERTIME PAYMENT CALCULATION",105,9,12,true);
+  doc.setTextColor(255,255,255);
+  doc.setFont("helvetica","bold");doc.setFontSize(12);
+  doc.text("OVERTIME PAYMENT CALCULATION",105,9,{align:"center"});
+
+  add(doc,"ASK UNION - SBISA UDAIPUR MODULE",105,20,8,true);
+  doc.text("ASK UNION - SBISA UDAIPUR MODULE",105,20,{align:"center"});
+
+  // Employee details
+  add(doc,"EMPLOYEE DETAILS",20,31,10,true);
+  doc.setLineWidth(.35);doc.line(20,35,190,35);
+
+  add(doc,"Name:",20,43); add(doc,v("name"),55,43);
+  add(doc,"PF No.:",120,43); add(doc,v("pf"),145,43);
+
+  add(doc,"Branch:",20,52); add(doc,v("branch"),55,52);
+  add(doc,"Branch Code:",120,52); add(doc,v("branchCode"),150,52);
+
+  add(doc,"Date:",20,61); add(doc,dateText(),55,61);
+  add(doc,"Day:",120,61); add(doc,v("day"),145,61);
+
+  // Calculation
+  add(doc,"OVERTIME CALCULATION",20,74,10,true);
+  doc.line(20,78,190,78);
+
+  row(doc,"Gross Salary","₹ "+indian(gross),88,true);
+  row(doc,"Hourly Salary (Gross ÷ 150)","₹ "+indian(hourly),99,false);
+  row(doc,"OT Type",holiday?"Sunday / Holiday":"Week Day - After Business Hours",110,true);
+  row(doc,"OT Time",hours+" Hour(s) "+minutes+" Minute(s)",121,false);
+  row(doc,"First Hour / Rate",cleanNum(firstHours)+" hr × "+(firstRate*100).toFixed(0)+"%",132,true);
+  row(doc,"First Hour Amount","₹ "+indian(firstAmount),143,false);
+  row(doc,"Remaining Time / Rate",cleanNum(remaining)+" hr × "+(remainingRate*100).toFixed(0)+"%",154,true);
+  row(doc,"Remaining Amount","₹ "+indian(remainingAmount),165,false);
+
+  // Total — value has a dedicated right-aligned column, safely inside A4.
+  doc.setFillColor(138,16,39);
+  doc.roundedRect(20,178,170,18,3,3,"F");
+  doc.setFont("helvetica","bold");doc.setFontSize(11);doc.setTextColor(255,255,255);
+  doc.text("TOTAL OVERTIME AMOUNT",27,189);
+  const totalText="₹ "+indian(total);
+  const tw=doc.getTextWidth(totalText);
+  doc.text(totalText,184-tw,189);
+
+  add(doc,"Calculation Basis",20,210,9,true);
+  add(doc,"Hourly Salary = Gross Salary ÷ 150. Week Day: first 1 hour at 150%",20,218,7.5);
+  add(doc,"and remaining hours at 170%. Sunday/Holiday: 200% of hourly salary.",20,225,7.5);
+
+  doc.line(20,270,190,270);
+  add(doc,"Prepared By: SBISA UDAIPUR MODULE",20,280,8,true);
+  add(doc,"Generated from ASK UNION Overtime Calculator",20,286,7);
+
+  const safe=(v("name")||"Employee").replace(/[^a-z0-9]+/gi,"_");
+  doc.save("Overtime_"+safe+"_"+v("date")+".pdf");
+
+  $("status").textContent="PDF generated successfully.";
+  $("status").style.color="#176b35";
 });
 </script>
-</body></html>
+</body>
+</html>
