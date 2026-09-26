@@ -34,7 +34,7 @@
 }
 #quick-actions-final-v2 .quick-grid{
   display:grid !important;
-  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
   gap:12px !important;
   align-items:stretch !important;
 }
@@ -138,6 +138,12 @@
 #quick-actions-final-v2 .qa-pink{
   background:linear-gradient(135deg,#fff0f3,#ffcfd8) !important;
 }
+#quick-actions-final-v2 .qa-membership{
+  background:linear-gradient(135deg,#eef8ff,#cfeaff) !important;
+}
+#quick-actions-final-v2 .qa-overtime{
+  background:linear-gradient(135deg,#eef9f1,#cdeed8) !important;
+}
 
 #quick-actions-final-v2 .qa-red .qa-icon{color:#c51d42 !important}
 #quick-actions-final-v2 .qa-blue .qa-icon{color:#1179dc !important}
@@ -145,6 +151,8 @@
 #quick-actions-final-v2 .qa-green .qa-icon{color:#109666 !important}
 #quick-actions-final-v2 .qa-purple .qa-icon{color:#7136cf !important}
 #quick-actions-final-v2 .qa-pink .qa-icon{color:#df2d46 !important}
+#quick-actions-final-v2 .qa-membership .qa-icon{color:#1672b8 !important}
+#quick-actions-final-v2 .qa-overtime .qa-icon{color:#16824b !important}
 
 @media(max-width:700px){
   #quick-actions-final-v2 .quick-grid{
@@ -1016,6 +1024,24 @@
       <div class="qa-text">
         <strong>Contact Union</strong>
         <small>Get in touch with representatives</small>
+      </div>
+      <div class="qa-arrow">→</div>
+    </a>
+
+    <a href="./membership-form.html" class="qa-card qa-membership">
+      <div class="qa-icon">🪪</div>
+      <div class="qa-text">
+        <strong>Get Membership</strong>
+        <small>Apply for SBISA membership</small>
+      </div>
+      <div class="qa-arrow">→</div>
+    </a>
+
+    <a href="./overtime-calculator.html" class="qa-card qa-overtime">
+      <div class="qa-icon">🧮</div>
+      <div class="qa-text">
+        <strong>Overtime Calculator</strong>
+        <small>Calculate OT & download PDF</small>
       </div>
       <div class="qa-arrow">→</div>
     </a>
