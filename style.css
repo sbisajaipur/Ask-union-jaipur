@@ -3051,3 +3051,39 @@ button,
     min-width: 0 !important;
   }
 }
+@media print {
+
+    body {
+        background: #fff !important;
+        margin: 0 !important;
+    }
+
+    .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .header {
+        display: block !important;
+    }
+
+    .form-card {
+        display: none !important;
+    }
+
+    #result {
+        display: block !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 10px !important;
+    }
+
+    .actions,
+    .note {
+        display: none !important;
+    }
+
+    .result-title {
+        display: block !important;
+    }
+}
