@@ -150,11 +150,13 @@ doc.text(doc.splitTextToSize(fee,W),15,y); footer();
  txt("3. This authorization shall continue to be effective for revised rates in future also till I revoke the same.",15,y);y+=14;
  txt("Thanking you,",15,y);y+=16;
  txt("(Signature in full)",15,y);y+=12;
- field("Name (In block letters)",v("name"),y);y+=10;
- field("Designation",v("designation"),y);y+=10;
- field("P.F.No.",v("pf"),y);y+=10;
- field("Branch/ Deptt.",v("branch"),y);y+=10;
- field("Branch Code",v("branchCode"),y);footer();
+ // Place values directly on the five printed lines of the original template.
+ txt(v("name"),190,192,9,false);
+ txt(v("designation"),190,155,9,false);
+ txt(v("pf"),190,138,9,false);
+ txt(v("branch"),190,121,9,false);
+ txt(v("branchCode"),190,104,9,false);
+ footer();
 
  // PAGE 3 — same source page
  doc.addPage(); pageHeader("AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION"); y=35;
@@ -164,11 +166,12 @@ doc.text(doc.splitTextToSize(fee,W),15,y); footer();
  lines=doc.splitTextToSize(q2,W);doc.text(lines,15,y);y+=lines.length*5+7;
  txt("3. This authorization shall continue to be effective for revised rates in future also till I revoke the same.",15,y);y+=14;
  txt("Thanking you,",15,y);y+=16;txt("(Signature in full)",15,y);y+=12;
- field("Name (In block letters)",v("name"),y);y+=10;
- field("Designation",v("designation"),y);y+=10;
- field("P.F.No.",v("pf"),y);y+=10;
- field("Branch/ Deptt.",v("branch"),y);y+=10;
- field("Branch Code",v("branchCode"),y);footer();
+ txt(v("name"),190,192,9,false);
+ txt(v("designation"),190,155,9,false);
+ txt(v("pf"),190,138,9,false);
+ txt(v("branch"),190,121,9,false);
+ txt(v("branchCode"),190,104,9,false);
+ footer();
 
  const safe=(v("name")||"Member").replace(/[^a-z0-9]+/gi,"_");
  doc.save("SBISA_Membership_"+safe+".pdf");
