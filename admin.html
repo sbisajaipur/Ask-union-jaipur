@@ -933,4 +933,660 @@ async function deleteMember(id){
 function resetForm(){editingId=null;editingType=null;$("type").disabled=false;$("formHeading").textContent="Publish Content";$("publishButton").textContent="PUBLISH";$("cancelButton").classList.add("hidden");$("title").value="";$("details").value="";$("link").value="";$("category").value="";$("visibility").value="public";$("publishDate").value=today();if($("pdfFilename"))$("pdfFilename").value=""}
 $("publishDate").value=today();
 </script>
-</body></html>
+<!-- ================= CONTACT UNION MESSAGES ================= -->
+
+<section id="contactMessagesSection" class="admin-contact-messages">
+
+  <div class="contact-admin-header">
+
+    <div>
+      <h2>📞 Contact Union Messages</h2>
+      <p>Messages received from members</p>
+    </div>
+
+    <div class="contact-admin-actions">
+      <span id="contactUnreadBadge" class="contact-unread-badge">
+        0 Unread
+      </span>
+
+      <button
+        type="button"
+        class="btn primary"
+        onclick="loadContactMessages()">
+        🔄 REFRESH
+      </button>
+    </div>
+
+  </div>
+
+  <div id="contactMessagesStatus"
+       class="contact-messages-status">
+    Loading messages...
+  </div>
+
+  <div id="contactMessagesList"
+       class="contact-messages-list">
+  </div>
+
+</section>
+
+
+<style>
+
+/* ================= CONTACT ADMIN ================= */
+
+.admin-contact-messages{
+  margin:30px 0;
+  padding:22px;
+  background:#fff;
+  border:1px solid #eadfe7;
+  border-radius:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.contact-admin-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.contact-admin-header h2{
+  margin:0;
+  color:#7b1024;
+  font-size:21px;
+}
+
+.contact-admin-header p{
+  margin:4px 0 0;
+  color:#777;
+  font-size:12px;
+}
+
+.contact-admin-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.contact-unread-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 12px;
+  border-radius:20px;
+  background:#ffe5e8;
+  color:#9b1c1c;
+  font-size:12px;
+  font-weight:700;
+}
+
+.contact-messages-status{
+  margin-bottom:12px;
+  font-size:12px;
+  color:#777;
+}
+
+.contact-message-card{
+  border:1px solid #e7e1e5;
+  border-radius:15px;
+  padding:16px;
+  margin-bottom:12px;
+  background:#fafafa;
+}
+
+.contact-message-card.unread{
+  border-left:5px solid #7b1024;
+  background:#fff8f9;
+}
+
+.contact-message-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.contact-member-name{
+  font-size:15px;
+  font-weight:700;
+  color:#222;
+}
+
+.contact-member-details{
+  margin-top:4px;
+  color:#666;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.contact-message-date{
+  color:#888;
+  font-size:11px;
+  white-space:nowrap;
+}
+
+.contact-message-text{
+  margin-top:13px;
+  padding:12px;
+  background:#fff;
+  border-radius:10px;
+  color:#333;
+  font-size:13px;
+  line-height:1.55;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.contact-message-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+
+.contact-message-actions button{
+  border:0;
+  border-radius:9px;
+  padding:9px 12px;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.contact-call-btn{
+  background:#e6f5ea;
+  color:#18743a;
+}
+
+.contact-read-btn{
+  background:#eee8ff;
+  color:#5a3d9b;
+}
+
+.contact-delete-btn{
+  background:#ffe8e8;
+  color:#a51d1d;
+}
+
+.contact-status{
+  display:inline-block;
+  margin-top:8px;
+  padding:4px 8px;
+  border-radius:10px;
+  font-size:10px;
+  font-weight:700;
+}
+
+.contact-status.new{
+  background:#ffe5e8;
+  color:#9b1c1c;
+}
+
+.contact-status.read{
+  background:#e8f5eb;
+  color:#26733d;
+}
+
+.contact-empty{
+  padding:30px 15px;
+  text-align:center;
+  color:#777;
+  font-size:13px;
+  background:#fafafa;
+  border-radius:12px;
+}
+
+@media(max-width:650px){
+
+  .admin-contact-messages{
+    padding:15px;
+    margin:20px 0;
+  }
+
+  .contact-admin-header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .contact-admin-actions{
+    width:100%;
+    justify-content:space-between;
+  }
+
+  .contact-message-top{
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .contact-message-date{
+    white-space:normal;
+  }
+
+  .contact-message-actions button{
+    flex:1;
+    min-width:100px;
+  }
+
+}
+
+</style>
+
+
+<script>
+
+/* ================= CONTACT UNION ADMIN ================= */
+
+let contactMessages = [];
+
+
+/* Escape HTML safely */
+
+function contactEscape(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* Format date */
+
+function formatContactDate(timestamp){
+
+  if(!timestamp){
+    return "Date not available";
+  }
+
+  try{
+
+    let date;
+
+    if(timestamp.toDate){
+      date = timestamp.toDate();
+    }else{
+      date = new Date(timestamp);
+    }
+
+    return date.toLocaleString("en-IN",{
+      day:"2-digit",
+      month:"short",
+      year:"numeric",
+      hour:"2-digit",
+      minute:"2-digit"
+    });
+
+  }catch(error){
+
+    return "Date not available";
+
+  }
+
+}
+
+
+/* Load messages */
+
+async function loadContactMessages(){
+
+  const list =
+    document.getElementById("contactMessagesList");
+
+  const status =
+    document.getElementById("contactMessagesStatus");
+
+  const badge =
+    document.getElementById("contactUnreadBadge");
+
+  if(!list) return;
+
+  status.textContent =
+    "Loading messages...";
+
+  list.innerHTML = "";
+
+  try{
+
+    const snapshot =
+      await db.collection("contactMessages").get();
+
+    contactMessages = [];
+
+    snapshot.forEach(doc => {
+
+      contactMessages.push({
+        id:doc.id,
+        ...doc.data()
+      });
+
+    });
+
+
+    /* Newest first */
+
+    contactMessages.sort((a,b)=>{
+
+      const da =
+        a.createdAt?.toMillis
+          ? a.createdAt.toMillis()
+          : 0;
+
+      const dbb =
+        b.createdAt?.toMillis
+          ? b.createdAt.toMillis()
+          : 0;
+
+      return dbb-da;
+
+    });
+
+
+    const unread =
+      contactMessages.filter(
+        x => x.status !== "read"
+      ).length;
+
+
+    badge.textContent =
+      unread + (unread === 1 ? " Unread" : " Unread");
+
+
+    status.textContent =
+      contactMessages.length +
+      (contactMessages.length === 1
+        ? " message"
+        : " messages");
+
+
+    if(!contactMessages.length){
+
+      list.innerHTML =
+        '<div class="contact-empty">' +
+        '📭 No Contact Union messages yet.' +
+        '</div>';
+
+      return;
+
+    }
+
+
+    list.innerHTML =
+      contactMessages.map(renderContactMessage).join("");
+
+
+  }catch(error){
+
+    console.error(
+      "Contact messages error:",
+      error
+    );
+
+    status.textContent =
+      "Unable to load Contact Union messages.";
+
+    list.innerHTML =
+      '<div class="contact-empty">' +
+      '❌ Unable to load messages. ' +
+      contactEscape(error.message) +
+      '</div>';
+
+  }
+
+}
+
+
+/* Render one message */
+
+function renderContactMessage(item){
+
+  const isRead =
+    item.status === "read";
+
+  const statusText =
+    isRead ? "READ" : "NEW";
+
+  const mobile =
+    String(item.mobile || "").trim();
+
+
+  return `
+
+    <div class="contact-message-card ${isRead ? "" : "unread"}">
+
+      <div class="contact-message-top">
+
+        <div>
+
+          <div class="contact-member-name">
+            ${contactEscape(item.name || "Member")}
+          </div>
+
+          <div class="contact-member-details">
+
+            Employee No.:
+            <b>${contactEscape(item.employeeNo || "—")}</b>
+
+            <br>
+
+            📱 ${contactEscape(mobile || "Mobile not provided")}
+
+          </div>
+
+        </div>
+
+        <div class="contact-message-date">
+
+          ${formatContactDate(item.createdAt)}
+
+        </div>
+
+      </div>
+
+
+      <span class="contact-status ${isRead ? "read" : "new"}">
+
+        ${statusText}
+
+      </span>
+
+
+      <div class="contact-message-text">
+
+        ${contactEscape(item.message || "")}
+
+      </div>
+
+
+      <div class="contact-message-actions">
+
+        ${
+          mobile
+          ?
+          `<button
+             class="contact-call-btn"
+             onclick="callContactMember('${contactEscape(mobile)}')">
+             📞 CALL
+           </button>`
+          :
+          ""
+        }
+
+
+        ${
+          !isRead
+          ?
+          `<button
+             class="contact-read-btn"
+             onclick="markContactMessageRead('${contactEscape(item.id)}')">
+             ✅ MARK AS READ
+           </button>`
+          :
+          `<button
+             class="contact-read-btn"
+             onclick="markContactMessageUnread('${contactEscape(item.id)}')">
+             ↩ MARK UNREAD
+           </button>`
+        }
+
+
+        <button
+          class="contact-delete-btn"
+          onclick="deleteContactMessage('${contactEscape(item.id)}')">
+          🗑 DELETE
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* Call member */
+
+function callContactMember(mobile){
+
+  const clean =
+    String(mobile || "")
+      .replace(/[^\d+]/g,"");
+
+  if(!clean) return;
+
+  window.location.href =
+    "tel:" + clean;
+
+}
+
+
+/* Mark read */
+
+async function markContactMessageRead(id){
+
+  try{
+
+    await db
+      .collection("contactMessages")
+      .doc(id)
+      .update({
+        status:"read",
+        readAt:
+          firebase.firestore.FieldValue.serverTimestamp(),
+        readBy:
+          auth.currentUser?.email || ""
+      });
+
+    await loadContactMessages();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Unable to mark message as read.\n\n" +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* Mark unread */
+
+async function markContactMessageUnread(id){
+
+  try{
+
+    await db
+      .collection("contactMessages")
+      .doc(id)
+      .update({
+        status:"new",
+        readAt:
+          firebase.firestore.FieldValue.delete(),
+        readBy:
+          firebase.firestore.FieldValue.delete()
+      });
+
+    await loadContactMessages();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Unable to mark message as unread.\n\n" +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* Delete message */
+
+async function deleteContactMessage(id){
+
+  const ok =
+    confirm(
+      "Delete this Contact Union message?\n\n" +
+      "This action cannot be undone."
+    );
+
+  if(!ok) return;
+
+  try{
+
+    await db
+      .collection("contactMessages")
+      .doc(id)
+      .delete();
+
+    await loadContactMessages();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Unable to delete message.\n\n" +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* Load messages when Admin page opens */
+
+if(
+  typeof auth !== "undefined" &&
+  typeof db !== "undefined"
+){
+
+  auth.onAuthStateChanged(function(user){
+
+    if(user){
+
+      setTimeout(
+        loadContactMessages,
+        800
+      );
+
+    }
+
+  });
+
+}
+
+</script></body></html>
