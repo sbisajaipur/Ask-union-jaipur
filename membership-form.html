@@ -14,12 +14,21 @@ body{margin:0;background:#eef0f3;color:#222;font-family:Arial,Helvetica,sans-ser
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .full{grid-column:1/-1}
 label{font-size:12px;font-weight:700;display:block;margin-bottom:5px}
-input,textarea,select{width:100%;border:1px solid #c8cdd5;border-radius:8px;padding:11px;font-size:15px;background:#fff}
+input,textarea,select{width:100%;border:1px solid #c8cdd5;border-radius:8px;padding:12px;font-size:16px;background:#fff;min-height:46px}
 textarea{min-height:70px}
 .note{font-size:12px;line-height:1.5;background:#fff7df;padding:11px;border-radius:8px}
 button{border:0;border-radius:9px;padding:12px 18px;font-weight:700;cursor:pointer}
 .primary{background:#7b1024;color:#fff}.secondary{background:#e8e8e8}
-@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.wrap{padding:10px}}
+@media(max-width:650px){
+  .wrap{padding:8px}
+  .top{padding:15px;border-radius:12px}
+  .top h1{font-size:20px}
+  .card{padding:13px;border-radius:12px}
+  .grid{grid-template-columns:1fr;gap:10px}
+  .full{grid-column:auto}
+  input,textarea,select{font-size:16px;min-height:48px}
+  button{width:100%;min-height:48px;font-size:15px}
+}
 </style>
 </head>
 <body>
@@ -190,9 +199,26 @@ authField("Branch Code",v("branchCode"),273);
 addText(doc,"Prepared through ASK UNION - SBISA UDAIPUR MODULE",L,287,7,false);
 
 const safe=(v("name")||"Member").replace(/[^a-z0-9]+/gi,"_");
-doc.save("SBISA_Membership_"+safe+".pdf");
-$("status").textContent="PDF generated successfully.";
-$("status").style.color="#176b35";
+
+  // Mobile-friendly: download the PDF and immediately open the same PDF
+  // in a new tab/window when the browser permits it.
+  const pdfBlob=doc.output("blob");
+  const pdfUrl=URL.createObjectURL(pdfBlob);
+
+  const downloadLink=document.createElement("a");
+  downloadLink.href=pdfUrl;
+  downloadLink.download="SBISA_Membership_"+safe+".pdf";
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  downloadLink.remove();
+
+  const preview=window.open(pdfUrl,"_blank");
+  setTimeout(()=>URL.revokeObjectURL(pdfUrl),60000);
+
+  $("status").textContent=preview
+    ? "Membership PDF downloaded and opened."
+    : "Membership PDF downloaded. Tap the downloaded PDF to open it.";
+  $("status").style.color="#176b35";
 });
 </script>
 </body>
