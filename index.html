@@ -2374,6 +2374,45 @@ document.addEventListener("keydown",function(e){
 
 });
 
-</script></body>
+</script><script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const box = document.querySelector(".about-sbisa-readmore");
+
+  if(box){
+    box.classList.add("collapsed");
+  }
+
+});
+
+function toggleAboutSbisa(){
+
+  const box =
+    document.querySelector(".about-sbisa-readmore");
+
+  const button =
+    document.getElementById("aboutSbisaToggle");
+
+  if(!box || !button) return;
+
+  if(box.classList.contains("collapsed")){
+
+    box.classList.remove("collapsed");
+    box.classList.add("expanded");
+
+    button.innerHTML = "Read Less −";
+
+  }else{
+
+    box.classList.remove("expanded");
+    box.classList.add("collapsed");
+
+    button.innerHTML = "Read More +";
+
+  }
+
+}
+</script>
+</body>
 
 </html>
