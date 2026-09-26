@@ -3176,4 +3176,47 @@ button,
   .actions {
     display: none !important;
   }
+}<style>
+/* ===== ABOUT SBISA COMPACT FIX ===== */
+
+#about-sbisa,
+.about-sbisa{
+  height:auto !important;
+  min-height:0 !important;
+  margin-bottom:14px !important;
 }
+
+#about-sbisa .about-sbisa-card,
+.about-sbisa-card{
+  height:auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+  padding:18px 20px !important;
+}
+
+#about-sbisa .about-sbisa-short{
+  display:-webkit-box !important;
+  -webkit-line-clamp:2 !important;
+  -webkit-box-orient:vertical !important;
+  overflow:hidden !important;
+}
+
+#about-sbisa .about-sbisa-toggle{
+  display:inline-block !important;
+  margin-top:8px !important;
+}
+
+@media(max-width:700px){
+
+  #about-sbisa,
+  .about-sbisa{
+    padding:12px !important;
+  }
+
+  #about-sbisa .about-sbisa-card,
+  .about-sbisa-card{
+    padding:16px !important;
+  }
+
+}
+</style>
