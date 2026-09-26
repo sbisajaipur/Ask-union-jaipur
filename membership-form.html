@@ -127,46 +127,58 @@ addText(doc,"Prepared through ASK UNION - SBISA UDAIPUR MODULE",L,287,7,false);
 
 // ---------- PAGE 2 ----------
 doc.addPage();
-addText(doc,"AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION",105,18,11,true);line(23);
-y=38;
-addText(doc,"The Asstt. General Manager/ Chief Manager/ Branch Manager",L,y);y+=6;
-addText(doc,"State Bank of India",L,y);y+=11;
-addText(doc,"Madam/ Dear Sir,",L,y);y+=10;
+addText(doc,"AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION",105,18,11,true);
+line(23);
+
+addText(doc,"The Asstt. General Manager/ Chief Manager/ Branch Manager",L,37,9);
+addText(doc,"State Bank of India",L,44,9);
+addText(doc,"Madam/ Dear Sir,",L,54,9);
 
 let q1="I submit that I am a member of "+(v("previousUnion")||"______________________________________________")+" Union whose subscription is being deducted from my salary month. Since I have resigned from the primary membership of this Union, you are requested to kindly stop deduction the monthly subscription from my salary with immediate effect i.e. "+(v("stopMonth")||"________________")+" month.";
-n=wrap(doc,q1,L,y,W,9);y+=n*5+8;
+wrap(doc,q1,L,66,W,8.5);
 
 let q2="2. I further submit that I have joined State Bank of India Staff Association (SBISA), Jaipur Circle, therefore, I request you to deduct a sum of "+v("subscription")+" every month from my salary and allowances payable to me by the Bank commencing from "+(v("startMonth")||"________________")+" and remit the same to The General Secretary, State Bank of India Staff Association, Jaipur Circle (A/c no.37015276049).";
-n=wrap(doc,q2,L,y,W,9);y+=n*5+8;
+wrap(doc,q2,L,101,W,8.5);
 
-addText(doc,"3. This authorization shall continue to be effective for revised rates in future also till I revoke the same.",L,y);y+=15;
-addText(doc,"Thanking you,",L,y);y+=18;
-addText(doc,"(Signature in full)",L,y);y+=14;
+addText(doc,"3. This authorization shall continue to be effective for revised rates in future also till I revoke the same.",L,137,8.5);
+addText(doc,"Thanking you,",L,153,9);
+addText(doc,"(Signature in full)",L,176,9);
 
-field("Name (In block letters)",v("name"),y,72);y+=11;
-field("Designation",v("designation"),y,72);y+=11;
-field("P.F.No.",v("pf"),y,72);y+=11;
-field("Branch/ Deptt.",v("branch"),y,72);y+=11;
-field("Branch Code",v("branchCode"),y,72);
+// Fixed employee-detail block — same position on both authorization pages.
+function authField(label,value,y){
+  addText(doc,label,L,y,8.5);
+  doc.line(72,y+1,190,y+1);
+  addText(doc,value||"",74,y,8.5);
+}
+authField("Name (In block letters)",v("name"),197);
+authField("Designation",v("designation"),216);
+authField("P.F.No.",v("pf"),235);
+authField("Branch/ Deptt.",v("branch"),254);
+authField("Branch Code",v("branchCode"),273);
+
 addText(doc,"Prepared through ASK UNION - SBISA UDAIPUR MODULE",L,287,7,false);
 
 // ---------- PAGE 3 ----------
 doc.addPage();
-addText(doc,"AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION",105,18,11,true);line(23);
-y=38;
-addText(doc,"The Asstt. General Manager/ Chief Manager/ Branch Manager",L,y);y+=6;
-addText(doc,"State Bank of India",L,y);y+=11;
-addText(doc,"Madam/ Dear Sir,",L,y);y+=10;
-n=wrap(doc,q1,L,y,W,9);y+=n*5+8;
-n=wrap(doc,q2,L,y,W,9);y+=n*5+8;
-addText(doc,"3. This authorization shall continue to be effective for revised rates in future also till I revoke the same.",L,y);y+=15;
-addText(doc,"Thanking you,",L,y);y+=18;
-addText(doc,"(Signature in full)",L,y);y+=14;
-field("Name (In block letters)",v("name"),y,72);y+=11;
-field("Designation",v("designation"),y,72);y+=11;
-field("P.F.No.",v("pf"),y,72);y+=11;
-field("Branch/ Deptt.",v("branch"),y,72);y+=11;
-field("Branch Code",v("branchCode"),y,72);
+addText(doc,"AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION",105,18,11,true);
+line(23);
+
+addText(doc,"The Asstt. General Manager/ Chief Manager/ Branch Manager",L,37,9);
+addText(doc,"State Bank of India",L,44,9);
+addText(doc,"Madam/ Dear Sir,",L,54,9);
+
+wrap(doc,q1,L,66,W,8.5);
+wrap(doc,q2,L,101,W,8.5);
+addText(doc,"3. This authorization shall continue to be effective for revised rates in future also till I revoke the same.",L,137,8.5);
+addText(doc,"Thanking you,",L,153,9);
+addText(doc,"(Signature in full)",L,176,9);
+
+authField("Name (In block letters)",v("name"),197);
+authField("Designation",v("designation"),216);
+authField("P.F.No.",v("pf"),235);
+authField("Branch/ Deptt.",v("branch"),254);
+authField("Branch Code",v("branchCode"),273);
+
 addText(doc,"Prepared through ASK UNION - SBISA UDAIPUR MODULE",L,287,7,false);
 
 const safe=(v("name")||"Member").replace(/[^a-z0-9]+/gi,"_");
