@@ -146,9 +146,12 @@ $("form").addEventListener("submit",function(e){
   doc.setFont("helvetica","bold");
   doc.setFontSize(12);
   doc.setTextColor(255,255,255);
-  doc.text("OVERTIME PAYMENT CALCULATION",PW/2,10,{align:"center"});
+  const reportTitle="OVERTIME PAYMENT CALCULATION";
+  doc.text(reportTitle,PW/2,10,{align:"center"});
 
-  text(doc,"ASK UNION - SBISA UDAIPUR MODULE",PW/2,23,8,true);
+  doc.setFont("helvetica","bold");
+  doc.setFontSize(8);
+  doc.setTextColor(35,35,35);
   doc.text("ASK UNION - SBISA UDAIPUR MODULE",PW/2,23,{align:"center"});
 
   // Employee section
@@ -220,7 +223,7 @@ $("form").addEventListener("submit",function(e){
 
   const safe=(val("name")||"Employee").replace(/[^a-z0-9]+/gi,"_");
   const datePart=val("date")||"date";
-  doc.save("Overtime_"+safe+"_"+datePart+".pdf");
+  doc.save("Overtime_Final_"+safe+"_"+datePart+".pdf");
 
   $("status").textContent="PDF generated successfully.";
   $("status").style.color="#176b35";
