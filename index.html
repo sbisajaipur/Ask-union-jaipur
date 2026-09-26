@@ -1918,6 +1918,452 @@ document.addEventListener("keydown",function(e){
 });
 
 </script>
-</body>
+<!-- CONTACT UNION MODAL -->
+<div id="contactUnionModal" class="contact-union-overlay">
+
+  <div class="contact-union-box">
+
+    <button class="contact-union-close" onclick="closeContactUnion()">×</button>
+
+    <div class="contact-union-header">
+      <div class="contact-union-icon">📞</div>
+      <div>
+        <h2>Contact Union</h2>
+        <p>Send your message to the Union</p>
+      </div>
+    </div>
+
+    <div id="contactUnionLoginMsg" class="contact-union-login-msg">
+      Please login as a member first.
+    </div>
+
+    <form id="contactUnionForm">
+
+      <label>Employee Number</label>
+      <input
+        type="text"
+        id="contactEmployeeNo"
+        readonly
+      >
+
+      <label>Name</label>
+      <input
+        type="text"
+        id="contactMemberName"
+        readonly
+      >
+
+      <label>Mobile Number</label>
+      <input
+        type="tel"
+        id="contactMobile"
+        placeholder="Enter mobile number"
+        maxlength="10"
+        required
+      >
+
+      <label>Your Message</label>
+      <textarea
+        id="contactMessage"
+        rows="5"
+        placeholder="Write your message or query..."
+        maxlength="1000"
+        required
+      ></textarea>
+
+      <button type="submit" class="contact-send-btn">
+        📤 Send Message
+      </button>
+
+      <div id="contactUnionStatus"></div>
+
+    </form>
+
+  </div>
+</div>
+
+<style>
+.contact-union-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:99998;
+  background:rgba(20,10,20,.65);
+  padding:14px;
+  box-sizing:border-box;
+  align-items:center;
+  justify-content:center;
+}
+
+.contact-union-overlay.show{
+  display:flex;
+}
+
+.contact-union-box{
+  position:relative;
+  width:100%;
+  max-width:500px;
+  max-height:90vh;
+  overflow-y:auto;
+  background:#fff;
+  border-radius:22px;
+  padding:22px 18px;
+  box-sizing:border-box;
+  box-shadow:0 20px 60px rgba(0,0,0,.30);
+}
+
+.contact-union-close{
+  position:absolute;
+  right:12px;
+  top:12px;
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:#f5e6eb;
+  color:#7b1024;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.contact-union-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding-right:40px;
+  margin-bottom:20px;
+}
+
+.contact-union-icon{
+  width:52px;
+  height:52px;
+  min-width:52px;
+  border-radius:15px;
+  background:#ffe3e8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+
+.contact-union-header h2{
+  margin:0;
+  color:#7b1024;
+  font-size:22px;
+}
+
+.contact-union-header p{
+  margin:4px 0 0;
+  color:#777;
+  font-size:12px;
+}
+
+#contactUnionForm label{
+  display:block;
+  margin:12px 0 6px;
+  font-size:13px;
+  font-weight:700;
+  color:#333;
+}
+
+#contactUnionForm input,
+#contactUnionForm textarea{
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid #ddd;
+  border-radius:11px;
+  padding:12px;
+  font-size:13px;
+  outline:none;
+  font-family:inherit;
+}
+
+#contactUnionForm input:focus,
+#contactUnionForm textarea:focus{
+  border-color:#7b1024;
+}
+
+#contactUnionForm input[readonly]{
+  background:#f6f6f6;
+  color:#555;
+}
+
+#contactUnionForm textarea{
+  resize:vertical;
+  min-height:110px;
+}
+
+.contact-send-btn{
+  width:100%;
+  margin-top:18px;
+  border:0;
+  border-radius:12px;
+  padding:13px;
+  background:#7b1024;
+  color:#fff;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.contact-send-btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.contact-union-login-msg{
+  display:none;
+  padding:12px;
+  margin-bottom:12px;
+  background:#fff3f3;
+  color:#9b1c1c;
+  border-radius:10px;
+  font-size:13px;
+}
+
+#contactUnionStatus{
+  margin-top:12px;
+  text-align:center;
+  font-size:12px;
+}
+
+@media(max-width:600px){
+  .contact-union-box{
+    max-height:88vh;
+    border-radius:20px;
+    padding:18px 14px;
+  }
+}
+</style>
+
+<script>
+
+async function openContactUnion(e){
+
+  if(e){
+    e.preventDefault();
+  }
+
+  const modal = document.getElementById("contactUnionModal");
+  const form = document.getElementById("contactUnionForm");
+  const loginMsg = document.getElementById("contactUnionLoginMsg");
+
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+
+  form.style.display = "none";
+  loginMsg.style.display = "none";
+
+  try{
+
+    const user = firebase.auth().currentUser;
+
+    if(!user){
+
+      loginMsg.style.display = "block";
+      loginMsg.innerHTML =
+        "Please login as a member first to contact the Union.";
+
+      return;
+    }
+
+    const db = firebase.firestore();
+
+    const memberSnap = await db
+      .collection("members")
+      .doc(user.uid)
+      .get();
+
+    if(!memberSnap.exists){
+
+      loginMsg.style.display = "block";
+      loginMsg.innerHTML =
+        "Member profile not found.";
+
+      return;
+    }
+
+    const member = memberSnap.data();
+
+    if(member.active !== true){
+
+      loginMsg.style.display = "block";
+      loginMsg.innerHTML =
+        "Your membership is currently inactive.";
+
+      return;
+    }
+
+    document.getElementById("contactEmployeeNo").value =
+      member.employeeNo || "";
+
+    document.getElementById("contactMemberName").value =
+      member.name || "";
+
+    document.getElementById("contactMobile").value =
+      member.mobile || "";
+
+    document.getElementById("contactMessage").value = "";
+
+    document.getElementById("contactUnionStatus").innerHTML = "";
+
+    form.style.display = "block";
+
+  }catch(error){
+
+    console.error(error);
+
+    loginMsg.style.display = "block";
+    loginMsg.innerHTML =
+      "Unable to load your member details. Please try again.";
+
+  }
+}
+
+
+function closeContactUnion(){
+
+  const modal =
+    document.getElementById("contactUnionModal");
+
+  modal.classList.remove("show");
+
+  document.body.style.overflow = "";
+
+}
+
+
+document.getElementById("contactUnionForm")
+.addEventListener("submit", async function(e){
+
+  e.preventDefault();
+
+  const user = firebase.auth().currentUser;
+
+  if(!user){
+
+    alert("Please login as a member first.");
+    return;
+
+  }
+
+  const mobile =
+    document.getElementById("contactMobile").value.trim();
+
+  const message =
+    document.getElementById("contactMessage").value.trim();
+
+  const status =
+    document.getElementById("contactUnionStatus");
+
+  const button =
+    this.querySelector(".contact-send-btn");
+
+  if(!mobile){
+
+    status.innerHTML =
+      "Please enter your mobile number.";
+
+    return;
+
+  }
+
+  if(!message){
+
+    status.innerHTML =
+      "Please enter your message.";
+
+    return;
+
+  }
+
+  button.disabled = true;
+  button.innerHTML = "Sending...";
+
+  status.innerHTML = "";
+
+  try{
+
+    const db = firebase.firestore();
+
+    const memberSnap = await db
+      .collection("members")
+      .doc(user.uid)
+      .get();
+
+    if(!memberSnap.exists){
+
+      throw new Error("Member profile not found.");
+
+    }
+
+    const member = memberSnap.data();
+
+    await db.collection("contactMessages").add({
+
+      uid: user.uid,
+
+      employeeNo:
+        member.employeeNo || "",
+
+      name:
+        member.name || "",
+
+      mobile:
+        mobile,
+
+      message:
+        message,
+
+      status:
+        "new",
+
+      createdAt:
+        firebase.firestore.FieldValue.serverTimestamp()
+
+    });
+
+    status.innerHTML =
+      "✅ Message sent successfully. The Union will contact you.";
+
+    document.getElementById("contactMessage").value = "";
+
+    button.innerHTML = "Message Sent";
+
+    setTimeout(function(){
+
+      closeContactUnion();
+
+      button.disabled = false;
+      button.innerHTML = "📤 Send Message";
+
+    },1800);
+
+  }catch(error){
+
+    console.error(error);
+
+    status.innerHTML =
+      "❌ Unable to send message. Please try again.";
+
+    button.disabled = false;
+    button.innerHTML = "📤 Send Message";
+
+  }
+
+});
+
+
+document.addEventListener("keydown",function(e){
+
+  if(e.key === "Escape"){
+
+    closeContactUnion();
+
+  }
+
+});
+
+</script></body>
 
 </html>
