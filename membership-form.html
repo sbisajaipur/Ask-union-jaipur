@@ -1,74 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SBISA Get Membership</title>
+<title>Get Membership - SBISA</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#eef1f5;font-family:Arial,Helvetica,sans-serif;color:#222}
-.wrap{max-width:900px;margin:auto;padding:16px}
-.top{background:#7b1024;color:#fff;border-radius:15px;padding:18px 20px;margin-bottom:14px}
+body{margin:0;background:#eef0f3;color:#222;font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:920px;margin:auto;padding:16px}
+.top{background:#7b1024;color:#fff;border-radius:14px;padding:18px 20px;margin-bottom:14px}
 .top h1{margin:0;font-size:23px}.top p{margin:5px 0 0;font-size:12px}
-.card{background:#fff;border-radius:14px;padding:18px;margin-bottom:14px;box-shadow:0 3px 14px #0001}
-h2{margin:0 0 14px;color:#7b1024;font-size:17px;border-bottom:1px solid #ddd;padding-bottom:8px}
+.card{background:#fff;border-radius:14px;padding:18px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .full{grid-column:1/-1}
-label{display:block;font-size:12px;font-weight:bold;margin-bottom:5px}
-input,textarea,select{width:100%;padding:11px;border:1px solid #cbd0d8;border-radius:8px;font-size:15px;background:#fff}
-textarea{min-height:75px;resize:vertical}
-.notice{background:#fff7df;padding:11px;border-radius:8px;font-size:12px;line-height:1.5}
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-button{border:0;border-radius:9px;padding:12px 18px;font-weight:bold;cursor:pointer}
-.primary{background:#7b1024;color:#fff}.secondary{background:#e9e9e9}
-#status{margin-top:10px;font-size:12px}
+label{font-size:12px;font-weight:700;display:block;margin-bottom:5px}
+input,textarea,select{width:100%;border:1px solid #c8cdd5;border-radius:8px;padding:11px;font-size:15px;background:#fff}
+textarea{min-height:70px}
+.note{font-size:12px;line-height:1.5;background:#fff7df;padding:11px;border-radius:8px}
+button{border:0;border-radius:9px;padding:12px 18px;font-weight:700;cursor:pointer}
+.primary{background:#7b1024;color:#fff}.secondary{background:#e8e8e8}
 @media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.wrap{padding:10px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="top"><h1>🪪 Get Membership</h1><p>State Bank of India Staff Association (SBISA) — Membership Application</p></div>
+<div class="top"><h1>🪪 Get Membership</h1><p>SBISA Jaipur Circle • Membership Application</p></div>
 
-<form id="membershipForm">
+<form id="f">
 <div class="card">
-<h2>1. Ordinary Membership Application</h2>
-<div class="notice">
-The fields below follow the supplied SBISA membership form. The source form states an admission fee of Rs. 100/- and asks for the member's name, P.F. No., designation, department/branch, date of appointment, residential address, mobile number and e-mail ID.
+<div class="note">
+This is a newly recreated digital layout following the same pattern, wording and visual structure of the supplied SBISA membership form — not a copy of the old scanned pages.
 </div>
-<div class="grid" style="margin-top:14px">
+</div>
+
+<div class="card">
+<h3 style="margin:0 0 14px;color:#7b1024">Applicant Details</h3>
+<div class="grid">
 <div><label>Name in Full (Block Letter) *</label><input id="name" required></div>
 <div><label>P.F. No. *</label><input id="pf" required></div>
 <div><label>Designation *</label><input id="designation" required></div>
 <div><label>Department / Branch *</label><input id="branch" required></div>
 <div><label>Date of Appointment *</label><input id="appointment" type="date" required></div>
-<div><label>Mobile No. *</label><input id="mobile" type="tel" required></div>
-<div><label>E-Mail ID *</label><input id="email" type="email" required></div>
-<div class="full"><label>Residential Address *</label><textarea id="address" required></textarea></div>
-<div><label>Application Date *</label><input id="date" type="date" required></div>
-<div><label>Signature (Type Full Name)</label><input id="signature"></div>
+<div><label>Mobile No.</label><input id="mobile"></div>
+<div><label>E-Mail ID.</label><input id="email" type="email"></div>
+<div><label>Dated</label><input id="date" type="date" required></div>
+<div class="full"><label>Residential Address</label><textarea id="address"></textarea></div>
+<div><label>Signature</label><input id="signature"></div>
 </div>
 </div>
 
 <div class="card">
-<h2>2. Union Subscription Authorisation</h2>
+<h3 style="margin:0 0 14px;color:#7b1024">Union Subscription Authorisation</h3>
 <div class="grid">
 <div class="full"><label>Previous Union</label><input id="previousUnion"></div>
-<div><label>Month from which previous deduction should stop</label><input id="stopMonth"></div>
-<div><label>SBISA deduction commencement</label><input id="startMonth"></div>
-<div><label>Monthly Subscription</label>
-<select id="subscription"><option value="100">Rs. 100/-</option><option value="50">Rs. 50/-</option></select></div>
+<div><label>Stop deduction from month</label><input id="stopMonth"></div>
+<div><label>SBISA deduction commencing from</label><input id="startMonth"></div>
+<div><label>Monthly Subscription</label><select id="subscription"><option value="100">Rs. 100/-</option><option value="50">Rs. 50/-</option></select></div>
 <div><label>Branch Code</label><input id="branchCode"></div>
 </div>
 </div>
 
 <div class="card">
-<h2>3. Confirmation</h2>
-<label><input id="confirm" type="checkbox" required> I have checked all details and confirm that they are correct.</label>
-<div class="actions" style="margin-top:14px">
+<label><input id="confirm" type="checkbox" required> I have checked all details and want to generate the SBISA membership application.</label>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
 <button class="primary" type="submit">Generate Membership PDF</button>
 <button class="secondary" type="reset">Reset</button>
 </div>
-<div id="status"></div>
+<div id="status" style="font-size:12px;margin-top:10px"></div>
 </div>
 </form>
 </div>
@@ -77,106 +75,104 @@ The fields below follow the supplied SBISA membership form. The source form stat
 <script>
 const $=id=>document.getElementById(id);
 const v=id=>$(id).value.trim();
-const dateText=id=>{
- const x=v(id); if(!x)return "";
- const a=x.split("-"); return a.length===3 ? a[2]+"."+a[1]+"."+a[0] : x;
+function dtext(id){const s=v(id);if(!s)return "";const a=s.split("-");return a.length===3?a[2]+"."+a[1]+"."+a[0]:s}
+function addText(doc,t,x,y,size=9,bold=false){doc.setFont("helvetica",bold?"bold":"normal");doc.setFontSize(size);doc.setTextColor(25,25,25);doc.text(String(t),x,y)}
+function wrap(doc,t,x,y,w,size=9){doc.setFont("helvetica","normal");doc.setFontSize(size);const lines=doc.splitTextToSize(String(t||""),w);doc.text(lines,x,y);return lines.length}
+
+$("f").addEventListener("submit",e=>{
+e.preventDefault();
+const {jsPDF}=window.jspdf;
+const doc=new jsPDF({unit:"mm",format:"a4"});
+const L=15,R=195,W=180;
+const line=(y)=>doc.line(L,y,R,y);
+const field=(label,value,y,x=68)=>{
+addText(doc,label,L,y,9,false);doc.line(x,y+1,R,y+1);addText(doc,value||"",x+2,y,9,false);
 };
 
-$("membershipForm").addEventListener("submit",e=>{
- e.preventDefault();
- const {jsPDF}=window.jspdf;
- const doc=new jsPDF({unit:"mm",format:"a4"});
- const L=15,R=195,W=180;
- const fs=9;
- let y=18;
+// ---------- PAGE 1 ----------
+addText(doc,"APPENDIX-'A'",105,17,11,true);doc.setLineWidth(.4);line(21);
+let y=33;
+addText(doc,"To,",L,y);y+=5;
+addText(doc,"The Chief Secretary,",L,y);y+=5;
+addText(doc,"State Bank of India Staff Association,",L,y);y+=5;
+addText(doc,"(Registration No. 34, dated 24.05.1932, Kolkata)",L,y);y+=5;
+addText(doc,"Ajit Sen Bhawan, 13, Crooked Lane,",L,y);y+=5;
+addText(doc,"KOLKATA (West Bengal)-700069.",L,y);y+=9;
+addText(doc,"(Through The General Secretary, State Bank of India Staff Association, Jaipur Circle-Rajasthan)",L,y,9,true);y+=11;
+addText(doc,"Dear Sir,",L,y);y+=9;
 
- function txt(t,x,yy,size=fs,bold=false){
-   doc.setFont("helvetica",bold?"bold":"normal");
-   doc.setFontSize(size); doc.setTextColor(25,25,25); doc.text(String(t),x,yy);
- }
- function line(x1,yy,x2){doc.line(x1,yy,x2,yy)}
- function field(label,value,yy){
-   txt(label,15,yy,9,false); txt(value||"",72,yy,9,false); line(72,yy+1,190);
- }
- function pageHeader(title){
-   txt(title,105,18,12,true);
-   line(15,22,195);
- }
- function footer(){
-   txt("SBISA Membership Application",15,287,7,false);
-   txt("Prepared through ASK UNION - SBISA UDAIPUR MODULE",195,287,7,false);
- }
+let n=wrap(doc,"I request you to enlist me as an Ordinary Member of the Association and remit herewith Admission Fee of 100/-* as per Rule 6 of the Rules and Constitution of the Association.",L,y,W,9);y+=n*5+6;
+n=wrap(doc,"I have read the Rules and Constitution of the Association and will abide by them as amended from time to time.",L,y,W,9);y+=n*5+12;
 
- // PAGE 1
- pageHeader("APPENDIX-'A'");
- y=34;
- txt("To,",15,y); y+=6;
- txt("The Chief Secretary,",15,y); y+=5;
- txt("State Bank of India Staff Association,",15,y); y+=5;
- txt("(Registration No. 34, dated 24.05.1932, Kolkata)",15,y); y+=5;
- txt("Ajit Sen Bhawan, 13, Crooked Lane,",15,y); y+=5;
- txt("KOLKATA (West Bengal)-700069.",15,y); y+=9;
- txt("(Through The General Secretary, State Bank of India Staff Association, Jaipur Circle-Rajasthan)",15,y,9,true); y+=10;
- txt("Dear Sir,",15,y); y+=9;
+addText(doc,"Dated: "+dtext("date"),L,y);
+addText(doc,"Comradely Yours,",143,y,9,false);y+=11;
+addText(doc,"Signature: "+(v("signature")||"________________________"),143,y,9,false);y+=15;
 
- const p1="I request you to enlist me as an Ordinary Member of the Association and remit herewith Admission Fee of 100/-* as per Rule 6 of the Rules and Constitution of the Association.";
- const p2="I have read the Rules and Constitution of the Association and will abide by them as amended from time to time.";
- doc.setFont("helvetica","normal");doc.setFontSize(9);
- let lines=doc.splitTextToSize(p1,W);doc.text(lines,15,y);y+=lines.length*5+6;
- lines=doc.splitTextToSize(p2,W);doc.text(lines,15,y);y+=lines.length*5+12;
- txt("Dated: "+dateText("date"),15,y); txt("Comradely Yours,",145,y); y+=10;
- txt("Signature: "+(v("signature")||"____________________________"),145,y); y+=15;
+field("Name in Full (Block Letter)",v("name"),y,68);y+=10;
+field("P.F. No.",v("pf"),y,68);y+=10;
+field("Designation",v("designation"),y,68);y+=10;
+field("Department/Branch",v("branch"),y,68);y+=10;
+field("Date of Appointment",dtext("appointment"),y,68);y+=10;
 
- field("Name in Full (Block Letter)",v("name"),y); y+=10;
- field("P.F. No.",v("pf"),y); y+=10;
- field("Designation",v("designation"),y); y+=10;
- field("Department/Branch",v("branch"),y); y+=10;
- field("Date of Appointment",dateText("appointment"),y); y+=10;
- txt("Residential Address",15,y); wrap=doc.splitTextToSize(v("address"),115);doc.text(wrap,72,y);line(72,y+1,190);y+=Math.max(10,wrap.length*5+5);
- field("Mobile No.",v("mobile"),y); y+=10;
- field("E-Mail ID.",v("email"),y); y+=16;
- doc.setFontSize(8);
- const fee="The Admission Fee of Rs. 100/- should be remitted through Bank Draft/Cheque favouring 'State Bank of India Staff Association' payable at respective Circle Head Quarters to which the concerned employee belongs.";
-doc.text(doc.splitTextToSize(fee,W),15,y); footer();
+addText(doc,"Residential Address",L,y);
+const addrLines=doc.splitTextToSize(v("address")||"",120);
+doc.text(addrLines,68,y);doc.line(68,y+1,R,y+1);if(addrLines.length>1)doc.line(68,y+6,R,y+6);
+y+=Math.max(11,addrLines.length*6+4);
 
- // PAGE 2
- doc.addPage(); pageHeader("AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION"); y=35;
- txt("The Asstt. General Manager/ Chief Manager/ Branch Manager",15,y);y+=5;
- txt("State Bank of India",15,y);y+=10;txt("Madam/ Dear Sir,",15,y);y+=9;
- const q1="I submit that I am a member of "+(v("previousUnion")||"______________________________________________")+" Union whose subscription is being deducted from my salary month. Since I have resigned from the primary membership of this Union, you are requested to kindly stop deduction the monthly subscription from my salary with immediate effect i.e. "+(v("stopMonth")||"________________")+" month.";
- lines=doc.splitTextToSize(q1,W);doc.text(lines,15,y);y+=lines.length*5+7;
- const q2="2. I further submit that I have joined State Bank of India Staff Association (SBISA), Jaipur Circle, therefore, I request you to deduct a sum of "+v("subscription")+" every month from my salary and allowances payable to me by the Bank commencing from "+(v("startMonth")||"________________")+" and remit the same to The General Secretary, State Bank of India Staff Association, Jaipur Circle (A/c no.37015276049).";
- lines=doc.splitTextToSize(q2,W);doc.text(lines,15,y);y+=lines.length*5+7;
- txt("3. This authorization shall continue to be effective for revised rates in future also till I revoke the same.",15,y);y+=14;
- txt("Thanking you,",15,y);y+=16;
- txt("(Signature in full)",15,y);y+=12;
- // Place values directly on the five printed lines of the original template.
- txt(v("name"),190,192,9,false);
- txt(v("designation"),190,155,9,false);
- txt(v("pf"),190,138,9,false);
- txt(v("branch"),190,121,9,false);
- txt(v("branchCode"),190,104,9,false);
- footer();
+field("Mobile No.",v("mobile"),y,68);y+=10;
+field("E-Mail ID.",v("email"),y,68);y+=14;
 
- // PAGE 3 — same source page
- doc.addPage(); pageHeader("AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION"); y=35;
- txt("The Asstt. General Manager/ Chief Manager/ Branch Manager",15,y);y+=5;
- txt("State Bank of India",15,y);y+=10;txt("Madam/ Dear Sir,",15,y);y+=9;
- lines=doc.splitTextToSize(q1,W);doc.text(lines,15,y);y+=lines.length*5+7;
- lines=doc.splitTextToSize(q2,W);doc.text(lines,15,y);y+=lines.length*5+7;
- txt("3. This authorization shall continue to be effective for revised rates in future also till I revoke the same.",15,y);y+=14;
- txt("Thanking you,",15,y);y+=16;txt("(Signature in full)",15,y);y+=12;
- txt(v("name"),190,192,9,false);
- txt(v("designation"),190,155,9,false);
- txt(v("pf"),190,138,9,false);
- txt(v("branch"),190,121,9,false);
- txt(v("branchCode"),190,104,9,false);
- footer();
+n=wrap(doc,"The Admission Fee of Rs. 100/- should be remitted through Bank Draft/Cheque favouring 'State Bank of India Staff Association' payable at respective Circle Head Quarters to which the concerned employee belongs.",L,y,W,8);
+addText(doc,"Prepared through ASK UNION - SBISA UDAIPUR MODULE",L,287,7,false);
 
- const safe=(v("name")||"Member").replace(/[^a-z0-9]+/gi,"_");
- doc.save("SBISA_Membership_"+safe+".pdf");
- $("status").textContent="Membership PDF generated successfully.";
- $("status").style.color="#16733b";
+// ---------- PAGE 2 ----------
+doc.addPage();
+addText(doc,"AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION",105,18,11,true);line(23);
+y=38;
+addText(doc,"The Asstt. General Manager/ Chief Manager/ Branch Manager",L,y);y+=6;
+addText(doc,"State Bank of India",L,y);y+=11;
+addText(doc,"Madam/ Dear Sir,",L,y);y+=10;
+
+let q1="I submit that I am a member of "+(v("previousUnion")||"______________________________________________")+" Union whose subscription is being deducted from my salary month. Since I have resigned from the primary membership of this Union, you are requested to kindly stop deduction the monthly subscription from my salary with immediate effect i.e. "+(v("stopMonth")||"________________")+" month.";
+n=wrap(doc,q1,L,y,W,9);y+=n*5+8;
+
+let q2="2. I further submit that I have joined State Bank of India Staff Association (SBISA), Jaipur Circle, therefore, I request you to deduct a sum of "+v("subscription")+" every month from my salary and allowances payable to me by the Bank commencing from "+(v("startMonth")||"________________")+" and remit the same to The General Secretary, State Bank of India Staff Association, Jaipur Circle (A/c no.37015276049).";
+n=wrap(doc,q2,L,y,W,9);y+=n*5+8;
+
+addText(doc,"3. This authorization shall continue to be effective for revised rates in future also till I revoke the same.",L,y);y+=15;
+addText(doc,"Thanking you,",L,y);y+=18;
+addText(doc,"(Signature in full)",L,y);y+=14;
+
+field("Name (In block letters)",v("name"),y,72);y+=11;
+field("Designation",v("designation"),y,72);y+=11;
+field("P.F.No.",v("pf"),y,72);y+=11;
+field("Branch/ Deptt.",v("branch"),y,72);y+=11;
+field("Branch Code",v("branchCode"),y,72);
+addText(doc,"Prepared through ASK UNION - SBISA UDAIPUR MODULE",L,287,7,false);
+
+// ---------- PAGE 3 ----------
+doc.addPage();
+addText(doc,"AUTHORISATION TO BE DEDUCT UNION SUBSCRIPTION",105,18,11,true);line(23);
+y=38;
+addText(doc,"The Asstt. General Manager/ Chief Manager/ Branch Manager",L,y);y+=6;
+addText(doc,"State Bank of India",L,y);y+=11;
+addText(doc,"Madam/ Dear Sir,",L,y);y+=10;
+n=wrap(doc,q1,L,y,W,9);y+=n*5+8;
+n=wrap(doc,q2,L,y,W,9);y+=n*5+8;
+addText(doc,"3. This authorization shall continue to be effective for revised rates in future also till I revoke the same.",L,y);y+=15;
+addText(doc,"Thanking you,",L,y);y+=18;
+addText(doc,"(Signature in full)",L,y);y+=14;
+field("Name (In block letters)",v("name"),y,72);y+=11;
+field("Designation",v("designation"),y,72);y+=11;
+field("P.F.No.",v("pf"),y,72);y+=11;
+field("Branch/ Deptt.",v("branch"),y,72);y+=11;
+field("Branch Code",v("branchCode"),y,72);
+addText(doc,"Prepared through ASK UNION - SBISA UDAIPUR MODULE",L,287,7,false);
+
+const safe=(v("name")||"Member").replace(/[^a-z0-9]+/gi,"_");
+doc.save("SBISA_Membership_"+safe+".pdf");
+$("status").textContent="PDF generated successfully.";
+$("status").style.color="#176b35";
 });
 </script>
 </body>
