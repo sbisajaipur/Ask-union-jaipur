@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Get Membership - SBISA</title>
+<style>
+body{font-family:Arial;margin:0;background:#f5f7fb;color:#222}.wrap{max-width:850px;margin:auto;padding:16px}.head{background:#7b1024;color:#fff;padding:22px;border-radius:16px}.card{background:#fff;padding:18px;margin-top:14px;border-radius:16px;box-shadow:0 4px 18px #0001}h2{color:#7b1024;font-size:18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{font-size:12px;font-weight:bold;display:block;margin-bottom:5px}input,textarea,select{width:100%;padding:11px;border:1px solid #ccd1d9;border-radius:9px;box-sizing:border-box;font-size:15px}textarea{min-height:80px}.full{grid-column:1/-1}.note{background:#fff7df;padding:12px;border-radius:9px;font-size:13px;line-height:1.5}.actions{display:flex;gap:10px;margin-top:14px}button{padding:12px 18px;border:0;border-radius:9px;font-weight:bold;cursor:pointer}.primary{background:#7b1024;color:#fff}.secondary{background:#eee}@media(max-width:600px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
+</style></head><body><div class="wrap">
+<div class="head"><h1>🪪 Get Membership</h1><div>State Bank of India Staff Association (SBISA)</div></div>
+<div class="card"><div class="note">This digital form is based on the supplied SBISA Union Form. The source form states an admission fee of Rs. 100/- and monthly union subscription of Rs. 100/- or Rs. 50/-. fileciteturn63file0L11-L24</div></div>
+<form id="f">
+<div class="card"><h2>Part A — Ordinary Membership Application</h2><div class="grid">
+<div><label>Name in Full *</label><input id="name" required></div><div><label>P.F. No. *</label><input id="pf" required></div>
+<div><label>Designation *</label><input id="desig" required></div><div><label>Department / Branch *</label><input id="branch" required></div>
+<div><label>Date of Appointment *</label><input id="appoint" type="date" required></div><div><label>Mobile No. *</label><input id="mobile" required></div>
+<div><label>E-Mail ID *</label><input id="email" type="email" required></div><div class="full"><label>Residential Address *</label><textarea id="address" required></textarea></div>
+</div></div>
+<div class="card"><h2>Membership Declaration</h2><p>I request you to enlist me as an Ordinary Member of the Association and remit herewith Admission Fee of Rs. 100/- as per Rule 6 of the Rules and Constitution of the Association. I have read the Rules and Constitution of the Association and will abide by them as amended from time to time.</p>
+<div class="grid"><div><label>Application Date *</label><input id="appdate" type="date" required></div><div><label>Signature</label><input id="signature" placeholder="Type full name"></div></div></div>
+<div class="card"><h2>Part B — Authorisation to Deduct Union Subscription</h2><div class="grid">
+<div class="full"><label>Previous Union (if applicable)</label><input id="prev"></div>
+<div><label>Month previous deduction should stop</label><input id="stop"></div><div><label>SBISA deduction commencement</label><input id="start"></div>
+<div><label>Monthly Subscription</label><select id="sub"><option>Rs. 100/-</option><option>Rs. 50/-</option></select></div>
+<div><label>Branch Code</label><input id="code"></div>
+</div><p>I further submit that I have joined State Bank of India Staff Association (SBISA), Jaipur Circle, and request deduction of the selected monthly subscription from my salary and allowances payable by the Bank, to be remitted to the General Secretary, State Bank of India Staff Association, Jaipur Circle (A/c No. 37015276049). This authorization shall continue to be effective for revised rates in future also till I revoke the same.</p></div>
+<div class="card"><label><input id="agree" type="checkbox" required> I confirm the information entered above is correct.</label><div class="actions"><button class="primary">Generate Membership PDF</button><button class="secondary" type="reset">Reset</button></div></div>
+</form></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+document.getElementById("f").addEventListener("submit",function(e){e.preventDefault();const{jsPDF}=window.jspdf,d=new jsPDF(),v=id=>document.getElementById(id).value.trim();d.setFontSize(16);d.text("SBISA MEMBERSHIP APPLICATION",105,18,{align:"center"});d.setFontSize(10);d.text("State Bank of India Staff Association (SBISA)",105,25,{align:"center"});d.line(15,29,195,29);let y=40;d.setFontSize(11);d.text("PART A - ORDINARY MEMBERSHIP",15,y);y+=10;[["Name",v("name")],["P.F. No.",v("pf")],["Designation",v("desig")],["Department / Branch",v("branch")],["Date of Appointment",v("appoint")],["Residential Address",v("address")],["Mobile No.",v("mobile")],["E-Mail ID",v("email")]].forEach(a=>{d.text(a[0]+": "+a[1],15,y);y+=7});y+=4;d.text("Admission Fee: Rs. 100/-",15,y);y+=8;d.text("Application Date: "+v("appdate"),15,y);y+=8;d.text("Signature: "+v("signature"),15,y);y+=15;d.text("PART B - UNION SUBSCRIPTION AUTHORISATION",15,y);y+=9;[["Previous Union",v("prev")],["Stop Deduction From",v("stop")],["SBISA Deduction From",v("start")],["Monthly Subscription",v("sub")],["Branch Code",v("code")]].forEach(a=>{d.text(a[0]+": "+a[1],15,y);y+=7});d.setFontSize(8);d.text("Prepared through ASK UNION - SBISA UDAIPUR MODULE",105,287,{align:"center"});d.save("SBISA_Membership_"+(v("name").replace(/\W+/g,"_")||"Application")+".pdf")});
+</script></body></html>
