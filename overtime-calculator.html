@@ -155,22 +155,22 @@ $("form").addEventListener("submit",function(e){
   doc.text("ASK UNION - SBISA UDAIPUR MODULE",PW/2,23,{align:"center"});
 
   // Employee section
-  text(doc,"EMPLOYEE DETAILS",20,34,10,true);
+  text(doc,"EMPLOYEE DETAILS",20,29,10,true);
   doc.setLineWidth(.35);
-  doc.line(20,38,190,38);
+  doc.line(20,33,190,33);
 
-  text(doc,"Name:",20,47); text(doc,val("name"),48,47);
-  text(doc,"PF No.:",112,47); text(doc,val("pf"),143,47);
+  text(doc,"Name:",20,42); text(doc,val("name"),48,42);
+  text(doc,"PF No.:",112,42); text(doc,val("pf"),143,42);
 
-  text(doc,"Branch:",20,56); text(doc,val("branch"),48,56);
-  text(doc,"Branch Code:",112,56); text(doc,val("branchCode"),150,56);
+  text(doc,"Branch:",20,51); text(doc,val("branch"),48,51);
+  text(doc,"Branch Code:",112,51); text(doc,val("branchCode"),150,51);
 
-  text(doc,"Date:",20,65); text(doc,dateDMY(),48,65);
-  text(doc,"Day:",112,65); text(doc,val("day"),143,65);
+  text(doc,"Date:",20,60); text(doc,dateDMY(),48,60);
+  text(doc,"Day:",112,60); text(doc,val("day"),143,60);
 
   // Calculation heading
-  text(doc,"OVERTIME CALCULATION",20,78,10,true);
-  doc.line(20,82,190,82);
+  text(doc,"OVERTIME CALCULATION",20,73,10,true);
+  doc.line(20,77,190,82);
 
   // Clean tabular calculation
   const tx=20, ty=88, tw=170, labelW=108, valueW=62, rh=11;
@@ -223,7 +223,7 @@ $("form").addEventListener("submit",function(e){
 
   const safe=(val("name")||"Employee").replace(/[^a-z0-9]+/gi,"_");
   const datePart=val("date")||"date";
-  doc.save("Overtime_Final_"+safe+"_"+datePart+".pdf");
+  doc.save("SBISA_OT_FINAL_V3_"+safe+"_"+datePart+".pdf");
 
   $("status").textContent="PDF generated successfully.";
   $("status").style.color="#176b35";
