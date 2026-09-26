@@ -3220,3 +3220,82 @@ button,
 
 }
 </style>
+<style id="about-sbisa-final-readmore">
+
+/* =========================================
+   ABOUT SBISA — 2 LINES + READ MORE
+   ========================================= */
+
+.about-sbisa-content{
+  position:relative;
+  overflow:hidden;
+
+  /* CLOSED STATE */
+  max-height:3.25em;
+
+  line-height:1.6;
+}
+
+
+/* Hide everything after the first two lines */
+.about-sbisa-readmore.collapsed
+.about-sbisa-content{
+  max-height:3.25em;
+}
+
+
+/* OPEN STATE */
+.about-sbisa-readmore.expanded
+.about-sbisa-content{
+  max-height:none;
+  overflow:visible;
+}
+
+
+/* Read More button */
+
+.about-sbisa-toggle{
+  display:inline-block;
+
+  margin-top:12px;
+
+  padding:0;
+
+  border:0;
+
+  background:transparent;
+
+  color:#1769aa;
+
+  font-size:14px;
+
+  font-weight:800;
+
+  cursor:pointer;
+
+  text-decoration:none;
+}
+
+.about-sbisa-toggle:hover{
+  text-decoration:underline;
+}
+
+
+/* Mobile */
+
+@media(max-width:700px){
+
+  .about-sbisa-content{
+    font-size:14px;
+    line-height:1.6;
+    max-height:3.2em;
+  }
+
+  .about-sbisa-toggle{
+    font-size:14px;
+    margin-top:10px;
+  }
+
+}
+
+</style>
