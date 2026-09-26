@@ -223,7 +223,7 @@ $("form").addEventListener("submit",function(e){
 
   const safe=(val("name")||"Employee").replace(/[^a-z0-9]+/gi,"_");
   const datePart=val("date")||"date";
-  doc.save("SBISA_OT_FINAL_V3_"+safe+"_"+datePart+".pdf");
+  doc.save("SBISA_OVERTIME_FINAL_"+safe+"_"+datePart+".pdf");
 
   $("status").textContent="PDF generated successfully.";
   $("status").style.color="#176b35";
