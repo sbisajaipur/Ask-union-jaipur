@@ -95,32 +95,37 @@ $("form").addEventListener("submit", async e=>{
     if(line)put(page,line,x,yy,size);
   }
 
-  // Page 1 — original source layout.
+  // Coordinates mapped to the printed lines in the supplied original template.
+  // Page 1.
   const p1=pdf.getPage(0);
-  put(p1,dateText("date"),62,245,9);
-  put(p1,v("signature"),420,245,9);
-  put(p1,v("name"),170,214,9);
-  put(p1,v("pf"),170,190,9);
-  put(p1,v("designation"),170,165,9);
-  put(p1,v("branch"),170,141,9);
-  put(p1,dateText("appointment"),170,116,9);
-  wrap(p1,v("address"),170,92,360,9);
-  put(p1,v("mobile"),170,55,9);
-  put(p1,v("email"),170,31,9);
+  put(p1,dateText("date"),8,445,9);
+  put(p1,v("signature"),397,438,9);
+  put(p1,v("name"),163,382,9);
+  put(p1,v("pf"),202,357,9);
+  put(p1,v("designation"),163,332,9);
+  put(p1,v("branch"),163,306,9);
+  put(p1,dateText("appointment"),163,281,9);
+  wrap(p1,v("address"),163,255,360,9);
+  put(p1,v("mobile"),163,204,9);
+  put(p1,v("email"),163,179,9);
 
-  // Pages 2 and 3 — same original authorisation format.
+  // Pages 2 and 3 — identical authorization template.
   for(const idx of [1,2]){
     const p=pdf.getPage(idx);
-    put(p,v("previousUnion"),250,602,8);
-    put(p,dateText("stopMonth"),430,574,8);
-    put(p,v("startMonth"),330,508,8);
-    put(p,v("subscription"),315,484,8);
-    put(p,v("signature"),70,135,9);
-    put(p,v("name"),210,106,9);
-    put(p,v("designation"),210,83,9);
-    put(p,v("pf"),210,61,9);
-    put(p,v("branch"),210,39,9);
-    put(p,v("branchCode"),210,17,9);
+    // Existing-union line in paragraph 1.
+    put(p,v("previousUnion"),238,561,8);
+    // Month blank in paragraph 1.
+    put(p,v("stopMonth"),385,511,8);
+    // Commencement month blank in paragraph 2.
+    put(p,v("startMonth"),306,418,8);
+
+    // Signature and identification lines at the bottom.
+    put(p,v("signature"),70,239,9);
+    put(p,v("name"),189,201,9);
+    put(p,v("designation"),189,181,9);
+    put(p,v("pf"),189,161,9);
+    put(p,v("branch"),189,141,9);
+    put(p,v("branchCode"),189,121,9);
   }
 
   const out=await pdf.save();
