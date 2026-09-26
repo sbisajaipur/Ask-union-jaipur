@@ -200,24 +200,28 @@ addText(doc,"Prepared through ASK UNION - SBISA UDAIPUR MODULE",L,287,7,false);
 
 const safe=(v("name")||"Member").replace(/[^a-z0-9]+/gi,"_");
 
-  // Mobile-friendly: download the PDF and immediately open the same PDF
-  // in a new tab/window when the browser permits it.
+  // Mobile-safe PDF flow: download the PDF and open the same PDF in the
+  // current tab. This avoids popup blockers on Android/iPhone browsers.
   const pdfBlob=doc.output("blob");
   const pdfUrl=URL.createObjectURL(pdfBlob);
+  const fileName="SBISA_Membership_"+safe+".pdf";
 
   const downloadLink=document.createElement("a");
   downloadLink.href=pdfUrl;
-  downloadLink.download="SBISA_Membership_"+safe+".pdf";
+  downloadLink.download=fileName;
+  downloadLink.style.display="none";
   document.body.appendChild(downloadLink);
   downloadLink.click();
   downloadLink.remove();
 
-  const preview=window.open(pdfUrl,"_blank");
-  setTimeout(()=>URL.revokeObjectURL(pdfUrl),60000);
+  $("status").textContent="PDF generated. Opening PDF...";
+  $("status").style.color="#176b35";
 
-  $("status").textContent=preview
-    ? "Membership PDF downloaded and opened."
-    : "Membership PDF downloaded. Tap the downloaded PDF to open it.";
+  setTimeout(()=>{
+    window.location.href=pdfUrl;
+  },250);
+
+  $("status").textContent="PDF generated. Opening PDF...";
   $("status").style.color="#176b35";
 });
 </script>
