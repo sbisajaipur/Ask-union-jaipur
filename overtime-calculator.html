@@ -6,9 +6,7 @@
 <title>ASK UNION - Overtime Calculator</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -24,7 +22,6 @@ body{
 }
 
 /* HEADER */
-
 .header{
   background:linear-gradient(135deg,#073f91,#0b63c7);
   color:#fff;
@@ -36,7 +33,7 @@ body{
 
 .header h1{
   margin:0;
-  font-size:28px;
+  font-size:27px;
   line-height:1.15;
 }
 
@@ -53,9 +50,7 @@ body{
   font-size:14px;
 }
 
-
-/* FORM CARDS */
-
+/* FORM */
 .card{
   background:#fff;
   border-radius:16px;
@@ -85,8 +80,7 @@ label{
   margin-bottom:6px;
 }
 
-input,
-select{
+input,select{
   width:100%;
   height:50px;
   border:1px solid #c8cfd8;
@@ -100,6 +94,7 @@ select{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
+  margin-top:18px;
 }
 
 button{
@@ -133,21 +128,18 @@ button{
   margin-top:10px;
 }
 
-
 /* RESULT */
-
 .result{
   display:none;
 }
 
-
 /* EMPLOYEE DETAILS */
-
 .employee-box{
   border:1px solid #b8d2ef;
   border-radius:12px;
   overflow:hidden;
   margin-bottom:16px;
+  background:#fff;
 }
 
 .employee-title{
@@ -184,9 +176,7 @@ button{
   font-weight:700;
 }
 
-
-/* OVERTIME TABLE */
-
+/* CALCULATION */
 .calc-title{
   background:#0b4ea2;
   color:#fff;
@@ -227,11 +217,535 @@ button{
   font-weight:700;
 }
 
-
 /* TOTAL */
-
 .total{
   margin-top:12px;
   background:#0b4ea2;
   color:#fff;
-  border-radius:10px
+  border-radius:10px;
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.total-label{
+  font-size:15px;
+  font-weight:800;
+}
+
+.total-value{
+  font-size:24px;
+  font-weight:900;
+}
+
+/* FOOTER */
+.report-footer{
+  margin-top:15px;
+  padding:12px;
+  text-align:center;
+  background:#f5f7fa;
+  border:1px solid #d8dee7;
+  border-radius:10px;
+  font-size:12px;
+  color:#4b5563;
+}
+
+.report-footer strong{
+  color:#14589f;
+}
+
+/* MOBILE */
+@media(max-width:650px){
+  .container{
+    padding:10px;
+  }
+
+  .header{
+    padding:20px;
+  }
+
+  .header h1{
+    font-size:22px;
+    padding-right:5px;
+  }
+
+  .brand{
+    position:static;
+    margin-top:10px;
+    font-size:13px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .employee-grid{
+    grid-template-columns:1fr;
+  }
+
+  .row{
+    grid-template-columns:52% 48%;
+  }
+
+  .cell{
+    padding:10px 8px;
+    font-size:12px;
+  }
+
+  .total{
+    flex-direction:column;
+    gap:7px;
+    text-align:center;
+  }
+
+  .total-value{
+    font-size:22px;
+  }
+}
+
+/* PRINT */
+@media print{
+
+  @page{
+    size:A4;
+    margin:10mm;
+  }
+
+  body{
+    background:#fff !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  .container{
+    max-width:none;
+    padding:0;
+  }
+
+  .form-card,
+  .actions{
+    display:none !important;
+  }
+
+  .header{
+    display:block !important;
+    background:#0b4ea2 !important;
+    color:#fff !important;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+    margin-bottom:12px;
+    border-radius:12px;
+  }
+
+  .result{
+    display:block !important;
+  }
+
+  .employee-box,
+  .calc-table,
+  .total,
+  .report-footer{
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+
+  .employee-title,
+  .calc-title,
+  .total{
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  .employee-title{
+    background:#eaf4ff !important;
+  }
+
+  .calc-title,
+  .total{
+    background:#0b4ea2 !important;
+    color:#fff !important;
+  }
+
+  .row:nth-child(odd),
+  .ed-row:nth-child(odd){
+    background:#f5f9fe !important;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  .report-footer{
+    display:block !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>⏱ OVERTIME PAYMENT CALCULATION</h1>
+    <p>Employee Overtime Statement</p>
+    <div class="brand">
+      ASK UNION<br>
+      SBISA UDAIPUR MODULE
+    </div>
+  </div>
+
+  <!-- INPUT FORM -->
+  <div class="card form-card">
+
+    <h2>Enter Employee Details</h2>
+
+    <div class="grid">
+
+      <div>
+        <label>Employee Name</label>
+        <input id="employeeName" type="text" placeholder="Enter employee name">
+      </div>
+
+      <div>
+        <label>PF Number</label>
+        <input id="pfNo" type="text" placeholder="Enter PF number">
+      </div>
+
+      <div>
+        <label>Branch Name</label>
+        <input id="branchName" type="text" placeholder="Enter branch name">
+      </div>
+
+      <div>
+        <label>Branch Code</label>
+        <input id="branchCode" type="text" placeholder="Enter branch code">
+      </div>
+
+      <div>
+        <label>Date</label>
+        <input id="date" type="date">
+      </div>
+
+      <div>
+        <label>Day</label>
+        <select id="day">
+          <option value="">Select Day</option>
+          <option value="Week Day">Week Day</option>
+          <option value="Sunday / Holiday">Sunday / Holiday</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Gross Salary</label>
+        <input id="salary" type="number" min="0" step="0.01" placeholder="Enter gross salary">
+      </div>
+
+      <div>
+        <label>Overtime Hours</label>
+        <input id="hours" type="number" min="0" step="0.5" placeholder="Example: 3.5">
+      </div>
+
+    </div>
+
+    <div id="error" class="error"></div>
+
+    <div class="actions">
+      <button class="calculate" onclick="calculateOT()">Calculate Overtime</button>
+      <button class="pdf" id="pdfButton" onclick="printPDF()">Print / Save PDF</button>
+      <button class="reset" onclick="resetForm()">Reset</button>
+    </div>
+
+  </div>
+
+
+  <!-- RESULT -->
+  <div class="result" id="result">
+
+    <!-- EMPLOYEE DETAILS -->
+    <div class="employee-box">
+
+      <div class="employee-title">
+        EMPLOYEE DETAILS
+      </div>
+
+      <div class="employee-grid">
+
+        <div class="ed-row">
+          <div class="ed-label">Employee Name</div>
+          <div class="ed-value" id="rName"></div>
+        </div>
+
+        <div class="ed-row">
+          <div class="ed-label">PF No.</div>
+          <div class="ed-value" id="rPF"></div>
+        </div>
+
+        <div class="ed-row">
+          <div class="ed-label">Branch</div>
+          <div class="ed-value" id="rBranch"></div>
+        </div>
+
+        <div class="ed-row">
+          <div class="ed-label">Branch Code</div>
+          <div class="ed-value" id="rCode"></div>
+        </div>
+
+        <div class="ed-row">
+          <div class="ed-label">Date</div>
+          <div class="ed-value" id="rDate"></div>
+        </div>
+
+        <div class="ed-row">
+          <div class="ed-label">Day</div>
+          <div class="ed-value" id="rDay"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- OVERTIME CALCULATION -->
+    <div class="calc-title">
+      OVERTIME CALCULATION
+    </div>
+
+    <div class="calc-table">
+
+      <div class="row">
+        <div class="cell">Gross Salary</div>
+        <div class="cell value" id="rSalary"></div>
+      </div>
+
+      <div class="row">
+        <div class="cell">Hourly Salary</div>
+        <div class="cell value" id="rHourly"></div>
+      </div>
+
+      <div class="row">
+        <div class="cell">OT Type</div>
+        <div class="cell value" id="rType"></div>
+      </div>
+
+      <div class="row">
+        <div class="cell">OT Time</div>
+        <div class="cell value" id="rHours"></div>
+      </div>
+
+      <div class="row" id="firstHourRow">
+        <div class="cell">First Hour / Rate</div>
+        <div class="cell value" id="rFirstRate"></div>
+      </div>
+
+      <div class="row" id="firstAmountRow">
+        <div class="cell">First Hour Amount</div>
+        <div class="cell value" id="rFirstAmount"></div>
+      </div>
+
+      <div class="row" id="remainingTimeRow">
+        <div class="cell">Remaining Time / Rate</div>
+        <div class="cell value" id="rRemainingRate"></div>
+      </div>
+
+      <div class="row" id="remainingAmountRow">
+        <div class="cell">Remaining Amount</div>
+        <div class="cell value" id="rRemainingAmount"></div>
+      </div>
+
+    </div>
+
+
+    <!-- TOTAL -->
+    <div class="total">
+
+      <div class="total-label">
+        TOTAL OVERTIME AMOUNT (ROUNDED)
+      </div>
+
+      <div class="total-value" id="rTotal">
+        ₹0
+      </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <div class="report-footer">
+      Prepared By:
+      <strong>SBISA UDAIPUR MODULE</strong>
+      &nbsp; | &nbsp;
+      <strong>ASK UNION</strong>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+function $(id){
+  return document.getElementById(id);
+}
+
+function formatNumber(value){
+  return Math.round(value).toString();
+}
+
+function calculateOT(){
+
+  $("error").textContent = "";
+
+  const name = $("employeeName").value.trim();
+  const pf = $("pfNo").value.trim();
+  const branch = $("branchName").value.trim();
+  const code = $("branchCode").value.trim();
+  const date = $("date").value;
+  const day = $("day").value;
+  const salary = parseFloat($("salary").value);
+  const hours = parseFloat($("hours").value);
+
+  if(!name || !pf || !branch || !code || !date || !day){
+    $("error").textContent = "Please fill all employee details.";
+    return;
+  }
+
+  if(!salary || salary <= 0){
+    $("error").textContent = "Please enter a valid gross salary.";
+    return;
+  }
+
+  if(isNaN(hours) || hours <= 0){
+    $("error").textContent = "Please enter valid overtime hours.";
+    return;
+  }
+
+  /*
+    Hourly salary = Gross Salary / 150
+  */
+
+  const hourly = salary / 150;
+
+  let firstAmount = 0;
+  let remainingAmount = 0;
+  let firstRate = "";
+  let remainingRate = "";
+
+  if(day === "Week Day"){
+
+    const firstHour = Math.min(hours,1);
+    const remainingHours = Math.max(hours-1,0);
+
+    firstRate = "150%";
+    remainingRate = "170%";
+
+    firstAmount = firstHour * hourly * 1.50;
+    remainingAmount = remainingHours * hourly * 1.70;
+
+    $("firstHourRow").style.display = "grid";
+    $("firstAmountRow").style.display = "grid";
+    $("remainingTimeRow").style.display = "grid";
+    $("remainingAmountRow").style.display = "grid";
+
+    $("rFirstRate").textContent =
+      firstHour.toFixed(2) + " hr × " + firstRate;
+
+    $("rFirstAmount").textContent =
+      formatNumber(firstAmount);
+
+    $("rRemainingRate").textContent =
+      remainingHours.toFixed(2) + " hr × " + remainingRate;
+
+    $("rRemainingAmount").textContent =
+      formatNumber(remainingAmount);
+
+  }else{
+
+    firstRate = "200%";
+
+    firstAmount = hours * hourly * 2.00;
+    remainingAmount = 0;
+
+    $("firstHourRow").style.display = "grid";
+    $("firstAmountRow").style.display = "grid";
+    $("remainingTimeRow").style.display = "none";
+    $("remainingAmountRow").style.display = "none";
+
+    $("rFirstRate").textContent =
+      hours.toFixed(2) + " hr × " + firstRate;
+
+    $("rFirstAmount").textContent =
+      formatNumber(firstAmount);
+
+  }
+
+  const total = Math.round(firstAmount + remainingAmount);
+
+  let displayDate = date;
+
+  if(date){
+    const d = new Date(date + "T00:00:00");
+
+    displayDate =
+      String(d.getDate()).padStart(2,"0") + "/" +
+      String(d.getMonth()+1).padStart(2,"0") + "/" +
+      d.getFullYear();
+  }
+
+  $("rName").textContent = name;
+  $("rPF").textContent = pf;
+  $("rBranch").textContent = branch;
+  $("rCode").textContent = code;
+  $("rDate").textContent = displayDate;
+  $("rDay").textContent = day;
+
+  $("rSalary").textContent = formatNumber(salary);
+  $("rHourly").textContent = formatNumber(hourly);
+  $("rType").textContent = day;
+  $("rHours").textContent = hours.toFixed(2) + " Hours";
+
+  $("rTotal").textContent = "₹" + total;
+
+  $("result").style.display = "block";
+  $("pdfButton").style.display = "inline-block";
+
+  $("result").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+
+function printPDF(){
+
+  if($("result").style.display === "none"){
+    alert("Please calculate overtime first.");
+    return;
+  }
+
+  window.print();
+}
+
+
+function resetForm(){
+
+  $("employeeName").value = "";
+  $("pfNo").value = "";
+  $("branchName").value = "";
+  $("branchCode").value = "";
+  $("date").value = "";
+  $("day").value = "";
+  $("salary").value = "";
+  $("hours").value = "";
+
+  $("error").textContent = "";
+
+  $("result").style.display = "none";
+  $("pdfButton").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
