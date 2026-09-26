@@ -3,405 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SBISA Overtime Calculator</title>
+<title>ASK UNION - Overtime Calculator</title>
 
 <style>
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  background:#f1f3f6;
-  font-family:Arial,Helvetica,sans-serif;
+  background:#eef2f7;
   color:#222;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 .container{
-  max-width:780px;
+  max-width:760px;
   margin:auto;
-  padding:16px;
+  padding:18px;
 }
 
 .header{
-  background:#0b4ea2;
+  background:linear-gradient(135deg,#0b4ea2,#1769c2);
   color:#fff;
-  padding:18px 20px;
-  border-radius:14px;
-  margin-bottom:14px;
+  border-radius:20px;
+  padding:25px 30px;
+  margin-bottom:18px;
+  position:relative;
 }
 
 .header h1{
   margin:0;
-  font-size:22px;
+  font-size:29px;
+  line-height:1.2;
 }
 
 .header p{
-  margin:5px 0 0;
-  font-size:12px;
+  margin:8px 0 0;
+  font-size:16px;
 }
 
 .brand{
-  float:right;
+  position:absolute;
+  right:28px;
+  top:28px;
   font-weight:800;
-  font-size:12px;
-  letter-spacing:.5px;
-  margin-top:2px;
+  font-size:15px;
 }
 
 .card{
   background:#fff;
-  border-radius:14px;
-  padding:18px;
-  margin-bottom:14px;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  border-radius:18px;
+  padding:24px;
+  margin-bottom:18px;
+  box-shadow:0 3px 14px rgba(0,0,0,.08);
 }
 
 .card h2{
-  margin:0 0 14px;
-  color:#0b4ea2;
-  font-size:16px;
+  color:#14589f;
+  font-size:22px;
+  margin:0 0 18px;
+  padding-bottom:10px;
   border-bottom:1px solid #ddd;
-  padding-bottom:8px;
 }
 
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.full{
-  grid-column:1/-1;
+  gap:16px;
 }
 
 label{
   display:block;
-  font-size:12px;
   font-weight:700;
-  margin-bottom:5px;
-}
-
-input,
-select{
-  width:100%;
-  padding:11px;
-  border:1px solid #cbd0d7;
-  border-radius:8px;
   font-size:15px;
-  background:#fff;
+  margin-bottom:7px;
 }
 
-.buttons{
+input,select{
+  width:100%;
+  height:52px;
+  padding:12px 14px;
+  border:1px solid #c8cdd4;
+  border-radius:11px;
+  font-size:16px;
+  background:#fff;
+  color:#222;
+}
+
+.actions{
   display:flex;
-  gap:10px;
+  gap:12px;
   flex-wrap:wrap;
 }
 
 button{
   border:0;
-  border-radius:8px;
-  padding:12px 18px;
+  border-radius:11px;
+  padding:14px 20px;
+  font-size:16px;
   font-weight:700;
   cursor:pointer;
 }
 
-.primary{
+.calculate{
   background:#0b4ea2;
-  color:#fff;
+  color:white;
 }
 
-.secondary{
-  background:#e8e8e8;
+.pdf{
+  background:#168447;
+  color:white;
+  display:none;
 }
 
-#status{
+.reset{
+  background:#e5e7eb;
+  color:#222;
+}
+
+.error{
+  color:#b00020;
+  font-weight:700;
+  margin-top:12px;
+}
+
+.result{
+  display:none;
+}
+
+.result-title{
+  color:#14589f;
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:15px;
+  border-bottom:1px solid #ddd;
+  padding-bottom:10px;
+}
+
+.table{
+  border:1px solid #d0d5db;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:55% 45%;
+  border-bottom:1px solid #d0d5db;
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.cell{
+  padding:13px 15px;
+  font-size:15px;
+}
+
+.row:nth-child(odd){
+  background:#f7f9fc;
+}
+
+.value{
+  text-align:right;
+  font-weight:700;
+}
+
+.total{
+  margin-top:15px;
+  background:#0b4ea2;
+  color:white;
+  border-radius:12px;
+  padding:17px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:800;
+  font-size:17px;
+}
+
+.total .amount{
+  font-size:22px;
+}
+
+.note{
   font-size:12px;
+  color:#666;
   margin-top:10px;
 }
 
 @media(max-width:620px){
+
+  .container{
+    padding:14px;
+  }
+
+  .header{
+    padding:24px 20px;
+  }
+
+  .header h1{
+    font-size:27px;
+    padding-right:70px;
+  }
+
+  .brand{
+    right:20px;
+    top:25px;
+    font-size:13px;
+  }
+
   .grid{
     grid-template-columns:1fr;
   }
 
-  .full{
-    grid-column:auto;
+  .card{
+    padding:20px;
+  }
+
+  .row{
+    grid-template-columns:52% 48%;
+  }
+
+  .cell{
+    padding:12px 10px;
+    font-size:14px;
+  }
+
+  .total{
+    font-size:14px;
+  }
+
+  .total .amount{
+    font-size:19px;
   }
 }
-</style>
-</head>
 
-<body>
 
-<div class="container">
+/* PRINT / SAVE AS PDF */
 
-  <div class="header">
-    <div class="brand">ASK UNION</div>
+@media print{
 
-    <h1>🧮 Overtime Payment Calculation</h1>
+  @page{
+    size:A4;
+    margin:12mm;
+  }
 
-    <p>SBISA UDAIPUR MODULE</p>
-  </div>
+  body{
+    background:#fff;
+  }
 
+  .container{
+    max-width:none;
+    padding:0;
+  }
 
-  <form id="form">
+  .header{
+    box-shadow:none;
+    margin-bottom:12px;
+  }
 
-    <!-- EMPLOYEE DETAILS -->
-    <div class="card">
+  .form-card,
+  .actions,
+  .note{
+    display:none !important;
+  }
 
-      <h2>Employee Details</h2>
+  .result{
+    display:block !important;
+  }
 
-      <div class="grid">
+  .card{
+    box-shadow:none;
+    margin:0 0 12px;
+    padding:10px;
+  }
 
-        <div>
-          <label>Employee Name *</label>
-          <input id="name" required>
-        </div>
-
-        <div>
-          <label>PF No. *</label>
-          <input id="pf" required>
-        </div>
-
-        <div>
-          <label>Branch Name *</label>
-          <input id="branch" required>
-        </div>
-
-        <div>
-          <label>Branch Code *</label>
-          <input id="branchCode" required>
-        </div>
-
-        <div>
-          <label>Date *</label>
-          <input id="date" type="date" required>
-        </div>
-
-        <div>
-          <label>Day *</label>
-
-          <select id="day">
-            <option>Monday</option>
-            <option>Tuesday</option>
-            <option>Wednesday</option>
-            <option>Thursday</option>
-            <option>Friday</option>
-            <option>Saturday</option>
-            <option>Sunday</option>
-            <option>Holiday</option>
-          </select>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- OVERTIME DETAILS -->
-    <div class="card">
-
-      <h2>Overtime Details</h2>
-
-      <div class="grid">
-
-        <div>
-          <label>Gross Salary *</label>
-          <input
-            id="gross"
-            type="number"
-            min="0"
-            step="0.01"
-            required
-          >
-        </div>
-
-
-        <div>
-
-          <label>OT Type *</label>
-
-          <select id="type">
-
-            <option value="weekday">
-              Week Day - After Business Hours
-            </option>
-
-            <option value="holiday">
-              Sunday / Holiday
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div>
-
-          <label>OT Hours *</label>
-
-          <input
-            id="hours"
-            type="number"
-            min="0"
-            step="1"
-            value="0"
-            required
-          >
-
-        </div>
-
-
-        <div>
-
-          <label>OT Minutes *</label>
-
-          <input
-            id="minutes"
-            type="number"
-            min="0"
-            max="59"
-            step="1"
-            value="0"
-            required
-          >
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- BUTTONS -->
-    <div class="card">
-
-      <div class="buttons">
-
-        <button
-          class="primary"
-          type="submit"
-        >
-          Calculate & Generate PDF
-        </button>
-
-
-        <button
-          class="secondary"
-          type="reset"
-        >
-          Reset
-        </button>
-
-      </div>
-
-      <div id="status"></div>
-
-    </div>
-
-  </form>
-
-</div>
-
-
-<!-- jsPDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-
-<script>
-
-const $ = id => document.getElementById(id);
-
-const val = id => $(id).value.trim();
-
-
-function money(n){
-
-  return Number(n || 0).toFixed(2);
-
-}
-
-
-function dateDMY(){
-
-  const s = val("date");
-
-  if(!s) return "";
-
-  const [y,m,d] = s.split("-");
-
-  return d + "-" + m + "-" + y;
-
-}
-
-
-function text(
-  doc,
-  t,
-  x,
-  y,
-  size = 9,
-  bold = false
-){
-
-  doc.setFont(
-    "helvetica",
-    bold ? "bold" : "normal"
-  );
-
-  doc.setFontSize(size);
-
-  doc.setTextColor(35,35,35);
-
-  doc.text(
-    String(t),
-    x,
-    y
-  );
-
-}
-
-
-function rightText(
-  doc,
-  t,
-  x,
-  y,
-  size = 9,
-  bold = false
-){
-
-  doc.setFont(
-    "helvetica",
-    bold ? "bold" : "normal"
-  );
-
-  doc.setFontSize(size);
-
-  doc.setTextColor(35,35,35);
-
-  doc.text(
-    String(t),
-    x,
-    y,
-    {
-      align:"right"
-    }
-  );
-
-}
-
-
-$("form").addEventListener(
-  "submit",
-  function(e){
-
-    e.preventDefault();
-
-
-    const gross =
-      Number(val("gross"));
-
-
-    const hours =
-     
+  .result-title{
+    font-size:18px
