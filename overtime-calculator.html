@@ -220,9 +220,26 @@ $("form").addEventListener("submit",function(e){
 
   const safe=(val("name")||"Employee").replace(/[^a-z0-9]+/gi,"_");
   const datePart=val("date")||"date";
-  doc.save("SBISA_OVERTIME_FINAL_V5_"+safe+"_"+datePart+".pdf");
 
-  $("status").textContent="PDF generated successfully.";
+  // Create the PDF once, download it, and open the same PDF in a new tab.
+  const pdfBlob=doc.output("blob");
+  const pdfUrl=URL.createObjectURL(pdfBlob);
+
+  const downloadLink=document.createElement("a");
+  downloadLink.href=pdfUrl;
+  downloadLink.download="SBISA_OVERTIME_FINAL_"+safe+"_"+datePart+".pdf";
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  downloadLink.remove();
+
+  // Open preview after the download has been triggered.
+  const previewWindow=window.open(pdfUrl,"_blank");
+
+  setTimeout(()=>URL.revokeObjectURL(pdfUrl),60000);
+
+  $("status").textContent=previewWindow
+    ? "PDF downloaded and opened for preview."
+    : "PDF downloaded. Tap the downloaded PDF to open it.";
   $("status").style.color="#176b35";
 });
 </script>
