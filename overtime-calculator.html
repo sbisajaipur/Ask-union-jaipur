@@ -134,7 +134,7 @@ $("form").addEventListener("submit",function(e){
 
   const firstAmount=hourly*firstHours*firstRate;
   const remainingAmount=hourly*remainingHours*remainingRate;
-  const total=firstAmount+remainingAmount;
+  const total=Math.round(firstAmount+remainingAmount);
 
   const {jsPDF}=window.jspdf;
   const doc=new jsPDF({orientation:"portrait",unit:"mm",format:"a4"});
@@ -204,7 +204,7 @@ $("form").addEventListener("submit",function(e){
   doc.setFont("helvetica","bold");
   doc.setFontSize(10.5);
   doc.setTextColor(255,255,255);
-  doc.text("TOTAL OVERTIME AMOUNT",27,192);
+  doc.text("TOTAL OVERTIME AMOUNT (ROUNDED)",27,192);
   doc.text("Rs. "+money(total),183,192,{align:"right"});
 
   // Basis
