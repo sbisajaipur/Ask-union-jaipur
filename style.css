@@ -4144,3 +4144,31 @@ body.update-viewer-open {
   }
 
 }
+/* =========================================
+   FULL UPDATE VIEW — HIDE BOTTOM NAV
+========================================= */
+
+body.update-viewer-open .bottom-nav {
+  display: none !important;
+}
+
+
+/* Full view thumbnail थोड़ा बेहतर */
+.update-viewer-thumb {
+  background: linear-gradient(135deg, #f8dfe5, #f2f0f1) !important;
+}
+
+
+/* Mobile full post spacing */
+@media (max-width:700px) {
+
+  .update-full-viewer {
+    padding: 0 10px !important;
+  }
+
+  .update-viewer-box {
+    width: 100% !important;
+    margin: 8px auto !important;
+  }
+
+}
