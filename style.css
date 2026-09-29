@@ -4172,3 +4172,115 @@ body.update-viewer-open .bottom-nav {
   }
 
 }
+/* =========================================================
+   ASK UNION — FINAL MOBILE SPACING & NAV FIX
+   ========================================================= */
+
+@media (max-width:700px) {
+
+  /* -------------------------------------------------------
+     1. FIX FIXED BOTTOM NAV OVERLAPPING CONTENT
+     ------------------------------------------------------- */
+
+  body {
+    padding-bottom: 92px !important;
+  }
+
+  main,
+  .page,
+  .main-content {
+    padding-bottom: 20px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     2. BOTTOM NAV — KEEP FIXED & ABOVE CONTENT
+     ------------------------------------------------------- */
+
+  .bottom-nav {
+    z-index: 9990 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     3. QUICK ACTIONS HEADER
+        "View All" stays on the right
+     ------------------------------------------------------- */
+
+  #quick-actions-final-v2 .quick-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    margin-bottom: 12px !important;
+  }
+
+  #quick-actions-final-v2 .quick-header h2 {
+    margin: 0 !important;
+  }
+
+  #quick-actions-final-v2 .quick-header a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    margin: 0 !important;
+    padding: 5px 8px !important;
+
+    color: #7b1024 !important;
+    background: transparent !important;
+
+    font-size: 11px !important;
+    font-weight: 700 !important;
+
+    white-space: nowrap !important;
+  }
+
+
+  /* -------------------------------------------------------
+     4. QUICK ACTION CARDS
+        Prevent nav from visually covering them
+     ------------------------------------------------------- */
+
+  #quick-actions-final-v2 {
+    margin-bottom: 12px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     5. IMPORTANT SECTION
+     ------------------------------------------------------- */
+
+  .important-update {
+    margin-bottom: 14px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     6. LATEST UPDATES
+     ------------------------------------------------------- */
+
+  #updates {
+    margin-bottom: 16px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     7. ABOUT SBISA
+     ------------------------------------------------------- */
+
+  #union {
+    margin-bottom: 18px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     8. FOOTER — EXTRA SPACE BEFORE FIXED NAV
+     ------------------------------------------------------- */
+
+  footer {
+    margin-bottom: 8px !important;
+    padding-bottom: 20px !important;
+  }
+
+}
