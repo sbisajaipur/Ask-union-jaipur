@@ -3417,3 +3417,28 @@ button,
   }
 
 }
+/* FINAL — REMOVE EXTRA HEIGHT FROM LATEST UPDATES */
+
+#updatesList .update-card {
+  min-height: 0 !important;
+  height: auto !important;
+  margin-bottom: 12px !important;
+}
+
+#updatesList .update-card .update-details {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+#updatesList .update-card .update-preview {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+@media (max-width:700px) {
+  #updatesList .update-card {
+    min-height: 0 !important;
+    height: auto !important;
+    padding-bottom: 14px !important;
+  }
+}
