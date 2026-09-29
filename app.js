@@ -56,9 +56,10 @@ function escapeHtml(value) {
 
 /* =========================================
    CREATE CARD
+   LATEST UPDATES — COMPACT + READ MORE
 ========================================= */
 
-function renderItem(data) {
+function renderItem(data, collectionName = "") {
 
   const title =
     data.title ||
@@ -88,23 +89,49 @@ function renderItem(data) {
     data.URL ||
     "";
 
-  return `
-    <div class="item">
+  const isUpdate = collectionName === "updates";
 
-      <b>
+  return `
+    <div class="item ${isUpdate ? "update-card" : ""}">
+
+      <b class="${isUpdate ? "update-title" : ""}">
         ${escapeHtml(title)}
       </b>
 
       ${
         date
-          ? `<span>${escapeHtml(formatDate(date))}</span>`
+          ? `<span class="${isUpdate ? "update-date" : ""}">
+              ${escapeHtml(formatDate(date))}
+             </span>`
           : ""
       }
 
       ${
         details
-          ? `<p>${escapeHtml(details)}</p>`
-          : ""
+          ? isUpdate
+            ? `
+              <div class="update-details">
+
+                <p class="update-preview">
+                  ${escapeHtml(details)}
+                </p>
+
+                <div class="update-full" hidden>
+                  ${escapeHtml(details)}
+                </div>
+
+                <button
+                  type="button"
+                  class="update-read-more"
+                  onclick="toggleUpdate(this)"
+                  aria-expanded="false">
+                  Read More →
+                </button>
+
+              </div>
+              `
+            : `<p>${escapeHtml(details)}</p>`
+      : ""
       }
 
       ${
@@ -115,7 +142,7 @@ function renderItem(data) {
               target="_blank"
               rel="noopener noreferrer"
               class="pdf-button">
-              
+
               <span>📄 Open PDF / Link →</span>
 
             </a>
@@ -127,6 +154,56 @@ function renderItem(data) {
   `;
 }
 
+
+/* =========================================
+   READ MORE / READ LESS
+========================================= */
+
+function toggleUpdate(button) {
+
+  const card = button.closest(".update-card");
+
+  if (!card) {
+    return;
+  }
+
+  const preview = card.querySelector(".update-preview");
+  const full = card.querySelector(".update-full");
+
+  if (!preview || !full) {
+    return;
+  }
+
+  const expanded =
+    button.getAttribute("aria-expanded") === "true";
+
+  if (expanded) {
+
+    full.hidden = true;
+    preview.hidden = false;
+
+    button.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    button.textContent = "Read More →";
+
+  } else {
+
+    full.hidden = false;
+    preview.hidden = true;
+
+    button.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+    button.textContent = "Read Less ↑";
+
+  }
+
+}
 /* =========================================
    FORMAT DATE
 ========================================= */
@@ -301,7 +378,7 @@ items.sort((a, b) => {
 
 items.forEach(data => {
 
-  html += renderItem(data);
+  html += renderItem(data, collectionName);
 
 });
 
