@@ -891,7 +891,114 @@
   footer,.site-footer{margin-bottom:10px !important;}
 }
 </style>
+<style id="about-sbisa-final-mobile-fix">
 
+/* =========================================
+   ABOUT SBISA — FINAL READ MORE FIX
+   ========================================= */
+
+/* Normal state */
+.about-sbisa-readmore .about-sbisa-content {
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* CLOSED: show only Our Legacy + first paragraph */
+.about-sbisa-readmore.collapsed .about-sbisa-content {
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* Hide the additional content when collapsed */
+.about-sbisa-readmore.collapsed
+.about-sbisa-content h3:nth-of-type(n+2),
+.about-sbisa-readmore.collapsed
+.about-sbisa-content .legacy,
+.about-sbisa-readmore.collapsed
+.about-sbisa-content .circles {
+    display: none !important;
+}
+
+/* Keep first heading and paragraph visible */
+.about-sbisa-readmore.collapsed
+.about-sbisa-content h3:first-of-type {
+    display: block !important;
+}
+
+.about-sbisa-readmore.collapsed
+.about-sbisa-content p:first-of-type {
+    display: block !important;
+    margin-bottom: 8px !important;
+}
+
+/* Read More button */
+.about-sbisa-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    clear: both !important;
+
+    margin-top: 10px !important;
+    padding: 8px 14px !important;
+
+    border: 1px solid #7b1024 !important;
+    border-radius: 9px !important;
+
+    background: #fff !important;
+    color: #7b1024 !important;
+
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+
+    cursor: pointer !important;
+    z-index: 10 !important;
+}
+
+/* Read More hover */
+.about-sbisa-toggle:hover {
+    background: #7b1024 !important;
+    color: #fff !important;
+}
+
+/* Expanded state */
+.about-sbisa-readmore.expanded
+.about-sbisa-content {
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* Mobile */
+@media (max-width:700px) {
+
+    .about-sbisa-readmore {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .about-sbisa-readmore .about-sbisa-content {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .about-sbisa-readmore.collapsed
+    .about-sbisa-content p:first-of-type {
+        line-height: 1.5 !important;
+        margin: 8px 0 0 !important;
+    }
+
+    .about-sbisa-toggle {
+        margin-top: 12px !important;
+        font-size: 12px !important;
+        padding: 8px 13px !important;
+    }
+}
+
+</style>
 </head>
 
 
