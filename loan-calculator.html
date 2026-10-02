@@ -6,188 +6,154 @@
 <title>STAFF LOAN INSIGHT</title>
 <style>
 :root{
- --navy:#12233f;--blue:#1e5aa8;--gold:#c79b2b;--bg:#f4f6f9;--card:#fff;
- --line:#dde3eb;--muted:#667085;--green:#15805d;--red:#b42318;
+  --navy:#0b1f3a;--blue:#1558a6;--blue2:#2b78d0;--gold:#c99b3b;
+  --bg:#f3f6fa;--card:#ffffff;--line:#dfe6ef;--muted:#6b7280;
+  --green:#12805c;--red:#b42318;--soft:#f7f9fc;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#172033;font-family:Arial,Helvetica,sans-serif}
-.wrap{max-width:1150px;margin:auto;padding:14px}
-.hero{color:#fff;background:linear-gradient(135deg,var(--navy),#1e4f8b);border-radius:20px;padding:22px;margin-bottom:14px}
-.hero .tag{font-size:10px;font-weight:800;letter-spacing:.7px;opacity:.86}
-.hero h1{font-size:29px;margin:7px 0 4px}
-.hero p{margin:0;font-size:13px;opacity:.92}
-.grid{display:grid;grid-template-columns:330px 1fr;gap:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 5px 18px #0000000a}
-h2{margin:0 0 13px;font-size:18px;color:var(--navy)}
-.field{margin-bottom:11px}
-label{display:block;font-size:11px;font-weight:800;margin-bottom:5px}
-input,select{width:100%;padding:10px 11px;border:1px solid #cfd6df;border-radius:10px;background:#fff;font-size:14px}
-input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px #1e5aa814}
-.loan-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.loan-btn,.action-btn{border:1px solid var(--line);border-radius:10px;padding:10px 7px;font-size:11px;font-weight:800;cursor:pointer;background:#f8fafc;color:var(--navy)}
-.loan-btn.active{background:#eaf1fb;border-color:#8fb0da;color:var(--blue)}
-.primary{width:100%;border:0;border-radius:10px;padding:12px;font-weight:800;cursor:pointer;background:var(--blue);color:#fff;font-size:13px}
-.notice{background:#f8fafc;border:1px solid var(--line);padding:10px;border-radius:10px;font-size:11px;line-height:1.55;color:#475467}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#eef3f8 0,#f7f9fc 420px,#f3f6fa 100%);color:#172033;font-family:Inter,Arial,Helvetica,sans-serif}
+.wrap{max-width:1180px;margin:auto;padding:16px}
+.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#071b35 0%,#123d72 55%,#1c65b0 100%);border-radius:24px;padding:24px 25px;margin-bottom:16px;box-shadow:0 14px 34px rgba(10,35,68,.18)}
+.hero:after{content:"";position:absolute;right:-70px;top:-70px;width:230px;height:230px;border-radius:50%;background:rgba(255,255,255,.07)}
+.hero .tag{font-size:10px;font-weight:900;letter-spacing:1px;opacity:.86}
+.hero h1{font-size:31px;line-height:1.05;margin:8px 0 5px;letter-spacing:.2px}
+.hero p{margin:0;font-size:13px;opacity:.94}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 11px;font-size:10px;font-weight:900}
+.hero-dot{width:7px;height:7px;border-radius:50%;background:#64d99e;box-shadow:0 0 0 4px rgba(100,217,158,.12)}
+.grid{display:grid;grid-template-columns:350px 1fr;gap:16px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:0 8px 24px rgba(16,37,63,.06)}
+h2{margin:0 0 12px;font-size:17px;color:var(--navy)}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.section-title small{font-size:9px;color:var(--muted);font-weight:800}
+.field{margin-bottom:12px}
+label{display:block;font-size:10px;font-weight:900;margin-bottom:6px;color:#3b4657}
+input,select{width:100%;padding:11px 12px;border:1px solid #ccd5e1;border-radius:11px;background:#fff;font-size:14px;color:#111827;transition:.15s}
+input:focus,select:focus{outline:none;border-color:var(--blue2);box-shadow:0 0 0 3px rgba(43,120,208,.12)}
+.loan-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.loan-btn{border:1px solid var(--line);border-radius:12px;padding:11px 9px;font-size:11px;font-weight:900;cursor:pointer;background:#f9fbfd;color:var(--navy);text-align:left;transition:.15s;min-height:52px}
+.loan-btn:hover{transform:translateY(-1px);border-color:#abc1db}
+.loan-btn.active{background:linear-gradient(180deg,#eff6ff,#e8f1fb);border-color:#77a1d2;color:var(--blue);box-shadow:inset 0 0 0 1px rgba(21,88,166,.08)}
+.loan-btn .loan-name{display:block;margin-top:2px}
+.notice{background:linear-gradient(180deg,#fbfcfe,#f7f9fc);border:1px solid var(--line);padding:11px;border-radius:12px;font-size:10.5px;line-height:1.55;color:#475467}
 .notice strong{color:var(--navy)}
-.status{padding:10px 12px;border-radius:10px;font-size:12px;font-weight:800;margin-bottom:10px}
-.status.ok{background:#ebf8f2;border:1px solid #bfe8d5;color:var(--green)}
-.status.bad{background:#fff1ef;border:1px solid #f0c3bd;color:var(--red)}
-.status.info{background:#eef4fb;border:1px solid #c8d8ed;color:var(--navy)}
-.headline{background:#f7f9fc;border:1px solid var(--line);padding:13px;border-radius:12px;margin-bottom:10px}
-.headline span{display:block;font-size:9px;color:var(--muted);font-weight:800}
-.headline strong{display:block;font-size:24px;color:var(--navy);margin-top:3px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.stat{border:1px solid var(--line);border-radius:11px;padding:9px;background:#fff}
-.stat small{display:block;font-size:9px;color:var(--muted);margin-bottom:4px}
-.stat b{font-size:13px;color:var(--navy)}
-.section{margin-top:14px}
-.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:11px}
+.primary{width:100%;border:0;border-radius:12px;padding:13px;font-weight:900;cursor:pointer;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:13px;box-shadow:0 8px 18px rgba(21,88,166,.2)}
+.primary:hover{filter:brightness(1.03)}
+.status{padding:11px 12px;border-radius:12px;font-size:11.5px;font-weight:900;margin-bottom:10px}
+.status.ok{background:#edf9f4;border:1px solid #bfe7d5;color:var(--green)}
+.status.bad{background:#fff2f0;border:1px solid #f1c8c2;color:var(--red)}
+.status.info{background:#eef5fd;border:1px solid #c9dbef;color:var(--navy)}
+.headline{position:relative;overflow:hidden;background:linear-gradient(135deg,#f8fbff,#eff5fc);border:1px solid #d8e3f0;padding:14px;border-radius:14px;margin-bottom:10px}
+.headline:after{content:"";position:absolute;right:-20px;top:-20px;width:90px;height:90px;border-radius:50%;background:rgba(21,88,166,.07)}
+.headline span{display:block;font-size:9px;color:var(--muted);font-weight:900;letter-spacing:.7px}
+.headline strong{display:block;font-size:23px;color:var(--navy);margin-top:3px}
+.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.stat{border:1px solid var(--line);border-radius:13px;padding:11px;background:#fff;min-height:66px}
+.stat.highlight{background:linear-gradient(180deg,#f7fbff,#eef5fd);border-color:#cfe0f4}
+.stat small{display:block;font-size:8.5px;color:var(--muted);margin-bottom:5px;font-weight:800}
+.stat b{font-size:13px;color:var(--navy);line-height:1.25}
+.stat.big{min-height:83px}
+.stat.big b{font-size:18px}
+.progress-box{margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe}
+.progress-top{display:flex;justify-content:space-between;gap:10px;font-size:10px;font-weight:900;color:#475467;margin-bottom:7px}
+.progress-track{height:9px;background:#e8eef5;border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#2b78d0,#1558a6);border-radius:99px;transition:width .3s}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}
 .scroll{max-height:430px;overflow:auto}
+
 table{width:100%;border-collapse:collapse;font-size:10px}
-th,td{padding:8px;border-bottom:1px solid var(--line);white-space:nowrap;text-align:left}
-th{background:#f8fafc;color:var(--navy);font-weight:800;position:sticky;top:0;z-index:1}
+th,td{padding:8px 9px;border-bottom:1px solid var(--line);white-space:nowrap;text-align:left}
+th{background:#f7f9fc;color:var(--navy);font-weight:900;position:sticky;top:0;z-index:1}
+tr:last-child td{border-bottom:0}
 .num{text-align:right}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.action-btn{background:var(--navy);color:#fff;border:0;font-size:12px}
+.section{margin-top:15px}
 .note{font-size:10px;color:var(--muted);line-height:1.55;margin:8px 0 0}
 .hidden{display:none!important}
-.footer{text-align:center;color:#8a93a1;font-size:9px;padding:16px}
-@media(max-width:780px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.hero h1{font-size:24px}}
-@media(max-width:430px){.stats{grid-template-columns:1fr}.hero{padding:17px}.card{padding:13px}}
-@media print{
- body{background:#fff!important}.wrap{max-width:none;padding:0}
- .hero,.card{box-shadow:none}.no-print{display:none!important}
- .scroll{max-height:none;overflow:visible}.table-wrap{overflow:visible}
- table{font-size:8px}.footer{font-size:8px}
-}
+.footer{text-align:center;color:#8a93a1;font-size:9px;padding:18px 8px 10px}
+.source-strip{margin-top:12px;padding:9px 12px;border-radius:11px;background:#f8fafc;border:1px solid var(--line);font-size:9.5px;color:#667085}
+@media(max-width:780px){.grid{grid-template-columns:1fr}.result-grid{grid-template-columns:1fr 1fr}.hero h1{font-size:26px}.wrap{padding:10px}}
+@media(max-width:430px){.result-grid{grid-template-columns:1fr 1fr}.loan-grid{grid-template-columns:1fr 1fr}.hero{padding:19px}.card{padding:13px}.hero h1{font-size:23px}stat.big b{font-size:16px}}
 </style>
-</head>
 <body>
 <div class="wrap">
-
 <section class="hero">
   <div class="tag">ASK UNION • STAFF BENEFIT TOOL</div>
   <h1>STAFF LOAN INSIGHT</h1>
-  <p>Smart SBI Staff Loan Calculator • Amount • Tenure • Interest</p>
+  <p>Smart SBI Staff Loan Calculator • Amount • Tenure • Interest • Recovery Summary</p>
+  <div class="hero-badge"><span class="hero-dot"></span> LIVE CALCULATOR</div>
 </section>
 
 <div class="grid">
 <section class="card">
-  <h2>Loan Enquiry</h2>
-
+  <div class="section-title"><h2>Loan Enquiry</h2><small>Staff reference tool</small></div>
   <div class="field">
-    <label>Staff Category</label>
-    <select id="category">
-      <option value="clerical">Clerical</option>
-      <option value="subordinate">Subordinate</option>
-    </select>
+    <label>STAFF CATEGORY</label>
+    <select id="category"><option value="clerical">Clerical</option><option value="subordinate">Subordinate</option></select>
   </div>
 
-  <h2 style="margin-top:17px">Select Loan</h2>
+  <div class="section-title" style="margin-top:16px"><h2>Choose Loan Type</h2><small>Tap a card</small></div>
   <div class="loan-grid" id="loanButtons">
-    <button class="loan-btn active" data-loan="housing" type="button">🏠 Housing</button>
-    <button class="loan-btn" data-loan="personal" type="button">💰 Personal / PF</button>
-    <button class="loan-btn" data-loan="car" type="button">🚗 Car</button>
-    <button class="loan-btn" data-loan="twowheeler" type="button">🛵 Two-Wheeler</button>
-    <button class="loan-btn" data-loan="computer" type="button">💻 Computer</button>
-    <button class="loan-btn" data-loan="festival" type="button">🎉 Festival</button>
+    <button class="loan-btn active" data-loan="housing" type="button">🏠 <span class="loan-name">Housing Loan</span></button>
+    <button class="loan-btn" data-loan="personal" type="button">💰 <span class="loan-name">Personal / PF</span></button>
+    <button class="loan-btn" data-loan="car" type="button">🚗 <span class="loan-name">Car Loan</span></button>
+    <button class="loan-btn" data-loan="twowheeler" type="button">🛵 <span class="loan-name">Two-Wheeler</span></button>
+    <button class="loan-btn" data-loan="computer" type="button">💻 <span class="loan-name">Computer</span></button>
+    <button class="loan-btn" data-loan="festival" type="button">🎉 <span class="loan-name">Festival</span></button>
   </div>
 
-  <div class="notice" id="quickRule" style="margin:11px 0">
-    <strong>Quick Rule:</strong> Housing — Clerical ₹80 lakh / Subordinate ₹60 lakh.
-  </div>
+  <div class="notice" id="quickRule" style="margin:11px 0"><strong>Quick Rule:</strong> Housing — Clerical ₹80 lakh / Subordinate ₹60 lakh.</div>
 
   <div class="field">
-    <label id="amountLabel">Requested Housing Loan Amount (₹)</label>
+    <label id="amountLabel">REQUESTED HOUSING LOAN AMOUNT (₹)</label>
     <input id="amount" type="number" min="0" step="1" value="6000000">
   </div>
-
   <div class="field hidden" id="personalBox">
-    <label>Personal / PF Mode</label>
-    <select id="personalMode">
-      <option value="demand">Demand Loan</option>
-      <option value="od">PF OD</option>
-    </select>
+    <label>PERSONAL / PF MODE</label>
+    <select id="personalMode"><option value="demand">Demand Loan</option><option value="od">PF OD</option></select>
   </div>
-
   <div class="field" id="tenureBox">
-    <label>Tenure (Months)</label>
+    <label>TENURE (MONTHS)</label>
     <input id="tenure" type="number" min="1" step="1" value="360">
   </div>
 
-  <button class="primary" id="calculateBtn" type="button">CALCULATE</button>
-
-  <div class="notice" id="ruleNotice" style="margin-top:10px">
-    Housing: 2 years service • 5% simple • ₹80L Clerical / ₹60L Subordinate.
-  </div>
+  <button class="primary" id="calculateBtn" type="button">🧮 CALCULATE NOW</button>
+  <div class="notice" id="ruleNotice" style="margin-top:10px">Housing: 2 years service • 5% simple • ₹80L Clerical / ₹60L Subordinate.</div>
+  <div class="source-strip">For staff reference only • Applicable SBI rules/circulars and sanction terms will prevail.</div>
 </section>
 
 <section>
-  <div id="status" class="status info">Enter loan amount and press CALCULATE.</div>
-  <div class="headline">
-    <span>RESULT</span>
-    <strong id="headline">READY</strong>
+  <div id="status" class="status info">Enter loan amount and press CALCULATE NOW.</div>
+  <div class="headline"><span>CALCULATION STATUS</span><strong id="headline">READY</strong></div>
+
+  <div class="result-grid">
+    <div class="stat big highlight"><small>REQUESTED AMOUNT</small><b id="requested">—</b></div>
+    <div class="stat big highlight"><small>MAXIMUM LOAN LIMIT</small><b id="maxLoan">—</b></div>
+    <div class="stat"><small>TENURE</small><b id="resultTenure">—</b></div>
+    <div class="stat"><small>RATE OF INTEREST</small><b id="roi">—</b></div>
+    <div class="stat"><small>PRINCIPAL RECOVERY</small><b id="principalInfo">—</b></div>
+    <div class="stat"><small>INTEREST RECOVERY</small><b id="interestInfo">—</b></div>
+    <div class="stat"><small>TOTAL INTEREST</small><b id="totalInterest">—</b></div>
+    <div class="stat"><small>TOTAL REPAYMENT</small><b id="totalRepayment">—</b></div>
   </div>
 
-  <div class="stats">
-    <div class="stat"><small>Requested Amount</small><b id="requested">—</b></div>
-    <div class="stat"><small>Maximum Loan Limit</small><b id="maxLoan">—</b></div>
-    <div class="stat"><small>Tenure</small><b id="resultTenure">—</b></div>
-    <div class="stat"><small>ROI</small><b id="roi">—</b></div>
-    <div class="stat"><small>Principal Recovery</small><b id="principalInfo">—</b></div>
-    <div class="stat"><small>Interest Recovery</small><b id="interestInfo">—</b></div>
-    <div class="stat"><small>Total Interest</small><b id="totalInterest">—</b></div>
-    <div class="stat"><small>Total Repayment</small><b id="totalRepayment">—</b></div>
-    <div class="stat"><small>Loan Status</small><b id="loanStatus">—</b></div>
+  <div class="progress-box">
+    <div class="progress-top"><span>Principal Recovery Progress</span><span id="progressLabel">0%</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
   </div>
 
   <div class="section card">
-    <h2>Recovery Summary</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Phase</th><th>Months</th><th>Method</th><th>Monthly Recovery</th></tr></thead>
-        <tbody id="summaryBody"><tr><td colspan="4">No calculation yet.</td></tr></tbody>
-      </table>
-    </div>
+    <div class="section-title"><h2>Recovery Summary</h2><small id="loanStatus">—</small></div>
+    <div class="table-wrap"><table><thead><tr><th>Phase</th><th>Months</th><th>Method</th><th>Monthly Recovery</th></tr></thead><tbody id="summaryBody"><tr><td colspan="4">No calculation yet.</td></tr></tbody></table></div>
     <p class="note" id="calcNote">For staff reference only. Final sanction/recovery will depend on applicable SBI rules and sanction terms.</p>
   </div>
 </section>
 </div>
 
-<section class="section card">
-  <h2>Month-wise Outstanding Principal & Interest</h2>
-  <p class="note">
-    During principal recovery, interest is calculated on the opening outstanding principal.
-    Recovered principal does not carry further interest. Where a separate interest-recovery phase applies,
-    accumulated interest is recovered later without interest-on-interest.
-  </p>
-  <div class="table-wrap scroll" style="margin-top:8px">
-    <table>
-      <thead>
-        <tr>
-          <th>Month</th><th class="num">Opening Principal</th><th class="num">Interest Accrued</th>
-          <th class="num">Principal Recovery</th><th class="num">Closing Principal</th><th class="num">Interest Recovery</th>
-        </tr>
-      </thead>
-      <tbody id="monthlyBody"><tr><td colspan="6">Calculate a loan to view the schedule.</td></tr></tbody>
-    </table>
-  </div>
-</section>
 
-<section class="section card no-print">
-  <h2>Report & Download</h2>
-  <p class="note">पहले CALCULATE करें, फिर report को print या PDF में save/download करें.</p>
-  <div class="actions" style="margin-top:10px">
-    <button class="action-btn" id="printBtn" type="button">🖨 PRINT / SAVE PDF</button>
-    <button class="action-btn" id="pdfBtn" type="button">📄 DOWNLOAD PDF</button>
-  </div>
-</section>
 
-<div class="footer">
-  STAFF LOAN INSIGHT • Ask Union<br>
-  This calculator is a staff reference tool. Applicable SBI circulars/rules and sanction terms will prevail.
-</div>
 
+
+<div class="footer">STAFF LOAN INSIGHT • ASK UNION<br>This calculator is a staff reference tool. Applicable SBI circulars/rules and sanction terms will prevail.</div>
 </div>
 
 <script>
@@ -195,7 +161,6 @@ th{background:#f8fafc;color:var(--navy);font-weight:800;position:sticky;top:0;z-
 "use strict";
 
 var selectedLoan="housing";
-var lastRows=[];
 var lastResult=null;
 
 function $(id){return document.getElementById(id);}
@@ -255,9 +220,8 @@ function clearResult(){
   text("requested","—"); text("maxLoan","—"); text("resultTenure","—"); text("roi","—");
   text("principalInfo","—"); text("interestInfo","—"); text("totalInterest","—"); text("totalRepayment","—"); text("loanStatus","—");
   $("summaryBody").innerHTML="<tr><td colspan='4'>No calculation yet.</td></tr>";
-  $("monthlyBody").innerHTML="<tr><td colspan='6'>Calculate a loan to view the schedule.</td></tr>";
   setStatus("info","Enter loan amount and press CALCULATE.");
-  lastRows=[]; lastResult=null;
+  lastResult=null;
 }
 
 function buildOutstanding(principal,rate,totalMonths,principalMonths,interestMonths){
@@ -281,21 +245,6 @@ function buildOutstanding(principal,rate,totalMonths,principalMonths,interestMon
 
 function buildReducing(principal,rate,months){
   return buildOutstanding(principal,rate,months,months,0);
-}
-
-function renderRows(rows){
-  if(!rows.length){
-    $("monthlyBody").innerHTML="<tr><td colspan='6'>Month-wise schedule is not applicable for this mode.</td></tr>";
-    return;
-  }
-  var out="";
-  for(var i=0;i<rows.length;i++){
-    var r=rows[i];
-    out+="<tr><td>"+r.m+"</td><td class='num'>"+money(r.opening)+"</td><td class='num'>"+money(r.interest)+
-      "</td><td class='num'>"+money(r.pRecovery)+"</td><td class='num'>"+money(r.closing)+
-      "</td><td class='num'>"+money(r.interestRecovery)+"</td></tr>";
-  }
-  $("monthlyBody").innerHTML=out;
 }
 
 function calculate(){
@@ -390,10 +339,12 @@ function calculate(){
     if(!summary) summary="<tr><td>Total</td><td>"+tenure+"</td><td>Recovery</td><td>"+money(monthlyPrincipal)+"</td></tr>";
     $("summaryBody").innerHTML=summary;
     $("calcNote").textContent=message+" Final sanction/recovery remains subject to applicable SBI rules and sanction terms.";
-    renderRows(rows);
 
     setStatus(valid?"ok":"bad",message);
-    lastRows=rows;
+    var progress=Math.max(0,Math.min(100, principalMonths?Math.round((requested-Math.max(0, rows.length?rows[rows.length-1].closing:0))/requested*100):0));
+    var pf=$("progressFill"), pl=$("progressLabel");
+    if(pf) pf.style.width=progress+"%";
+    if(pl) pl.textContent=progress+"%";
     lastResult={
       loan:selectedLoan, category:category, requested:requested, maxLoan:maxLoan,
       tenure:tenure, rate:rate, principalMonths:principalMonths,
@@ -407,311 +358,16 @@ function calculate(){
   }
 }
 
-/* ---- Reliable print ---- */
-function printReport(){
-  try{
-    window.focus();
-    setTimeout(function(){ window.print(); },50);
-  }catch(err){
-    alert("Print could not start. Please use your browser menu → Print.");
-  }
-}
-
-/* ---- Tiny dependency-free PDF writer ---- */
-function pdfEscape(s){
-  return String(s).replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)");
-}
-function makeSimplePDF(lines){
-  var pageW=595, pageH=842, margin=40, fontSize=9, lineH=13;
-  var pages=[], current=[];
-  var y=800;
-  function newPage(){ if(current.length) pages.push(current); current=[]; y=800; }
-  for(var i=0;i<lines.length;i++){
-    var line=String(lines[i]);
-    if(line.length>105){
-      while(line.length>105){ current.push(line.slice(0,105)); y-=lineH; line=line.slice(105); if(y<45)newPage(); }
-    }
-    current.push(line); y-=lineH;
-    if(y<45) newPage();
-  }
-  if(current.length) pages.push(current);
-
-  var objects=[];
-  objects.push("<< /Type /Catalog /Pages 2 0 R >>");
-  objects.push("");
-  var pageObjNums=[], fontObj=3;
-  var next=4;
-  for(var p=0;p<pages.length;p++){
-    var pageNum=next++, contentNum=next++;
-    pageObjNums.push(pageNum);
-    objects.push(""); // placeholder Pages object later
-    var cmds=["BT","/F1 "+fontSize+" Tf",margin+" 810 Td"];
-    var yy=0;
-    for(var j=0;j<pages[p].length;j++){
-      if(j===0) cmds.push("("+pdfEscape(pages[p][j])+") Tj");
-      else cmds.push("0 -"+lineH+" Td ("+pdfEscape(pages[p][j])+") Tj");
-    }
-    cmds.push("ET");
-    var stream=cmds.join("\n");
-    objects.push("<< /Length "+stream.length+" >>\nstream\n"+stream+"\nendstream");
-    pageObjNums[pageObjNums.length-1]=pageNum;
-  }
-  // Rebuild object numbering cleanly.
-  var pdfObjs=[];
-  pdfObjs[0]="<< /Type /Catalog /Pages 2 0 R >>";
-  var pageCount=pages.length;
-  var pageStart=4;
-  var contentStart=5;
-  var kids=[];
-  pdfObjs[2]="<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>";
-  for(var k=0;k<pageCount;k++){
-    var po=pageStart+k*2, co=contentStart+k*2;
-    kids.push(po+" 0 R");
-    var cmds=["BT","/F1 "+fontSize+" Tf",margin+" 810 Td"];
-    for(var q=0;q<pages[k].length;q++){
-      if(q===0) cmds.push("("+pdfEscape(pages[k][q])+") Tj");
-      else cmds.push("0 -"+lineH+" Td ("+pdfEscape(pages[k][q])+") Tj");
-    }
-    cmds.push("ET");
-    var stream=cmds.join("\n");
-    pdfObjs[po-1]="<< /Type /Page /Parent 2 0 R /MediaBox [0 0 "+pageW+" "+pageH+"] /Resources << /Font << /F1 3 0 R >> >> /Contents "+co+" 0 R >>";
-    pdfObjs[co-1]="<< /Length "+stream.length+" >>\nstream\n"+stream+"\nendstream";
-  }
-  pdfObjs[1]="<< /Type /Pages /Kids ["+kids.join(" ")+"] /Count "+pageCount+" >>";
-
-  var out="%PDF-1.4\n%\xE2\xE3\xCF\xD3\n", offsets=[0];
-  for(var n=0;n<pdfObjs.length;n++){
-    offsets[n+1]=out.length;
-    out+=(n+1)+" 0 obj\n"+pdfObjs[n]+"\nendobj\n";
-  }
-  var xref=out.length;
-  out+="xref\n0 "+(pdfObjs.length+1)+"\n0000000000 65535 f \n";
-  for(var z=1;z<=pdfObjs.length;z++) out+=String(offsets[z]).padStart(10,"0")+" 00000 n \n";
-  out+="trailer\n<< /Size "+(pdfObjs.length+1)+" /Root 1 0 R >>\nstartxref\n"+xref+"\n%%EOF";
-  return new Blob([out],{type:"application/pdf"});
-}
-function pdfTextSafe(s){
-  s = String(s == null ? "" : s);
-  // PDF writer uses built-in Helvetica; keep output ASCII-safe.
-  return s.replace(/₹/g,"Rs.").replace(/–|—/g,"-").replace(/•/g,"-")
-          .replace(/✓/g,"OK").replace(/✕/g,"X")
-          .replace(/[^\x20-\x7E]/g," ");
-}
-function pdfEscape(s){
-  return pdfTextSafe(s).replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)");
-}
-function makeTablePDF(data){
-  // data: {title, summary:[ [label,value]... ], rows:[[...]], note}
-  var W=842,H=595, margin=28, contentW=W-2*margin;
-  var pages=[], cmds=[], y=H-28;
-  var pageNo=0;
-
-  function beginPage(){
-    cmds=[];
-    // Header band
-    cmds.push("q 0.07 0.14 0.25 rg 0 0 842 44 re f Q");
-    cmds.push("BT /F1 17 Tf 1 1 1 rg 28 571 Td ("+pdfEscape("STAFF LOAN INSIGHT")+") Tj ET");
-    cmds.push("BT /F1 8 Tf 1 1 1 rg 28 558 Td ("+pdfEscape("Smart SBI Staff Loan Calculator")+") Tj ET");
-    y=540;
-  }
-  function finishPage(){
-    cmds.push("BT /F1 7 Tf 0.38 0.42 0.46 rg 28 16 Td ("+
-      pdfEscape("Ask Union - For staff reference only")+") Tj ET");
-    cmds.push("BT /F1 7 Tf 0.38 0.42 0.46 rg 786 16 Td ("+
-      pdfEscape("Page "+(pages.length+1)) + ") Tj ET");
-    pages.push(cmds.join("\n"));
-  }
-  function rect(x,yy,w,h,fill){
-    cmds.push("q "+fill+" rg "+x+" "+yy+" "+w+" "+h+" re f Q");
-  }
-  function line(x1,y1,x2,y2){
-    cmds.push("q 0.82 0.85 0.89 RG 0.5 w "+x1+" "+y1+" m "+x2+" "+y2+" l S Q");
-  }
-  function txt(x,yy,size,content,bold){
-    cmds.push("BT /"+(bold?"F2":"F1")+" "+size+" Tf 0.10 0.13 0.20 rg "+x+" "+yy+" Td ("+pdfEscape(content)+") Tj ET");
-  }
-  function wrap(str, maxChars){
-    str=pdfTextSafe(str);
-    var out=[];
-    while(str.length>maxChars){
-      var cut=str.lastIndexOf(" ",maxChars);
-      if(cut<20) cut=maxChars;
-      out.push(str.slice(0,cut));
-      str=str.slice(cut+1);
-    }
-    if(str) out.push(str);
-    return out;
-  }
-
-  beginPage();
-  txt(margin,y,15,data.title,true); y-=22;
-
-  // Summary cards
-  if(data.summary && data.summary.length){
-    var cols=4, gap=6, cardW=(contentW-gap*(cols-1))/cols;
-    for(var i=0;i<data.summary.length;i++){
-      if(i%cols===0){ y-=66; }
-      var c=i%cols, x=margin+c*(cardW+gap);
-      rect(x,y,cardW,58,"0.96 0.97 0.98");
-      txt(x+8,y+42,7,data.summary[i][0],false);
-      txt(x+8,y+21,10,data.summary[i][1],true);
-      if(c===cols-1 || i===data.summary.length-1){
-        // continue
-      }
-    }
-    y-=8;
-  }
-
-  if(data.note){
-    var noteLines=wrap(data.note,150);
-    for(var ni=0;ni<noteLines.length;ni++){
-      txt(margin,y,7,noteLines[ni],false); y-=9;
-    }
-    y-=4;
-  }
-
-  // Table with repeated headers.
-  var cols=[
-    {w:42,align:"L"},{w:112,align:"R"},{w:100,align:"R"},
-    {w:118,align:"R"},{w:112,align:"R"},{w:118,align:"R"}
-  ];
-  var headers=["Month","Opening Principal","Interest Accrued","Principal Recovery","Closing Principal","Interest Recovery"];
-  var headerH=22, rowH=8.8;
-  function drawHeader(){
-    rect(margin,y-headerH,contentW,headerH,"0.07 0.14 0.25");
-    var x=margin;
-    for(var h=0;h<headers.length;h++){
-      txt(x+4,y-15,6.5,headers[h],false);
-      x+=cols[h].w;
-    }
-    y-=headerH;
-  }
-  function drawRow(row, highlight){
-    if(highlight) rect(margin,y-rowH,contentW,rowH,"0.96 0.97 0.99");
-    var x=margin;
-    for(var j=0;j<row.length;j++){
-      var s=pdfTextSafe(row[j]);
-      var cellW=cols[j].w;
-      var tx=x+4;
-      txt(tx,y-7,6.1,s,false);
-      x+=cellW;
-    }
-    line(margin,y-rowH,margin+contentW,y-rowH);
-    y-=rowH;
-  }
-
-  drawHeader();
-  for(var r=0;r<data.rows.length;r++){
-    if(y-rowH<28){
-      finishPage();
-      beginPage();
-      txt(margin,y,11,data.title+" - continued",true); y-=15;
-      drawHeader();
-    }
-    drawRow(data.rows[r], r%2===0);
-  }
-  finishPage();
-
-  // Build PDF objects.
-  var objs=[];
-  objs[1]="<< /Type /Catalog /Pages 2 0 R >>";
-  var kids=[];
-  // fonts
-  objs[3]="<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>";
-  objs[4]="<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>";
-  var n=5;
-  for(var p=0;p<pages.length;p++){
-    var pageObj=n++, contentObj=n++;
-    kids.push(pageObj+" 0 R");
-    var stream=pages[p];
-    objs[pageObj]="<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents "+contentObj+" 0 R >>";
-    objs[contentObj]="<< /Length "+stream.length+" >>\nstream\n"+stream+"\nendstream";
-  }
-  objs[2]="<< /Type /Pages /Kids ["+kids.join(" ")+"] /Count "+pages.length+" >>";
-
-  var pdf="%PDF-1.4\n%\xE2\xE3\xCF\xD3\n";
-  var offsets=[0];
-  for(var o=1;o<objs.length;o++){
-    offsets[o]=pdf.length;
-    pdf+=o+" 0 obj\n"+objs[o]+"\nendobj\n";
-  }
-  var xref=pdf.length;
-  pdf+="xref\n0 "+objs.length+"\n0000000000 65535 f \n";
-  for(var q=1;q<objs.length;q++) pdf+=String(offsets[q]).padStart(10,"0")+" 00000 n \n";
-  pdf+="trailer\n<< /Size "+objs.length+" /Root 1 0 R >>\nstartxref\n"+xref+"\n%%EOF";
-  return new Blob([pdf],{type:"application/pdf"});
-}
-
-function downloadPDF(){
-  if(!lastResult){ calculate(); }
-  if(!lastResult){ return; }
-
-  var selectedBtn=document.querySelector(".loan-btn.active");
-  var loanName=selectedBtn ? selectedBtn.textContent.trim() : "Loan";
-  var catEl=document.getElementById("category");
-  var cat=catEl ? catEl.options[catEl.selectedIndex].text : "";
-  var mode="";
-  if(lastResult.loan==="personal"){
-    var pm=document.getElementById("personalMode");
-    if(pm) mode=" ("+pm.options[pm.selectedIndex].text+")";
-  }
-
-  var summary=[
-    ["Loan Type", loanName+mode],
-    ["Staff Category", cat],
-    ["Requested Amount","Rs."+Number(lastResult.requested).toLocaleString("en-IN")],
-    ["Maximum Loan Limit",lastResult.maxLoan?money(lastResult.maxLoan):"As per rule"],
-    ["Tenure",lastResult.tenure+" months"],
-    ["ROI",pct(lastResult.rate)],
-    ["Total Interest",money(lastResult.totalInterest)],
-    ["Total Repayment",money(lastResult.totalRepayment)]
-  ];
-
-  var tableRows=[];
-  for(var i=0;i<lastRows.length;i++){
-    var r=lastRows[i];
-    tableRows.push([
-      String(r.m),
-      money(r.opening),
-      money(r.interest),
-      money(r.pRecovery),
-      money(r.closing),
-      money(r.interestRecovery)
-    ]);
-  }
-
-  // If there is no month-wise schedule, provide the recovery summary as rows.
-  if(!tableRows.length){
-    tableRows=[["-","-","-","-","-","Not applicable"]];
-  }
-
-  var note="Interest during principal recovery is calculated on opening outstanding principal. Recovered principal does not carry further interest. Separate interest recovery, where applicable, is shown without interest-on-interest.";
-  var blob=makeTablePDF({
-    title:"LOAN ENQUIRY REPORT",
-    summary:summary,
-    rows:tableRows,
-    note:note
-  });
-
-  var a=document.createElement("a");
-  var url=URL.createObjectURL(blob);
-  a.href=url;
-  a.download="STAFF_LOAN_INSIGHT_"+new Date().toISOString().slice(0,10)+".pdf";
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(function(){URL.revokeObjectURL(url);a.remove();},1200);
-}
 
 function init(){
   document.querySelectorAll(".loan-btn").forEach(function(b){
     b.addEventListener("click",function(){selectLoan(b.getAttribute("data-loan"));});
   });
   $("calculateBtn").addEventListener("click",calculate);
-  $("printBtn").addEventListener("click",printReport);
-  $("pdfBtn").addEventListener("click",downloadPDF);
+  selectLoan("housing");
+  calculate();
   $("personalMode").addEventListener("change",function(){ if(lastResult) calculate(); });
   $("category").addEventListener("change",function(){ if(lastResult) calculate(); });
-  selectLoan("housing");
 }
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init);
 else init();
