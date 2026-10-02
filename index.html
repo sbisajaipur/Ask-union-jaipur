@@ -1215,7 +1215,7 @@ if ("serviceWorker" in navigator) {
     );
 
     message.textContent =
-      "Unable to submit your question. Please try again.";
+      "ERROR: " + (error.code || error.message || "Unknown error");
 
     message.style.color = "#b00020";
 
