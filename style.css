@@ -4692,3 +4692,353 @@ body.update-viewer-open .bottom-nav {
     font-size:19px !important;
   }
 }
+/* =========================================================
+   ASK UNION — LATEST UPDATES
+   PREMIUM MODERN V2
+   ========================================================= */
+
+#updatesList .update-mini-card{
+  position:relative !important;
+  display:grid !important;
+  grid-template-columns:96px minmax(0,1fr) 44px !important;
+  align-items:center !important;
+  gap:18px !important;
+
+  width:100% !important;
+  min-height:124px !important;
+
+  margin:0 0 14px !important;
+  padding:15px 17px !important;
+
+  background:#fff !important;
+
+  border:1px solid #eadfe3 !important;
+  border-left:5px solid #8b1029 !important;
+  border-radius:20px !important;
+
+  box-shadow:0 6px 22px rgba(60,20,30,.07) !important;
+
+  overflow:hidden !important;
+  cursor:pointer !important;
+
+  transition:all .22s ease !important;
+}
+
+
+/* HOVER */
+
+#updatesList .update-mini-card:hover{
+  transform:translateY(-3px) !important;
+
+  box-shadow:0 12px 30px rgba(60,20,30,.12) !important;
+
+  border-color:#ddc5cc !important;
+}
+
+
+/* =========================================================
+   THUMBNAIL
+   ========================================================= */
+
+#updatesList .update-mini-thumb{
+  width:96px !important;
+  height:94px !important;
+  min-width:96px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  overflow:hidden !important;
+
+  background:#f8eef1 !important;
+
+  border:1px solid #ead9de !important;
+  border-radius:17px !important;
+}
+
+
+#updatesList .update-mini-thumb img,
+#updatesList .update-thumb-img{
+  width:100% !important;
+  height:100% !important;
+
+  object-fit:cover !important;
+}
+
+
+#updatesList .update-thumb-fallback{
+  width:100% !important;
+  height:100% !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  background:linear-gradient(
+    145deg,
+    #fff7f8,
+    #f5e5e9
+  ) !important;
+}
+
+
+#updatesList .update-thumb-fallback span{
+  font-size:36px !important;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+#updatesList .update-mini-body{
+  min-width:0 !important;
+
+  display:flex !important;
+  flex-direction:column !important;
+
+  gap:7px !important;
+}
+
+
+/* TOP LINE */
+
+#updatesList .update-mini-top{
+  width:100% !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+
+  gap:12px !important;
+}
+
+
+/* BADGE */
+
+#updatesList .update-mini-badge{
+  display:inline-flex !important;
+  align-items:center !important;
+
+  width:max-content !important;
+
+  padding:5px 10px !important;
+
+  background:#8b1029 !important;
+  color:#fff !important;
+
+  border-radius:999px !important;
+
+  font-size:8px !important;
+  line-height:1 !important;
+  font-weight:800 !important;
+
+  letter-spacing:.45px !important;
+}
+
+
+/* DATE */
+
+#updatesList .update-mini-date{
+  flex:0 0 auto !important;
+
+  color:#8b1029 !important;
+
+  font-size:9px !important;
+  font-weight:700 !important;
+
+  white-space:nowrap !important;
+}
+
+
+/* TITLE */
+
+#updatesList .update-mini-title{
+  margin:0 !important;
+  padding:0 !important;
+
+  color:#202020 !important;
+
+  font-size:17px !important;
+  line-height:1.28 !important;
+
+  font-weight:800 !important;
+
+  display:-webkit-box !important;
+  -webkit-box-orient:vertical !important;
+  -webkit-line-clamp:2 !important;
+
+  overflow:hidden !important;
+}
+
+
+/* SUMMARY */
+
+#updatesList .update-mini-summary{
+  margin:0 !important;
+  padding:0 !important;
+
+  color:#6c6c6c !important;
+
+  font-size:11px !important;
+  line-height:1.5 !important;
+
+  display:-webkit-box !important;
+  -webkit-box-orient:vertical !important;
+  -webkit-line-clamp:2 !important;
+
+  overflow:hidden !important;
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+#updatesList .update-mini-arrow{
+  width:44px !important;
+  height:44px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  flex-shrink:0 !important;
+
+  background:#8b1029 !important;
+  color:#fff !important;
+
+  border-radius:50% !important;
+
+  font-size:29px !important;
+  font-weight:300 !important;
+  line-height:1 !important;
+
+  box-shadow:0 5px 13px rgba(139,16,41,.2) !important;
+
+  transition:all .2s ease !important;
+}
+
+
+#updatesList .update-mini-card:hover .update-mini-arrow{
+  transform:translateX(4px) !important;
+
+  background:#6e0d21 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:700px){
+
+  #updatesList .update-mini-card{
+    grid-template-columns:70px minmax(0,1fr) 34px !important;
+
+    gap:11px !important;
+
+    min-height:96px !important;
+
+    padding:11px !important;
+
+    margin-bottom:10px !important;
+
+    border-left-width:3px !important;
+    border-radius:16px !important;
+  }
+
+
+  #updatesList .update-mini-thumb{
+    width:70px !important;
+    height:70px !important;
+    min-width:70px !important;
+
+    border-radius:13px !important;
+  }
+
+
+  #updatesList .update-thumb-fallback span{
+    font-size:27px !important;
+  }
+
+
+  #updatesList .update-mini-body{
+    gap:5px !important;
+  }
+
+
+  #updatesList .update-mini-badge{
+    padding:4px 7px !important;
+    font-size:7px !important;
+  }
+
+
+  #updatesList .update-mini-date{
+    font-size:7px !important;
+  }
+
+
+  #updatesList .update-mini-title{
+    font-size:13px !important;
+    line-height:1.28 !important;
+  }
+
+
+  #updatesList .update-mini-summary{
+    font-size:9px !important;
+    line-height:1.35 !important;
+  }
+
+
+  #updatesList .update-mini-arrow{
+    width:32px !important;
+    height:32px !important;
+
+    font-size:21px !important;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media(max-width:420px){
+
+  #updatesList .update-mini-card{
+    grid-template-columns:60px minmax(0,1fr) 30px !important;
+
+    gap:9px !important;
+
+    min-height:88px !important;
+
+    padding:9px !important;
+  }
+
+
+  #updatesList .update-mini-thumb{
+    width:60px !important;
+    height:60px !important;
+    min-width:60px !important;
+  }
+
+
+  #updatesList .update-mini-title{
+    font-size:12px !important;
+  }
+
+
+  #updatesList .update-mini-summary{
+    font-size:8.5px !important;
+  }
+
+
+  #updatesList .update-mini-arrow{
+    width:29px !important;
+    height:29px !important;
+
+    font-size:19px !important;
+  }
+}
