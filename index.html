@@ -1183,7 +1183,75 @@ function openAskUnion(e){
           Use the Contact Union option to get in touch with representatives.
         </p>
       </details>
+<div class="ask-union-question-box">
 
+  <div class="ask-union-question-title">
+    📝 Post Your Question
+  </div>
+
+  <div class="ask-union-question-subtitle">
+    Have a question for ASK UNION? Submit it here.
+  </div>
+
+  <div class="ask-union-question-field">
+    <label>Name *</label>
+    <input
+      id="askQuestionName"
+      type="text"
+      maxlength="80"
+      placeholder="Enter your name"
+      autocomplete="name">
+  </div>
+
+  <div class="ask-union-question-field">
+    <label>Mobile Number *</label>
+    <input
+      id="askQuestionMobile"
+      type="tel"
+      maxlength="10"
+      inputmode="numeric"
+      placeholder="10 digit mobile number"
+      autocomplete="tel">
+  </div>
+
+  <div class="ask-union-question-field">
+    <label>Email Address *</label>
+    <input
+      id="askQuestionEmail"
+      type="email"
+      maxlength="120"
+      placeholder="Enter your email address"
+      autocomplete="email">
+  </div>
+
+  <div class="ask-union-question-field">
+    <label>Your Question *</label>
+    <textarea
+      id="askQuestionText"
+      maxlength="1000"
+      placeholder="Write your question here..."></textarea>
+  </div>
+
+  <button
+    type="button"
+    class="ask-union-question-submit"
+    onclick="submitAskUnionQuestion()">
+    SUBMIT QUESTION →
+  </button>
+
+  <div
+    id="askQuestionMessage"
+    class="ask-union-question-message">
+  </div>
+
+  <div class="ask-union-disclaimer">
+    <strong>Disclaimer:</strong><br>
+    ASK UNION is not the official portal of State Bank of India Staff Association (SBISA).
+    This is an independent information platform created to provide useful information,
+    updates and resources.
+  </div>
+
+</div>
     </div>
 
   </div>
