@@ -888,12 +888,7 @@ button,input,textarea,select{
       Questions
     </button>
 
-    <button
-      class="sidebar-btn"
-      onclick="go('memberSection',this)">
-      ♙<br>
-      Members
-    </button>
+    
 
     <button
       class="sidebar-btn"
@@ -1036,11 +1031,7 @@ button,input,textarea,select{
       ❓ QUESTIONS
     </button>
 
-    <button
-      class="btn light"
-      onclick="go('memberSection')">
-      ♙ MEMBERS
-    </button>
+  
 
     <button
       class="btn light"
@@ -1384,84 +1375,8 @@ button,input,textarea,select{
 </section>
 
 
-<!-- =========================
-     MEMBERS
-========================= -->
-
-<section
-  id="memberSection"
-  class="card section nav-section"
-  style="margin-top:13px">
-
-  <div class="section-title-row">
-
-    <div>
-
-      <h2>
-        👥 Member Management
-      </h2>
-
-      <p>
-        View and manage existing authorised members.
-      </p>
-
-    </div>
 
 
-    <div class="member-summary">
-
-      <div class="mini-stat">
-        <b id="memberTotal">0</b>
-        Total
-      </div>
-
-      <div class="mini-stat">
-        <b id="memberActive">0</b>
-        Active
-      </div>
-
-      <div class="mini-stat">
-        <b id="memberInactive">0</b>
-        Inactive
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div id="memberMessage"></div>
-
-
-  <div class="member-toolbar">
-
-    <input
-      id="memberSearch"
-      type="search"
-      placeholder="Search employee no., name or email…"
-      oninput="renderMembers()">
-
-
-    <button
-      class="btn light"
-      onclick="loadMembers()">
-      ↻ REFRESH MEMBERS
-    </button>
-
-  </div>
-
-
-  <div
-    id="memberList"
-    class="member-list">
-
-    <div class="empty">
-      Loading members…
-    </div>
-
-  </div>
-
-</section>
 
 
 <!-- =========================
@@ -3747,7 +3662,6 @@ async function refreshAll(){
 
       loadQuestions(),
 
-      loadMembers(),
 
       loadContactMessages()
 
