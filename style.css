@@ -5042,3 +5042,33 @@ body.update-viewer-open .bottom-nav {
     font-size:19px !important;
   }
 }
+/* =========================================================
+   LATEST UPDATES — SUMMARY POLISH
+   ========================================================= */
+
+#updatesList .update-mini-summary{
+  margin-top:2px !important;
+  color:#707070 !important;
+
+  font-size:10.5px !important;
+  line-height:1.45 !important;
+  font-weight:400 !important;
+
+  display:-webkit-box !important;
+  -webkit-box-orient:vertical !important;
+  -webkit-line-clamp:2 !important;
+
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+
+
+/* Mobile */
+
+@media(max-width:700px){
+  #updatesList .update-mini-summary{
+    font-size:9px !important;
+    line-height:1.4 !important;
+    -webkit-line-clamp:2 !important;
+  }
+}
