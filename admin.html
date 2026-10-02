@@ -2,1492 +2,1632 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#7b1024">
 <title>ASK UNION – Admin Panel</title>
 <link rel="icon" href="./ask-union-icon-192.png" type="image/png">
+
 <style>
-:root{--maroon:#7b1024;--ink:#18212f;--muted:#6b7280;--line:#e7e2df;--red:#c62828;--gold:#b97800}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#f6f4f2;color:var(--ink)}
-button,input,textarea,select{font:inherit}.hidden{display:none!important}
-.topbar{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#7b1024,#5e0c1b);color:#fff;padding:14px 18px;box-shadow:0 5px 18px #4610192e}
-.topbar-inner,.container{max-width:1100px;margin:auto}.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.brand{display:flex;align-items:center;gap:11px}.brand img{width:44px;height:44px;border-radius:12px;background:#fff;padding:4px;object-fit:contain}
-.brand-title{font-weight:800;font-size:18px}.brand-sub{font-size:10px;opacity:.8;letter-spacing:1px}
-.container{padding:22px 14px 45px}.card{background:#fff;border:1px solid #1e232d12;border-radius:20px;box-shadow:0 7px 28px #2314190d}
-.login-card{max-width:460px;margin:8vh auto;padding:28px}.login-card h1{color:var(--maroon);margin:22px 0 5px}
-.field{margin:13px 0}.field label{display:block;font-weight:750;font-size:12px;margin-bottom:6px}
-.field input,.field textarea,.field select{width:100%;border:1px solid #d9d5d2;border-radius:12px;padding:12px 13px;outline:0}
-.field textarea{min-height:125px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:#9b1d3a;box-shadow:0 0 0 4px #7b102414}
-.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:800;min-height:42px;cursor:pointer}.primary{background:var(--maroon);color:#fff}.light{background:#f1eeec;color:#4b5563}.danger{background:#fff0f0;color:var(--red);border:1px solid #ffd0d0}.edit{background:#fff7e8;color:var(--gold);border:1px solid #f3dfb3}.logout{background:#ffffff1c;color:#fff;border:1px solid #ffffff3b}
-.head{padding:18px;margin-bottom:14px;display:flex;justify-content:space-between;gap:12px;align-items:center}.head h1{margin:0;font-size:23px}.head p{margin:4px 0 0;color:var(--muted);font-size:12px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:14px}.stat{padding:16px 18px}.label{font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.6px}.num{font-size:29px;font-weight:900;color:var(--maroon);margin-top:3px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.section{padding:18px}.section h2{font-size:18px;margin:0}.section-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:13px}.section-head span{font-size:11px;color:var(--muted)}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 11px}.full{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap}
-.toolbar{display:flex;gap:8px;margin-bottom:11px}.toolbar input{flex:1;border:1px solid var(--line);border-radius:11px;padding:10px 12px}.toolbar select{width:170px;border:1px solid var(--line);border-radius:11px;padding:10px 12px;background:#fff}
-.list{max-height:730px;overflow:auto}.item{border:1px solid var(--line);border-radius:15px;padding:14px;margin:9px 0}.item-top{display:flex;justify-content:space-between;gap:8px}.title{font-weight:850;font-size:15px;line-height:1.35}.badge{background:#f4e7ea;color:var(--maroon);padding:4px 8px;border-radius:99px;font-size:10px;font-weight:800;white-space:nowrap}.meta{font-size:10px;color:var(--muted);margin:6px 0}.details{font-size:13px;color:#4b5563;line-height:1.5;white-space:pre-wrap}.link{display:inline-block;margin-top:7px;color:var(--maroon);font-size:12px;font-weight:800;text-decoration:none}.item-actions{display:flex;gap:7px;margin-top:10px}.item-actions .btn{flex:1;min-height:37px;padding:8px}.empty{text-align:center;padding:25px;color:var(--muted);font-size:13px}.alert{margin-top:10px;padding:10px 12px;border-radius:11px;font-size:12px;font-weight:700}.success{background:#edf9f2;color:#16804b}.error{background:#fff0f0;color:#a61b1b}
-@media(max-width:760px){.container{padding:13px 10px 35px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}.head{align-items:flex-start;flex-direction:column}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.toolbar{flex-direction:column}.toolbar select{width:100%}.section{padding:15px}.topbar{padding:11px}.brand img{width:40px;height:40px}.brand-title{font-size:16px}.logout{font-size:11px;padding:9px 11px}}
-@media(max-width:420px){.stats{grid-template-columns:1fr}.stats .stat:last-child{grid-column:auto}}
-
-.pdf-helper{
-  margin-top:8px;
-  padding:11px 12px;
-  border:1px solid #eadfe1;
-  border-radius:12px;
-  background:#fbf7f8;
-}
-.pdf-helper-title{
-  color:var(--maroon);
-  font-size:12px;
-  font-weight:850;
-}
-.pdf-helper-text{
-  margin-top:3px;
-  color:var(--muted);
-  font-size:10px;
-  line-height:1.4;
-}
-.pdf-helper-row{
-  display:flex;
-  gap:7px;
-  margin-top:8px;
-}
-.pdf-helper-row input{
-  flex:1;
-  min-width:0;
-  border:1px solid #d9d5d2;
-  border-radius:10px;
-  padding:9px 10px;
-  font-size:11px;
-}
-.pdf-generate{
-  min-height:38px;
-  padding:8px 11px;
-  white-space:nowrap;
-  font-size:10px;
-}
-.pdf-helper-note{
-  margin-top:6px;
-  color:#777;
-  font-size:9px;
-}
-@media(max-width:760px){
-  .pdf-helper-row{flex-direction:column}
-  .pdf-generate{width:100%}
-}
-
-
-/* FINISHED UI + MEMBER MANAGEMENT */
-.dashboard-hero{padding:20px 22px;margin-bottom:14px;background:linear-gradient(135deg,#fff,#fff8fa)}
-.dashboard-kicker{font-size:10px;font-weight:850;letter-spacing:1.1px;color:var(--maroon);text-transform:uppercase}
-.dashboard-title{font-size:25px;font-weight:900;margin:3px 0 4px}
-.dashboard-sub{font-size:12px;color:var(--muted)}
-.hero-actions{display:flex;gap:8px;flex-wrap:wrap}
-.section.full-section{margin-top:14px;padding:20px}
-.section-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:15px}
-.section-title-row h2{margin:0;font-size:19px}.section-title-row p{margin:4px 0 0;color:var(--muted);font-size:11px}
-.member-summary{display:flex;gap:8px;flex-wrap:wrap}.mini-stat{background:#f7f2f3;border:1px solid #eadfe2;border-radius:11px;padding:8px 11px;font-size:11px;font-weight:800}.mini-stat b{color:var(--maroon);font-size:15px;margin-right:3px}
-.member-layout{display:grid;grid-template-columns:330px 1fr;gap:16px}
-.member-form{border:1px solid var(--line);background:#fbf8f8;border-radius:15px;padding:16px}.member-form h3{margin:0 0 12px;font-size:15px}
-.member-list-wrap{min-width:0}.member-toolbar{display:flex;gap:8px;margin-bottom:10px}.member-toolbar input{flex:1;border:1px solid var(--line);border-radius:11px;padding:10px 12px;outline:0}
-.member-list{max-height:430px;overflow:auto}.member-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid var(--line);border-radius:13px;margin:8px 0;background:#fff}
-.member-main{min-width:0}.member-name{font-weight:850;font-size:13px}.member-email{font-size:10px;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.member-employee{font-size:10px;color:#475569;margin-top:3px;font-weight:700}
-.member-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:7px}.status{font-size:9px;font-weight:850;padding:4px 7px;border-radius:99px}.status.active{background:#eaf8f0;color:#16804b}.status.inactive{background:#fff0f0;color:#b42318}
-.role-badge{font-size:9px;font-weight:800;padding:4px 7px;border-radius:99px;background:#f4e7ea;color:var(--maroon)}.visibility-badge{font-size:9px;font-weight:850;padding:4px 7px;border-radius:99px;background:#f1f5f9;color:#475569}
-.member-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.member-actions .btn{min-height:34px;padding:7px 9px;font-size:10px}
-.member-note{font-size:10px;line-height:1.45;color:var(--muted);margin-top:10px}.password-hint{font-size:9px;color:var(--muted);margin-top:-7px;margin-bottom:10px}.member-empty{text-align:center;padding:25px;color:var(--muted);font-size:12px}
-@media(max-width:820px){.member-layout{grid-template-columns:1fr}}@media(max-width:600px){.section-title-row{flex-direction:column}.member-toolbar{flex-direction:column}.member-row{align-items:flex-start;flex-direction:column}.member-actions{width:100%;justify-content:flex-start}}
-
-
-/* ================= PREMIUM FINISH ================= */
 :root{
-  --maroon:#7b1024;--maroon2:#5d0b1b;--ink:#172033;--muted:#697386;
-  --line:#e8e3e1;--soft:#faf7f8;--white:#fff;--green:#16804b;--amber:#a96800;
-}
-body{background:linear-gradient(180deg,#f8f6f4 0%,#f4f1ef 100%);color:var(--ink)}
-.topbar{padding:11px 18px;background:linear-gradient(135deg,#7b1024 0%,#620c1c 55%,#4f0917 100%);box-shadow:0 8px 24px rgba(70,16,25,.18)}
-.topbar-inner{max-width:1180px}
-.brand{gap:10px}.brand img{box-shadow:0 2px 10px rgba(0,0,0,.16)}
-.brand-title{letter-spacing:.2px}.brand-sub{letter-spacing:1.2px}
-.container{max-width:1180px;padding:20px 14px 50px}
-.dashboard-hero{position:relative;overflow:hidden;padding:22px 24px;margin-bottom:15px;border:1px solid #eadfe2;background:linear-gradient(135deg,#fff 0%,#fff9fa 62%,#f7eef1 100%);box-shadow:0 10px 32px rgba(35,20,25,.08)}
-.dashboard-hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-70px;top:-80px;background:#7b102410}
-.dashboard-kicker{font-size:9px;font-weight:900;letter-spacing:1.5px;color:var(--maroon);text-transform:uppercase}
-.dashboard-title{font-size:27px;line-height:1.15;font-weight:950;margin:4px 0 5px;letter-spacing:-.4px}
-.dashboard-sub{font-size:11px;color:var(--muted);max-width:720px;line-height:1.5}
-.hero-actions{position:relative;z-index:2}
-.btn{transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease}.btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,0,0,.08)}.btn:active{transform:translateY(0)}
-.stats{gap:13px;margin-bottom:15px}
-.stat{position:relative;overflow:hidden;padding:17px 19px;border:1px solid #ebe6e4}
-.stat:after{content:"";position:absolute;right:-22px;bottom:-30px;width:90px;height:90px;border-radius:50%;background:#7b102408}
-.num{font-size:30px}
-.label{font-size:10px}
-.grid{gap:15px}.section{padding:19px;border:1px solid #ebe6e4}
-.section-head{margin-bottom:14px}.section-head h2{letter-spacing:-.15px}
-.field{margin:11px 0}.field label{font-size:10px;letter-spacing:.25px;color:#263043}
-.field input,.field textarea,.field select{background:#fff;border-color:#ddd8d5;transition:border-color .15s,box-shadow .15s}
-.field input:hover,.field textarea:hover,.field select:hover{border-color:#c7bfbc}
-.toolbar{padding:4px;background:#faf8f7;border:1px solid #eee9e7;border-radius:13px}.toolbar input,.toolbar select{border:0;background:transparent}.toolbar input:focus,.toolbar select:focus{outline:none}
-.item{border-color:#e9e3e0;background:linear-gradient(180deg,#fff,#fffdfc);transition:box-shadow .15s,transform .15s}
-.item:hover{box-shadow:0 5px 18px rgba(35,20,25,.06);transform:translateY(-1px)}
-.item-actions .btn{font-size:10px}
-.github-pdf-box{background:linear-gradient(180deg,#fffafa,#fff);border-color:#eadde1}
-.full-section{border-color:#eadfe2!important;background:linear-gradient(180deg,#fff,#fffdfd)}
-.section-title-row h2{letter-spacing:-.2px}
-.member-form{background:linear-gradient(180deg,#fcf8f9,#faf7f7);border-color:#eadfe2}
-.member-toolbar{padding:4px;background:#faf8f7;border:1px solid #eee9e7;border-radius:13px}
-.member-toolbar input{border:0;background:transparent}
-.member-toolbar input:focus{outline:none}
-.member-row{border-color:#e9e3e0;transition:box-shadow .15s,transform .15s}
-.member-row:hover{box-shadow:0 5px 18px rgba(35,20,25,.06);transform:translateY(-1px)}
-.mini-stat{background:#fff;border-color:#e9dfe2}
-@media(max-width:760px){
-  .container{padding:13px 10px 35px}.dashboard-title{font-size:23px}.dashboard-hero{padding:18px}
-}
-/* ================= END PREMIUM FINISH ================= */
-
-
-/* SIDEBAR NAVIGATION */
-.admin-shell{display:flex;min-height:calc(100vh - 66px)}
-.admin-sidebar{width:225px;flex:0 0 225px;background:#fff;border-right:1px solid #e9e3e0;padding:18px 12px;position:sticky;top:66px;height:calc(100vh - 66px);overflow:auto}
-.sidebar-label{font-size:9px;font-weight:900;letter-spacing:1.2px;color:#9a9290;padding:4px 10px 8px}
-.sidebar-nav{display:grid;gap:5px}
-.sidebar-btn{width:100%;border:0;background:transparent;color:#4b5563;border-radius:11px;padding:11px 12px;text-align:left;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:9px}
-.sidebar-btn:hover{background:#f7f1f3;color:var(--maroon)}
-.sidebar-btn.active{background:#f4e7ea;color:var(--maroon);box-shadow:inset 3px 0 0 var(--maroon)}
-.sidebar-icon{width:20px;text-align:center;font-size:15px}
-.sidebar-divider{height:1px;background:#eee9e7;margin:15px 7px}
-.sidebar-footer{margin-top:18px;padding:11px 10px;border:1px solid #eee5e7;border-radius:12px;background:#fcf8f9;font-size:9px;line-height:1.45;color:var(--muted)}
-.admin-main{min-width:0;flex:1}
-.nav-section{scroll-margin-top:82px}
-@media(max-width:820px){
- .admin-shell{display:block}
- .admin-sidebar{position:sticky;top:66px;z-index:15;width:100%;height:auto;border-right:0;border-bottom:1px solid #e9e3e0;padding:8px 9px;background:#fff}
- .sidebar-label,.sidebar-divider,.sidebar-footer{display:none}
- .sidebar-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;overflow:visible}
- .sidebar-btn{width:100%;white-space:normal;padding:8px 3px;min-height:54px;text-align:center;justify-content:center;flex-direction:column;gap:3px;font-size:9px;line-height:1.05}
- .sidebar-btn.active{box-shadow:inset 0 -3px 0 var(--maroon)}
- .sidebar-icon{width:auto;font-size:16px;line-height:1}
- .admin-main .container{padding-top:14px}
-}
-@media(max-width:430px){
- .sidebar-nav{grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
- .sidebar-btn{padding:7px 1px;font-size:8px;min-height:52px}
- .sidebar-icon{font-size:15px}
+  --m:#7b1024;
+  --ink:#172033;
+  --muted:#697386;
+  --line:#e8e3e1;
+  --red:#b42318;
 }
 
-
-.github-pdf-box{scroll-margin-top:82px}
-.github-pdf-head{position:sticky;top:0;background:inherit;padding-bottom:8px;z-index:2}
-.github-pdf-list{max-height:500px;overflow:auto}
-.github-pdf-item{min-width:0}
-.github-pdf-name{flex:1;min-width:0}
-@media(max-width:600px){
- .github-pdf-head{align-items:flex-start;flex-direction:column}
- .github-pdf-head .btn{width:100%}
- .github-pdf-item{flex-direction:column;align-items:stretch}
- .github-pdf-btn{width:100%}
- .github-pdf-list{max-height:60vh}
+*{
+  box-sizing:border-box;
 }
 
-
-/* MEMBER VISIBILITY FIX */
-@media(max-width:820px){
-  .admin-main .container{display:flex;flex-direction:column}
-  #dashboardSection{order:1}
-  .stats{order:2}
-  .card[style*="QUICK ACTIONS"]{order:3}
-  #memberSection{order:4}
-  .grid{order:5}
-}
-#memberSection .member-list{min-height:120px}
-#memberSection .member-list-wrap{min-height:160px}
-#memberSection .member-empty{border:1px dashed #e2dadd;border-radius:11px;background:#fcfafb}
-@media(max-width:600px){
-  #memberSection{margin-top:0}
-  #memberSection .member-list{max-height:none;overflow:visible}
-  #memberSection .member-list-wrap{min-height:200px}
+html{
+  scroll-behavior:smooth;
 }
 
-
-/* ===== MOBILE ADMIN ===== */
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{overflow-x:hidden}
-button,.btn{touch-action:manipulation}
-.field input,.field textarea,.field select,.toolbar input,.toolbar select,.member-toolbar input{font-size:16px}
-
-@media(max-width:820px){
-.topbar{padding:10px 12px}
-.topbar-inner{gap:8px}
-.brand{min-width:0}
-.brand img{width:38px;height:38px;flex:0 0 38px}
-.brand-title{font-size:15px}
-.brand-sub{font-size:8px}
-.logout{min-height:40px;padding:8px 10px;white-space:nowrap}
-
-.admin-shell{display:block}
-.admin-sidebar{position:sticky;top:58px;z-index:15;width:100%;height:auto;padding:7px 8px;border-right:0;border-bottom:1px solid #e9e3e0;box-shadow:0 3px 12px rgba(35,20,25,.06)}
-.sidebar-label,.sidebar-divider,.sidebar-footer{display:none}
-.sidebar-nav{display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;padding:1px 1px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.sidebar-nav::-webkit-scrollbar{display:none}
-.sidebar-btn{flex:0 0 82px;min-width:82px;min-height:54px;padding:7px 5px;justify-content:center;text-align:center;flex-direction:column;gap:3px;font-size:9px;line-height:1.05;white-space:normal}
-.sidebar-btn.active{box-shadow:inset 0 -3px 0 var(--maroon)}
-.sidebar-icon{width:auto;font-size:16px;line-height:1}
-
-.admin-main .container{padding:12px 9px 35px}
-.dashboard-hero{padding:16px;margin-bottom:10px}
-.dashboard-title{font-size:22px}
-.hero-actions,.hero-actions .btn{width:100%}
-.hero-actions .btn{min-height:44px}
-
-.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px}
-.stats .stat:last-child{grid-column:1/-1}
-.stat{padding:13px 14px;border-radius:15px}
-.num{font-size:26px}
-
-.card[style*="QUICK ACTIONS"]{align-items:stretch!important;flex-direction:column;padding:12px!important;margin-bottom:10px!important}
-.card[style*="QUICK ACTIONS"]>div:last-child{width:100%;display:grid!important;grid-template-columns:1fr;gap:7px!important}
-.card[style*="QUICK ACTIONS"] .btn{width:100%;min-height:44px}
-
-.grid{grid-template-columns:1fr;gap:10px}
-.section,.section.full-section{padding:14px;margin-top:10px}
-.section-head{align-items:flex-start;flex-direction:column;gap:5px}
-.form-grid{grid-template-columns:1fr}
-.full{grid-column:auto}
-.field{margin:10px 0}
-.field input,.field textarea,.field select{min-height:46px}
-.actions{display:grid;grid-template-columns:1fr;gap:7px}
-.actions .btn{width:100%;min-height:44px}
-
-.toolbar{display:grid;grid-template-columns:1fr;gap:6px;padding:6px}
-.toolbar input,.toolbar select{width:100%;min-height:44px}
-.item{padding:12px;margin:8px 0}
-.item-top{align-items:flex-start;flex-direction:column}
-.item-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.item-actions .btn{min-height:42px}
-
-.section-title-row{flex-direction:column;gap:9px}
-.member-summary{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
-.mini-stat{text-align:center;padding:8px 5px;font-size:9px}
-.mini-stat b{display:block;font-size:15px;margin:0}
-.member-layout{grid-template-columns:1fr;gap:10px}
-.member-form{padding:13px}
-.member-toolbar{display:grid;grid-template-columns:1fr;gap:6px;padding:6px}
-.member-toolbar input,.member-toolbar .btn{width:100%;min-height:44px}
-.member-row{flex-direction:column;align-items:stretch;gap:10px;padding:12px}
-.member-email{white-space:normal;overflow-wrap:anywhere}
-.member-actions{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.member-actions .btn{width:100%;min-height:42px;padding:8px 5px}
-
-.github-pdf-head{flex-direction:column;align-items:stretch}
-.github-pdf-head .btn,.github-pdf-btn{width:100%;min-height:44px}
-.github-pdf-item{flex-direction:column;align-items:stretch;gap:8px}
-.github-pdf-name{font-size:11px;line-height:1.35}
-.pdf-helper-row{flex-direction:column}
-.pdf-helper-row input,.pdf-generate{width:100%;min-height:44px}
-
-.login-card{margin:5vh 0;padding:20px 16px;border-radius:17px}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  background:#f6f4f2;
+  color:var(--ink);
 }
 
-@media(max-width:430px){
-.topbar{padding-left:9px;padding-right:9px}
-.brand img{width:34px;height:34px;flex-basis:34px}
-.brand-title{font-size:14px}
-.brand-sub{font-size:7px}
-.logout{font-size:10px;padding:8px 9px}
-.sidebar-btn{flex-basis:76px;min-width:76px;min-height:52px;font-size:8px}
-.sidebar-icon{font-size:15px}
-.stats{grid-template-columns:1fr}
-.stats .stat:last-child{grid-column:auto}
-.dashboard-title{font-size:20px}
-.dashboard-hero{padding:14px}
-.section,.section.full-section{padding:12px}
-.member-summary{grid-template-columns:1fr 1fr}
-.member-summary .mini-stat:last-child{grid-column:1/-1}
-.item-actions,.member-actions{grid-template-columns:1fr}
+button,input,textarea,select{
+  font:inherit;
 }
 
-@media(max-width:350px){
-.sidebar-btn{flex-basis:70px;min-width:70px}
-.brand-sub{display:none}
-.member-summary{grid-template-columns:1fr}
-.member-summary .mini-stat:last-child{grid-column:auto}
-}
-/* ===== END MOBILE ADMIN ===== */
-
-</style>
-
-<style id="github-circular-library">
-.github-pdf-box{margin-top:16px;padding:14px;border:1px solid #ead6dc;border-radius:14px;background:#fff9fa}
-.github-pdf-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
-.github-pdf-head h3{margin:0;color:#7b1024;font-size:15px}
-.github-pdf-status{font-size:11px;color:#6b7280;margin-bottom:8px}
-.github-pdf-list{display:grid;gap:8px}
-.github-pdf-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 11px;background:#fff;border:1px solid #eee2e6;border-radius:11px}
-.github-pdf-name{font-size:12px;font-weight:700;color:#333;word-break:break-word;min-width:0}
-.github-pdf-btn{flex:0 0 auto;border:0;border-radius:8px;background:#7b1024;color:#fff;padding:8px 10px;font-size:10px;font-weight:800;cursor:pointer}
-.github-pdf-empty{text-align:center;padding:14px;color:#6b7280;font-size:12px}
-@media(max-width:600px){
-  .github-pdf-item{align-items:flex-start}
-  .github-pdf-btn{padding:8px 9px}
-}
-</style>
-
-</head>
-<body>
-
-<div id="loginView" class="container">
-  <div class="card login-card">
-    <div class="brand"><img src="./ask-union-icon-192.png" alt="ASK UNION"><div><div class="brand-title">ASK UNION</div><div class="brand-sub">SBISA UDAIPUR MODULE</div></div></div>
-    <h1>Admin Login</h1>
-    <p style="color:#6b7280">Secure content management panel</p>
-    <div class="field"><label>ADMIN EMAIL</label><input id="email" type="email" autocomplete="username" placeholder="Admin email"></div>
-    <div class="field"><label>PASSWORD</label><input id="password" type="password" autocomplete="current-password" placeholder="Password" onkeydown="if(event.key==='Enter')login()"></div>
-    <button class="btn primary" style="width:100%" onclick="login()">LOGIN →</button>
-    <div id="loginMessage"></div>
-  </div>
-</div>
-
-<div id="adminView" class="hidden">
-<header class="topbar"><div class="topbar-inner">
-  <div class="brand"><img src="./ask-union-icon-192.png" alt="ASK UNION"><div><div class="brand-title">ASK UNION</div><div class="brand-sub">SBISA UDAIPUR MODULE · ADMIN</div></div></div>
-  <button class="btn logout" onclick="logout()">LOGOUT</button>
-</div></header>
-<div class="admin-shell">
-<aside class="admin-sidebar">
-<div class="sidebar-label">ADMIN MENU</div>
-<nav class="sidebar-nav">
-<button class="sidebar-btn active" data-target="dashboardSection" onclick="goAdminSection('dashboardSection',this)"><span class="sidebar-icon">▦</span>Dashboard</button>
-<button class="sidebar-btn" data-target="publishSection" onclick="goAdminSection('publishSection',this)"><span class="sidebar-icon">＋</span>Publish Content</button>
-<button class="sidebar-btn" data-target="publishedSection" onclick="goAdminSection('publishedSection',this)"><span class="sidebar-icon">☷</span>Published Content</button>
-<button class="sidebar-btn" id="membersNavButton" data-target="memberSection" onclick="goAdminSection('memberSection',this)"><span class="sidebar-icon">♙</span>Members</button>
-<button class="sidebar-btn" data-target="librarySection" onclick="goAdminSection('librarySection',this)"><span class="sidebar-icon">▤</span>Circular Library</button>
-</nav>
-<div class="sidebar-divider"></div>
-<div class="sidebar-footer"><b>ASK UNION</b><br>Content & member administration<br><span style="color:#7b1024">Secure Admin Area</span></div>
-</aside>
-<main class="admin-main"><div class="container">
-  <div id="dashboardSection" class="card dashboard-hero nav-section">
-<div class="dashboard-kicker">ASK UNION · SBISA UDAIPUR MODULE</div>
-<div class="section-title-row" style="margin:2px 0 0">
-<div><div class="dashboard-title">Admin Dashboard</div><div class="dashboard-sub">Logged in as <b id="adminEmail"></b> · Manage members, notices, circulars and events.</div></div>
-<div class="hero-actions"><button class="btn light" onclick="refreshAll()">↻ REFRESH</button></div>
-</div></div>
-  <div class="stats">
-    <div class="card stat"><div class="label">Updates / Notices</div><div class="num" id="countUpdates">—</div></div>
-    <div class="card stat"><div class="label">Circulars</div><div class="num" id="countCirculars">—</div></div>
-    <div class="card stat"><div class="label">Events</div><div class="num" id="countEvents">—</div></div>
-  </div>
-  <div class="card" style="padding:12px 14px;margin-bottom:15px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#fff;border:1px solid #ebe6e4">
-    <div>
-      <div style="font-size:11px;font-weight:900;color:#18212f">QUICK ACTIONS</div>
-      <div style="font-size:10px;color:#6b7280;margin-top:2px">Publish content or manage authorised members.</div>
-    </div>
-    <div style="display:flex;gap:7px;flex-wrap:wrap">
-      <button class="btn primary" type="button" onclick="document.getElementById('title').focus()">＋ PUBLISH CONTENT</button>
-      <button class="btn light" type="button" onclick="document.getElementById('memberName').focus()">＋ ADD MEMBER</button>
-      <button class="btn light" type="button" onclick="loadGithubPdfs()">📚 CIRCULAR LIBRARY</button>
-    </div>
-  </div>
-  <div class="grid">
-    <section id="publishSection" class="card section nav-section">
-      <div class="section-head"><div><h2 id="formHeading">Publish Content</h2><span>CREATE · EDIT · PUBLISH</span></div><span style="color:#7b1024;font-weight:800">● LIVE</span></div>
-      <div class="form-grid">
-        <div class="field"><label>CONTENT TYPE</label><select id="type"><option value="updates">Update / Notice</option><option value="circulars">Circular</option><option value="events">Event</option></select></div>
-        <div class="field"><label>DATE</label><input id="publishDate" type="date"></div>
-        <div class="field full"><label>TITLE *</label><input id="title" maxlength="180" placeholder="Enter a clear title"></div>
-        <div class="field full"><label>CATEGORY (OPTIONAL)</label><input id="category" maxlength="60" placeholder="Transfer, Pension, Strike, Meeting..."></div><div class="field full"><label>VISIBILITY · WHO CAN SEE THIS?</label><select id="visibility"><option value="public">🌐 Everyone</option><option value="members">🔐 Members Only</option></select></div>
-        <div class="field full"><label>DETAILS</label><textarea id="details" maxlength="5000" placeholder="Enter details"></textarea></div>
-        <div class="field full">
-          <label>PDF / PUBLIC LINK (OPTIONAL)</label>
-          <input id="link" type="url" placeholder="https://askunion.in/your-file.pdf">
-          <div class="pdf-helper">
-            <div class="pdf-helper-title">📄 Quick PDF Link</div>
-            <div class="pdf-helper-text">First upload the PDF to the GitHub repository, then enter only its filename below.</div>
-            <div class="pdf-helper-row">
-              <input id="pdfFilename" type="text" placeholder="Example: circular-15-41.pdf">
-              <button type="button" class="btn light pdf-generate" onclick="generatePdfLink()">GENERATE LINK</button>
-            </div>
-            <div class="pdf-helper-note">Generated link: <b>https://askunion.in/filename.pdf</b></div>
-          </div>
-        </div>
-      </div>
-      
-      <div id="librarySection" class="github-pdf-box nav-section">
-        <div class="github-pdf-head">
-          <h3>📚 GitHub Circular Library</h3>
-          <button type="button" class="btn light" onclick="loadGithubPdfs()">↻ REFRESH</button>
-        </div>
-        <div id="githubPdfStatus" class="github-pdf-status">Upload/commit a PDF in GitHub, then it will appear here automatically.</div>
-        <div id="githubPdfList" class="github-pdf-list">
-          <div class="github-pdf-empty">Loading…</div>
-        </div>
-      </div>
-
-      <div class="actions"><button id="publishButton" class="btn primary" onclick="publish()">PUBLISH</button><button id="cancelButton" class="btn light hidden" onclick="cancelEdit()">CANCEL EDIT</button></div>
-      <div id="message"></div>
-    </section>
-    <section id="publishedSection" class="card section nav-section">
-      <div class="section-head"><div><h2>Published Content</h2><span>MANAGE YOUR LIVE CONTENT</span></div><span id="resultCount"></span></div>
-      <div class="toolbar"><input id="searchBox" type="search" placeholder="Search title, details or category…" oninput="renderList()"><select id="manageType" onchange="loadContent()"><option value="updates">Updates / Notices</option><option value="circulars">Circulars</option><option value="events">Events</option></select></div>
-      <div id="contentList" class="list"><div class="empty">Loading…</div></div>
-    </section>
-  </div>
-<section class="card section full-section" id="questionsSection">
-
-  <div class="section-title-row">
-    <div>
-      <h2>❓ Questions</h2>
-      <p>Manage questions submitted through ASK UNION FAQ.</p>
-    </div>
-
-    <div class="member-summary">
-      <div class="mini-stat">
-        <b id="questionTotal">0</b>
-        <span>Total</span>
-      </div>
-
-      <div class="mini-stat">
-        <b id="questionNew">0</b>
-        <span>New</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="toolbar">
-    <input
-      id="questionSearch"
-      type="search"
-      placeholder="Search name, mobile, email or question..."
-      oninput="renderQuestions()"
-    >
-
-    <select id="questionStatus" onchange="renderQuestions()">
-      <option value="all">All Questions</option>
-      <option value="new">New</option>
-      <option value="answered">Answered</option>
-    </select>
-  </div>
-
-  <div id="questionsList" class="list">
-    <div class="empty">Loading questions...</div>
-  </div>
-
-</section>
-<section class="card section full-section">
-<div class="section-title-row">
-<div><h2>👥 Member Management</h2><p>Add authorised members and control who can use the member area.</p></div>
-<div class="member-summary">
-<div class="mini-stat"><b id="memberTotal">0</b>Total</div>
-<div class="mini-stat"><b id="memberActive">0</b>Active</div>
-<div class="mini-stat"><b id="memberInactive">0</b>Inactive</div>
-</div></div>
-<div class="member-layout">
-<div class="member-form">
-<h3 id="memberFormHeading">Add New Member</h3>
-<div class="field"><label>EMPLOYEE NUMBER *</label><input id="memberEmployeeNo" type="text" maxlength="30" inputmode="numeric" placeholder="Employee number"></div>
-<div class="field"><label>MEMBER NAME *</label><input id="memberName" type="text" maxlength="100" placeholder="Full name"></div>
-<div class="field"><label>EMAIL *</label><input id="memberEmail" type="email" maxlength="160" placeholder="member@example.com"></div>
-<div class="field"><label>PASSWORD *</label><input id="memberPassword" type="password" minlength="6" autocomplete="new-password" placeholder="Minimum 6 characters"></div>
-<div class="password-hint" id="memberPasswordHint">Used only to create the Firebase account; not stored in Firestore.</div>
-<div class="field"><label>ROLE</label><select id="memberRole"><option>Member</option><option>Office Bearer</option></select></div>
-<div class="field"><label>STATUS</label><select id="memberStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
-<div class="actions"><button id="memberSaveButton" class="btn primary" onclick="saveMember()">ADD MEMBER</button><button id="memberCancelButton" class="btn light hidden" onclick="cancelMemberEdit()">CANCEL</button></div>
-<div id="memberMessage"></div>
-<div class="member-note">Only members marked <b>Active</b> should be allowed by the member login page. Members should log in using their <b>Employee Number + Password</b>. Employee Number must be unique.</div>
-</div>
-<div class="member-list-wrap">
-<div class="member-toolbar"><input id="memberSearch" type="search" placeholder="Search employee no., name or email…" oninput="renderMembers()"><button class="btn light" type="button" onclick="loadMembers()">↻ REFRESH MEMBERS</button></div>
-<div id="memberList" class="member-list"><div class="member-empty">Loading members…</div></div>
-</div></div></section>
-
-</main>
-</div>
-</div>
-</div>
-
-
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-functions-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",
-  authDomain: "ask-union-jaipur-circle.firebaseapp.com",
-  projectId: "ask-union-jaipur-circle",
-  storageBucket: "ask-union-jaipur-circle.firebasestorage.app",
-  messagingSenderId: "584327754977",
-  appId: "1:584327754977:web:7164a85c007165743ef3a"
-};
-firebase.initializeApp(firebaseConfig);
-const auth=firebase.auth(),db=firebase.firestore();
-const memberApp=firebase.initializeApp(firebaseConfig,"memberManager");
-const memberAuth=memberApp.auth();
-let editingId=null,editingType=null,currentItems=[],busy=false;
-let editingMemberId=null,members=[],memberBusy=false;
-const $=id=>document.getElementById(id);
-function escapeHtml(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
-function safeUrl(v){try{const u=new URL(v);return["http:","https:"].includes(u.protocol)?u.href:""}catch{return""}}
-function today(){return new Date().toISOString().slice(0,10)}
-function formatDate(v){if(!v)return"";const d=new Date(String(v).length===10?v+"T00:00:00":v);return Number.isNaN(d.getTime())?String(v):d.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})}
-function msg(t,type="success",target="message"){$(target).innerHTML=t?`<div class="alert ${type}">${escapeHtml(t)}</div>`:""}
-async function getItems(type){const s=await db.collection(type).get(),a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));return a.sort((x,y)=>String(y.date||y.createdAt||"").localeCompare(String(x.date||x.createdAt||"")))}
-function login(){const e=$("email").value.trim(),p=$("password").value;if(!e||!p){msg("Enter email and password.","error","loginMessage");return}auth.signInWithEmailAndPassword(e,p).catch(error=>{console.error("ASK UNION LOGIN ERROR:",error); const code=error&&error.code?error.code:"unknown"; const detail=error&&error.message?error.message:"Unknown Firebase error"; msg("Login failed: "+code+" — "+detail,"error","loginMessage")})}
-function logout(){auth.signOut()}
-auth.onAuthStateChanged(u=>{
-if(u){$("loginView").classList.add("hidden");$("adminView").classList.remove("hidden");$("adminEmail").textContent=u.email||"";resetForm();resetMemberForm();refreshAll();loadGithubPdfs();loadMembers();}
-else{$("loginView").classList.remove("hidden");$("adminView").classList.add("hidden")}
-})
-async function loadContent(){const t=$("manageType").value;$("contentList").innerHTML='<div class="empty">Loading…</div>';try{currentItems=await getItems(t);renderList()}catch(e){console.error(e);$("contentList").innerHTML='<div class="empty">Unable to load content. Please refresh.</div>'}}
-function renderList(){const q=$("searchBox").value.trim().toLowerCase(),a=currentItems.filter(x=>[x.title,x.details,x.category,x.link].some(v=>String(v||"").toLowerCase().includes(q)));$("resultCount").textContent=a.length+" item"+(a.length===1?"":"s");if(!a.length){$("contentList").innerHTML='<div class="empty">No matching content found.</div>';return}$("contentList").innerHTML=a.map(x=>{const u=safeUrl(x.link||"");return`<article class="item"><div class="item-top"><div class="title">${escapeHtml(x.title||"Untitled")}</div>${x.category?`<span class="badge">${escapeHtml(x.category)}</span>`:""}</div><div class="meta">📅 ${escapeHtml(formatDate(x.date))} ${x.visibility==="members"?'<span class="visibility-badge">🔐 MEMBERS ONLY</span>':'<span class="visibility-badge">🌐 PUBLIC</span>'}</div>${x.details?`<div class="details">${escapeHtml(x.details)}</div>`:""}${u?`<a class="link" href="${escapeHtml(u)}" target="_blank" rel="noopener">📄 Open PDF / Link →</a>`:""}<div class="item-actions"><button class="btn edit" onclick="editContent('${escapeHtml(x.id)}')">EDIT</button><button class="btn danger" onclick="deleteContent('${escapeHtml(x.id)}')">DELETE</button></div></article>`}).join("")}
-async function loadQuestions(){
-  const list=$("questionsList");
-  if(!list)return;
-
-  list.innerHTML='<div class="empty">Loading questions...</div>';
-
-  try{
-    const snap=await db.collection("questions").get();
-    window.questionItems=[];
-
-    snap.forEach(d=>{
-      window.questionItems.push({
-        id:d.id,
-        ...d.data()
-      });
-    });
-
-    window.questionItems.sort((a,b)=>
-      String(b.createdAt||"").localeCompare(String(a.createdAt||""))
-    );
-
-    renderQuestions();
-
-  }catch(e){
-    console.error("QUESTIONS LOAD ERROR:",e);
-    list.innerHTML=
-      '<div class="empty">Unable to load questions.</div>';
-  }
+.hidden{
+  display:none!important;
 }
 
-function renderQuestions(){
-
-  const list=$("questionsList");
-  if(!list)return;
-
-  const search=($("questionSearch")?.value||"")
-    .trim()
-    .toLowerCase();
-
-  const status=$("questionStatus")?.value||"all";
-
-  const all=window.questionItems||[];
-
-  const filtered=all.filter(q=>{
-
-    const matchesSearch=[
-      q.name,
-      q.mobile,
-      q.email,
-      q.question
-    ].some(v=>
-      String(v||"").toLowerCase().includes(search)
-    );
-
-    const matchesStatus=
-      status==="all" ||
-      String(q.status||"new")===status;
-
-    return matchesSearch && matchesStatus;
-  });
-
-  $("questionTotal").textContent=all.length;
-
-  $("questionNew").textContent=
-    all.filter(q=>String(q.status||"new")==="new").length;
-
-  if(!filtered.length){
-    list.innerHTML=
-      '<div class="empty">No questions found.</div>';
-    return;
-  }
-
-  list.innerHTML=filtered.map(q=>{
-
-    const qStatus=String(q.status||"new");
-
-    return `
-      <article class="item">
-
-        <div class="item-top">
-          <div class="title">
-            ${escapeHtml(q.name||"Unknown")}
-          </div>
-
-          <span class="badge">
-            ${qStatus==="answered" ? "ANSWERED" : "NEW"}
-          </span>
-        </div>
-
-        <div class="meta">
-          📱 ${escapeHtml(q.mobile||"")} 
-          · ✉️ ${escapeHtml(q.email||"")}
-        </div>
-
-        <div class="meta">
-          📅 ${escapeHtml(formatDate(q.createdAt||q.date||""))}
-        </div>
-
-        <div class="details">
-          ${escapeHtml(q.question||"")}
-        </div>
-
-        ${
-          q.reply
-          ? `
-            <div class="details"
-                 style="margin-top:10px;padding:10px;background:#f7f3f4;border-radius:10px;">
-              <b>Reply:</b><br>
-              ${escapeHtml(q.reply)}
-            </div>
-          `
-          : ""
-        }
-
-        <div class="item-actions">
-
-          <button
-            class="btn light"
-            onclick="viewQuestion('${escapeHtml(q.id)}')">
-            VIEW
-          </button>
-
-          <button
-            class="btn edit"
-            onclick="replyQuestion('${escapeHtml(q.id)}')">
-            REPLY
-          </button>
-
-          ${
-            qStatus!=="answered"
-            ? `
-              <button
-                class="btn primary"
-                onclick="markQuestionAnswered('${escapeHtml(q.id)}')">
-                ANSWERED
-              </button>
-            `
-            : ""
-          }
-
-          <button
-            class="btn danger"
-            onclick="deleteQuestion('${escapeHtml(q.id)}')">
-            DELETE
-          </button>
-
-        </div>
-
-      </article>
-    `;
-
-  }).join("");
-}
-
-function viewQuestion(id){
-
-  const q=(window.questionItems||[])
-    .find(x=>x.id===id);
-
-  if(!q)return;
-
-  alert(
-    "Name: "+(q.name||"")+
-    "\\nMobile: "+(q.mobile||"")+
-    "\\nEmail: "+(q.email||"")+
-    "\\n\\nQuestion:\\n"+(q.question||"")+
-    (q.reply
-      ? "\\n\\nReply:\\n"+q.reply
-      : "")
-  );
-}
-
-async function replyQuestion(id){
-
-  const q=(window.questionItems||[])
-    .find(x=>x.id===id);
-
-  if(!q)return;
-
-  const reply=prompt(
-    "Enter reply for this question:",
-    q.reply||""
-  );
-
-  if(reply===null)return;
-
-  const text=reply.trim();
-
-  if(!text){
-    alert("Please enter a reply.");
-    return;
-  }
-
-  try{
-
-    await db.collection("questions")
-      .doc(id)
-      .update({
-        reply:text,
-        status:"answered",
-        repliedAt:new Date().toISOString(),
-        repliedBy:auth.currentUser?.email||""
-      });
-
-    await loadQuestions();
-
-  }catch(e){
-
-    console.error(e);
-    alert("Reply failed: "+e.message);
-
-  }
-}
-
-async function markQuestionAnswered(id){
-
-  try{
-
-    await db.collection("questions")
-      .doc(id)
-      .update({
-        status:"answered",
-        answeredAt:new Date().toISOString(),
-        answeredBy:auth.currentUser?.email||""
-      });
-
-    await loadQuestions();
-
-  }catch(e){
-
-    console.error(e);
-    alert("Unable to update status: "+e.message);
-
-  }
-}
-
-async function deleteQuestion(id){
-
-  const q=(window.questionItems||[])
-    .find(x=>x.id===id);
-
-  if(!q)return;
-
-  if(!confirm(
-    "Delete this question from Admin Panel?\\n\\n"+
-    (q.question||"")
-  ))return;
-
-  try{
-
-    await db.collection("questions")
-      .doc(id)
-      .delete();
-
-    await loadQuestions();
-
-  }catch(e){
-
-    console.error(e);
-    alert("Delete failed: "+e.message);
-
-  }
-}
-async function refreshAll(){try{const[u,c,e]=await Promise.all([getItems("updates"),getItems("circulars"),getItems("events")]);$("countUpdates").textContent=u.length;$("countCirculars").textContent=c.length;$("countEvents").textContent=e.length;const t=$("manageType").value;currentItems=t==="updates"?u:t==="circulars"?c:e;renderList();await loadQuestions()}catch(e){console.error(e);loadContent()}}
-async function publish(){if(busy)return;const t=$("type").value,title=$("title").value.trim(),details=$("details").value.trim(),link=$("link").value.trim(),category=$("category").value.trim(),visibility=$("visibility").value,date=$("publishDate").value||today();if(!title){msg("Please enter a title.","error");$("title").focus();return}if(link&&!safeUrl(link)){msg("Please enter a valid http/https link.","error");$("link").focus();return}if(editingId&&t!==editingType){msg("Content type cannot be changed while editing.","error");return}busy=true;$("publishButton").disabled=true;try{const d={title,details,link,category,visibility,date};if(editingId){d.updatedAt=new Date().toISOString();await db.collection(editingType).doc(editingId).update(d);msg("Updated successfully.")}else{d.createdAt=new Date().toISOString();d.createdBy=auth.currentUser?.email||"";await db.collection(t).add(d);msg("Published successfully.")}resetForm();await refreshAll()}catch(e){console.error(e);msg("Unable to save: "+e.message,"error")}finally{busy=false;$("publishButton").disabled=false}}
-function editContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x)return;editingId=id;editingType=t;$("type").value=t;$("type").disabled=true;$("title").value=x.title||"";$("details").value=x.details||"";$("link").value=x.link||"";$("category").value=x.category||"";$("visibility").value=x.visibility==="members"?"members":"public";$("publishDate").value=/^\d{4}-\d{2}-\d{2}$/.test(String(x.date||""))?x.date:today();$("formHeading").textContent="Edit Content";$("publishButton").textContent="UPDATE";$("cancelButton").classList.remove("hidden");scrollTo({top:0,behavior:"smooth"})}
-async function deleteContent(id){const t=$("manageType").value,x=currentItems.find(v=>v.id===id);if(!x||!confirm(`Delete “${x.title||"this item"}”? This cannot be undone.`))return;try{await db.collection(t).doc(id).delete();msg("Deleted successfully.");await refreshAll()}catch(e){msg("Delete failed: "+e.message,"error")}}
-function cancelEdit(){resetForm()}
-function generatePdfLink(){
-  const raw=$("pdfFilename").value.trim();
-  if(!raw){msg("Enter the PDF filename first.","error");$("pdfFilename").focus();return}
-  const filename=raw.replace(/^https?:\/\/[^/]+\//,"").replace(/^\/+/,"");
-  const encoded=filename.split("/").map(part=>encodeURIComponent(part)).join("/");
-  $("link").value="https://askunion.in/"+encoded;
-  msg("PDF link generated. Check it, then publish.","success");
-}
-
-/* ================= GITHUB PDF / CIRCULAR LIBRARY ================= */
-/*
-  Circular Library reads a tiny JSON manifest from the repository instead of
-  calling api.github.com. GitHub Actions can regenerate that manifest whenever
-  PDFs are added/removed. A built-in fallback keeps the library usable even
-  before the first manifest is generated.
-*/
-const GITHUB_OWNER = "sbisajaipur";
-const GITHUB_REPO = "Ask-union-jaipur";
-const GITHUB_BRANCH = "main";
-const GITHUB_SITE = "https://askunion.in/";
-const PDF_MANIFEST_URL = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/pdf-manifest.json`;
-const FALLBACK_PDFS = [
-  "DOC-20260809-WA0046..pdf",
-  "DOC-20260810-WA0019..pdf",
-  "SBI CARES COMPENDIUM OF STAFF BENEFITS BY SBSC.pdf",
-  "SBI_Award_clerical_Duties_Career_Progression_30_May_2021 (2).pdf",
-  "SBI_Staff_Rules_Quick_Reference_Hindi_FIXED.pdf",
-  "Uniform Transfer policy for award staff.pdf",
-  "medical-form.pdf",
-  "membership-form.pdf",
-  "personal-loan.pdf",
-  "transfer-application.pdf",
-  "union letter.pdf"
-];
-
-function githubPdfUrl(path){
-  return GITHUB_SITE + path.split("/").map(encodeURIComponent).join("/");
-}
-function githubPdfTitle(path){
-  const name = path.split("/").pop().replace(/\.pdf$/i,"");
-  return name.replace(/[_-]+/g," ").replace(/\s+/g," ").trim();
-}
-
-async function getGithubPdfFiles(){
-  try{
-    const r=await fetch(PDF_MANIFEST_URL+"?v="+Date.now(),{
-      method:"GET",cache:"no-store",headers:{"Accept":"application/json"}
-    });
-    if(!r.ok) throw new Error("manifest HTTP "+r.status);
-    const data=await r.json();
-    if(!Array.isArray(data)) throw new Error("invalid manifest format");
-    const files=data.filter(x=>x&&typeof x.path==="string"&&/\.pdf$/i.test(x.path));
-    if(files.length)return {files,source:"manifest"};
-    throw new Error("manifest contains no PDFs");
-  }catch(error){
-    console.warn("PDF manifest unavailable; using built-in fallback.",error);
-    return {files:FALLBACK_PDFS.map(path=>({path})),source:"fallback"};
-  }
-}
-
-async function loadGithubPdfs(){
-  const status=$("githubPdfStatus"),list=$("githubPdfList");
-  if(!status||!list)return;
-  status.textContent="Checking circular library…";
-  list.innerHTML='<div class="github-pdf-empty">Loading circulars…</div>';
-  try{
-    const result=await getGithubPdfFiles();
-    const pdfs=result.files;
-    pdfs.sort((a,b)=>a.path.localeCompare(b.path,undefined,{sensitivity:"base"}));
-    if(!pdfs.length){
-      status.textContent="No PDF files found in GitHub.";
-      list.innerHTML='<div class="github-pdf-empty">No PDF files found.</div>';
-      return;
-    }
-    status.textContent=`${pdfs.length} PDF${pdfs.length===1?"":"s"} found${result.source==="fallback"?" · fallback list":""}`;
-    list.innerHTML=pdfs.map(file=>{
-      const title=githubPdfTitle(file.path),url=githubPdfUrl(file.path);
-      return `<div class="github-pdf-item">
-        <div class="github-pdf-name">📄 ${escapeHtml(file.path)}</div>
-        <button type="button" class="github-pdf-btn"
-          onclick='useGithubPdf(${JSON.stringify(file.path)},${JSON.stringify(title)},${JSON.stringify(url)})'>
-          ADD TO CIRCULAR
-        </button>
-      </div>`;
-    }).join("");
-  }catch(error){
-    console.error("Circular Library error:",error);
-    status.textContent="Circular Library connection failed.";
-    list.innerHTML=`<div class="github-pdf-empty">
-      <b>Unable to load circulars.</b><br>
-      ${escapeHtml(error.message||"Unknown library error.")}
-      <br><br><button type="button" class="btn light" onclick="loadGithubPdfs()">↻ TRY AGAIN</button>
-    </div>`;
-  }
-}
-
-function useGithubPdf(path,title,url){
-  $("type").value="circulars";
-  $("title").value=title;
-  $("link").value=url;
-  if($("pdfFilename")) $("pdfFilename").value=path;
-  msg("GitHub circular selected. Check the date/details, then click PUBLISH.","success");
-  $("title").focus();
-}
-/* ================= END GITHUB PDF / CIRCULAR LIBRARY ================= */
-
-
-
-function goAdminSection(id,button){
- const el=$(id);if(!el)return;
- document.querySelectorAll(".sidebar-btn").forEach(b=>b.classList.remove("active"));
- if(button)button.classList.add("active");
- el.scrollIntoView({behavior:"smooth",block:"start"});
-}
-window.addEventListener("scroll",()=>{
- const ids=["dashboardSection","publishSection","publishedSection","memberSection","librarySection"];
- let current="dashboardSection";
- ids.forEach(id=>{const el=$(id);if(el&&window.scrollY+120>=el.offsetTop)current=id});
- document.querySelectorAll(".sidebar-btn").forEach(b=>b.classList.toggle("active",b.dataset.target===current));
-});
-
-/* MEMBER MANAGEMENT */
-function normalizeEmployeeNo(v){
-  return String(v||"").trim().replace(/\s+/g,"");
-}
-
-async function loadMembers(){
-  const list=$("memberList"); if(!list)return;
-  list.innerHTML='<div class="member-empty">Loading members…</div>';
-  try{
-    const snap=await db.collection("members").get();
-    members=[];
-    snap.forEach(d=>members.push({id:d.id,...d.data()}));
-    members.sort((a,b)=>String(a.employeeNo||"").localeCompare(String(b.employeeNo||"")) ||
-                         String(a.name||"").localeCompare(String(b.name||"")));
-    renderMembers();
-  }catch(e){
-    console.error(e);
-    list.innerHTML='<div class="member-empty">Members could not be loaded. Check Firestore access for the members collection.</div>';
-  }
-}
-
-function renderMembers(){
-  const q=($("memberSearch")?.value||"").trim().toLowerCase();
-  const f=members.filter(m=>[
-    m.employeeNo,m.name,m.email,m.role
-  ].some(v=>String(v||"").toLowerCase().includes(q)));
-
-  const active=members.filter(m=>m.active!==false).length;
-  $("memberTotal").textContent=members.length;
-  $("memberActive").textContent=active;
-  $("memberInactive").textContent=members.length-active;
-
-  if(!f.length){
-    $("memberList").innerHTML='<div class="member-empty">'+
-      (members.length?'No matching members found.':'No members added yet.')+
-      '</div>';
-    return;
-  }
-
-  $("memberList").innerHTML=f.map(m=>{
-    const a=m.active!==false;
-    return `<div class="member-row">
-      <div class="member-main">
-        <div class="member-name">${escapeHtml(m.name||"Unnamed member")}</div>
-        <div class="member-email">Employee No.: <b>${escapeHtml(m.employeeNo||"—")}</b> · ${escapeHtml(m.email||"")}</div>
-        <div class="member-meta">
-          <span class="status ${a?"active":"inactive"}">${a?"● ACTIVE":"● INACTIVE"}</span>
-          <span class="role-badge">${escapeHtml(m.role||"Member")}</span>
-        </div>
-      </div>
-      <div class="member-actions">
-        <button class="btn edit" onclick="editMember('${escapeHtml(m.id)}')">EDIT</button>
-        <button class="btn ${a?"danger":"primary"}" onclick="toggleMember('${escapeHtml(m.id)}')">${a?"DEACTIVATE":"ACTIVATE"}</button>
-        <button class="btn light" onclick="sendMemberReset('${escapeHtml(m.email||"")}')">RESET PASSWORD</button>
-        <button class="btn danger" onclick="deleteMember('${escapeHtml(m.id)}')">DELETE</button>
-      </div>
-    </div>`;
-  }).join("");
-}
-
-async function saveMember(){
-  if(memberBusy)return;
-
-  const employeeNo=normalizeEmployeeNo($("memberEmployeeNo").value);
-  const name=$("memberName").value.trim();
-  const email=$("memberEmail").value.trim().toLowerCase();
-  const password=$("memberPassword").value;
-  const role=$("memberRole").value;
-  const active=$("memberStatus").value==="active";
-
-  if(!employeeNo){
-    msg("Enter employee number.","error","memberMessage");
-    $("memberEmployeeNo").focus();
-    return;
-  }
-  if(!name||!email){
-    msg("Enter member name and email.","error","memberMessage");
-    return;
-  }
-  if(!editingMemberId&&password.length<6){
-    msg("Password must be at least 6 characters.","error","memberMessage");
-    return;
-  }
-
-  // Employee number must be unique.
-  try{
-    const existing=await db.collection("members")
-      .where("employeeNo","==",employeeNo).get();
-
-    const duplicate=existing.docs.find(d=>d.id!==editingMemberId);
-    if(duplicate){
-      msg("This employee number is already registered.","error","memberMessage");
-      $("memberEmployeeNo").focus();
-      return;
-    }
-  }catch(e){
-    console.error("Employee number check failed:",e);
-    msg("Could not verify employee number uniqueness: "+e.message,"error","memberMessage");
-    return;
-  }
-
-  memberBusy=true;
-  $("memberSaveButton").disabled=true;
-
-  try{
-    if(editingMemberId){
-      await db.collection("members").doc(editingMemberId).update({
-        employeeNo,name,role,active,
-        updatedAt:new Date().toISOString()
-      });
-      msg("Member updated successfully.","success","memberMessage");
-    }else{
-      const cred=await memberAuth.createUserWithEmailAndPassword(email,password);
-
-      await db.collection("members").doc(cred.user.uid).set({
-        uid:cred.user.uid,
-        employeeNo,
-        name,
-        email,
-        role,
-        active,
-        createdAt:new Date().toISOString(),
-        createdBy:auth.currentUser?.email||""
-      });
-
-    
-      await memberAuth.signOut();
-      msg("Member added successfully.","success","memberMessage");
-    }
-
-    resetMemberForm();
-    await loadMembers();
-  }catch(e){
-    console.error(e);
-    let d=e?.message||"Unable to save member.";
-    if(e?.code==="auth/email-already-in-use")d="This email is already registered in Firebase Authentication.";
-    if(e?.code==="auth/invalid-email")d="Please enter a valid email address.";
-    if(e?.code==="auth/weak-password")d="Password must be at least 6 characters.";
-    msg(d,"error","memberMessage");
-  }finally{
-    memberBusy=false;
-    $("memberSaveButton").disabled=false;
-  }
-}
-
-function editMember(id){
-  const m=members.find(x=>x.id===id);
-  if(!m)return;
-
-  editingMemberId=id;
-  $("memberFormHeading").textContent="Edit Member";
-  $("memberEmployeeNo").value=m.employeeNo||"";
-  $("memberEmployeeNo").disabled=false;
-  $("memberName").value=m.name||"";
-  $("memberEmail").value=m.email||"";
-  $("memberEmail").disabled=true;
-  $("memberPassword").value="";
-  $("memberPassword").disabled=true;
-  $("memberPassword").placeholder="Use Reset Password instead";
-  $("memberPasswordHint").textContent="Password is managed by Firebase Authentication. Use RESET PASSWORD to send a reset email.";
-  $("memberRole").value=m.role||"Member";
-  $("memberStatus").value=m.active===false?"inactive":"active";
-  $("memberSaveButton").textContent="UPDATE MEMBER";
-  $("memberCancelButton").classList.remove("hidden");
-  $("memberEmployeeNo").focus();
-}
-
-function resetMemberForm(){
-  editingMemberId=null;
-  if(!$("memberFormHeading"))return;
-
-  $("memberFormHeading").textContent="Add New Member";
-  $("memberEmployeeNo").value="";
-  $("memberEmployeeNo").disabled=false;
-  $("memberName").value="";
-  $("memberEmail").value="";
-  $("memberEmail").disabled=false;
-  $("memberPassword").value="";
-  $("memberPassword").disabled=false;
-  $("memberPassword").placeholder="Minimum 6 characters";
-  $("memberPasswordHint").textContent="Used only to create the Firebase account; not stored in Firestore.";
-  $("memberRole").value="Member";
-  $("memberStatus").value="active";
-  $("memberSaveButton").textContent="ADD MEMBER";
-  $("memberCancelButton").classList.add("hidden");
-}
-
-function cancelMemberEdit(){
-  resetMemberForm();
-  msg("","success","memberMessage");
-}
-
-async function toggleMember(id){
-  const m=members.find(x=>x.id===id);
-  if(!m)return;
-
-  const next=m.active===false;
-  if(!confirm(`${next?"Activate":"Deactivate"} ${m.name||m.email}?`))return;
-
-  try{
-    await db.collection("members").doc(id).update({
-      active:next,
-      updatedAt:new Date().toISOString()
-    });
-    msg(`Member ${next?"activated":"deactivated"} successfully.`,"success","memberMessage");
-    await loadMembers();
-  }catch(e){
-    msg("Unable to change member status: "+e.message,"error","memberMessage");
-  }
-}
-
-async function sendMemberReset(email){
-  if(!email)return;
-
-  if(!confirm(`Send a password reset email to ${email}?`))return;
-
-  try{
-    await auth.sendPasswordResetEmail(email);
-    msg("Password reset email sent successfully to "+email+".","success","memberMessage");
-  }catch(e){
-    console.error("Password reset error:",e);
-    let detail=e?.message||"Unable to send reset email.";
-    if(e?.code==="auth/user-not-found") detail="This member email is not registered in Firebase Authentication.";
-    if(e?.code==="auth/invalid-email") detail="The member email address is invalid.";
-    if(e?.code==="auth/too-many-requests") detail="Too many reset attempts. Please wait and try again.";
-    if(e?.code==="auth/unauthorized-continue-uri") detail="Firebase password-reset settings need the website domain to be authorised.";
-    msg(detail,"error","memberMessage");
-  }
-}
-
-async function deleteMember(id){
-  const m=members.find(x=>x.id===id);
-  if(!m)return;
-
-  const name=m.name||"this member";
-  const employeeNo=m.employeeNo||"";
-
-  const warning=
-    `PERMANENTLY DELETE ${name}${employeeNo?` (Employee No. ${employeeNo})`:""}?\n\n`+
-    `This will delete BOTH:\n`+
-    `• Firebase Authentication account\n`+
-    `• ASK UNION member record\n\n`+
-    `This action cannot be undone.`;
-
-  if(!confirm(warning))return;
-
-  try{
-    if(!firebase.functions){
-      throw new Error("Firebase Functions SDK is not loaded.");
-    }
-
-    const deleteMemberFn=
-      firebase.functions().httpsCallable("deleteMember");
-
-    const result=
-      await deleteMemberFn({uid:id});
-
-    const data=result.data||{};
-
-    if(data.success!==true){
-      throw new Error(
-        data.message||"Member deletion failed."
-      );
-    }
-
-    msg(
-      `Member ${name} permanently deleted.`,
-      "success",
-      "memberMessage"
-    );
-
-    await loadMembers();
-    resetMemberForm();
-
-  }catch(e){
-    console.error(
-      "PERMANENT MEMBER DELETE ERROR:",
-      e
-    );
-
-    let detail=
-      e?.message||
-      "Unable to permanently delete member.";
-
-    if(e?.code==="functions/unauthenticated"){
-      detail="Admin session expired. Please login again.";
-    }else if(e?.code==="functions/permission-denied"){
-      detail="You are not authorised to delete members.";
-    }else if(e?.code==="functions/not-found"){
-      detail="Member record was not found.";
-    }else if(e?.code==="functions/failed-precondition"){
-      detail="This member cannot be deleted.";
-    }
-
-    msg(
-      detail,
-      "error",
-      "memberMessage"
-    );
-  }
-}
-/* END MEMBER MANAGEMENT */
-
-function resetForm(){editingId=null;editingType=null;$("type").disabled=false;$("formHeading").textContent="Publish Content";$("publishButton").textContent="PUBLISH";$("cancelButton").classList.add("hidden");$("title").value="";$("details").value="";$("link").value="";$("category").value="";$("visibility").value="public";$("publishDate").value=today();if($("pdfFilename"))$("pdfFilename").value=""}
-$("publishDate").value=today();
-</script>
-<!-- ================= CONTACT UNION MESSAGES ================= -->
-
-<section id="contactMessagesSection" class="admin-contact-messages">
-
-  <div class="contact-admin-header">
-
-    <div>
-      <h2>📞 Contact Union Messages</h2>
-      <p>Messages received from members</p>
-    </div>
-
-    <div class="contact-admin-actions">
-      <span id="contactUnreadBadge" class="contact-unread-badge">
-        0 Unread
-      </span>
-
-      <button
-        type="button"
-        class="btn primary"
-        onclick="loadContactMessages()">
-        🔄 REFRESH
-      </button>
-    </div>
-
-  </div>
-
-  <div id="contactMessagesStatus"
-       class="contact-messages-status">
-    Loading messages...
-  </div>
-
-  <div id="contactMessagesList"
-       class="contact-messages-list">
-  </div>
-
-</section>
-
-
-<style>
-
-/* ================= CONTACT ADMIN ================= */
-
-.admin-contact-messages{
-  margin:30px 0;
-  padding:22px;
+.card{
   background:#fff;
-  border:1px solid #eadfe7;
+  border:1px solid var(--line);
   border-radius:18px;
-  box-shadow:0 8px 25px rgba(0,0,0,.06);
+  box-shadow:0 7px 25px #2314190d;
 }
 
-.contact-admin-header{
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:linear-gradient(135deg,#7b1024,#520918);
+  color:#fff;
+  padding:11px 16px;
+}
+
+.topbar-inner{
+  max-width:1180px;
+  margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
-  margin-bottom:20px;
+  gap:10px;
 }
 
-.contact-admin-header h2{
-  margin:0;
-  color:#7b1024;
-  font-size:21px;
-}
-
-.contact-admin-header p{
-  margin:4px 0 0;
-  color:#777;
-  font-size:12px;
-}
-
-.contact-admin-actions{
+.brand{
   display:flex;
   align-items:center;
+  gap:10px;
+}
+
+.brand img{
+  width:40px;
+  height:40px;
+  border-radius:11px;
+  background:#fff;
+  padding:4px;
+}
+
+.brand-title{
+  font-weight:900;
+  font-size:17px;
+}
+
+.brand-sub{
+  font-size:8px;
+  letter-spacing:1px;
+  opacity:.8;
+}
+
+.logout{
+  border:1px solid #ffffff40;
+  background:#ffffff18;
+  color:#fff;
+  border-radius:10px;
+  padding:9px 12px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.container{
+  max-width:1180px;
+  margin:auto;
+  padding:18px 14px 45px;
+}
+
+.login-card{
+  max-width:450px;
+  margin:8vh auto;
+  padding:28px;
+}
+
+.login-card h1{
+  color:var(--m);
+  margin:20px 0 5px;
+}
+
+/* =========================
+   ADMIN LAYOUT
+========================= */
+
+.admin-shell{
+  display:flex;
+  min-height:calc(100vh - 62px);
+}
+
+.admin-sidebar{
+  width:220px;
+  flex:0 0 220px;
+  background:#fff;
+  border-right:1px solid var(--line);
+  padding:15px 10px;
+  position:sticky;
+  top:62px;
+  height:calc(100vh - 62px);
+}
+
+.sidebar-label{
+  font-size:9px;
+  font-weight:900;
+  color:#999;
+  padding:5px 10px 8px;
+}
+
+.sidebar-nav{
+  display:grid;
+  gap:5px;
+}
+
+.sidebar-btn{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#4b5563;
+  border-radius:10px;
+  padding:10px;
+  font-size:10px;
+  font-weight:800;
+  text-align:left;
+  cursor:pointer;
+}
+
+.sidebar-btn.active,
+.sidebar-btn:hover{
+  background:#f4e7ea;
+  color:var(--m);
+}
+
+.admin-main{
+  flex:1;
+  min-width:0;
+}
+
+.nav-section{
+  scroll-margin-top:78px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.hero{
+  padding:21px 23px;
+  margin-bottom:13px;
+  background:linear-gradient(135deg,#fff,#fff7f9);
+  position:relative;
+  overflow:hidden;
+}
+
+.kicker{
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.3px;
+  color:var(--m);
+}
+
+.hero h1{
+  font-size:25px;
+  margin:4px 0;
+}
+
+.hero p{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:13px;
+}
+
+.stat{
+  padding:15px;
+}
+
+.label{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.num{
+  font-size:28px;
+  color:var(--m);
+  font-weight:900;
+}
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quick{
+  padding:12px 14px;
+  margin-bottom:13px;
+  display:flex;
+  justify-content:space-between;
   gap:10px;
   flex-wrap:wrap;
 }
 
-.contact-unread-badge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:8px 12px;
-  border-radius:20px;
-  background:#ffe5e8;
-  color:#9b1c1c;
-  font-size:12px;
-  font-weight:700;
-}
-
-.contact-messages-status{
-  margin-bottom:12px;
-  font-size:12px;
-  color:#777;
-}
-
-.contact-message-card{
-  border:1px solid #e7e1e5;
-  border-radius:15px;
-  padding:16px;
-  margin-bottom:12px;
-  background:#fafafa;
-}
-
-.contact-message-card.unread{
-  border-left:5px solid #7b1024;
-  background:#fff8f9;
-}
-
-.contact-message-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.contact-member-name{
-  font-size:15px;
-  font-weight:700;
-  color:#222;
-}
-
-.contact-member-details{
-  margin-top:4px;
-  color:#666;
-  font-size:12px;
-  line-height:1.6;
-}
-
-.contact-message-date{
-  color:#888;
+.quick-title{
   font-size:11px;
-  white-space:nowrap;
+  font-weight:900;
 }
 
-.contact-message-text{
-  margin-top:13px;
-  padding:12px;
-  background:#fff;
-  border-radius:10px;
-  color:#333;
-  font-size:13px;
-  line-height:1.55;
-  white-space:pre-wrap;
-  word-break:break-word;
+.quick-sub{
+  font-size:10px;
+  color:var(--muted);
 }
 
-.contact-message-actions{
+.quick-actions{
   display:flex;
-  gap:8px;
+  gap:6px;
   flex-wrap:wrap;
-  margin-top:12px;
 }
 
-.contact-message-actions button{
-  border:0;
-  border-radius:9px;
-  padding:9px 12px;
+/* =========================
+   CONTENT
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.section{
+  padding:18px;
+}
+
+.section-title-row,
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+  margin-bottom:13px;
+}
+
+.section h2{
+  margin:0;
+  font-size:18px;
+}
+
+.section p{
+  margin:4px 0 0;
+  color:var(--muted);
   font-size:11px;
-  font-weight:700;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 10px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.field{
+  margin:10px 0;
+}
+
+.field label{
+  display:block;
+  font-size:10px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  border:1px solid #ddd8d5;
+  border-radius:10px;
+  padding:10px 11px;
+  outline:0;
+  background:#fff;
+}
+
+.field textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:var(--m);
+  box-shadow:0 0 0 3px #7b102414;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:9px 12px;
+  min-height:39px;
+  font-weight:800;
+  font-size:10px;
   cursor:pointer;
 }
 
-.contact-call-btn{
+.primary{
+  background:var(--m);
+  color:#fff;
+}
+
+.light{
+  background:#f1eeec;
+  color:#4b5563;
+}
+
+.danger{
+  background:#fff0f0;
+  color:var(--red);
+  border:1px solid #ffd0d0;
+}
+
+.edit{
+  background:#fff7e8;
+  color:#9a6200;
+}
+
+.actions,
+.item-actions,
+.member-actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.alert{
+  margin-top:8px;
+  padding:9px;
+  border-radius:10px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.success{
+  background:#edf9f2;
+  color:#16804b;
+}
+
+.error{
+  background:#fff0f0;
+  color:#a61b1b;
+}
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar,
+.member-toolbar{
+  display:flex;
+  gap:7px;
+  margin-bottom:9px;
+  padding:5px;
+  background:#faf8f7;
+  border:1px solid #eee9e7;
+  border-radius:11px;
+}
+
+.toolbar input,
+.member-toolbar input{
+  flex:1;
+  border:0;
+  background:transparent;
+  padding:8px;
+  outline:0;
+}
+
+.toolbar select{
+  border:0;
+  background:transparent;
+  padding:8px;
+  outline:0;
+}
+
+/* =========================
+   LIST
+========================= */
+
+.list,
+.member-list{
+  max-height:620px;
+  overflow:auto;
+}
+
+.item,
+.member-row{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:12px;
+  margin:7px 0;
+  background:#fff;
+}
+
+.item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:7px;
+}
+
+.title,
+.member-name{
+  font-weight:850;
+  font-size:13px;
+}
+
+.badge{
+  background:#f4e7ea;
+  color:var(--m);
+  padding:4px 7px;
+  border-radius:99px;
+  font-size:9px;
+  font-weight:800;
+}
+
+.meta{
+  font-size:10px;
+  color:var(--muted);
+  margin:5px 0;
+}
+
+.details{
+  font-size:12px;
+  color:#4b5563;
+  line-height:1.5;
+  white-space:pre-wrap;
+}
+
+.link{
+  display:inline-block;
+  margin-top:6px;
+  color:var(--m);
+  font-size:10px;
+  font-weight:800;
+}
+
+.empty{
+  text-align:center;
+  padding:24px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* =========================
+   MEMBER MANAGEMENT
+========================= */
+
+.member-summary{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.mini-stat{
+  padding:7px 9px;
+  background:#faf7f8;
+  border:1px solid #eadfe2;
+  border-radius:10px;
+  font-size:9px;
+  font-weight:800;
+}
+
+.mini-stat b{
+  color:var(--m);
+  font-size:14px;
+  margin-right:3px;
+}
+
+.member-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.member-email{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.status,
+.role-badge{
+  display:inline-block;
+  font-size:9px;
+  font-weight:800;
+  padding:4px 7px;
+  border-radius:99px;
+  margin-top:6px;
+}
+
+.status.active{
+  background:#eaf8f0;
+  color:#16804b;
+}
+
+.status.inactive{
+  background:#fff0f0;
+  color:#b42318;
+}
+
+.role-badge{
+  background:#f4e7ea;
+  color:var(--m);
+}
+
+/* =========================
+   LIBRARY
+========================= */
+
+.github-box,
+.contact-box{
+  margin-top:13px;
+  padding:18px;
+  background:#fff;
+  border:1px solid #eadfe2;
+  border-radius:18px;
+}
+
+.pdf-item{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  padding:9px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  margin:6px 0;
+}
+
+.pdf-name{
+  font-size:11px;
+  word-break:break-word;
+}
+
+/* =========================
+   CONTACT MESSAGES
+========================= */
+
+.contact-message{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:12px;
+  margin:7px 0;
+  background:#fff;
+}
+
+.contact-message.unread{
+  border-left:4px solid var(--m);
+  background:#fff8f9;
+}
+
+.contact-actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:9px;
+}
+
+.contact-actions button{
+  border:0;
+  border-radius:8px;
+  padding:8px 10px;
+  font-size:10px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.call{
   background:#e6f5ea;
   color:#18743a;
 }
 
-.contact-read-btn{
+.read{
   background:#eee8ff;
   color:#5a3d9b;
 }
 
-.contact-delete-btn{
+.del{
   background:#ffe8e8;
   color:#a51d1d;
 }
 
-.contact-status{
-  display:inline-block;
-  margin-top:8px;
-  padding:4px 8px;
-  border-radius:10px;
-  font-size:10px;
-  font-weight:700;
-}
+/* =========================
+   MOBILE
+========================= */
 
-.contact-status.new{
-  background:#ffe5e8;
-  color:#9b1c1c;
-}
+@media(max-width:820px){
 
-.contact-status.read{
-  background:#e8f5eb;
-  color:#26733d;
-}
-
-.contact-empty{
-  padding:30px 15px;
-  text-align:center;
-  color:#777;
-  font-size:13px;
-  background:#fafafa;
-  border-radius:12px;
-}
-
-@media(max-width:650px){
-
-  .admin-contact-messages{
-    padding:15px;
-    margin:20px 0;
+  .admin-shell{
+    display:block;
   }
 
-  .contact-admin-header{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .contact-admin-actions{
+  .admin-sidebar{
+    position:sticky;
+    top:62px;
     width:100%;
-    justify-content:space-between;
+    height:auto;
+    border-right:0;
+    border-bottom:1px solid var(--line);
+    padding:6px;
+    z-index:20;
   }
 
-  .contact-message-top{
+  .sidebar-label{
+    display:none;
+  }
+
+  .sidebar-nav{
+    display:flex;
+    overflow-x:auto;
+  }
+
+  .sidebar-btn{
+    flex:0 0 78px;
+    text-align:center;
+    padding:8px 4px;
+    font-size:8px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stats .stat:last-child{
+    grid-column:1/-1;
+  }
+
+  .member-row{
     flex-direction:column;
-    gap:5px;
   }
 
-  .contact-message-date{
-    white-space:normal;
+  .member-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
   }
 
-  .contact-message-actions button{
-    flex:1;
-    min-width:100px;
+  .toolbar,
+  .member-toolbar{
+    display:grid;
+    grid-template-columns:1fr;
   }
 
+  .quick-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .quick-actions .btn{
+    width:100%;
+  }
 }
 
+@media(max-width:430px){
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .stats .stat:last-child{
+    grid-column:auto;
+  }
+
+  .member-actions,
+  .item-actions{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:21px;
+  }
+}
 </style>
+</head>
+
+<body>
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<div id="loginView" class="container">
+
+  <div class="card login-card">
+
+    <div class="brand">
+      <img src="./ask-union-icon-192.png" alt="ASK UNION">
+
+      <div>
+        <div class="brand-title">ASK UNION</div>
+        <div class="brand-sub">SBISA UDAIPUR MODULE</div>
+      </div>
+    </div>
+
+    <h1>Admin Login</h1>
+
+    <p style="color:#697386;font-size:12px">
+      Secure content management panel
+    </p>
+
+    <div class="field">
+      <label>ADMIN EMAIL</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Admin email">
+    </div>
+
+    <div class="field">
+      <label>PASSWORD</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        onkeydown="if(event.key==='Enter')login()">
+    </div>
+
+    <button
+      class="btn primary"
+      style="width:100%"
+      onclick="login()">
+      LOGIN →
+    </button>
+
+    <div id="loginMessage"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ADMIN
+========================= -->
+
+<div id="adminView" class="hidden">
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <div class="brand">
+
+      <img
+        src="./ask-union-icon-192.png"
+        alt="ASK UNION">
+
+      <div>
+
+        <div class="brand-title">
+          ASK UNION
+        </div>
+
+        <div class="brand-sub">
+          SBISA UDAIPUR MODULE · ADMIN
+        </div>
+
+      </div>
+
+    </div>
+
+    <button
+      class="logout"
+      onclick="logout()">
+      LOGOUT
+    </button>
+
+  </div>
+
+</header>
+
+
+<div class="admin-shell">
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="admin-sidebar">
+
+  <div class="sidebar-label">
+    ADMIN MENU
+  </div>
+
+  <nav class="sidebar-nav">
+
+    <button
+      class="sidebar-btn active"
+      onclick="go('dashboardSection',this)">
+      ▦<br>
+      Dashboard
+    </button>
+
+    <button
+      class="sidebar-btn"
+      onclick="go('publishSection',this)">
+      ＋<br>
+      Publish
+    </button>
+
+    <button
+      class="sidebar-btn"
+      onclick="go('publishedSection',this)">
+      ☷<br>
+      Published
+    </button>
+
+    <button
+      class="sidebar-btn"
+      onclick="go('questionsSection',this)">
+      ❓<br>
+      Questions
+    </button>
+
+    <button
+      class="sidebar-btn"
+      onclick="go('memberSection',this)">
+      ♙<br>
+      Members
+    </button>
+
+    <button
+      class="sidebar-btn"
+      onclick="go('librarySection',this)">
+      ▤<br>
+      Library
+    </button>
+
+    <button
+      class="sidebar-btn"
+      onclick="go('contactMessagesSection',this)">
+      ☎<br>
+      Messages
+    </button>
+
+  </nav>
+
+</aside>
+
+
+<main class="admin-main">
+
+<div class="container">
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section
+  id="dashboardSection"
+  class="card hero nav-section">
+
+  <div class="kicker">
+    ASK UNION · SBISA UDAIPUR MODULE
+  </div>
+
+  <h1>
+    Admin Dashboard
+  </h1>
+
+  <p>
+    Logged in as
+    <b id="adminEmail"></b>
+    · Manage content, questions, members and messages.
+  </p>
+
+  <button
+    class="btn light"
+    onclick="refreshAll()">
+    ↻ REFRESH
+  </button>
+
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<div class="stats">
+
+  <div class="card stat">
+
+    <div class="label">
+      Updates / Notices
+    </div>
+
+    <div
+      class="num"
+      id="countUpdates">
+      —
+    </div>
+
+  </div>
+
+
+  <div class="card stat">
+
+    <div class="label">
+      Circulars
+    </div>
+
+    <div
+      class="num"
+      id="countCirculars">
+      —
+    </div>
+
+  </div>
+
+
+  <div class="card stat">
+
+    <div class="label">
+      Events
+    </div>
+
+    <div
+      class="num"
+      id="countEvents">
+      —
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     QUICK ACTIONS
+========================= -->
+
+<div class="card quick">
+
+  <div>
+
+    <div class="quick-title">
+      QUICK ACTIONS
+    </div>
+
+    <div class="quick-sub">
+      Manage content, questions, members and messages.
+    </div>
+
+  </div>
+
+
+  <div class="quick-actions">
+
+    <button
+      class="btn primary"
+      onclick="go('publishSection')">
+      ＋ PUBLISH
+    </button>
+
+    <button
+      class="btn light"
+      onclick="go('questionsSection')">
+      ❓ QUESTIONS
+    </button>
+
+    <button
+      class="btn light"
+      onclick="go('memberSection')">
+      ♙ MEMBERS
+    </button>
+
+    <button
+      class="btn light"
+      onclick="go('librarySection')">
+      📚 LIBRARY
+    </button>
+
+    <button
+      class="btn light"
+      onclick="go('contactMessagesSection')">
+      ☎ MESSAGES
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     PUBLISH + CONTENT
+========================= -->
+
+<div class="grid">
+
+
+<section
+  id="publishSection"
+  class="card section nav-section">
+
+  <div class="section-head">
+
+    <div>
+
+      <h2 id="formHeading">
+        Publish Content
+      </h2>
+
+      <p>
+        CREATE · EDIT · PUBLISH
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="form-grid">
+
+
+    <div class="field">
+
+      <label>
+        CONTENT TYPE
+      </label>
+
+      <select id="type">
+
+        <option value="updates">
+          Update / Notice
+        </option>
+
+        <option value="circulars">
+          Circular
+        </option>
+
+        <option value="events">
+          Event
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        DATE
+      </label>
+
+      <input
+        id="publishDate"
+        type="date">
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>
+        TITLE *
+      </label>
+
+      <input
+        id="title"
+        maxlength="180"
+        placeholder="Enter a clear title">
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>
+        CATEGORY
+      </label>
+
+      <input
+        id="category"
+        maxlength="60"
+        placeholder="Transfer, Pension, Strike, Meeting...">
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>
+        VISIBILITY
+      </label>
+
+      <select id="visibility">
+
+        <option value="public">
+          🌐 Everyone
+        </option>
+
+        <option value="members">
+          🔐 Members Only
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>
+        DETAILS
+      </label>
+
+      <textarea
+        id="details"
+        maxlength="5000"
+        placeholder="Enter details"></textarea>
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>
+        PDF / PUBLIC LINK
+      </label>
+
+      <input
+        id="link"
+        type="url"
+        placeholder="https://askunion.in/your-file.pdf">
+
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+
+    <button
+      id="publishButton"
+      class="btn primary"
+      onclick="publish()">
+      PUBLISH
+    </button>
+
+    <button
+      id="cancelButton"
+      class="btn light hidden"
+      onclick="resetForm()">
+      CANCEL EDIT
+    </button>
+
+  </div>
+
+
+  <div id="message"></div>
+
+</section>
+
+
+
+<section
+  id="publishedSection"
+  class="card section nav-section">
+
+  <div class="section-head">
+
+    <div>
+
+      <h2>
+        Published Content
+      </h2>
+
+      <p>
+        MANAGE LIVE CONTENT
+      </p>
+
+    </div>
+
+    <span id="resultCount"></span>
+
+  </div>
+
+
+  <div class="toolbar">
+
+    <input
+      id="searchBox"
+      type="search"
+      placeholder="Search title, details or category…"
+      oninput="renderList()">
+
+
+    <select
+      id="manageType"
+      onchange="loadContent()">
+
+      <option value="updates">
+        Updates / Notices
+      </option>
+
+      <option value="circulars">
+        Circulars
+      </option>
+
+      <option value="events">
+        Events
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div
+    id="contentList"
+    class="list">
+
+    <div class="empty">
+      Loading…
+    </div>
+
+  </div>
+
+</section>
+
+</div>
+
+
+<!-- =========================
+     QUESTIONS
+========================= -->
+
+<section
+  id="questionsSection"
+  class="card section nav-section"
+  style="margin-top:13px">
+
+  <div class="section-title-row">
+
+    <div>
+
+      <h2>
+        ❓ Questions
+      </h2>
+
+      <p>
+        Manage questions submitted through ASK UNION FAQ.
+      </p>
+
+    </div>
+
+
+    <div class="member-summary">
+
+      <div class="mini-stat">
+        <b id="questionTotal">0</b>
+        Total
+      </div>
+
+      <div class="mini-stat">
+        <b id="questionNew">0</b>
+        New
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="toolbar">
+
+    <input
+      id="questionSearch"
+      type="search"
+      placeholder="Search name, mobile, email or question..."
+      oninput="renderQuestions()">
+
+
+    <select
+      id="questionStatus"
+      onchange="renderQuestions()">
+
+      <option value="all">
+        All Questions
+      </option>
+
+      <option value="new">
+        New
+      </option>
+
+      <option value="answered">
+        Answered
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div
+    id="questionsList"
+    class="list">
+
+    <div class="empty">
+      Loading questions...
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MEMBERS
+========================= -->
+
+<section
+  id="memberSection"
+  class="card section nav-section"
+  style="margin-top:13px">
+
+  <div class="section-title-row">
+
+    <div>
+
+      <h2>
+        👥 Member Management
+      </h2>
+
+      <p>
+        View and manage existing authorised members.
+      </p>
+
+    </div>
+
+
+    <div class="member-summary">
+
+      <div class="mini-stat">
+        <b id="memberTotal">0</b>
+        Total
+      </div>
+
+      <div class="mini-stat">
+        <b id="memberActive">0</b>
+        Active
+      </div>
+
+      <div class="mini-stat">
+        <b id="memberInactive">0</b>
+        Inactive
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div id="memberMessage"></div>
+
+
+  <div class="member-toolbar">
+
+    <input
+      id="memberSearch"
+      type="search"
+      placeholder="Search employee no., name or email…"
+      oninput="renderMembers()">
+
+
+    <button
+      class="btn light"
+      onclick="loadMembers()">
+      ↻ REFRESH MEMBERS
+    </button>
+
+  </div>
+
+
+  <div
+    id="memberList"
+    class="member-list">
+
+    <div class="empty">
+      Loading members…
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LIBRARY
+========================= -->
+
+<section
+  id="librarySection"
+  class="github-box nav-section">
+
+  <div class="section-head">
+
+    <div>
+
+      <h2>
+        📚 GitHub Circular Library
+      </h2>
+
+      <p id="githubPdfStatus">
+        Checking library…
+      </p>
+
+    </div>
+
+
+    <button
+      class="btn light"
+      onclick="loadGithubPdfs()">
+      ↻ REFRESH
+    </button>
+
+  </div>
+
+
+  <div id="githubPdfList">
+
+    <div class="empty">
+      Loading…
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT MESSAGES
+========================= -->
+
+<section
+  id="contactMessagesSection"
+  class="contact-box nav-section">
+
+  <div class="section-head">
+
+    <div>
+
+      <h2>
+        ☎ Contact Union Messages
+      </h2>
+
+      <p>
+        Messages received from members.
+      </p>
+
+    </div>
+
+
+    <div class="member-summary">
+
+      <span
+        class="badge"
+        id="contactUnreadBadge">
+        0 Unread
+      </span>
+
+      <button
+        class="btn primary"
+        onclick="loadContactMessages()">
+        ↻ REFRESH
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="contactMessagesStatus"
+    class="meta">
+    Loading messages...
+  </div>
+
+
+  <div id="contactMessagesList"></div>
+
+</section>
+
+
+</div>
+
+</main>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-functions-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
 
 <script>
 
-/* ================= CONTACT UNION ADMIN ================= */
+const firebaseConfig = {
 
+  apiKey:
+    "AIzaSyAzMEREwPKnifSIrB5Cva8D-CFbVIa5zF0",
+
+  authDomain:
+    "ask-union-jaipur-circle.firebaseapp.com",
+
+  projectId:
+    "ask-union-jaipur-circle",
+
+  storageBucket:
+    "ask-union-jaipur-circle.firebasestorage.app",
+
+  messagingSenderId:
+    "584327754977",
+
+  appId:
+    "1:584327754977:web:7164a85c007165743ef3a"
+
+};
+
+
+firebase.initializeApp(firebaseConfig);
+
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+
+let editingId = null;
+let editingType = null;
+
+let currentItems = [];
+let members = [];
+let questionItems = [];
 let contactMessages = [];
 
+let busy = false;
 
-/* Escape HTML safely */
 
-function contactEscape(value){
+const $ = id =>
+  document.getElementById(id);
+
+
+function escapeHtml(value){
 
   return String(value ?? "")
     .replace(/&/g,"&amp;")
@@ -1499,397 +1639,2142 @@ function contactEscape(value){
 }
 
 
-/* Format date */
+function today(){
 
-function formatContactDate(timestamp){
+  return new Date()
+    .toISOString()
+    .slice(0,10);
 
-  if(!timestamp){
-    return "Date not available";
+}
+
+
+function formatDate(value){
+
+  if(!value){
+    return "";
   }
 
   try{
 
-    let date;
-
-    if(timestamp.toDate){
-      date = timestamp.toDate();
-    }else{
-      date = new Date(timestamp);
+    if(value.toDate){
+      value = value.toDate();
     }
 
-    return date.toLocaleString("en-IN",{
-      day:"2-digit",
-      month:"short",
-      year:"numeric",
-      hour:"2-digit",
-      minute:"2-digit"
-    });
+    const d =
+      new Date(
+        String(value).length === 10
+        ? value + "T00:00:00"
+        : value
+      );
 
-  }catch(error){
+    return d.toLocaleDateString(
+      "en-IN",
+      {
+        day:"2-digit",
+        month:"short",
+        year:"numeric"
+      }
+    );
 
-    return "Date not available";
+  }catch{
+
+    return String(value);
 
   }
 
 }
 
 
-/* Load messages */
+function showMessage(
+  text,
+  type="success",
+  target="message"
+){
 
-async function loadContactMessages(){
+  const element = $(target);
 
-  const list =
-    document.getElementById("contactMessagesList");
+  if(!element){
+    return;
+  }
 
-  const status =
-    document.getElementById("contactMessagesStatus");
+  element.innerHTML =
+    text
+    ? `<div class="alert ${type}">
+         ${escapeHtml(text)}
+       </div>`
+    : "";
 
-  const badge =
-    document.getElementById("contactUnreadBadge");
+}
 
-  if(!list) return;
 
-  status.textContent =
-    "Loading messages...";
+/* =========================
+   LOGIN
+========================= */
 
-  list.innerHTML = "";
+function login(){
+
+  const email =
+    $("email").value.trim();
+
+  const password =
+    $("password").value;
+
+
+  if(!email || !password){
+
+    showMessage(
+      "Enter email and password.",
+      "error",
+      "loginMessage"
+    );
+
+    return;
+
+  }
+
+
+  auth
+    .signInWithEmailAndPassword(
+      email,
+      password
+    )
+    .catch(error => {
+
+      console.error(error);
+
+      showMessage(
+        "Login failed: " + error.message,
+        "error",
+        "loginMessage"
+      );
+
+    });
+
+}
+
+
+function logout(){
+
+  auth.signOut();
+
+}
+
+
+auth.onAuthStateChanged(
+  async user => {
+
+    if(user){
+
+      $("loginView")
+        .classList
+        .add("hidden");
+
+      $("adminView")
+        .classList
+        .remove("hidden");
+
+      $("adminEmail")
+        .textContent =
+        user.email || "";
+
+
+      await refreshAll();
+
+      await loadGithubPdfs();
+
+    }else{
+
+      $("loginView")
+        .classList
+        .remove("hidden");
+
+      $("adminView")
+        .classList
+        .add("hidden");
+
+    }
+
+  }
+);
+
+
+/* =========================
+   CONTENT
+========================= */
+
+async function getItems(type){
+
+  const snapshot =
+    await db
+      .collection(type)
+      .get();
+
+
+  const items = [];
+
+
+  snapshot.forEach(doc => {
+
+    items.push({
+
+      id:doc.id,
+
+      ...doc.data()
+
+    });
+
+  });
+
+
+  return items.sort(
+    (a,b) =>
+      String(
+        b.date ||
+        b.createdAt ||
+        ""
+      )
+      .localeCompare(
+        String(
+          a.date ||
+          a.createdAt ||
+          ""
+        )
+      )
+  );
+
+}
+
+
+async function loadContent(){
+
+  const type =
+    $("manageType").value;
+
+
+  $("contentList").innerHTML =
+    '<div class="empty">Loading…</div>';
+
+
+  try{
+
+    currentItems =
+      await getItems(type);
+
+    renderList();
+
+  }catch(error){
+
+    console.error(error);
+
+    $("contentList").innerHTML =
+      '<div class="empty">Unable to load content.</div>';
+
+  }
+
+}
+
+
+function renderList(){
+
+  const search =
+    $("searchBox")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const filtered =
+    currentItems.filter(item =>
+
+      [
+        item.title,
+        item.details,
+        item.category,
+        item.link
+
+      ].some(value =>
+
+        String(value || "")
+          .toLowerCase()
+          .includes(search)
+
+      )
+
+    );
+
+
+  $("resultCount")
+    .textContent =
+    filtered.length +
+    " item" +
+    (filtered.length === 1 ? "" : "s");
+
+
+  if(!filtered.length){
+
+    $("contentList").innerHTML =
+      '<div class="empty">No matching content found.</div>';
+
+    return;
+
+  }
+
+
+  $("contentList").innerHTML =
+    filtered.map(item => `
+
+      <article class="item">
+
+        <div class="item-top">
+
+          <div class="title">
+            ${escapeHtml(item.title || "Untitled")}
+          </div>
+
+          ${
+            item.category
+            ? `
+              <span class="badge">
+                ${escapeHtml(item.category)}
+              </span>
+            `
+            : ""
+          }
+
+        </div>
+
+
+        <div class="meta">
+
+          📅 ${escapeHtml(formatDate(item.date))}
+
+          ·
+
+          ${
+            item.visibility === "members"
+            ? "🔐 MEMBERS ONLY"
+            : "🌐 PUBLIC"
+          }
+
+        </div>
+
+
+        ${
+          item.details
+          ? `
+            <div class="details">
+              ${escapeHtml(item.details)}
+            </div>
+          `
+          : ""
+        }
+
+
+        ${
+          item.link
+          ? `
+            <a
+              class="link"
+              href="${escapeHtml(item.link)}"
+              target="_blank"
+              rel="noopener">
+
+              📄 Open Link →
+
+            </a>
+          `
+          : ""
+        }
+
+
+        <div class="item-actions">
+
+          <button
+            class="btn edit"
+            onclick="editContent('${escapeHtml(item.id)}')">
+
+            EDIT
+
+          </button>
+
+
+          <button
+            class="btn danger"
+            onclick="deleteContent('${escapeHtml(item.id)}')">
+
+            DELETE
+
+          </button>
+
+        </div>
+
+      </article>
+
+    `).join("");
+
+}
+
+
+async function publish(){
+
+  if(busy){
+    return;
+  }
+
+
+  const type =
+    $("type").value;
+
+  const title =
+    $("title").value.trim();
+
+  const details =
+    $("details").value.trim();
+
+  const link =
+    $("link").value.trim();
+
+  const category =
+    $("category").value.trim();
+
+  const visibility =
+    $("visibility").value;
+
+  const date =
+    $("publishDate").value ||
+    today();
+
+
+  if(!title){
+
+    showMessage(
+      "Please enter a title.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  busy = true;
+
+  $("publishButton")
+    .disabled = true;
+
+
+  try{
+
+    const data = {
+
+      title,
+      details,
+      link,
+      category,
+      visibility,
+      date
+
+    };
+
+
+    if(editingId){
+
+      await db
+        .collection(editingType)
+        .doc(editingId)
+        .update({
+
+          ...data,
+
+          updatedAt:
+            new Date()
+              .toISOString()
+
+        });
+
+
+      showMessage(
+        "Updated successfully."
+      );
+
+    }else{
+
+      await db
+        .collection(type)
+        .add({
+
+          ...data,
+
+          createdAt:
+            new Date()
+              .toISOString(),
+
+          createdBy:
+            auth.currentUser?.email || ""
+
+        });
+
+
+      showMessage(
+        "Published successfully."
+      );
+
+    }
+
+
+    resetForm();
+
+    await refreshAll();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Unable to save: " +
+      error.message,
+      "error"
+    );
+
+  }finally{
+
+    busy = false;
+
+    $("publishButton")
+      .disabled = false;
+
+  }
+
+}
+
+
+function editContent(id){
+
+  const type =
+    $("manageType").value;
+
+  const item =
+    currentItems.find(
+      x => x.id === id
+    );
+
+
+  if(!item){
+    return;
+  }
+
+
+  editingId = id;
+  editingType = type;
+
+
+  $("type").value = type;
+
+  $("type").disabled = true;
+
+  $("title").value =
+    item.title || "";
+
+  $("details").value =
+    item.details || "";
+
+  $("link").value =
+    item.link || "";
+
+  $("category").value =
+    item.category || "";
+
+  $("visibility").value =
+    item.visibility === "members"
+    ? "members"
+    : "public";
+
+  $("publishDate").value =
+    item.date || today();
+
+
+  $("formHeading")
+    .textContent =
+    "Edit Content";
+
+  $("publishButton")
+    .textContent =
+    "UPDATE";
+
+  $("cancelButton")
+    .classList
+    .remove("hidden");
+
+
+  go("publishSection");
+
+}
+
+
+async function deleteContent(id){
+
+  const type =
+    $("manageType").value;
+
+  const item =
+    currentItems.find(
+      x => x.id === id
+    );
+
+
+  if(
+    !item ||
+    !confirm(
+      `Delete “${item.title || "this item"}”?`
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await db
+      .collection(type)
+      .doc(id)
+      .delete();
+
+
+    await refreshAll();
+
+
+  }catch(error){
+
+    showMessage(
+      "Delete failed: " +
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+function resetForm(){
+
+  editingId = null;
+  editingType = null;
+
+
+  $("type")
+    .disabled = false;
+
+
+  $("formHeading")
+    .textContent =
+    "Publish Content";
+
+  $("publishButton")
+    .textContent =
+    "PUBLISH";
+
+  $("cancelButton")
+    .classList
+    .add("hidden");
+
+
+  $("title").value = "";
+  $("details").value = "";
+  $("link").value = "";
+  $("category").value = "";
+
+  $("visibility").value =
+    "public";
+
+  $("publishDate").value =
+    today();
+
+}
+
+
+/* =========================
+   QUESTIONS
+========================= */
+
+async function loadQuestions(){
 
   try{
 
     const snapshot =
-      await db.collection("contactMessages").get();
+      await db
+        .collection("questions")
+        .get();
 
-    contactMessages = [];
+
+    questionItems = [];
+
 
     snapshot.forEach(doc => {
 
-      contactMessages.push({
+      questionItems.push({
+
         id:doc.id,
+
         ...doc.data()
+
       });
 
     });
 
 
-    /* Newest first */
+    questionItems.sort(
+      (a,b) =>
+        (
+          b.createdAt?.toMillis?.() || 0
+        ) -
+        (
+          a.createdAt?.toMillis?.() || 0
+        )
+    );
 
-    contactMessages.sort((a,b)=>{
 
-      const da =
-        a.createdAt?.toMillis
-          ? a.createdAt.toMillis()
-          : 0;
+    renderQuestions();
 
-      const dbb =
-        b.createdAt?.toMillis
-          ? b.createdAt.toMillis()
-          : 0;
 
-      return dbb-da;
+  }catch(error){
+
+    console.error(error);
+
+    $("questionsList").innerHTML =
+      '<div class="empty">Unable to load questions.</div>';
+
+  }
+
+}
+
+
+function renderQuestions(){
+
+  const search =
+    (
+      $("questionSearch").value ||
+      ""
+    )
+    .toLowerCase();
+
+
+  const status =
+    $("questionStatus").value;
+
+
+  const filtered =
+    questionItems.filter(item => {
+
+      const matchesSearch =
+        [
+          item.name,
+          item.mobile,
+          item.email,
+          item.question
+
+        ].some(value =>
+
+          String(value || "")
+            .toLowerCase()
+            .includes(search)
+
+        );
+
+
+      const matchesStatus =
+        status === "all" ||
+        String(
+          item.status || "new"
+        ) === status;
+
+
+      return (
+        matchesSearch &&
+        matchesStatus
+      );
 
     });
 
 
+  $("questionTotal")
+    .textContent =
+    questionItems.length;
+
+
+  $("questionNew")
+    .textContent =
+    questionItems.filter(
+      item =>
+        item.status !== "answered"
+    ).length;
+
+
+  if(!filtered.length){
+
+    $("questionsList").innerHTML =
+      '<div class="empty">No questions found.</div>';
+
+    return;
+
+  }
+
+
+  $("questionsList").innerHTML =
+    filtered.map(item => `
+
+      <article class="item">
+
+        <div class="item-top">
+
+          <div class="title">
+            ${escapeHtml(item.name || "Unknown")}
+          </div>
+
+          <span class="badge">
+
+            ${
+              item.status === "answered"
+              ? "ANSWERED"
+              : "NEW"
+            }
+
+          </span>
+
+        </div>
+
+
+        <div class="meta">
+
+          📱 ${escapeHtml(item.mobile || "")}
+
+          ·
+
+          ✉️ ${escapeHtml(item.email || "")}
+
+          ·
+
+          📅 ${escapeHtml(
+            formatDate(item.createdAt)
+          )}
+
+        </div>
+
+
+        <div class="details">
+
+          ${escapeHtml(
+            item.question || ""
+          )}
+
+        </div>
+
+
+        ${
+          item.reply
+          ? `
+            <div
+              class="details"
+              style="margin-top:8px">
+
+              <b>Reply:</b><br>
+
+              ${escapeHtml(item.reply)}
+
+            </div>
+          `
+          : ""
+        }
+
+
+        <div class="item-actions">
+
+          <button
+            class="btn light"
+            onclick="viewQuestion('${escapeHtml(item.id)}')">
+
+            VIEW
+
+          </button>
+
+
+          <button
+            class="btn edit"
+            onclick="replyQuestion('${escapeHtml(item.id)}')">
+
+            REPLY
+
+          </button>
+
+
+          ${
+            item.status !== "answered"
+            ? `
+              <button
+                class="btn primary"
+                onclick="markAnswered('${escapeHtml(item.id)}')">
+
+                ANSWERED
+
+              </button>
+            `
+            : ""
+          }
+
+
+          <button
+            class="btn danger"
+            onclick="deleteQuestion('${escapeHtml(item.id)}')">
+
+            DELETE
+
+          </button>
+
+        </div>
+
+      </article>
+
+    `).join("");
+
+}
+
+
+function viewQuestion(id){
+
+  const item =
+    questionItems.find(
+      x => x.id === id
+    );
+
+
+  if(!item){
+    return;
+  }
+
+
+  alert(
+
+    "Name: " +
+    (item.name || "") +
+
+    "\nMobile: " +
+    (item.mobile || "") +
+
+    "\nEmail: " +
+    (item.email || "") +
+
+    "\n\nQuestion:\n" +
+    (item.question || "") +
+
+    (
+      item.reply
+      ? "\n\nReply:\n" +
+        item.reply
+      : ""
+    )
+
+  );
+
+}
+
+
+async function replyQuestion(id){
+
+  const item =
+    questionItems.find(
+      x => x.id === id
+    );
+
+
+  if(!item){
+    return;
+  }
+
+
+  const reply =
+    prompt(
+      "Enter reply:",
+      item.reply || ""
+    );
+
+
+  if(
+    reply === null ||
+    !reply.trim()
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await db
+      .collection("questions")
+      .doc(id)
+      .update({
+
+        reply:
+          reply.trim(),
+
+        status:
+          "answered",
+
+        repliedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp(),
+
+        repliedBy:
+          auth.currentUser?.email || ""
+
+      });
+
+
+    await loadQuestions();
+
+
+  }catch(error){
+
+    alert(
+      "Reply failed: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+async function markAnswered(id){
+
+  try{
+
+    await db
+      .collection("questions")
+      .doc(id)
+      .update({
+
+        status:"answered",
+
+        answeredAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp(),
+
+        answeredBy:
+          auth.currentUser?.email || ""
+
+      });
+
+
+    await loadQuestions();
+
+
+  }catch(error){
+
+    alert(
+      "Unable to update: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+async function deleteQuestion(id){
+
+  if(
+    !confirm(
+      "Delete this question?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await db
+      .collection("questions")
+      .doc(id)
+      .delete();
+
+
+    await loadQuestions();
+
+
+  }catch(error){
+
+    alert(
+      "Delete failed: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =========================
+   MEMBERS
+   NO ADD
+   NO EDIT
+========================= */
+
+async function loadMembers(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("members")
+        .get();
+
+
+    members = [];
+
+
+    snapshot.forEach(doc => {
+
+      members.push({
+
+        id:doc.id,
+
+        ...doc.data()
+
+      });
+
+    });
+
+
+    members.sort(
+      (a,b) =>
+        String(
+          a.employeeNo || ""
+        )
+        .localeCompare(
+          String(
+            b.employeeNo || ""
+          )
+        )
+    );
+
+
+    renderMembers();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    $("memberList").innerHTML =
+      '<div class="empty">Members could not be loaded.</div>';
+
+  }
+
+}
+
+
+function renderMembers(){
+
+  const search =
+    (
+      $("memberSearch").value ||
+      ""
+    )
+    .toLowerCase();
+
+
+  const filtered =
+    members.filter(member =>
+
+      [
+        member.employeeNo,
+        member.name,
+        member.email,
+        member.role
+
+      ].some(value =>
+
+        String(value || "")
+          .toLowerCase()
+          .includes(search)
+
+      )
+
+    );
+
+
+  const active =
+    members.filter(
+      member =>
+        member.active !== false
+    ).length;
+
+
+  $("memberTotal")
+    .textContent =
+    members.length;
+
+
+  $("memberActive")
+    .textContent =
+    active;
+
+
+  $("memberInactive")
+    .textContent =
+    members.length - active;
+
+
+  if(!filtered.length){
+
+    $("memberList").innerHTML =
+      '<div class="empty">No matching members found.</div>';
+
+    return;
+
+  }
+
+
+  $("memberList").innerHTML =
+    filtered.map(member => {
+
+      const isActive =
+        member.active !== false;
+
+
+      return `
+
+        <div class="member-row">
+
+          <div>
+
+            <div class="member-name">
+
+              ${escapeHtml(
+                member.name ||
+                "Unnamed member"
+              )}
+
+            </div>
+
+
+            <div class="member-email">
+
+              Employee No.:
+
+              <b>
+                ${escapeHtml(
+                  member.employeeNo ||
+                  "—"
+                )}
+              </b>
+
+              ·
+
+              ${escapeHtml(
+                member.email || ""
+              )}
+
+            </div>
+
+
+            <span
+              class="status ${
+                isActive
+                ? "active"
+                : "inactive"
+              }">
+
+              ${
+                isActive
+                ? "● ACTIVE"
+                : "● INACTIVE"
+              }
+
+            </span>
+
+
+            <span class="role-badge">
+
+              ${escapeHtml(
+                member.role ||
+                "Member"
+              )}
+
+            </span>
+
+          </div>
+
+
+          <div class="member-actions">
+
+
+            <button
+              class="btn ${
+                isActive
+                ? "danger"
+                : "primary"
+              }"
+              onclick="toggleMember('${escapeHtml(member.id)}')">
+
+              ${
+                isActive
+                ? "DEACTIVATE"
+                : "ACTIVATE"
+              }
+
+            </button>
+
+
+            <button
+              class="btn light"
+              onclick="resetMemberPassword('${escapeHtml(member.email || "")}')">
+
+              RESET PASSWORD
+
+            </button>
+
+
+            <button
+              class="btn danger"
+              onclick="deleteMember('${escapeHtml(member.id)}')">
+
+              DELETE
+
+            </button>
+
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+async function toggleMember(id){
+
+  const member =
+    members.find(
+      x => x.id === id
+    );
+
+
+  if(
+    !member ||
+    !confirm(
+      `${
+        member.active === false
+        ? "Activate"
+        : "Deactivate"
+      } ${
+        member.name ||
+        member.email
+      }?`
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await db
+      .collection("members")
+      .doc(id)
+      .update({
+
+        active:
+          member.active === false,
+
+        updatedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    await loadMembers();
+
+
+  }catch(error){
+
+    showMessage(
+      error.message,
+      "error",
+      "memberMessage"
+    );
+
+  }
+
+}
+
+
+async function resetMemberPassword(email){
+
+  if(
+    !email ||
+    !confirm(
+      "Send password reset email to " +
+      email +
+      "?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await auth
+      .sendPasswordResetEmail(
+        email
+      );
+
+
+    showMessage(
+      "Password reset email sent.",
+      "success",
+      "memberMessage"
+    );
+
+
+  }catch(error){
+
+    showMessage(
+      error.message,
+      "error",
+      "memberMessage"
+    );
+
+  }
+
+}
+
+
+async function deleteMember(id){
+
+  const member =
+    members.find(
+      x => x.id === id
+    );
+
+
+  if(
+    !member ||
+    !confirm(
+      `Permanently delete ${
+        member.name ||
+        "this member"
+      }?`
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    const deleteMemberFunction =
+      firebase
+        .functions()
+        .httpsCallable(
+          "deleteMember"
+        );
+
+
+    const result =
+      await deleteMemberFunction({
+        uid:id
+      });
+
+
+    if(
+      result.data?.success !== true
+    ){
+
+      throw new Error(
+        result.data?.message ||
+        "Deletion failed."
+      );
+
+    }
+
+
+    await loadMembers();
+
+
+  }catch(error){
+
+    showMessage(
+      error.message,
+      "error",
+      "memberMessage"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   GITHUB PDF LIBRARY
+========================= */
+
+const GITHUB_SITE =
+  "https://askunion.in/";
+
+const PDF_MANIFEST =
+  "https://raw.githubusercontent.com/" +
+  "sbisajaipur/Ask-union-jaipur/" +
+  "main/pdf-manifest.json";
+
+
+const FALLBACK_PDFS = [
+
+  "DOC-20260809-WA0046..pdf",
+
+  "DOC-20260810-WA0019..pdf",
+
+  "SBI CARES COMPENDIUM OF STAFF BENEFITS BY SBSC.pdf",
+
+  "SBI_Staff_Rules_Quick_Reference_Hindi_FIXED.pdf",
+
+  "medical-form.pdf",
+
+  "membership-form.pdf",
+
+  "personal-loan.pdf",
+
+  "transfer-application.pdf",
+
+  "union letter.pdf"
+
+];
+
+
+async function loadGithubPdfs(){
+
+  try{
+
+    const response =
+      await fetch(
+        PDF_MANIFEST +
+        "?v=" +
+        Date.now(),
+        {
+          cache:"no-store"
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      !Array.isArray(data) ||
+      !data.length
+    ){
+
+      throw new Error(
+        "Manifest unavailable"
+      );
+
+    }
+
+
+    renderPdfs(data);
+
+
+  }catch{
+
+    renderPdfs(
+      FALLBACK_PDFS.map(
+        path => ({path})
+      )
+    );
+
+  }
+
+}
+
+
+function renderPdfs(files){
+
+  $("githubPdfStatus")
+    .textContent =
+    files.length +
+    " PDF" +
+    (
+      files.length === 1
+      ? ""
+      : "s"
+    ) +
+    " available";
+
+
+  $("githubPdfList")
+    .innerHTML =
+
+    files.map(file => {
+
+      const path =
+        file.path;
+
+      const title =
+        path
+          .replace(
+            /\.pdf$/i,
+            ""
+          )
+          .replace(
+            /[_-]+/g,
+            " "
+          );
+
+
+      const url =
+        GITHUB_SITE +
+        path
+          .split("/")
+          .map(
+            encodeURIComponent
+          )
+          .join("/");
+
+
+      return `
+
+        <div class="pdf-item">
+
+          <div class="pdf-name">
+
+            📄 ${escapeHtml(path)}
+
+          </div>
+
+
+          <button
+            class="btn primary"
+            onclick='usePdf(
+              ${JSON.stringify(title)},
+              ${JSON.stringify(url)}
+            )'>
+
+            ADD TO CIRCULAR
+
+          </button>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+function usePdf(
+  title,
+  url
+){
+
+  $("type").value =
+    "circulars";
+
+  $("title").value =
+    title;
+
+  $("link").value =
+    url;
+
+
+  go(
+    "publishSection"
+  );
+
+
+  $("title").focus();
+
+}
+
+
+/* =========================
+   CONTACT MESSAGES
+========================= */
+
+async function loadContactMessages(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection(
+          "contactMessages"
+        )
+        .get();
+
+
+    contactMessages = [];
+
+
+    snapshot.forEach(doc => {
+
+      contactMessages.push({
+
+        id:doc.id,
+
+        ...doc.data()
+
+      });
+
+    });
+
+
+    contactMessages.sort(
+      (a,b) =>
+        (
+          b.createdAt
+            ?.toMillis?.() ||
+          0
+        ) -
+        (
+          a.createdAt
+            ?.toMillis?.() ||
+          0
+        )
+    );
+
+
     const unread =
       contactMessages.filter(
-        x => x.status !== "read"
+        item =>
+          item.status !== "read"
       ).length;
 
 
-    badge.textContent =
-      unread + (unread === 1 ? " Unread" : " Unread");
+    $("contactUnreadBadge")
+      .textContent =
+      unread + " Unread";
 
 
-    status.textContent =
+    $("contactMessagesStatus")
+      .textContent =
       contactMessages.length +
-      (contactMessages.length === 1
-        ? " message"
-        : " messages");
+      " message" +
+      (
+        contactMessages.length === 1
+        ? ""
+        : "s"
+      );
 
 
     if(!contactMessages.length){
 
-      list.innerHTML =
-        '<div class="contact-empty">' +
-        '📭 No Contact Union messages yet.' +
-        '</div>';
+      $("contactMessagesList")
+        .innerHTML =
+        '<div class="empty">📭 No Contact Union messages yet.</div>';
 
       return;
 
     }
 
 
-    list.innerHTML =
-      contactMessages.map(renderContactMessage).join("");
+    $("contactMessagesList")
+      .innerHTML =
+      contactMessages
+        .map(item => `
+
+          <div
+            class="contact-message ${
+              item.status === "read"
+              ? ""
+              : "unread"
+            }">
+
+            <b>
+              ${escapeHtml(
+                item.name ||
+                "Member"
+              )}
+            </b>
+
+
+            <div class="meta">
+
+              Employee No.:
+
+              ${escapeHtml(
+                item.employeeNo ||
+                "—"
+              )}
+
+              · 📱
+
+              ${escapeHtml(
+                item.mobile ||
+                ""
+              )}
+
+              ·
+
+              ${escapeHtml(
+                formatDate(
+                  item.createdAt
+                )
+              )}
+
+            </div>
+
+
+            <div class="details">
+
+              ${escapeHtml(
+                item.message ||
+                ""
+              )}
+
+            </div>
+
+
+            <div class="contact-actions">
+
+
+              ${
+                item.mobile
+                ? `
+                  <button
+                    class="call"
+                    onclick="
+                      location.href='tel:${escapeHtml(item.mobile)}'
+                    ">
+
+                    📞 CALL
+
+                  </button>
+                `
+                : ""
+              }
+
+
+              <button
+                class="read"
+                onclick="${
+                  item.status === "read"
+                  ? `markUnread('${escapeHtml(item.id)}')`
+                  : `markRead('${escapeHtml(item.id)}')`
+                }">
+
+                ${
+                  item.status === "read"
+                  ? "↩ MARK UNREAD"
+                  : "✅ MARK AS READ"
+                }
+
+              </button>
+
+
+              <button
+                class="del"
+                onclick="
+                  deleteContact(
+                    '${escapeHtml(item.id)}'
+                  )
+                ">
+
+                🗑 DELETE
+
+              </button>
+
+
+            </div>
+
+          </div>
+
+        `)
+        .join("");
+
+
+  }catch(error){
+
+    console.error(error);
+
+    $("contactMessagesStatus")
+      .textContent =
+      "Unable to load messages.";
+
+  }
+
+}
+
+
+async function markRead(id){
+
+  try{
+
+    await db
+      .collection(
+        "contactMessages"
+      )
+      .doc(id)
+      .update({
+
+        status:"read",
+
+        readAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp(),
+
+        readBy:
+          auth.currentUser?.email ||
+          ""
+
+      });
+
+
+    await loadContactMessages();
+
+
+  }catch(error){
+
+    alert(
+      error.message
+    );
+
+  }
+
+}
+
+
+async function markUnread(id){
+
+  try{
+
+    await db
+      .collection(
+        "contactMessages"
+      )
+      .doc(id)
+      .update({
+
+        status:"new",
+
+        readAt:
+          firebase.firestore
+            .FieldValue
+            .delete(),
+
+        readBy:
+          firebase.firestore
+            .FieldValue
+            .delete()
+
+      });
+
+
+    await loadContactMessages();
+
+
+  }catch(error){
+
+    alert(
+      error.message
+    );
+
+  }
+
+}
+
+
+async function deleteContact(id){
+
+  if(
+    !confirm(
+      "Delete this Contact Union message?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await db
+      .collection(
+        "contactMessages"
+      )
+      .doc(id)
+      .delete();
+
+
+    await loadContactMessages();
+
+
+  }catch(error){
+
+    alert(
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function go(
+  id,
+  button
+){
+
+  const element =
+    $(id);
+
+
+  if(!element){
+    return;
+  }
+
+
+  document
+    .querySelectorAll(
+      ".sidebar-btn"
+    )
+    .forEach(
+      item =>
+        item.classList
+          .remove("active")
+    );
+
+
+  if(button){
+
+    button.classList
+      .add("active");
+
+  }
+
+
+  element.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+/* =========================
+   REFRESH
+========================= */
+
+async function refreshAll(){
+
+  try{
+
+    const [
+      updates,
+      circulars,
+      events
+    ] = await Promise.all([
+
+      getItems("updates"),
+
+      getItems("circulars"),
+
+      getItems("events")
+
+    ]);
+
+
+    $("countUpdates")
+      .textContent =
+      updates.length;
+
+
+    $("countCirculars")
+      .textContent =
+      circulars.length;
+
+
+    $("countEvents")
+      .textContent =
+      events.length;
+
+
+    const type =
+      $("manageType").value;
+
+
+    currentItems =
+      type === "updates"
+      ? updates
+      : type === "circulars"
+      ? circulars
+      : events;
+
+
+    renderList();
+
+
+    await Promise.all([
+
+      loadQuestions(),
+
+      loadMembers(),
+
+      loadContactMessages()
+
+    ]);
 
 
   }catch(error){
 
     console.error(
-      "Contact messages error:",
+      "REFRESH ERROR:",
       error
     );
 
-    status.textContent =
-      "Unable to load Contact Union messages.";
-
-    list.innerHTML =
-      '<div class="contact-empty">' +
-      '❌ Unable to load messages. ' +
-      contactEscape(error.message) +
-      '</div>';
-
   }
 
 }
 
 
-/* Render one message */
+/* =========================
+   INITIAL DATE
+========================= */
 
-function renderContactMessage(item){
+$("publishDate")
+  .value =
+  today();
 
-  const isRead =
-    item.status === "read";
+</script>
 
-  const statusText =
-    isRead ? "READ" : "NEW";
-
-  const mobile =
-    String(item.mobile || "").trim();
-
-
-  return `
-
-    <div class="contact-message-card ${isRead ? "" : "unread"}">
-
-      <div class="contact-message-top">
-
-        <div>
-
-          <div class="contact-member-name">
-            ${contactEscape(item.name || "Member")}
-          </div>
-
-          <div class="contact-member-details">
-
-            Employee No.:
-            <b>${contactEscape(item.employeeNo || "—")}</b>
-
-            <br>
-
-            📱 ${contactEscape(mobile || "Mobile not provided")}
-
-          </div>
-
-        </div>
-
-        <div class="contact-message-date">
-
-          ${formatContactDate(item.createdAt)}
-
-        </div>
-
-      </div>
-
-
-      <span class="contact-status ${isRead ? "read" : "new"}">
-
-        ${statusText}
-
-      </span>
-
-
-      <div class="contact-message-text">
-
-        ${contactEscape(item.message || "")}
-
-      </div>
-
-
-      <div class="contact-message-actions">
-
-        ${
-          mobile
-          ?
-          `<button
-             class="contact-call-btn"
-             onclick="callContactMember('${contactEscape(mobile)}')">
-             📞 CALL
-           </button>`
-          :
-          ""
-        }
-
-
-        ${
-          !isRead
-          ?
-          `<button
-             class="contact-read-btn"
-             onclick="markContactMessageRead('${contactEscape(item.id)}')">
-             ✅ MARK AS READ
-           </button>`
-          :
-          `<button
-             class="contact-read-btn"
-             onclick="markContactMessageUnread('${contactEscape(item.id)}')">
-             ↩ MARK UNREAD
-           </button>`
-        }
-
-
-        <button
-          class="contact-delete-btn"
-          onclick="deleteContactMessage('${contactEscape(item.id)}')">
-          🗑 DELETE
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* Call member */
-
-function callContactMember(mobile){
-
-  const clean =
-    String(mobile || "")
-      .replace(/[^\d+]/g,"");
-
-  if(!clean) return;
-
-  window.location.href =
-    "tel:" + clean;
-
-}
-
-
-/* Mark read */
-
-async function markContactMessageRead(id){
-
-  try{
-
-    await db
-      .collection("contactMessages")
-      .doc(id)
-      .update({
-        status:"read",
-        readAt:
-          firebase.firestore.FieldValue.serverTimestamp(),
-        readBy:
-          auth.currentUser?.email || ""
-      });
-
-    await loadContactMessages();
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "Unable to mark message as read.\n\n" +
-      error.message
-    );
-
-  }
-
-}
-
-
-/* Mark unread */
-
-async function markContactMessageUnread(id){
-
-  try{
-
-    await db
-      .collection("contactMessages")
-      .doc(id)
-      .update({
-        status:"new",
-        readAt:
-          firebase.firestore.FieldValue.delete(),
-        readBy:
-          firebase.firestore.FieldValue.delete()
-      });
-
-    await loadContactMessages();
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "Unable to mark message as unread.\n\n" +
-      error.message
-    );
-
-  }
-
-}
-
-
-/* Delete message */
-
-async function deleteContactMessage(id){
-
-  const ok =
-    confirm(
-      "Delete this Contact Union message?\n\n" +
-      "This action cannot be undone."
-    );
-
-  if(!ok) return;
-
-  try{
-
-    await db
-      .collection("contactMessages")
-      .doc(id)
-      .delete();
-
-    await loadContactMessages();
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "Unable to delete message.\n\n" +
-      error.message
-    );
-
-  }
-
-}
-
-
-/* Load messages when Admin page opens */
-
-if(
-  typeof auth !== "undefined" &&
-  typeof db !== "undefined"
-){
-
-  auth.onAuthStateChanged(function(user){
-
-    if(user){
-
-      setTimeout(
-        loadContactMessages,
-        800
-      );
-
-    }
-
-  });
-
-}
-
-</script></body></html>
+</body>
+</html>
