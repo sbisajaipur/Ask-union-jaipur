@@ -5072,3 +5072,8 @@ body.update-viewer-open .bottom-nav {
     -webkit-line-clamp:2 !important;
   }
 }
+@media (min-width:701px){
+  #quick-actions-final-v2 .quick-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+}
