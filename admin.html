@@ -433,7 +433,47 @@ button,.btn{touch-action:manipulation}
       <div id="contentList" class="list"><div class="empty">Loading…</div></div>
     </section>
   </div>
+<section class="card section full-section" id="questionsSection">
 
+  <div class="section-title-row">
+    <div>
+      <h2>❓ Questions</h2>
+      <p>Manage questions submitted through ASK UNION FAQ.</p>
+    </div>
+
+    <div class="member-summary">
+      <div class="mini-stat">
+        <b id="questionTotal">0</b>
+        <span>Total</span>
+      </div>
+
+      <div class="mini-stat">
+        <b id="questionNew">0</b>
+        <span>New</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <input
+      id="questionSearch"
+      type="search"
+      placeholder="Search name, mobile, email or question..."
+      oninput="renderQuestions()"
+    >
+
+    <select id="questionStatus" onchange="renderQuestions()">
+      <option value="all">All Questions</option>
+      <option value="new">New</option>
+      <option value="answered">Answered</option>
+    </select>
+  </div>
+
+  <div id="questionsList" class="list">
+    <div class="empty">Loading questions...</div>
+  </div>
+
+</section>
 <section class="card section full-section">
 <div class="section-title-row">
 <div><h2>👥 Member Management</h2><p>Add authorised members and control who can use the member area.</p></div>
