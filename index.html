@@ -610,6 +610,57 @@
 }
 
 </style>
+  <style>
+/* ===== QUICK ACTIONS FORCE 3 x 2 ===== */
+
+#quick-actions-final-v2 .quick-grid{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:12px !important;
+  width:100% !important;
+}
+
+#quick-actions-final-v2 .qa-card{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:46px minmax(0,1fr) 28px !important;
+  height:82px !important;
+  min-height:82px !important;
+  max-height:82px !important;
+}
+
+#quick-actions-final-v2 .qa-text{
+  min-width:0 !important;
+}
+
+#quick-actions-final-v2 .qa-text strong,
+#quick-actions-final-v2 .qa-text small{
+  display:block !important;
+  overflow:hidden !important;
+  white-space:nowrap !important;
+  text-overflow:ellipsis !important;
+}
+
+@media(max-width:700px){
+
+  #quick-actions-final-v2 .quick-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+
+  #quick-actions-final-v2 .qa-card{
+    grid-template-columns:36px minmax(0,1fr) !important;
+    height:74px !important;
+    min-height:74px !important;
+    max-height:74px !important;
+  }
+
+  #quick-actions-final-v2 .qa-arrow{
+    display:none !important;
+  }
+
+}
+</style>
 </head>
 
 
