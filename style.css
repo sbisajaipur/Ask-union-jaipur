@@ -4357,3 +4357,338 @@ body.update-viewer-open .bottom-nav {
   }
 
 }
+/* =========================================================
+   ASK UNION – MODERN LATEST UPDATES
+   FINAL PREMIUM CARD OVERRIDE
+   ========================================================= */
+
+#updatesList .update-mini-card{
+  position:relative !important;
+  display:grid !important;
+  grid-template-columns:82px minmax(0,1fr) 42px !important;
+  align-items:center !important;
+  gap:16px !important;
+
+  width:100% !important;
+  min-height:108px !important;
+  margin:0 0 12px !important;
+  padding:13px 14px !important;
+
+  background:#ffffff !important;
+  border:1px solid #eee3e6 !important;
+  border-left:4px solid #8b1029 !important;
+  border-radius:18px !important;
+
+  box-shadow:0 5px 18px rgba(76,20,35,.07) !important;
+
+  cursor:pointer !important;
+  transition:
+    transform .22s ease,
+    box-shadow .22s ease,
+    border-color .22s ease !important;
+}
+
+
+/* HOVER */
+
+#updatesList .update-mini-card:hover{
+  transform:translateY(-2px) !important;
+  box-shadow:0 10px 26px rgba(76,20,35,.12) !important;
+  border-color:#e4cdd3 !important;
+}
+
+
+/* THUMBNAIL */
+
+#updatesList .update-mini-thumb{
+  width:82px !important;
+  height:82px !important;
+  min-width:82px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  overflow:hidden !important;
+
+  background:#f8eef1 !important;
+  border:1px solid #ead9de !important;
+  border-radius:15px !important;
+}
+
+
+#updatesList .update-mini-thumb img,
+#updatesList .update-thumb-img{
+  width:100% !important;
+  height:100% !important;
+
+  display:block !important;
+  object-fit:cover !important;
+}
+
+
+#updatesList .update-thumb-fallback{
+  width:100% !important;
+  height:100% !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  background:linear-gradient(135deg,#fff5f7,#f6e7eb) !important;
+}
+
+
+#updatesList .update-thumb-fallback span{
+  font-size:30px !important;
+}
+
+
+/* BODY */
+
+#updatesList .update-mini-body{
+  min-width:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  gap:6px !important;
+}
+
+
+/* TOP ROW */
+
+#updatesList .update-mini-top{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:10px !important;
+
+  min-width:0 !important;
+}
+
+
+/* BADGE */
+
+#updatesList .update-mini-badge{
+  display:inline-flex !important;
+  align-items:center !important;
+
+  width:max-content !important;
+  max-width:100% !important;
+
+  padding:4px 9px !important;
+
+  background:#8b1029 !important;
+  color:#ffffff !important;
+
+  border-radius:999px !important;
+
+  font-size:8px !important;
+  line-height:1 !important;
+  font-weight:800 !important;
+  letter-spacing:.4px !important;
+  white-space:nowrap !important;
+}
+
+
+/* DATE */
+
+#updatesList .update-mini-date{
+  flex:0 0 auto !important;
+
+  color:#8b1029 !important;
+
+  font-size:9px !important;
+  font-weight:700 !important;
+
+  white-space:nowrap !important;
+}
+
+
+/* TITLE */
+
+#updatesList .update-mini-title{
+  margin:0 !important;
+  padding:0 !important;
+
+  color:#222 !important;
+
+  font-size:16px !important;
+  line-height:1.25 !important;
+  font-weight:800 !important;
+
+  display:-webkit-box !important;
+  -webkit-box-orient:vertical !important;
+  -webkit-line-clamp:2 !important;
+  overflow:hidden !important;
+}
+
+
+/* SUMMARY */
+
+#updatesList .update-mini-summary{
+  margin:0 !important;
+  padding:0 !important;
+
+  color:#707070 !important;
+
+  font-size:11px !important;
+  line-height:1.45 !important;
+
+  display:-webkit-box !important;
+  -webkit-box-orient:vertical !important;
+  -webkit-line-clamp:2 !important;
+  overflow:hidden !important;
+}
+
+
+/* ARROW */
+
+#updatesList .update-mini-arrow{
+  width:38px !important;
+  height:38px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  border-radius:50% !important;
+
+  background:#8b1029 !important;
+  color:#ffffff !important;
+
+  font-size:26px !important;
+  font-weight:400 !important;
+  line-height:1 !important;
+
+  box-shadow:0 4px 10px rgba(139,16,41,.18) !important;
+
+  transition:
+    transform .2s ease,
+    background .2s ease !important;
+}
+
+
+#updatesList .update-mini-card:hover .update-mini-arrow{
+  transform:translateX(3px) !important;
+  background:#6f0d21 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:700px){
+
+  #updatesList .update-mini-card{
+    grid-template-columns:64px minmax(0,1fr) 34px !important;
+    gap:11px !important;
+
+    min-height:92px !important;
+
+    padding:10px !important;
+    margin-bottom:10px !important;
+
+    border-radius:15px !important;
+    border-left-width:3px !important;
+  }
+
+
+  #updatesList .update-mini-thumb{
+    width:64px !important;
+    height:64px !important;
+    min-width:64px !important;
+
+    border-radius:12px !important;
+  }
+
+
+  #updatesList .update-thumb-fallback span{
+    font-size:24px !important;
+  }
+
+
+  #updatesList .update-mini-body{
+    gap:4px !important;
+  }
+
+
+  #updatesList .update-mini-top{
+    gap:5px !important;
+  }
+
+
+  #updatesList .update-mini-badge{
+    padding:3px 7px !important;
+    font-size:7px !important;
+  }
+
+
+  #updatesList .update-mini-date{
+    font-size:7px !important;
+  }
+
+
+  #updatesList .update-mini-title{
+    font-size:13px !important;
+    line-height:1.25 !important;
+  }
+
+
+  #updatesList .update-mini-summary{
+    font-size:9px !important;
+    line-height:1.35 !important;
+    -webkit-line-clamp:2 !important;
+  }
+
+
+  #updatesList .update-mini-arrow{
+    width:32px !important;
+    height:32px !important;
+    font-size:21px !important;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media(max-width:420px){
+
+  #updatesList .update-mini-card{
+    grid-template-columns:58px minmax(0,1fr) 30px !important;
+    gap:9px !important;
+    padding:9px !important;
+  }
+
+
+  #updatesList .update-mini-thumb{
+    width:58px !important;
+    height:58px !important;
+    min-width:58px !important;
+  }
+
+
+  #updatesList .update-mini-title{
+    font-size:12px !important;
+  }
+
+
+  #updatesList .update-mini-summary{
+    font-size:8.5px !important;
+  }
+
+
+  #updatesList .update-mini-date{
+    font-size:6.5px !important;
+  }
+
+
+  #updatesList .update-mini-arrow{
+    width:29px !important;
+    height:29px !important;
+    font-size:19px !important;
+  }
+}
