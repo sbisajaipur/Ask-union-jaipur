@@ -1033,21 +1033,44 @@ else if(currentType === "resources")
   }
 
 
+if(currentType === "resources"){
+
+  document.getElementById("sectionHeading")
+    .textContent = "📚 Information & Resources";
+
+  document.getElementById("resourcesSection")
+    .style.display = "block";
+
   document.getElementById("formsSection")
-  .style.display =
-    currentType === "all" ? "block" : "none";
+    .style.display = "none";
 
-document.getElementById("resourcesSection")
-  .style.display =
-    currentType === "all" ? "block" : "none";
+  resourceCards.forEach(card => {
 
-resourceCards.forEach(card => {
-  card.style.display = "flex";
-});
+    const text =
+      card.innerText.toLowerCase();
 
-formCards.forEach(card => {
-  card.style.display = "flex";
-});
+    card.style.display =
+      text.includes(search)
+      ? "flex"
+      : "none";
+
+  });
+
+  const visibleResources =
+    resourceCards.filter(card =>
+      card.style.display !== "none"
+    ).length;
+
+  document.getElementById("count").textContent =
+    visibleResources;
+
+  document.getElementById("resourceCount").textContent =
+    visibleResources;
+
+  document.getElementById("list").innerHTML = "";
+
+  return;
+}
 
   formCards.forEach(card => {
     card.style.display = "flex";
