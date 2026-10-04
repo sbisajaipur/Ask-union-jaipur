@@ -943,7 +943,42 @@ const resourceCards =
 
   const formCards =
     Array.from(document.querySelectorAll("#formsSection .form-card"));
+if(currentType === "resources"){
 
+  document.getElementById("resourcesSection")
+    .style.display = "block";
+
+  document.getElementById("formsSection")
+    .style.display = "none";
+
+  resourceCards.forEach(card => {
+
+    const text =
+      card.innerText.toLowerCase();
+
+    card.style.display =
+      text.includes(search)
+      ? "flex"
+      : "none";
+
+  });
+
+  const visibleResources =
+    resourceCards.filter(card =>
+      card.style.display !== "none"
+    ).length;
+
+  document.getElementById("count").textContent =
+    visibleResources;
+
+  document.getElementById("resourceCount").textContent =
+    visibleResources;
+
+  document.getElementById("list").innerHTML =
+    '<div class="empty">📚 Information & Resources</div>';
+
+  return;
+}
   if(currentType === "forms"){
     const matchingForms = formCards.filter(card => {
       const text = card.innerText.toLowerCase();
