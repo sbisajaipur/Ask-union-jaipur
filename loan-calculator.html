@@ -5,407 +5,2862 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>STAFF LOAN INSIGHT</title>
 
-  <!-- Google tag (gtag.js) -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1HTGGRBKV4"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-1HTGGRBKV4');
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-1HTGGRBKV4');
 </script>
-  <style>
-:root{
-  --navy:#0b1f3a;--blue:#1558a6;--blue2:#2b78d0;--gold:#c99b3b;
-  --bg:#f3f6fa;--card:#ffffff;--line:#dfe6ef;--muted:#6b7280;
-  --green:#12805c;--red:#b42318;--soft:#f7f9fc;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:linear-gradient(180deg,#eef3f8 0,#f7f9fc 420px,#f3f6fa 100%);color:#172033;font-family:Inter,Arial,Helvetica,sans-serif}
-.wrap{max-width:1180px;margin:auto;padding:16px}
-.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,#071b35 0%,#123d72 55%,#1c65b0 100%);border-radius:24px;padding:24px 25px;margin-bottom:16px;box-shadow:0 14px 34px rgba(10,35,68,.18)}
-.hero:after{content:"";position:absolute;right:-70px;top:-70px;width:230px;height:230px;border-radius:50%;background:rgba(255,255,255,.07)}
-.hero .tag{font-size:10px;font-weight:900;letter-spacing:1px;opacity:.86}
-.hero h1{font-size:31px;line-height:1.05;margin:8px 0 5px;letter-spacing:.2px}
-.hero p{margin:0;font-size:13px;opacity:.94}
-.hero-badge{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 11px;font-size:10px;font-weight:900}
-.hero-dot{width:7px;height:7px;border-radius:50%;background:#64d99e;box-shadow:0 0 0 4px rgba(100,217,158,.12)}
-.grid{display:grid;grid-template-columns:350px 1fr;gap:16px;align-items:start}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:0 8px 24px rgba(16,37,63,.06)}
-h2{margin:0 0 12px;font-size:17px;color:var(--navy)}
-.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
-.section-title small{font-size:9px;color:var(--muted);font-weight:800}
-.field{margin-bottom:12px}
-label{display:block;font-size:10px;font-weight:900;margin-bottom:6px;color:#3b4657}
-input,select{width:100%;padding:11px 12px;border:1px solid #ccd5e1;border-radius:11px;background:#fff;font-size:14px;color:#111827;transition:.15s}
-input:focus,select:focus{outline:none;border-color:var(--blue2);box-shadow:0 0 0 3px rgba(43,120,208,.12)}
-.loan-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.loan-btn{border:1px solid var(--line);border-radius:12px;padding:11px 9px;font-size:11px;font-weight:900;cursor:pointer;background:#f9fbfd;color:var(--navy);text-align:left;transition:.15s;min-height:52px}
-.loan-btn:hover{transform:translateY(-1px);border-color:#abc1db}
-.loan-btn.active{background:linear-gradient(180deg,#eff6ff,#e8f1fb);border-color:#77a1d2;color:var(--blue);box-shadow:inset 0 0 0 1px rgba(21,88,166,.08)}
-.loan-btn .loan-name{display:block;margin-top:2px}
-.notice{background:linear-gradient(180deg,#fbfcfe,#f7f9fc);border:1px solid var(--line);padding:11px;border-radius:12px;font-size:10.5px;line-height:1.55;color:#475467}
-.notice strong{color:var(--navy)}
-.primary{width:100%;border:0;border-radius:12px;padding:13px;font-weight:900;cursor:pointer;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:13px;box-shadow:0 8px 18px rgba(21,88,166,.2)}
-.primary:hover{filter:brightness(1.03)}
-.status{padding:11px 12px;border-radius:12px;font-size:11.5px;font-weight:900;margin-bottom:10px}
-.status.ok{background:#edf9f4;border:1px solid #bfe7d5;color:var(--green)}
-.status.bad{background:#fff2f0;border:1px solid #f1c8c2;color:var(--red)}
-.status.info{background:#eef5fd;border:1px solid #c9dbef;color:var(--navy)}
-.headline{position:relative;overflow:hidden;background:linear-gradient(135deg,#f8fbff,#eff5fc);border:1px solid #d8e3f0;padding:14px;border-radius:14px;margin-bottom:10px}
-.headline:after{content:"";position:absolute;right:-20px;top:-20px;width:90px;height:90px;border-radius:50%;background:rgba(21,88,166,.07)}
-.headline span{display:block;font-size:9px;color:var(--muted);font-weight:900;letter-spacing:.7px}
-.headline strong{display:block;font-size:23px;color:var(--navy);margin-top:3px}
-.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.stat{border:1px solid var(--line);border-radius:13px;padding:11px;background:#fff;min-height:66px}
-.stat.highlight{background:linear-gradient(180deg,#f7fbff,#eef5fd);border-color:#cfe0f4}
-.stat small{display:block;font-size:8.5px;color:var(--muted);margin-bottom:5px;font-weight:800}
-.stat b{font-size:13px;color:var(--navy);line-height:1.25}
-.stat.big{min-height:83px}
-.stat.big b{font-size:18px}
-.progress-box{margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe}
-.progress-top{display:flex;justify-content:space-between;gap:10px;font-size:10px;font-weight:900;color:#475467;margin-bottom:7px}
-.progress-track{height:9px;background:#e8eef5;border-radius:99px;overflow:hidden}
-.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#2b78d0,#1558a6);border-radius:99px;transition:width .3s}
-.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}
-.scroll{max-height:430px;overflow:auto}
 
-table{width:100%;border-collapse:collapse;font-size:10px}
-th,td{padding:8px 9px;border-bottom:1px solid var(--line);white-space:nowrap;text-align:left}
-th{background:#f7f9fc;color:var(--navy);font-weight:900;position:sticky;top:0;z-index:1}
-tr:last-child td{border-bottom:0}
-.num{text-align:right}
-.section{margin-top:15px}
-.note{font-size:10px;color:var(--muted);line-height:1.55;margin:8px 0 0}
-.hidden{display:none!important}
-.footer{text-align:center;color:#8a93a1;font-size:9px;padding:18px 8px 10px}
-.source-strip{margin-top:12px;padding:9px 12px;border-radius:11px;background:#f8fafc;border:1px solid var(--line);font-size:9.5px;color:#667085}
-@media(max-width:780px){.grid{grid-template-columns:1fr}.result-grid{grid-template-columns:1fr 1fr}.hero h1{font-size:26px}.wrap{padding:10px}}
-@media(max-width:430px){.result-grid{grid-template-columns:1fr 1fr}.loan-grid{grid-template-columns:1fr 1fr}.hero{padding:19px}.card{padding:13px}.hero h1{font-size:23px}stat.big b{font-size:16px}}
-#calculateBtn{
+<style>
+:root{
+  --navy:#0b1f3a;
+  --blue:#1558a6;
+  --blue2:#2b78d0;
+  --card:#fff;
+  --line:#dfe6ef;
+  --muted:#6b7280;
+  --green:#12805c;
+  --red:#b42318;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  color:#172033;
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:linear-gradient(
+    180deg,
+    #eef3f8 0,
+    #f7f9fc 420px,
+    #f3f6fa 100%
+  );
+}
+
+.wrap{
+  max-width:1240px;
+  margin:auto;
+  padding:16px;
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  background:linear-gradient(
+    135deg,
+    #071b35,
+    #123d72 55%,
+    #1c65b0
+  );
+  border-radius:24px;
+  padding:24px 25px;
+  margin-bottom:18px;
+  box-shadow:0 14px 34px rgba(10,35,68,.18);
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  right:-70px;
+  top:-70px;
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+}
+
+.hero .tag{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  opacity:.86;
+}
+
+.hero h1{
+  font-size:31px;
+  line-height:1.05;
+  margin:8px 0 5px;
+}
+
+.hero p{
+  margin:0;
+  font-size:13px;
+  opacity:.94;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:14px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;
+  padding:7px 11px;
+  font-size:10px;
+  font-weight:900;
+}
+
+.hero-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#64d99e;
+  box-shadow:0 0 0 4px rgba(100,217,158,.12);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:420px 1fr;
+  gap:20px;
+  align-items:start;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:17px;
+  box-shadow:0 8px 24px rgba(16,37,63,.06);
+}
+
+h2{
+  margin:0 0 12px;
+  font-size:17px;
+  color:var(--navy);
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.section-title small{
+  font-size:9px;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.field{
+  margin-bottom:12px;
+}
+
+label{
+  display:block;
+  font-size:10px;
+  font-weight:900;
+  margin-bottom:6px;
+  color:#3b4657;
+}
+
+input,
+select{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #ccd5e1;
+  border-radius:11px;
+  background:#fff;
+  font-size:14px;
+  color:#111827;
+}
+
+input:focus,
+select:focus{
+  outline:none;
+  border-color:var(--blue2);
+  box-shadow:0 0 0 3px rgba(43,120,208,.12);
+}
+
+.loan-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.loan-btn{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px 9px;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+  background:#f9fbfd;
+  color:var(--navy);
+  text-align:left;
+  min-height:52px;
+}
+
+.loan-btn.active{
+  background:linear-gradient(
+    180deg,
+    #eff6ff,
+    #e8f1fb
+  );
+  border-color:#77a1d2;
+  color:var(--blue);
+  box-shadow:
+    inset 0 0 0 1px rgba(21,88,166,.08);
+}
+
+.loan-name{
+  display:block;
+  margin-top:2px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+
+/* =====================================================
+   PREMIUM QUICK RULE
+   ===================================================== */
+
+.quick-rule-card{
+  margin:11px 0 13px;
+  border:1px solid #b9d4f2;
+  border-radius:16px;
+  overflow:hidden;
+  background:linear-gradient(
+    135deg,
+    #eef7ff,
+    #f9fbff 62%,
+    #eef5ff
+  );
+  box-shadow:0 8px 20px rgba(21,88,166,.10);
+}
+
+.quick-rule-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 13px 9px;
+}
+
+.quick-rule-icon{
+  width:35px;
+  height:35px;
+  min-width:35px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:linear-gradient(
+    145deg,
+    #1678df,
+    #1558a6
+  );
+  color:#fff;
+  font-size:17px;
+  box-shadow:0 5px 12px rgba(21,88,166,.18);
+}
+
+.quick-rule-title{
+  flex:1;
+  min-width:0;
+}
+
+.quick-rule-title strong{
+  display:block;
+  color:var(--navy);
+  font-size:13px;
+  line-height:1.15;
+}
+
+.quick-rule-title small{
+  display:block;
+  margin-top:3px;
+  color:#64748b;
+  font-size:8.5px;
+  font-weight:700;
+}
+
+.quick-rule-badge{
+  padding:5px 8px;
+  border-radius:999px;
+  background:#e5f0ff;
+  color:#1558a6;
+  font-size:8px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.quick-rule-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:7px;
+  padding:0 10px 10px;
+}
+
+.quick-rule-item{
+  background:rgba(255,255,255,.9);
+  border:1px solid #dce8f5;
+  border-radius:11px;
+  padding:9px 8px 10px;
+}
+
+.quick-rule-item small{
+  display:block;
+  color:#64748b;
+  font-size:7.5px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.35px;
+  margin-bottom:4px;
+}
+
+.quick-rule-item strong{
+  display:block;
+  color:#1565be;
+  font-size:11px;
+  line-height:1.2;
+}
+
+.quick-rule-note{
+  margin:0 10px 10px;
+  padding:8px 9px;
+  border-radius:10px;
+  background:linear-gradient(
+    135deg,
+    #fff8e6,
+    #fff3c9
+  );
+  border:1px solid #f2ce72;
+  color:#6b4f08;
+  font-size:9px;
+  line-height:1.4;
+}
+
+.quick-rule-note b{
+  color:#604500;
+}
+
+.quick-rule-service{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:0 10px 10px;
+  padding:9px 10px;
+  border-radius:10px;
+  background:linear-gradient(
+    135deg,
+    #edf9f4,
+    #e5f5ee
+  );
+  border:1px solid #bfe7d5;
+  color:#175b45;
+  font-size:9px;
+  line-height:1.35;
+}
+
+.quick-rule-service>span:first-child{
+  width:25px;
+  height:25px;
+  min-width:25px;
+  display:grid;
+  place-items:center;
+  border-radius:8px;
+  background:#fff;
+  font-size:13px;
+}
+
+.quick-rule-service b{
+  display:block;
+  font-size:7.5px;
+  letter-spacing:.35px;
+  color:#3f6b5a;
+}
+
+.quick-rule-service strong{
+  display:block;
+  margin-top:2px;
+  font-size:10px;
+  color:#13724f;
+}
+
+
+/* =====================================================
+   GENERAL UI
+   ===================================================== */
+
+.notice{
+  background:linear-gradient(
+    180deg,
+    #fbfcfe,
+    #f7f9fc
+  );
+  border:1px solid var(--line);
+  padding:11px;
+  border-radius:12px;
+  font-size:10.5px;
+  line-height:1.55;
+  color:#475467;
+}
+
+.primary{
   width:100%;
   min-height:58px;
-  margin-top:12px;
-  border:none;
-  border-radius:18px;
-  background:linear-gradient(135deg,#0b1f3a,#1558a6) !important;
-  color:#ffffff !important;
-  font-size:17px;
-  font-weight:800;
-  letter-spacing:.2px;
+  border:0;
+  border-radius:17px;
+  padding:13px;
+  font-weight:900;
   cursor:pointer;
+  background:linear-gradient(
+    135deg,
+    #0b1f3a,
+    #1558a6
+  );
+  color:#fff;
+  font-size:16px;
   box-shadow:0 10px 24px rgba(11,31,58,.20);
-  transition:.2s ease;
 }
 
-#calculateBtn:hover{
+.primary:hover{
   transform:translateY(-1px);
-  box-shadow:0 13px 28px rgba(11,31,58,.25);
 }
 
-#calculateBtn:active{
+.primary:active{
   transform:scale(.98);
 }
-  </style>
+
+.status{
+  padding:11px 12px;
+  border-radius:12px;
+  font-size:11.5px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+
+.status.ok{
+  background:#edf9f4;
+  border:1px solid #bfe7d5;
+  color:var(--green);
+}
+
+.status.bad{
+  background:#fff2f0;
+  border:1px solid #f1c8c2;
+  color:var(--red);
+}
+
+.status.info{
+  background:#eef5fd;
+  border:1px solid #c9dbef;
+  color:var(--navy);
+}
+
+.headline{
+  background:linear-gradient(
+    135deg,
+    #f8fbff,
+    #eff5fc
+  );
+  border:1px solid #d8e3f0;
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:10px;
+}
+
+.headline span{
+  display:block;
+  font-size:9px;
+  color:var(--muted);
+  font-weight:900;
+  letter-spacing:.7px;
+}
+
+.headline strong{
+  display:block;
+  font-size:23px;
+  color:var(--navy);
+  margin-top:3px;
+}
+
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+
+.stat{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:11px;
+  background:#fff;
+  min-height:66px;
+}
+
+.stat.highlight{
+  background:linear-gradient(
+    180deg,
+    #f7fbff,
+    #eef5fd
+  );
+  border-color:#cfe0f4;
+}
+
+.stat small{
+  display:block;
+  font-size:8.5px;
+  color:var(--muted);
+  margin-bottom:5px;
+  font-weight:800;
+}
+
+.stat b{
+  font-size:13px;
+  color:var(--navy);
+  line-height:1.25;
+}
+
+.stat.big{
+  min-height:83px;
+}
+
+.stat.big b{
+  font-size:18px;
+}
+
+.progress-box{
+  margin-top:10px;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fbfcfe;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  font-size:10px;
+  font-weight:900;
+  color:#475467;
+  margin-bottom:7px;
+}
+
+.progress-track{
+  height:9px;
+  background:#e8eef5;
+  border-radius:99px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0;
+  background:linear-gradient(
+    90deg,
+    #2b78d0,
+    #1558a6
+  );
+  border-radius:99px;
+}
+
+.section{
+  margin-top:15px;
+}
+
+.table-wrap{
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:12px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:10px;
+}
+
+th,
+td{
+  padding:8px 9px;
+  border-bottom:1px solid var(--line);
+  white-space:nowrap;
+  text-align:left;
+}
+
+th{
+  background:#f7f9fc;
+  color:var(--navy);
+  font-weight:900;
+}
+
+tr:last-child td{
+  border-bottom:0;
+}
+
+.note{
+  font-size:10px;
+  color:var(--muted);
+  line-height:1.55;
+  margin:8px 0 0;
+}
+
+.footer{
+  text-align:center;
+  color:#8a93a1;
+  font-size:9px;
+  padding:18px 8px 10px;
+}
+
+.source-strip{
+  margin-top:12px;
+  padding:9px 12px;
+  border-radius:11px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  font-size:9.5px;
+  color:#667085;
+  line-height:1.45;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (min-width:781px){
+
+  .wrap{
+    max-width:1240px;
+  }
+
+  .grid{
+    grid-template-columns:420px 1fr;
+    gap:20px;
+  }
+
+  .quick-rule-title strong{
+    font-size:14px;
+  }
+
+  .quick-rule-title small{
+    font-size:9px;
+  }
+
+  .quick-rule-item{
+    padding:10px 9px;
+  }
+
+  .quick-rule-item small{
+    font-size:8px;
+  }
+
+  .quick-rule-item strong{
+    font-size:11.5px;
+  }
+
+  .quick-rule-note{
+    font-size:9.5px;
+  }
+
+  .quick-rule-service{
+    font-size:9.5px;
+  }
+
+  .quick-rule-service strong{
+    font-size:10.5px;
+  }
+}
+
+@media (max-width:780px){
+
+  .wrap{
+    padding:10px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:26px;
+  }
+}
+
+@media (max-width:430px){
+
+  .hero{
+    padding:19px;
+  }
+
+  .hero h1{
+    font-size:23px;
+  }
+
+  .card{
+    padding:13px;
+  }
+
+  .result-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .loan-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .quick-rule-grid{
+    grid-template-columns:repeat(
+      2,
+      minmax(0,1fr)
+    );
+    gap:6px;
+    padding:0 8px 8px;
+  }
+
+  .quick-rule-head{
+    padding:10px;
+  }
+
+  .quick-rule-icon{
+    width:31px;
+    height:31px;
+    min-width:31px;
+    font-size:15px;
+  }
+
+  .quick-rule-title strong{
+    font-size:11px;
+  }
+
+  .quick-rule-title small{
+    font-size:8px;
+  }
+
+  .quick-rule-badge{
+    font-size:7.5px;
+    padding:4px 6px;
+  }
+
+  .quick-rule-item{
+    padding:7px;
+  }
+
+  .quick-rule-item strong{
+    font-size:10px;
+  }
+
+  .quick-rule-note{
+    margin:0 8px 8px;
+    font-size:8px;
+  }
+
+  .quick-rule-service{
+    margin:0 8px 8px;
+    padding:8px 9px;
+    font-size:8px;
+  }
+
+  .quick-rule-service strong{
+    font-size:9px;
+  }
+}
+</style>
+</head>
+
 <body>
+
 <div class="wrap">
+
 <section class="hero">
-  <div class="tag">ASK UNION • STAFF BENEFIT TOOL</div>
-  <h1>STAFF LOAN INSIGHT</h1>
-  <p>Smart SBI Staff Loan Calculator • Amount • Tenure • Interest • Recovery Summary</p>
-  <div class="hero-badge"><span class="hero-dot"></span> LIVE CALCULATOR</div>
+  <div class="tag">
+    ASK UNION • STAFF BENEFIT TOOL
+  </div>
+
+  <h1>
+    STAFF LOAN INSIGHT
+  </h1>
+
+  <p>
+    Smart SBI Staff Loan Calculator • Amount • Tenure • Interest • Recovery Summary
+  </p>
+
+  <div class="hero-badge">
+    <span class="hero-dot"></span>
+    LIVE CALCULATOR
+  </div>
 </section>
+
 
 <div class="grid">
+
+
+<!-- =====================================================
+     LOAN ENQUIRY
+     ===================================================== -->
+
 <section class="card">
-  <div class="section-title"><h2>Loan Enquiry</h2><small>Staff reference tool</small></div>
-  <div class="field">
-    <label>STAFF CATEGORY</label>
-    <select id="category"><option value="clerical">Clerical</option><option value="subordinate">Subordinate</option></select>
+
+  <div class="section-title">
+    <h2>Loan Enquiry</h2>
+    <small>Staff reference tool</small>
   </div>
 
-  <div class="section-title" style="margin-top:16px"><h2>Choose Loan Type</h2><small>Tap a card</small></div>
-  <div class="loan-grid" id="loanButtons">
-    <button class="loan-btn active" data-loan="housing" type="button">🏠 <span class="loan-name">Housing Loan</span></button>
-    <button class="loan-btn" data-loan="personal" type="button">💰 <span class="loan-name">Personal / PF</span></button>
-    <button class="loan-btn" data-loan="car" type="button">🚗 <span class="loan-name">Car Loan</span></button>
-    <button class="loan-btn" data-loan="twowheeler" type="button">🛵 <span class="loan-name">Two-Wheeler</span></button>
-    <button class="loan-btn" data-loan="computer" type="button">💻 <span class="loan-name">Computer</span></button>
-    <button class="loan-btn" data-loan="festival" type="button">🎉 <span class="loan-name">Festival</span></button>
-  </div>
-
-  <div class="notice" id="quickRule" style="margin:11px 0"><strong>Quick Rule:</strong> Housing — Clerical ₹80 lakh / Subordinate ₹60 lakh.</div>
 
   <div class="field">
-    <label id="amountLabel">REQUESTED HOUSING LOAN AMOUNT (₹)</label>
-    <input id="amount" type="number" min="0" step="1" value="6000000">
-  </div>
-  <div class="field hidden" id="personalBox">
-    <label>PERSONAL / PF MODE</label>
-    <select id="personalMode"><option value="demand">Demand Loan</option><option value="od">PF OD</option></select>
-  </div>
-  <div class="field" id="tenureBox">
-    <label>TENURE (MONTHS)</label>
-    <input id="tenure" type="number" min="1" step="1" value="360">
+
+    <label>
+      STAFF CATEGORY
+    </label>
+
+    <select id="category">
+
+      <option value="clerical">
+        Clerical
+      </option>
+
+      <option value="subordinate">
+        Subordinate
+      </option>
+
+    </select>
+
   </div>
 
-  <button class="primary" id="calculateBtn" type="button">🧮 CALCULATE NOW</button>
-  <div class="notice" id="ruleNotice" style="margin-top:10px">Housing: 2 years service • 5% simple • ₹80L Clerical / ₹60L Subordinate.</div>
-  <div class="source-strip">For staff reference only • Applicable SBI rules/circulars and sanction terms will prevail.</div>
+
+  <div
+    class="section-title"
+    style="margin-top:16px"
+  >
+
+    <h2>
+      Choose Loan Type
+    </h2>
+
+    <small>
+      Tap a card
+    </small>
+
+  </div>
+
+
+  <div class="loan-grid">
+
+    <button
+      class="loan-btn active"
+      data-loan="housing"
+      type="button"
+    >
+      🏠
+      <span class="loan-name">
+        Housing Loan
+      </span>
+    </button>
+
+
+    <button
+      class="loan-btn"
+      data-loan="personal"
+      type="button"
+    >
+      💰
+      <span class="loan-name">
+        Personal / PF
+      </span>
+    </button>
+
+
+    <button
+      class="loan-btn"
+      data-loan="car"
+      type="button"
+    >
+      🚗
+      <span class="loan-name">
+        Car Loan
+      </span>
+    </button>
+
+
+    <button
+      class="loan-btn"
+      data-loan="twowheeler"
+      type="button"
+    >
+      🛵
+      <span class="loan-name">
+        Two-Wheeler
+      </span>
+    </button>
+
+
+    <button
+      class="loan-btn"
+      data-loan="computer"
+      type="button"
+    >
+      💻
+      <span class="loan-name">
+        Computer
+      </span>
+    </button>
+
+
+    <button
+      class="loan-btn"
+      data-loan="festival"
+      type="button"
+    >
+      🎉
+      <span class="loan-name">
+        Festival
+      </span>
+    </button>
+
+  </div>
+
+
+  <div
+    class="quick-rule-card"
+    id="quickRule"
+  ></div>
+
+
+  <div class="field">
+
+    <label id="amountLabel">
+      REQUESTED HOUSING LOAN AMOUNT (₹)
+    </label>
+
+    <input
+      id="amount"
+      type="number"
+      min="0"
+      step="1"
+      value="6000000"
+    >
+
+  </div>
+
+
+  <!-- TWO WHEELER VEHICLE COST -->
+
+  <div
+    class="field hidden"
+    id="twowheelerCostBox"
+  >
+
+    <label>
+      VEHICLE COST (₹)
+    </label>
+
+    <input
+      id="vehicleCost"
+      type="number"
+      min="0"
+      step="1"
+      value="166667"
+    >
+
+  </div>
+
+
+  <!-- COMPLETED SERVICE -->
+
+  <div
+    class="field hidden"
+    id="serviceBox"
+  >
+
+    <label>
+      COMPLETED SERVICE (YEARS)
+    </label>
+
+    <input
+      id="serviceYears"
+      type="number"
+      min="0"
+      step="0.1"
+      value="0"
+    >
+
+  </div>
+
+
+  <!-- PERSONAL / PF -->
+
+  <div
+    class="field hidden"
+    id="personalBox"
+  >
+
+    <label>
+      PERSONAL / PF MODE
+    </label>
+
+    <select id="personalMode">
+
+      <option value="demand">
+        Demand Loan
+      </option>
+
+      <option value="od">
+        PF OD
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- TENURE -->
+
+  <div
+    class="field"
+    id="tenureBox"
+  >
+
+    <label>
+      TENURE (MONTHS)
+    </label>
+
+    <input
+      id="tenure"
+      type="number"
+      min="1"
+      step="1"
+      value="360"
+    >
+
+  </div>
+
+
+  <button
+    class="primary"
+    id="calculateBtn"
+    type="button"
+  >
+    🧮 CALCULATE NOW
+  </button>
+
+
+  <div
+    class="notice"
+    id="ruleNotice"
+    style="margin-top:10px"
+  ></div>
+
+
+  <div class="source-strip">
+
+    For staff reference only • Applicable SBI rules/circulars
+    and sanction terms will prevail.
+
+    <br>
+
+    *Two-Wheeler uses category, completed service and
+    90% of vehicle cost subject to applicable maximum.
+
+  </div>
+
 </section>
+
+
+<!-- =====================================================
+     RESULTS
+     ===================================================== -->
 
 <section>
-  <div id="status" class="status info">Enter loan amount and press CALCULATE NOW.</div>
-  <div class="headline"><span>CALCULATION STATUS</span><strong id="headline">READY</strong></div>
+
+  <div
+    id="status"
+    class="status info"
+  >
+    Enter loan amount and press CALCULATE NOW.
+  </div>
+
+
+  <div class="headline">
+
+    <span>
+      CALCULATION STATUS
+    </span>
+
+    <strong id="headline">
+      READY
+    </strong>
+
+  </div>
+
 
   <div class="result-grid">
-    <div class="stat big highlight"><small>REQUESTED AMOUNT</small><b id="requested">—</b></div>
-    <div class="stat big highlight"><small>MAXIMUM LOAN LIMIT</small><b id="maxLoan">—</b></div>
-    <div class="stat"><small>TENURE</small><b id="resultTenure">—</b></div>
-    <div class="stat"><small>RATE OF INTEREST</small><b id="roi">—</b></div>
-    <div class="stat"><small>PRINCIPAL RECOVERY</small><b id="principalInfo">—</b></div>
-    <div class="stat"><small>INTEREST RECOVERY</small><b id="interestInfo">—</b></div>
-    <div class="stat"><small>TOTAL INTEREST</small><b id="totalInterest">—</b></div>
-    <div class="stat"><small>TOTAL REPAYMENT</small><b id="totalRepayment">—</b></div>
+
+    <div class="stat big highlight">
+      <small>
+        REQUESTED AMOUNT
+      </small>
+
+      <b id="requested">
+        —
+      </b>
+    </div>
+
+
+    <div class="stat big highlight">
+      <small>
+        ELIGIBLE / MAXIMUM
+      </small>
+
+      <b id="maxLoan">
+        —
+      </b>
+    </div>
+
+
+    <div class="stat">
+      <small>
+        TENURE
+      </small>
+
+      <b id="resultTenure">
+        —
+      </b>
+    </div>
+
+
+    <div class="stat">
+      <small>
+        RATE OF INTEREST
+      </small>
+
+      <b id="roi">
+        —
+      </b>
+    </div>
+
+
+    <div class="stat">
+      <small>
+        PRINCIPAL RECOVERY
+      </small>
+
+      <b id="principalInfo">
+        —
+      </b>
+    </div>
+
+
+    <div class="stat">
+      <small>
+        INTEREST RECOVERY
+      </small>
+
+      <b id="interestInfo">
+        —
+      </b>
+    </div>
+
+
+    <div class="stat">
+      <small>
+        TOTAL INTEREST
+      </small>
+
+      <b id="totalInterest">
+        —
+      </b>
+    </div>
+
+
+    <div class="stat">
+      <small>
+        TOTAL REPAYMENT
+      </small>
+
+      <b id="totalRepayment">
+        —
+      </b>
+    </div>
+
   </div>
+
 
   <div class="progress-box">
-    <div class="progress-top"><span>Principal Recovery Progress</span><span id="progressLabel">0%</span></div>
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="progress-top">
+
+      <span>
+        Principal Recovery Progress
+      </span>
+
+      <span id="progressLabel">
+        0%
+      </span>
+
+    </div>
+
+
+    <div class="progress-track">
+
+      <div
+        class="progress-fill"
+        id="progressFill"
+      ></div>
+
+    </div>
+
   </div>
+
 
   <div class="section card">
-    <div class="section-title"><h2>Recovery Summary</h2><small id="loanStatus">—</small></div>
-    <div class="table-wrap"><table><thead><tr><th>Phase</th><th>Months</th><th>Method</th><th>Monthly Recovery</th></tr></thead><tbody id="summaryBody"><tr><td colspan="4">No calculation yet.</td></tr></tbody></table></div>
-    <p class="note" id="calcNote">For staff reference only. Final sanction/recovery will depend on applicable SBI rules and sanction terms.</p>
+
+    <div class="section-title">
+
+      <h2>
+        Recovery Summary
+      </h2>
+
+      <small id="loanStatus">
+        —
+      </small>
+
+    </div>
+
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Phase
+            </th>
+
+            <th>
+              Months
+            </th>
+
+            <th>
+              Method
+            </th>
+
+            <th>
+              Monthly Recovery
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody id="summaryBody">
+
+          <tr>
+
+            <td colspan="4">
+              No calculation yet.
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <p
+      class="note"
+      id="calcNote"
+    >
+      For staff reference only.
+      Final sanction/recovery will depend on applicable
+      SBI rules and sanction terms.
+    </p>
+
   </div>
+
 </section>
+
 </div>
 
 
+<div class="footer">
 
+  STAFF LOAN INSIGHT • ASK UNION
 
+  <br>
 
-<div class="footer">STAFF LOAN INSIGHT • ASK UNION<br>This calculator is a staff reference tool. Applicable SBI circulars/rules and sanction terms will prevail.</div>
+  This calculator is a staff reference tool.
+  Applicable SBI circulars/rules and sanction terms will prevail.
+
 </div>
+
+</div>
+
 
 <script>
+
 (function(){
+
 "use strict";
+
 
 var selectedLoan="housing";
 var lastResult=null;
 
-function $(id){return document.getElementById(id);}
-function text(id,value){var e=$(id); if(e)e.textContent=value;}
-function money(n){return "₹"+Math.round(Number(n)||0).toLocaleString("en-IN");}
-function pct(r){return (r*100).toFixed(2)+"%";}
 
-var ruleMap={
- housing:"Housing: 2 years service • 5% simple • ₹80L Clerical / ₹60L Subordinate.",
- personal:"Personal / PF: 2 years service • ₹10L Clerical / ₹7L Subordinate • 5.95% on the applicable mode.",
- car:"Car: ₹15L Clerical / ₹7L Subordinate • 5.50% • 180 months.",
- twowheeler:"Two-Wheeler: ₹2L Clerical / ₹1.50L Subordinate • 5.50% • 84 months.",
- computer:"Computer: ₹80,000 maximum • 2 years service • 5.95% • 36–60 months.",
- festival:"Festival Advance: interest-free • 10 monthly instalments."
-};
+function $(id){
+  return document.getElementById(id);
+}
 
-var quickMap={
- housing:"Housing — Clerical ₹80 lakh / Subordinate ₹60 lakh • tenure as per applicable repayment band.",
- personal:"Personal / PF — Clerical ₹10 lakh / Subordinate ₹7 lakh • mode/tenure as per applicable rule.",
- car:"Car — Loan amount: Clerical ₹15 lakh / Subordinate ₹7 lakh • 180 months.",
- twowheeler:"Two-Wheeler — Loan amount: Clerical ₹2 lakh / Subordinate ₹1.50 lakh • 84 months.",
- computer:"Computer — ₹80,000 maximum • 36–60 months.",
- festival:"Festival Advance — interest-free • 10 monthly instalments."
-};
+
+function text(id,value){
+
+  var e=$(id);
+
+  if(e){
+    e.textContent=value;
+  }
+
+}
+
+
+function money(n){
+
+  return "₹"+
+    Math.round(
+      Number(n)||0
+    ).toLocaleString("en-IN");
+
+}
+
+
+function pct(r){
+
+  return (
+    Number(r||0)*100
+  ).toFixed(2)+"%";
+
+}
+
 
 function setStatus(kind,msg){
+
   var e=$("status");
+
   e.className="status "+kind;
+
   e.textContent=msg;
+
 }
+
+
+/* =====================================================
+   RULE TEXT
+   ===================================================== */
+
+var ruleMap={
+
+  housing:
+    "Housing: 2 years service • 5% simple • ₹80L Clerical / ₹60L Subordinate.",
+
+  personal:
+    "Personal / PF: 2 years service • ₹10L Clerical / ₹7L Subordinate • 5.95% on the applicable mode.",
+
+  car:
+    "Car: 5 years service • ₹15L Clerical / ₹7L Subordinate • 5.50% • 180 months.",
+
+  twowheeler:
+    "Two-Wheeler: Clerical probation eligible for lower limit; higher limit after 3 years. Subordinate: 3 years service. 5.50% • 84 months.",
+
+  computer:
+    "Computer: 2 years service • ₹80,000 maximum • 5.95% • 36–60 months.",
+
+  festival:
+    "Festival Advance: Permanent employee • interest-free • 10 monthly instalments."
+
+};
+
+
+/* =====================================================
+   QUICK RULE DATA
+   ===================================================== */
+
+var ruleUI={
+
+  housing:{
+    title:"QUICK RULE — HOUSING LOAN",
+    sub:"SBI STAFF LOAN • KEY TERMS AT A GLANCE",
+    c1:["Clerical Limit","₹80 Lakh"],
+    c2:["Subordinate Limit","₹60 Lakh"],
+    c3:["Interest Rate","5.00%"],
+    c4:["Tenure","As per rule"],
+    service:"2 Years",
+    note:
+      "📌 <b>Eligibility:</b> Minimum service 2 years. Tenure follows the applicable repayment band."
+  },
+
+
+  personal:{
+    title:"QUICK RULE — PERSONAL / PF",
+    sub:"DEMAND LOAN / PF OD • KEY TERMS AT A GLANCE",
+    c1:["Clerical Limit","₹10 Lakh"],
+    c2:["Subordinate Limit","₹7 Lakh"],
+    c3:["Interest Rate","5.95%"],
+    c4:["Mode","Demand / PF OD"],
+    service:"2 Years",
+    note:
+      "📌 <b>Eligibility:</b> Minimum service 2 years. Mode and recovery are subject to the applicable rule."
+  },
+
+
+  car:{
+    title:"QUICK RULE — CAR LOAN",
+    sub:"SBI STAFF CAR LOAN • KEY TERMS AT A GLANCE",
+    c1:["Clerical Limit","₹15 Lakh"],
+    c2:["Subordinate Limit","₹7 Lakh"],
+    c3:["Interest Rate","5.50%"],
+    c4:["Tenure","180 Months"],
+    service:"5 Years",
+    note:
+      "📌 <b>Eligibility:</b> Minimum service 5 years."
+  },
+
+
+  twowheeler:{
+    title:"QUICK RULE — TWO-WHEELER",
+    sub:"SERVICE-BASED ELIGIBILITY • 90% COST RULE",
+    c1:["Clerical","₹1.50L / ₹2L*"],
+    c2:["Subordinate","₹1.50 Lakh*"],
+    c3:["Interest Rate","5.50%"],
+    c4:["Tenure","84 Months"],
+    service:
+      "Clerical: Probation* • Higher limit after 3 Years | Subordinate: 3 Years",
+    note:
+      "📌 <b>Rule:</b> 90% of vehicle cost or applicable maximum, whichever is lower."
+  },
+
+
+  computer:{
+    title:"QUICK RULE — COMPUTER / LAPTOP",
+    sub:"SBI STAFF BENEFIT • KEY TERMS AT A GLANCE",
+    c1:["Clerical Limit","₹80,000"],
+    c2:["Subordinate Limit","₹80,000"],
+    c3:["Interest Rate","5.95%"],
+    c4:["Tenure","36–60 Months"],
+    service:"2 Years",
+    note:
+      "📌 <b>Eligibility:</b> Minimum service 2 years."
+  },
+
+
+  festival:{
+    title:"QUICK RULE — FESTIVAL ADVANCE",
+    sub:"STAFF BENEFIT • KEY TERMS AT A GLANCE",
+    c1:["Employee Status","Permanent"],
+    c2:["Interest","0.00%"],
+    c3:["Recovery","10 Instalments"],
+    c4:["Frequency","1 / Year"],
+    service:"Permanent Employee",
+    note:
+      "📌 <b>Eligibility:</b> Permanent employee."
+  }
+
+};
+
+
+/* =====================================================
+   RENDER QUICK RULE
+   ===================================================== */
+
+function renderQuickRule(name){
+
+  var d=
+    ruleUI[name]||
+    ruleUI.housing;
+
+
+  $("quickRule").innerHTML=
+
+    '<div class="quick-rule-head">'+
+
+      '<div class="quick-rule-icon">'+
+        'ℹ️'+
+      '</div>'+
+
+      '<div class="quick-rule-title">'+
+
+        '<strong>'+
+          d.title+
+        '</strong>'+
+
+        '<small>'+
+          d.sub+
+        '</small>'+
+
+      '</div>'+
+
+      '<div class="quick-rule-badge">'+
+        'STAFF LOAN'+
+      '</div>'+
+
+    '</div>'+
+
+    '<div class="quick-rule-grid">'+
+
+      '<div class="quick-rule-item">'+
+        '<small>'+d.c1[0]+'</small>'+
+        '<strong>'+d.c1[1]+'</strong>'+
+      '</div>'+
+
+      '<div class="quick-rule-item">'+
+        '<small>'+d.c2[0]+'</small>'+
+        '<strong>'+d.c2[1]+'</strong>'+
+      '</div>'+
+
+      '<div class="quick-rule-item">'+
+        '<small>'+d.c3[0]+'</small>'+
+        '<strong>'+d.c3[1]+'</strong>'+
+      '</div>'+
+
+      '<div class="quick-rule-item">'+
+        '<small>'+d.c4[0]+'</small>'+
+        '<strong>'+d.c4[1]+'</strong>'+
+      '</div>'+
+
+    '</div>'+
+
+    '<div class="quick-rule-note">'+
+      d.note+
+    '</div>'+
+
+    '<div class="quick-rule-service">'+
+
+      '<span>👤</span>'+
+
+      '<span>'+
+
+        '<b>MINIMUM REQUIRED SERVICE</b>'+
+
+        '<strong>'+
+          d.service+
+        '</strong>'+
+
+      '</span>'+
+
+    '</div>';
+
+}
+
+
+/* =====================================================
+   SELECT LOAN
+   ===================================================== */
 
 function selectLoan(name){
+
   selectedLoan=name;
-  document.querySelectorAll(".loan-btn").forEach(function(b){
-    b.classList.toggle("active",b.getAttribute("data-loan")===name);
-  });
-  $("quickRule").innerHTML="<strong>Quick Rule:</strong> "+quickMap[name];
-  $("ruleNotice").textContent=ruleMap[name];
 
-  var pb=$("personalBox");
-  var tb=$("tenureBox");
-  pb.classList.toggle("hidden",name!=="personal");
-  tb.classList.toggle("hidden",name==="festival");
 
-  var amount=$("amount");
-  if(name==="housing"){ $("amountLabel").textContent="Requested Housing Loan Amount (₹)"; amount.value=6000000; $("tenure").value=360; }
-  if(name==="personal"){ $("amountLabel").textContent="Requested Personal / PF Loan Amount (₹)"; amount.value=700000; $("tenure").value=120; }
-  if(name==="car"){ $("amountLabel").textContent="Requested Car Loan Amount (₹)"; amount.value=1000000; $("tenure").value=180; }
-  if(name==="twowheeler"){ $("amountLabel").textContent="Requested Two-Wheeler Loan Amount (₹)"; amount.value=150000; $("tenure").value=84; }
-  if(name==="computer"){ $("amountLabel").textContent="Requested Computer Loan Amount (₹)"; amount.value=80000; $("tenure").value=60; }
-  if(name==="festival"){ $("amountLabel").textContent="Festival Advance Amount (₹)"; amount.value=50000; }
+  document
+    .querySelectorAll(".loan-btn")
+    .forEach(function(b){
+
+      b.classList.toggle(
+        "active",
+        b.getAttribute("data-loan")===name
+      );
+
+    });
+
+
+  renderQuickRule(name);
+
+
+  $("ruleNotice").textContent=
+    ruleMap[name];
+
+
+  $("personalBox")
+    .classList.toggle(
+      "hidden",
+      name!=="personal"
+    );
+
+
+  $("tenureBox")
+    .classList.toggle(
+      "hidden",
+      name==="festival"
+    );
+
+
+  $("twowheelerCostBox")
+    .classList.toggle(
+      "hidden",
+      name!=="twowheeler"
+    );
+
+
+  $("serviceBox")
+    .classList.toggle(
+      "hidden",
+      name!=="twowheeler"
+    );
+
+
+  var a=$("amount");
+
+
+  if(name==="housing"){
+
+    $("amountLabel").textContent=
+      "Requested Housing Loan Amount (₹)";
+
+    a.value=6000000;
+
+    $("tenure").value=360;
+
+  }
+
+
+  if(name==="personal"){
+
+    $("amountLabel").textContent=
+      "Requested Personal / PF Loan Amount (₹)";
+
+    a.value=700000;
+
+    $("tenure").value=120;
+
+  }
+
+
+  if(name==="car"){
+
+    $("amountLabel").textContent=
+      "Requested Car Loan Amount (₹)";
+
+    a.value=1000000;
+
+    $("tenure").value=180;
+
+  }
+
+
+  if(name==="twowheeler"){
+
+    $("amountLabel").textContent=
+      "Requested Two-Wheeler Loan Amount (₹)";
+
+    a.value=150000;
+
+    $("vehicleCost").value=166667;
+
+    $("serviceYears").value=0;
+
+    $("tenure").value=84;
+
+  }
+
+
+  if(name==="computer"){
+
+    $("amountLabel").textContent=
+      "Requested Computer Loan Amount (₹)";
+
+    a.value=80000;
+
+    $("tenure").value=60;
+
+  }
+
+
+  if(name==="festival"){
+
+    $("amountLabel").textContent=
+      "Festival Advance Amount (₹)";
+
+    a.value=50000;
+
+  }
+
+
   clearResult();
+
 }
+
+
+/* =====================================================
+   CLEAR RESULT
+   ===================================================== */
 
 function clearResult(){
-  text("headline","READY");
-  text("requested","—"); text("maxLoan","—"); text("resultTenure","—"); text("roi","—");
-  text("principalInfo","—"); text("interestInfo","—"); text("totalInterest","—"); text("totalRepayment","—"); text("loanStatus","—");
-  $("summaryBody").innerHTML="<tr><td colspan='4'>No calculation yet.</td></tr>";
-  setStatus("info","Enter loan amount and press CALCULATE.");
+
+  [
+
+    "requested",
+    "maxLoan",
+    "resultTenure",
+    "roi",
+    "principalInfo",
+    "interestInfo",
+    "totalInterest",
+    "totalRepayment",
+    "loanStatus"
+
+  ].forEach(function(id){
+
+    text(id,"—");
+
+  });
+
+
+  $("headline").textContent=
+    "READY";
+
+
+  $("summaryBody").innerHTML=
+    "<tr>"+
+      "<td colspan='4'>"+
+        "No calculation yet."+
+      "</td>"+
+    "</tr>";
+
+
+  $("progressFill").style.width=
+    "0%";
+
+
+  $("progressLabel").textContent=
+    "0%";
+
+
+  setStatus(
+    "info",
+    "Enter loan amount and press CALCULATE NOW."
+  );
+
+
   lastResult=null;
+
 }
 
-function buildOutstanding(principal,rate,totalMonths,principalMonths,interestMonths){
-  var rows=[], opening=principal, totalInterest=0;
-  var pPer=principalMonths>0 ? principal/principalMonths : 0;
-  for(var m=1;m<=totalMonths;m++){
-    var interest=0, pRecovery=0, interestRecovery=0;
-    if(m<=principalMonths){
-      interest=opening*rate/12;
-      pRecovery=Math.min(pPer,opening);
-      totalInterest+=interest;
-    }else if(interestMonths>0){
-      interestRecovery=totalInterest/interestMonths;
+
+/* =====================================================
+   MONTHLY OUTSTANDING CALCULATION
+   ===================================================== */
+
+function buildOutstanding(
+  principal,
+  rate,
+  totalMonths,
+  principalMonths,
+  interestMonths
+){
+
+  var rows=[];
+
+  var opening=principal;
+
+  var totalInterest=0;
+
+  var pPer=
+    principalMonths>0
+      ? principal/principalMonths
+      : 0;
+
+
+  for(
+    var m=1;
+    m<=totalMonths;
+    m++
+  ){
+
+    var interest=0;
+
+    var pRecovery=0;
+
+    var interestRecovery=0;
+
+
+    if(
+      m<=principalMonths
+    ){
+
+      interest=
+        opening*rate/12;
+
+
+      pRecovery=
+        Math.min(
+          pPer,
+          opening
+        );
+
+
+      totalInterest+=
+        interest;
+
     }
-    var closing=Math.max(0,opening-pRecovery);
-    rows.push({m:m,opening:opening,interest:interest,pRecovery:pRecovery,closing:closing,interestRecovery:interestRecovery});
+
+
+    else if(
+      interestMonths>0
+    ){
+
+      interestRecovery=
+        totalInterest/
+        interestMonths;
+
+    }
+
+
+    var closing=
+      Math.max(
+        0,
+        opening-pRecovery
+      );
+
+
+    rows.push({
+
+      m:m,
+      opening:opening,
+      interest:interest,
+      pRecovery:pRecovery,
+      closing:closing,
+      interestRecovery:
+        interestRecovery
+
+    });
+
+
     opening=closing;
+
   }
-  return {rows:rows,totalInterest:totalInterest};
+
+
+  return {
+
+    rows:rows,
+
+    totalInterest:
+      totalInterest
+
+  };
+
 }
 
-function buildReducing(principal,rate,months){
-  return buildOutstanding(principal,rate,months,months,0);
+
+function buildReducing(
+  principal,
+  rate,
+  months
+){
+
+  return buildOutstanding(
+    principal,
+    rate,
+    months,
+    months,
+    0
+  );
+
 }
+
+
+/* =====================================================
+   CALCULATE
+   ===================================================== */
 
 function calculate(){
+
   try{
-    var category=$("category").value;
-    var requested=Number($("amount").value)||0;
-    var tenureInput=Number($("tenure").value)||0;
-    if(requested<=0){setStatus("bad","Please enter a valid loan amount."); return;}
 
-    var maxLoan=0, rate=0, tenure=tenureInput, principalMonths=0, interestMonths=0, totalInterest=0, rows=[];
-    var message="", valid=true, calculationPrincipal=requested, monthlyPrincipal=0, monthlyInterestRecovery=0;
+    var category=
+      $("category").value;
 
-    if(selectedLoan==="housing"){
-      maxLoan=(category==="clerical"?8000000:6000000); rate=.05;
-      if(requested>maxLoan){valid=false; message="Requested amount exceeds the maximum staff loan limit."; }
-      if(!tenure || tenure<1){valid=false; message="Enter a valid tenure."; }
-      var ratio=(tenure<=179)?[4,1]:(tenure<=239)?[3,1]:(tenure<=299)?[5,2]:[2,1];
-      principalMonths=Math.ceil(tenure*ratio[0]/(ratio[0]+ratio[1]));
-      interestMonths=Math.max(0,tenure-principalMonths);
-      var h=buildOutstanding(requested,rate,tenure,principalMonths,interestMonths);
-      rows=h.rows; totalInterest=h.totalInterest; calculationPrincipal=requested;
-      monthlyPrincipal=principalMonths?requested/principalMonths:0;
-      monthlyInterestRecovery=interestMonths?totalInterest/interestMonths:0;
-      message=valid?"Calculation based on the requested amount. Interest reduces with the outstanding principal.":"Requested amount is above the allowed limit.";
+
+    var requested=
+      Number(
+        $("amount").value
+      )||0;
+
+
+    var tenureInput=
+      Number(
+        $("tenure").value
+      )||0;
+
+
+    if(
+      requested<=0
+    ){
+
+      setStatus(
+        "bad",
+        "Please enter a valid loan amount."
+      );
+
+      return;
+
     }
 
-    if(selectedLoan==="car"){
-      maxLoan=(category==="clerical"?1500000:700000); rate=.055; tenure=180; principalMonths=135; interestMonths=45;
-      if(requested>maxLoan){valid=false; message="Requested amount exceeds the maximum staff loan limit."; }
-      var c=buildOutstanding(requested,rate,tenure,principalMonths,interestMonths);
-      rows=c.rows; totalInterest=c.totalInterest; calculationPrincipal=requested;
-      monthlyPrincipal=requested/principalMonths; monthlyInterestRecovery=totalInterest/interestMonths;
-      message=valid?"Calculation based on the requested car loan amount.":"Requested amount is above the allowed limit.";
-    }
 
-    if(selectedLoan==="twowheeler"){
-      maxLoan=(category==="clerical"?200000:150000); rate=.055; tenure=84; principalMonths=84; interestMonths=0;
-      if(requested>maxLoan){valid=false; message="Requested amount exceeds the maximum staff loan limit."; }
-      var b=buildReducing(requested,rate,tenure);
-      rows=b.rows; totalInterest=b.totalInterest; calculationPrincipal=requested;
-      monthlyPrincipal=requested/84; message=valid?"Calculation based on the requested Two-Wheeler loan amount.":"Requested amount is above the allowed limit.";
-    }
+    var maxLoan=0;
 
-    if(selectedLoan==="computer"){
-      maxLoan=80000; rate=.0595; tenure=Math.min(Math.max(tenureInput||60,36),60); principalMonths=tenure; interestMonths=0;
-      if(requested>maxLoan){valid=false; message="Requested amount exceeds the maximum staff loan limit."; }
-      var cp=buildReducing(requested,rate,tenure);
-      rows=cp.rows; totalInterest=cp.totalInterest; calculationPrincipal=requested;
-      monthlyPrincipal=requested/tenure; message=valid?"Calculation based on the requested computer loan amount.":"Requested amount is above the allowed limit.";
-    }
+    var rate=0;
 
-    if(selectedLoan==="personal"){
-      maxLoan=(category==="clerical"?1000000:700000); rate=.0595;
-      var mode=$("personalMode").value;
-      if(requested>maxLoan){valid=false; message="Requested amount exceeds the maximum staff loan limit."; }
-      if(mode==="od"){
-        tenure=Math.min(tenureInput||60,60);
-        totalInterest=requested*(Math.pow(1+rate/12,tenure)-1);
-        rows=[]; principalMonths=0; interestMonths=tenure; monthlyInterestRecovery=totalInterest/tenure;
-        message="PF OD illustration uses monthly compounding; actual OD depends on actual outstanding balance and transactions.";
-      }else{
-        tenure=Math.min(tenureInput||120,120); principalMonths=Math.ceil(tenure*5/6); interestMonths=tenure-principalMonths;
-        var dl=buildOutstanding(requested,rate,tenure,principalMonths,interestMonths);
-        rows=dl.rows; totalInterest=dl.totalInterest; monthlyPrincipal=requested/principalMonths; monthlyInterestRecovery=totalInterest/interestMonths;
-        message=valid?"Demand Loan calculation based on the requested amount.":"Requested amount is above the allowed limit.";
+    var tenure=tenureInput;
+
+    var principalMonths=0;
+
+    var interestMonths=0;
+
+    var totalInterest=0;
+
+    var rows=[];
+
+    var message="";
+
+    var valid=true;
+
+    var monthlyPrincipal=0;
+
+    var monthlyInterestRecovery=0;
+
+
+    /* ================= HOUSING ================= */
+
+    if(
+      selectedLoan==="housing"
+    ){
+
+      maxLoan=
+        category==="clerical"
+          ? 8000000
+          : 6000000;
+
+
+      rate=.05;
+
+
+      if(
+        requested>maxLoan
+      ){
+
+        valid=false;
+
+        message=
+          "Requested amount exceeds the maximum staff loan limit.";
+
       }
-      calculationPrincipal=requested;
+
+
+      if(
+        !tenure
+      ){
+
+        valid=false;
+
+        message=
+          "Enter a valid tenure.";
+
+      }
+
+
+      var ratio=
+        tenure<=179
+          ? [4,1]
+          : tenure<=239
+          ? [3,1]
+          : tenure<=299
+          ? [5,2]
+          : [2,1];
+
+
+      principalMonths=
+        Math.ceil(
+          tenure*
+          ratio[0]/
+          (
+            ratio[0]+ratio[1]
+          )
+        );
+
+
+      interestMonths=
+        Math.max(
+          0,
+          tenure-principalMonths
+        );
+
+
+      var h=
+        buildOutstanding(
+          requested,
+          rate,
+          tenure,
+          principalMonths,
+          interestMonths
+        );
+
+
+      rows=h.rows;
+
+      totalInterest=
+        h.totalInterest;
+
+
+      monthlyPrincipal=
+        requested/
+        principalMonths;
+
+
+      monthlyInterestRecovery=
+        interestMonths
+          ? totalInterest/
+            interestMonths
+          : 0;
+
+
+      message=
+        valid
+          ? "Calculation based on the requested amount. Interest reduces with outstanding principal."
+          : "Requested amount is above the allowed limit.";
+
     }
 
-    if(selectedLoan==="festival"){
-      maxLoan=0; rate=0; tenure=10; principalMonths=10; interestMonths=0; totalInterest=0; calculationPrincipal=requested;
-      monthlyPrincipal=requested/10; rows=[];
-      message="Interest-free with 10 monthly instalments. Amount is taken exactly as entered.";
+
+    /* ================= CAR ================= */
+
+    if(
+      selectedLoan==="car"
+    ){
+
+      maxLoan=
+        category==="clerical"
+          ? 1500000
+          : 700000;
+
+
+      rate=.055;
+
+      tenure=180;
+
+      principalMonths=135;
+
+      interestMonths=45;
+
+
+      if(
+        requested>maxLoan
+      ){
+
+        valid=false;
+
+        message=
+          "Requested amount exceeds the maximum staff loan limit.";
+
+      }
+
+
+      var c=
+        buildOutstanding(
+          requested,
+          rate,
+          tenure,
+          principalMonths,
+          interestMonths
+        );
+
+
+      rows=c.rows;
+
+      totalInterest=
+        c.totalInterest;
+
+
+      monthlyPrincipal=
+        requested/
+        principalMonths;
+
+
+      monthlyInterestRecovery=
+        totalInterest/
+        interestMonths;
+
+
+      message=
+        valid
+          ? "Calculation based on the requested car loan amount."
+          : "Requested amount is above the allowed limit.";
+
     }
 
-    var totalRepayment=calculationPrincipal+totalInterest;
-    text("requested",money(requested));
-    text("maxLoan",maxLoan?money(maxLoan):"As per rule");
-    text("resultTenure",tenure+" months");
-    text("roi",pct(rate));
-    text("principalInfo",principalMonths?principalMonths+" mo • "+money(monthlyPrincipal)+"/mo":"—");
-    text("interestInfo",interestMonths?interestMonths+" mo • "+money(monthlyInterestRecovery)+"/mo":"—");
-    text("totalInterest",money(totalInterest));
-    text("totalRepayment",money(totalRepayment));
-    text("loanStatus",valid?"WITHIN LIMIT":"ABOVE LIMIT");
-    text("headline",valid?"LOAN DETAILS":"LIMIT EXCEEDED");
+
+    /* ================= TWO WHEELER ================= */
+
+    if(
+      selectedLoan==="twowheeler"
+    ){
+
+      rate=.055;
+
+      tenure=84;
+
+      principalMonths=84;
+
+      interestMonths=0;
+
+
+      var serviceYears=
+        Number(
+          $("serviceYears").value
+        )||0;
+
+
+      var vehicleCost=
+        Number(
+          $("vehicleCost").value
+        )||0;
+
+
+      if(
+        vehicleCost<=0
+      ){
+
+        valid=false;
+
+        message=
+          "Please enter a valid vehicle cost.";
+
+      }
+
+
+      var ninetyPercent=
+        vehicleCost*.90;
+
+
+      var applicableMax=0;
+
+
+      if(
+        category==="clerical"
+      ){
+
+        applicableMax=
+          serviceYears>=3
+            ? 200000
+            : 150000;
+
+      }
+
+
+      else{
+
+        if(
+          serviceYears<3
+        ){
+
+          valid=false;
+
+          message=
+            "Subordinate staff require 3 years completed service for Two-Wheeler loan.";
+
+        }
+
+        else{
+
+          applicableMax=
+            150000;
+
+        }
+
+      }
+
+
+      var eligibleAmount=
+        vehicleCost>0
+          ? Math.min(
+              applicableMax,
+              ninetyPercent
+            )
+          : 0;
+
+
+      maxLoan=
+        eligibleAmount;
+
+
+      if(
+        valid &&
+        requested>eligibleAmount
+      ){
+
+        valid=false;
+
+        message=
+          "Requested amount exceeds eligible Two-Wheeler amount of "+
+          money(eligibleAmount)+
+          " (90% of vehicle cost / applicable maximum, whichever is lower).";
+
+      }
+
+
+      var tw=
+        buildReducing(
+          requested,
+          rate,
+          tenure
+        );
+
+
+      rows=tw.rows;
+
+      totalInterest=
+        tw.totalInterest;
+
+
+      monthlyPrincipal=
+        requested/84;
+
+
+      if(valid){
+
+        message=
+          category==="clerical"
+
+            ?
+
+              (
+                serviceYears>=3
+
+                ?
+
+                "Eligible under 3-year clerical service rule. "
+
+                :
+
+                "Probation/newly recruited clerical eligibility applied. "
+              )
+
+            :
+
+              "Eligible after 3 years completed service. ";
+
+
+        message+=
+          "90% of vehicle cost and applicable maximum are applied.";
+
+      }
+
+    }
+
+
+    /* ================= COMPUTER ================= */
+
+    if(
+      selectedLoan==="computer"
+    ){
+
+      maxLoan=80000;
+
+      rate=.0595;
+
+
+      tenure=
+        Math.min(
+          Math.max(
+            tenureInput||60,
+            36
+          ),
+          60
+        );
+
+
+      principalMonths=
+        tenure;
+
+
+      if(
+        requested>maxLoan
+      ){
+
+        valid=false;
+
+        message=
+          "Requested amount exceeds the maximum staff loan limit.";
+
+      }
+
+
+      var cp=
+        buildReducing(
+          requested,
+          rate,
+          tenure
+        );
+
+
+      rows=cp.rows;
+
+      totalInterest=
+        cp.totalInterest;
+
+
+      monthlyPrincipal=
+        requested/tenure;
+
+
+      message=
+        valid
+          ? "Calculation based on the requested computer loan amount."
+          : "Requested amount is above the allowed limit.";
+
+    }
+
+
+    /* ================= PERSONAL / PF ================= */
+
+    if(
+      selectedLoan==="personal"
+    ){
+
+      maxLoan=
+        category==="clerical"
+          ? 1000000
+          : 700000;
+
+
+      rate=.0595;
+
+
+      var mode=
+        $("personalMode").value;
+
+
+      if(
+        requested>maxLoan
+      ){
+
+        valid=false;
+
+        message=
+          "Requested amount exceeds the maximum staff loan limit.";
+
+      }
+
+
+      if(
+        mode==="od"
+      ){
+
+        tenure=
+          Math.min(
+            tenureInput||60,
+            60
+          );
+
+
+        totalInterest=
+          requested*
+          (
+            Math.pow(
+              1+rate/12,
+              tenure
+            )-1
+          );
+
+
+        interestMonths=
+          tenure;
+
+
+        monthlyInterestRecovery=
+          totalInterest/
+          tenure;
+
+
+        message=
+          "PF OD illustration uses monthly compounding; actual OD depends on actual outstanding balance and transactions.";
+
+      }
+
+
+      else{
+
+        tenure=
+          Math.min(
+            tenureInput||120,
+            120
+          );
+
+
+        principalMonths=
+          Math.ceil(
+            tenure*5/6
+          );
+
+
+        interestMonths=
+          tenure-
+          principalMonths;
+
+
+        var dl=
+          buildOutstanding(
+            requested,
+            rate,
+            tenure,
+            principalMonths,
+            interestMonths
+          );
+
+
+        rows=dl.rows;
+
+        totalInterest=
+          dl.totalInterest;
+
+
+        monthlyPrincipal=
+          requested/
+          principalMonths;
+
+
+        monthlyInterestRecovery=
+          totalInterest/
+          interestMonths;
+
+
+        if(valid){
+
+          message=
+            "Demand Loan calculation based on the requested amount.";
+
+        }
+
+      }
+
+    }
+
+
+    /* ================= FESTIVAL ================= */
+
+    if(
+      selectedLoan==="festival"
+    ){
+
+      rate=0;
+
+      tenure=10;
+
+      principalMonths=10;
+
+      totalInterest=0;
+
+      monthlyPrincipal=
+        requested/10;
+
+      message=
+        "Interest-free with 10 monthly instalments. Amount is taken exactly as entered.";
+
+    }
+
+
+    /* ================= RESULTS ================= */
+
+    var totalRepayment=
+      requested+
+      totalInterest;
+
+
+    text(
+      "requested",
+      money(requested)
+    );
+
+
+    text(
+      "maxLoan",
+      maxLoan
+        ? money(maxLoan)
+        : (
+            selectedLoan==="twowheeler"
+              ? "Not eligible"
+              : "As per rule"
+          )
+    );
+
+
+    text(
+      "resultTenure",
+      tenure+" months"
+    );
+
+
+    text(
+      "roi",
+      pct(rate)
+    );
+
+
+    text(
+      "principalInfo",
+      principalMonths
+        ? principalMonths+
+          " mo • "+
+          money(monthlyPrincipal)+
+          "/mo"
+        : "—"
+    );
+
+
+    text(
+      "interestInfo",
+      interestMonths
+        ? interestMonths+
+          " mo • "+
+          money(monthlyInterestRecovery)+
+          "/mo"
+        : "—"
+    );
+
+
+    text(
+      "totalInterest",
+      money(totalInterest)
+    );
+
+
+    text(
+      "totalRepayment",
+      money(totalRepayment)
+    );
+
+
+    text(
+      "loanStatus",
+      valid
+        ? "WITHIN LIMIT"
+        : "NOT ELIGIBLE / LIMIT"
+    );
+
+
+    text(
+      "headline",
+      valid
+        ? "LOAN DETAILS"
+        : "CHECK ELIGIBILITY"
+    );
+
 
     var summary="";
-    if(principalMonths) summary+="<tr><td>Principal</td><td>"+principalMonths+"</td><td>Outstanding principal</td><td>"+money(monthlyPrincipal)+"</td></tr>";
-    if(interestMonths) summary+="<tr><td>Interest</td><td>"+interestMonths+"</td><td>Accumulated interest recovery</td><td>"+money(monthlyInterestRecovery)+"</td></tr>";
-    if(selectedLoan==="personal" && $("personalMode").value==="od") summary="<tr><td>PF OD</td><td>"+tenure+"</td><td>Monthly compounding illustration</td><td>Balance-based</td></tr>";
-    if(!summary) summary="<tr><td>Total</td><td>"+tenure+"</td><td>Recovery</td><td>"+money(monthlyPrincipal)+"</td></tr>";
-    $("summaryBody").innerHTML=summary;
-    $("calcNote").textContent=message+" Final sanction/recovery remains subject to applicable SBI rules and sanction terms.";
 
-    setStatus(valid?"ok":"bad",message);
-    var progress=Math.max(0,Math.min(100, principalMonths?Math.round((requested-Math.max(0, rows.length?rows[rows.length-1].closing:0))/requested*100):0));
-    var pf=$("progressFill"), pl=$("progressLabel");
-    if(pf) pf.style.width=progress+"%";
-    if(pl) pl.textContent=progress+"%";
+
+    if(
+      principalMonths
+    ){
+
+      summary+=
+        "<tr>"+
+          "<td>Principal</td>"+
+          "<td>"+principalMonths+"</td>"+
+          "<td>Outstanding principal</td>"+
+          "<td>"+
+            money(monthlyPrincipal)+
+          "</td>"+
+        "</tr>";
+
+    }
+
+
+    if(
+      interestMonths
+    ){
+
+      summary+=
+        "<tr>"+
+          "<td>Interest</td>"+
+          "<td>"+interestMonths+"</td>"+
+          "<td>Accumulated interest recovery</td>"+
+          "<td>"+
+            money(monthlyInterestRecovery)+
+          "</td>"+
+        "</tr>";
+
+    }
+
+
+    if(
+      selectedLoan==="personal" &&
+      $("personalMode").value==="od"
+    ){
+
+      summary=
+        "<tr>"+
+          "<td>PF OD</td>"+
+          "<td>"+tenure+"</td>"+
+          "<td>Monthly compounding illustration</td>"+
+          "<td>Balance-based</td>"+
+        "</tr>";
+
+    }
+
+
+    if(!summary){
+
+      summary=
+        "<tr>"+
+          "<td>Total</td>"+
+          "<td>"+tenure+"</td>"+
+          "<td>Recovery</td>"+
+          "<td>"+
+            money(monthlyPrincipal)+
+          "</td>"+
+        "</tr>";
+
+    }
+
+
+    $("summaryBody").innerHTML=
+      summary;
+
+
+    $("calcNote").textContent=
+      message+
+      " Final sanction/recovery will depend on applicable SBI rules and sanction terms.";
+
+
+    setStatus(
+      valid
+        ? "ok"
+        : "bad",
+      message
+    );
+
+
+    var progress=
+      principalMonths &&
+      rows.length
+
+        ?
+
+          Math.round(
+            (
+              requested-
+              rows[
+                rows.length-1
+              ].closing
+            )/
+            requested*
+            100
+          )
+
+        :
+
+          0;
+
+
+    progress=
+      Math.max(
+        0,
+        Math.min(
+          100,
+          progress
+        )
+      );
+
+
+    $("progressFill").style.width=
+      progress+"%";
+
+
+    $("progressLabel").textContent=
+      progress+"%";
+
+
     lastResult={
-      loan:selectedLoan, category:category, requested:requested, maxLoan:maxLoan,
-      tenure:tenure, rate:rate, principalMonths:principalMonths,
-      interestMonths:interestMonths, totalInterest:totalInterest, totalRepayment:totalRepayment,
-      monthlyPrincipal:monthlyPrincipal, monthlyInterestRecovery:monthlyInterestRecovery,
-      status:valid?"WITHIN LIMIT":"ABOVE LIMIT"
+
+      loan:selectedLoan,
+
+      category:category,
+
+      requested:requested,
+
+      maxLoan:maxLoan,
+
+      tenure:tenure,
+
+      rate:rate,
+
+      principalMonths:
+        principalMonths,
+
+      interestMonths:
+        interestMonths,
+
+      totalInterest:
+        totalInterest,
+
+      totalRepayment:
+        totalRepayment,
+
+      status:
+        valid
+          ? "WITHIN LIMIT"
+          : "NOT ELIGIBLE / LIMIT"
+
     };
-  }catch(err){
-    console.error(err);
-    setStatus("bad","Calculation error: "+err.message);
+
   }
+
+  catch(err){
+
+    console.error(err);
+
+    setStatus(
+      "bad",
+      "Calculation error: "+
+      err.message
+    );
+
+  }
+
 }
 
+
+/* =====================================================
+   INITIALISE
+   ===================================================== */
 
 function init(){
-  document.querySelectorAll(".loan-btn").forEach(function(b){
-    b.addEventListener("click",function(){selectLoan(b.getAttribute("data-loan"));});
-  });
-  $("calculateBtn").addEventListener("click",calculate);
-  selectLoan("housing");
+
+  document
+    .querySelectorAll(".loan-btn")
+    .forEach(function(b){
+
+      b.addEventListener(
+        "click",
+        function(){
+
+          selectLoan(
+            b.getAttribute(
+              "data-loan"
+            )
+          );
+
+        }
+      );
+
+    });
+
+
+  $("calculateBtn")
+    .addEventListener(
+      "click",
+      calculate
+    );
+
+
+  $("personalMode")
+    .addEventListener(
+      "change",
+      function(){
+
+        if(lastResult){
+          calculate();
+        }
+
+      }
+    );
+
+
+  $("category")
+    .addEventListener(
+      "change",
+      function(){
+
+        renderQuickRule(
+          selectedLoan
+        );
+
+        $("ruleNotice").textContent=
+          ruleMap[selectedLoan];
+
+        if(lastResult){
+          calculate();
+        }
+
+      }
+    );
+
+
+  $("serviceYears")
+    .addEventListener(
+      "input",
+      function(){
+
+        if(
+          selectedLoan==="twowheeler"
+        ){
+          calculate();
+        }
+
+      }
+    );
+
+
+  $("vehicleCost")
+    .addEventListener(
+      "input",
+      function(){
+
+        if(
+          selectedLoan==="twowheeler"
+        ){
+          calculate();
+        }
+
+      }
+    );
+
+
+  selectLoan(
+    "housing"
+  );
+
   calculate();
-  $("personalMode").addEventListener("change",function(){ if(lastResult) calculate(); });
-  $("category").addEventListener("change",function(){ if(lastResult) calculate(); });
+
 }
-if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init);
-else init();
+
+
+if(
+  document.readyState===
+  "loading"
+){
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    init
+  );
+
+}
+
+else{
+
+  init();
+
+}
+
 })();
+
 </script>
+
 </body>
 </html>
