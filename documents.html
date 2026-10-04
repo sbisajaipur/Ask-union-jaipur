@@ -1034,8 +1034,20 @@ else if(currentType === "resources")
 
 
   document.getElementById("formsSection")
-    .style.display =
-      currentType === "all" ? "block" : "none";
+  .style.display =
+    currentType === "all" ? "block" : "none";
+
+document.getElementById("resourcesSection")
+  .style.display =
+    currentType === "all" ? "block" : "none";
+
+resourceCards.forEach(card => {
+  card.style.display = "flex";
+});
+
+formCards.forEach(card => {
+  card.style.display = "flex";
+});
 
   formCards.forEach(card => {
     card.style.display = "flex";
