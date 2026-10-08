@@ -4,438 +4,459 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Overtime Calculator</title>
+<title>Overtime Calculator | Ask Union</title>
 
 <style>
+
 *{
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     margin:0;
-    font-family:Arial,sans-serif;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f3f7fd;
     color:#344054;
 }
 
 .container{
+    width:100%;
     max-width:680px;
-    margin:auto;
+    margin:0 auto;
     padding:20px;
 }
 
+/* HEADER */
+
 .header{
     background:linear-gradient(135deg,#1247a6,#176bd4);
-    color:white;
+    color:#fff;
     text-align:center;
     padding:28px 15px;
     border-radius:28px;
-    margin-bottom:28px;
+    margin-bottom:25px;
+    box-shadow:0 10px 25px rgba(18,71,166,.20);
 }
 
 .header h1{
     margin:0;
     font-size:32px;
+    font-weight:700;
 }
 
 .header p{
-    margin:12px 0 0;
-    font-size:20px;
+    margin:10px 0 0;
+    font-size:18px;
 }
 
+/* CARD */
+
 .card{
-    background:white;
+    background:#fff;
     border-radius:28px;
-    padding:28px;
+    padding:27px;
     margin-bottom:20px;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
 }
+
+/* LABEL */
 
 label{
     display:block;
-    font-weight:bold;
     font-size:17px;
-    margin-bottom:10px;
+    font-weight:700;
+    margin-bottom:9px;
+    color:#344054;
 }
 
-input,select{
+/* INPUT */
+
+input,
+select{
     width:100%;
     height:62px;
     border:1px solid #d5dbe5;
     border-radius:17px;
-    padding:0 20px;
-    font-size:19px;
-    margin-bottom:22px;
-    background:white;
+    padding:0 18px;
+    font-size:18px;
     color:#222;
+    background:#fff;
+    margin-bottom:20px;
 }
 
-input:focus,select:focus{
+input:focus,
+select:focus{
     outline:none;
     border:2px solid #176bd4;
+    box-shadow:0 0 0 3px rgba(23,107,212,.10);
 }
+
+/* BUTTON */
 
 button{
     width:100%;
     height:62px;
     border:0;
     border-radius:17px;
-    font-size:19px;
-    font-weight:bold;
+    font-size:18px;
+    font-weight:700;
     cursor:pointer;
+    font-family:Arial,sans-serif;
 }
 
-.calculate{
+/* CALCULATE */
+
+.calculate-btn{
     background:linear-gradient(135deg,#087bd0,#0759a8);
-    color:white;
+    color:#fff;
+    box-shadow:0 7px 15px rgba(8,123,208,.20);
 }
 
-.reset{
+.calculate-btn:active{
+    transform:scale(.99);
+}
+
+/* RESET */
+
+.reset-btn{
     margin-top:12px;
     background:#edf1f6;
     color:#333;
 }
 
-.share{
-    margin-top:15px;
-    background:#16a34a;
-    color:white;
-}
+/* RESULT */
 
 .result{
     display:none;
 }
 
 .result h2{
-    margin-top:0;
+    margin:0 0 18px;
     color:#123f88;
+    font-size:23px;
 }
+
+/* RESULT ROW */
 
 .row{
     display:flex;
     justify-content:space-between;
-    gap:20px;
+    align-items:center;
+    gap:15px;
     padding:12px 0;
     border-bottom:1px solid #e5e7eb;
     font-size:16px;
 }
 
+.row span:first-child{
+    color:#667085;
+}
+
 .row strong{
+    color:#1d2939;
     text-align:right;
 }
 
+/* TOTAL */
+
 .total{
-    margin-top:18px;
+    margin-top:20px;
     padding:20px;
-    text-align:center;
     background:#e8f7ee;
     border-radius:18px;
+    text-align:center;
 }
 
 .total small{
-    font-weight:bold;
+    display:block;
     color:#247344;
+    font-size:13px;
+    font-weight:700;
 }
 
 .total h2{
-    margin:8px 0 0;
+    margin:7px 0 0;
     color:#087a3e;
     font-size:32px;
 }
 
-.info{
-    line-height:1.7;
-    color:#667085;
+/* SHARE */
+
+.share-btn{
+    margin-top:15px;
+    background:#16a34a;
+    color:#fff;
 }
+
+/* PDF */
+
+.pdf-btn{
+    margin-top:12px;
+    background:#123f88;
+    color:#fff;
+}
+
+/* INFO */
+
+.info{
+    color:#667085;
+    line-height:1.7;
+}
+
+.info h3{
+    color:#344054;
+    margin-top:0;
+}
+
+.formula-box{
+    background:#f7f9fc;
+    border-left:4px solid #176bd4;
+    border-radius:8px;
+    padding:13px;
+    margin-top:12px;
+}
+
+/* FOOTER */
 
 .footer{
     text-align:center;
     color:#8a94a6;
     font-size:12px;
-    padding:10px 0 20px;
+    line-height:1.6;
+    padding:8px 0 20px;
 }
 
+/* MOBILE */
+
 @media(max-width:500px){
+
     .container{
-        padding:20px;
+        padding:15px;
+    }
+
+    .header{
+        padding:25px 12px;
+        border-radius:25px;
     }
 
     .header h1{
-        font-size:30px;
+        font-size:29px;
     }
 
     .header p{
-        font-size:18px;
+        font-size:17px;
     }
 
     .card{
-        padding:27px;
+        padding:24px;
+        border-radius:25px;
     }
+
+    input,
+    select{
+        font-size:17px;
+    }
+
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="container">
 
+
+<!-- HEADER -->
+
 <div class="header">
+
     <h1>Overtime Calculator</h1>
+
     <p>Quick & Accurate Overtime Calculation</p>
+
 </div>
+
+
+<!-- INPUT CARD -->
 
 <div class="card">
 
-<label>Employee Name</label>
-<input id="employeeName" type="text"
-placeholder="Enter employee name">
+    <label for="employeeName">
+        Employee Name
+    </label>
 
-<label>Employee Code</label>
-<input id="employeeCode" type="text"
-placeholder="Employee code">
+    <input
+        id="employeeName"
+        type="text"
+        placeholder="Enter employee name"
+    >
 
-<label>Branch Code</label>
-<input id="branchCode" type="text"
-value="32146">
 
-<label>Date of Overtime</label>
-<input id="otDate" type="date">
+    <label for="employeeCode">
+        Employee Code
+    </label>
 
-<label>Select Month</label>
-<select id="month">
-<option value="">Select Month</option>
-<option>January 2026</option>
-<option>February 2026</option>
-<option>March 2026</option>
-<option>April 2026</option>
-<option>May 2026</option>
-<option>June 2026</option>
-<option>July 2026</option>
-<option>August 2026</option>
-<option>September 2026</option>
-<option>October 2026</option>
-<option>November 2026</option>
-<option>December 2026</option>
-</select>
+    <input
+        id="employeeCode"
+        type="text"
+        placeholder="Employee code"
+    >
 
-<label>Gross Pay (₹)</label>
-<input id="grossPay" type="number"
-placeholder="Enter Gross Pay">
 
-<label>Overtime Type</label>
-<select id="otType">
-<option value="">Select Overtime Type</option>
-<option value="weekday">Weekday</option>
-<option value="holiday">Sunday / Holiday</option>
-</select>
+    <label for="branchCode">
+        Branch Code
+    </label>
 
-<label>Overtime Hours</label>
-<input id="otHours" type="number"
-step="0.5"
-min="0"
-placeholder="Example: 6.5">
+    <input
+        id="branchCode"
+        type="text"
+        value="32146"
+    >
 
-<button class="calculate" onclick="calculateOT()">
-🧮 CALCULATE OVERTIME
-</button>
 
-<button class="reset" onclick="resetCalculator()">
-RESET
-</button>
+    <label for="otDate">
+        Date of Overtime
+    </label>
+
+    <input
+        id="otDate"
+        type="date"
+    >
+
+
+    <label for="month">
+        Select Month
+    </label>
+
+    <select id="month">
+
+        <option value="">
+            Select Month
+        </option>
+
+        <option value="January 2026">
+            January 2026
+        </option>
+
+        <option value="February 2026">
+            February 2026
+        </option>
+
+        <option value="March 2026">
+            March 2026
+        </option>
+
+        <option value="April 2026">
+            April 2026
+        </option>
+
+        <option value="May 2026">
+            May 2026
+        </option>
+
+        <option value="June 2026">
+            June 2026
+        </option>
+
+        <option value="July 2026">
+            July 2026
+        </option>
+
+        <option value="August 2026">
+            August 2026
+        </option>
+
+        <option value="September 2026">
+            September 2026
+        </option>
+
+        <option value="October 2026">
+            October 2026
+        </option>
+
+        <option value="November 2026">
+            November 2026
+        </option>
+
+        <option value="December 2026">
+            December 2026
+        </option>
+
+    </select>
+
+
+    <label for="grossPay">
+        Gross Pay (₹)
+    </label>
+
+    <input
+        id="grossPay"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Enter Gross Pay"
+    >
+
+
+    <label for="otType">
+        Overtime Type
+    </label>
+
+    <select id="otType">
+
+        <option value="">
+            Select Overtime Type
+        </option>
+
+        <option value="weekday">
+            Weekday
+        </option>
+
+        <option value="holiday">
+            Sunday / Holiday
+        </option>
+
+    </select>
+
+
+    <label for="otHours">
+        Overtime Hours
+    </label>
+
+    <input
+        id="otHours"
+        type="number"
+        min="0"
+        step="0.5"
+        placeholder="Example: 6.5"
+    >
+
+
+    <button
+        type="button"
+        id="calculateBtn"
+        class="calculate-btn"
+    >
+        🧮 CALCULATE OVERTIME
+    </button>
+
+
+    <button
+        type="button"
+        id="resetBtn"
+        class="reset-btn"
+    >
+        RESET
+    </button>
 
 </div>
 
 
-<div class="card result" id="result">
-
-<h2>📊 Calculation Result</h2>
-
-<div class="row">
-<span>Employee Name</span>
-<strong id="rName"></strong>
-</div>
-
-<div class="row">
-<span>Employee Code</span>
-<strong id="rCode"></strong>
-</div>
-
-<div class="row">
-<span>Branch Code</span>
-<strong id="rBranch"></strong>
-</div>
-
-<div class="row">
-<span>Date</span>
-<strong id="rDate"></strong>
-</div>
-
-<div class="row">
-<span>Month</span>
-<strong id="rMonth"></strong>
-</div>
-
-<div class="row">
-<span>Gross Pay</span>
-<strong id="rGross"></strong>
-</div>
-
-<div class="row">
-<span>Hourly Rate</span>
-<strong id="rHourly"></strong>
-</div>
-
-<div class="row">
-<span>OT Type</span>
-<strong id="rType"></strong>
-</div>
-
-<div class="row">
-<span>OT Hours</span>
-<strong id="rHours"></strong>
-</div>
-
-<div class="row">
-<span>OT Rate</span>
-<strong id="rRate"></strong>
-</div>
-
-<div class="total">
-<small>TOTAL OVERTIME AMOUNT</small>
-<h2 id="rAmount">₹0.00</h2>
-</div>
-
-<button class="share" onclick="shareResult()">
-📲 SHARE RESULT ON WHATSAPP
-</button>
-
-</div>
-
-
-<div class="card info">
-
-<h3>ℹ️ Calculation</h3>
-
-<p>
-Gross Pay and overtime hours are entered by the employee.
-</p>
-
-<p>
-Hourly rate and total overtime amount are calculated automatically.
-</p>
-
-<p>
-<strong>Formula:</strong><br>
-Hourly Rate = Gross Pay ÷ 150
-</p>
-
-<p>
-<strong>Weekday:</strong><br>
-First 1 hour × 150% + remaining hours × 170%
-</p>
-
-<p>
-<strong>Sunday / Holiday:</strong><br>
-All hours × 200%
-</p>
-
-</div>
-
-
-<div class="footer">
-Overtime Calculator • 2026<br>
-Prepared by Ask Union – Udaipur Module
-</div>
-
-</div>
-
-
-<script>
-
-function calculateOT(){
-
-    const name =
-        document.getElementById("employeeName").value.trim();
-
-    const code =
-        document.getElementById("employeeCode").value.trim();
-
-    const branch =
-        document.getElementById("branchCode").value.trim();
-
-    const date =
-        document.getElementById("otDate").value;
-
-    const month =
-        document.getElementById("month").value;
-
-    const gross =
-        Number(document.getElementById("grossPay").value);
-
-    const type =
-        document.getElementById("otType").value;
-
-    const hours =
-        Number(document.getElementById("otHours").value);
-
-
-    if(!name){
-        alert("Please enter Employee Name");
-        return;
-    }
-
-    if(!code){
-        alert("Please enter Employee Code");
-        return;
-    }
-
-    if(!branch){
-        alert("Please enter Branch Code");
-        return;
-    }
-
-    if(!date){
-        alert("Please select Date of Overtime");
-        return;
-    }
-
-    if(!month){
-        alert("Please select Month");
-        return;
-    }
-
-    if(!gross || gross <= 0){
-        alert("Please enter valid Gross Pay");
-        return;
-    }
-
-    if(!type){
-        alert("Please select Overtime Type");
-        return;
-    }
-
-    if(!hours || hours <= 0){
-        alert("Please enter Overtime Hours");
-        return;
-    }
-
-
-    /* HOURLY RATE */
-
-    const hourlyRate = gross / 150;
-
-    let amount = 0;
-    let rate = "";
-
-
-    /* WEEKDAY */
-
-    if(type === "weekday"){
-
-        const firstHour = Math.min(hours,1);
-
-        const remaining =
-            Math.max(hours - 1,0);
-
-        amount =
-            (hourlyRate *
+<!-- RESULT CARD -->
