@@ -3,205 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Overtime Calculator | Ask Union</title>
 
 <style>
-
-/* =========================
-   BASIC
-========================= */
-
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-  margin:0;
   font-family:Arial,Helvetica,sans-serif;
-  background:#eef4f9;
-  color:#14213d;
+  background:#eef4fb;
+  color:#102a56;
+  padding-bottom:30px;
 }
 
 .container{
-  width:100%;
-  max-width:720px;
+  max-width:1000px;
   margin:auto;
-  padding:15px;
+  padding:20px;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* ================= HEADER ================= */
 
 .header{
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(135deg,#063b78,#0878c9);
-  color:#fff;
-  padding:25px 20px;
-  border-radius:0 0 25px 25px;
-}
-
-.header:after{
-  content:"";
-  position:absolute;
-  width:260px;
-  height:260px;
-  right:-120px;
-  top:-150px;
-  background:rgba(255,255,255,.10);
-  border-radius:50%;
+  background:
+    radial-gradient(circle at 12% 35%,rgba(255,255,255,.35),transparent 18%),
+    linear-gradient(135deg,#0879d1,#0753b8 55%,#06377e);
+  color:white;
+  padding:25px 25px 30px;
+  border-bottom-left-radius:35px;
+  border-bottom-right-radius:35px;
+  box-shadow:0 8px 25px rgba(0,65,140,.25);
 }
 
 .header-content{
-  position:relative;
-  z-index:2;
+  max-width:1000px;
+  margin:auto;
 }
 
 .header-top{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
+  gap:20px;
 }
 
 .header-icon{
-  font-size:45px;
+  font-size:52px;
+  margin-bottom:5px;
 }
 
 .header h1{
-  margin:0;
-  font-size:27px;
-  letter-spacing:.5px;
+  font-size:32px;
+  margin-bottom:6px;
 }
 
 .header p{
-  margin:5px 0 0;
-  font-size:14px;
+  font-size:20px;
   opacity:.95;
 }
 
 .year-badge{
-  background:#fff;
-  color:#063b78;
+  background:white;
+  color:#0753b8;
+  padding:12px 20px;
+  border-radius:30px;
+  font-size:20px;
   font-weight:bold;
-  padding:9px 14px;
-  border-radius:20px;
-  font-size:14px;
 }
 
-/* =========================
-   CARDS
-========================= */
+/* ================= CALCULATOR ================= */
 
 .card{
-  background:#fff;
-  margin-top:15px;
+  background:white;
   border-radius:18px;
+  margin-bottom:18px;
   overflow:hidden;
-  border:1px solid #dbe7f2;
-  box-shadow:0 5px 18px rgba(15,55,90,.07);
+  border:1px solid #d8e7f5;
+  box-shadow:0 5px 18px rgba(0,50,110,.08);
 }
 
 .section-title{
-  padding:14px 17px;
-  background:linear-gradient(90deg,#eaf4ff,#f8fbff);
-  color:#064b8c;
-  font-size:18px;
+  background:linear-gradient(90deg,#075ec5,#0d8ce4);
+  color:white;
+  padding:15px 20px;
+  font-size:21px;
   font-weight:bold;
 }
 
 .section-body{
-  padding:17px;
-}
-
-/* =========================
-   FORM
-========================= */
-
-label{
-  display:block;
-  margin:12px 0 6px;
-  font-size:13px;
-  font-weight:bold;
-  color:#40546c;
-}
-
-input,
-select{
-  width:100%;
-  min-height:46px;
-  padding:11px 13px;
-  border:1px solid #cbd8e5;
-  border-radius:10px;
-  background:#fff;
-  font-size:16px;
-  color:#172b4d;
-  outline:none;
-}
-
-input:focus,
-select:focus{
-  border-color:#0781d1;
-  box-shadow:0 0 0 3px rgba(8,129,209,.12);
+  padding:20px;
 }
 
 .form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:16px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
+label{
+  display:block;
+  font-size:14px;
+  font-weight:bold;
+  color:#304b6e;
+  margin-bottom:7px;
+}
+
+input,select{
+  width:100%;
+  padding:13px 14px;
+  border:1px solid #cbdbea;
+  border-radius:10px;
+  font-size:16px;
+  outline:none;
+  background:#fbfdff;
+}
+
+input:focus,select:focus{
+  border-color:#0879d1;
+  box-shadow:0 0 0 3px rgba(8,121,209,.1);
+}
+
+.field{
+  margin-bottom:16px;
+}
 
 .buttons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:18px;
+  display:flex;
+  gap:12px;
+  margin-top:10px;
 }
 
 button{
-  border:0;
-  min-height:48px;
-  border-radius:11px;
-  font-size:15px;
+  border:none;
+  border-radius:10px;
+  padding:14px 20px;
+  font-size:16px;
   font-weight:bold;
   cursor:pointer;
 }
 
 .calculate{
-  background:#0878c9;
-  color:#fff;
+  flex:1;
+  background:linear-gradient(135deg,#0879d1,#0753b8);
+  color:white;
 }
 
 .reset{
-  background:#e8edf2;
-  color:#26384d;
+  background:#edf2f7;
+  color:#334e68;
 }
 
-.whatsapp{
-  width:100%;
-  margin-top:10px;
-  background:#16a34a;
-  color:#fff;
-}
+/* ================= RESULT ================= */
 
-.pdf{
-  width:100%;
-  margin-top:10px;
-  background:#d62828;
-  color:#fff;
-}
-
-/* =========================
-   RESULT
-========================= */
-
-#resultCard{
+#printPage{
   display:none;
 }
 
@@ -209,174 +166,218 @@ button{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:0;
+  padding:5px 18px 18px;
 }
 
 .detail{
-  padding:13px 15px;
-  border-bottom:1px solid #edf2f6;
+  padding:16px 14px;
+  border-bottom:1px solid #e4edf6;
 }
 
 .detail small{
   display:block;
-  color:#718096;
-  font-size:12px;
-  margin-bottom:4px;
+  color:#65788f;
+  font-size:13px;
+  margin-bottom:5px;
 }
 
 .detail strong{
-  font-size:15px;
-  color:#14213d;
+  font-size:18px;
+  color:#092b62;
 }
-
-/* PAY INPUT */
 
 .pay-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
-  padding:15px;
+  gap:15px;
+  padding:15px 18px;
 }
 
 .pay-box{
-  padding:17px;
   border-radius:14px;
+  padding:20px;
 }
 
 .pay-box.blue{
-  background:#eaf5ff;
+  background:linear-gradient(135deg,#e7f5ff,#d5edff);
+  border:1px solid #b9def5;
 }
 
 .pay-box.green{
-  background:#ebf9ef;
+  background:linear-gradient(135deg,#ecfff3,#dff8e9);
+  border:1px solid #c4ebd2;
 }
 
 .pay-box small{
   display:block;
-  color:#52677d;
-  margin-bottom:5px;
+  color:#536b84;
+  font-size:14px;
+  margin-bottom:6px;
 }
 
 .pay-box strong{
-  font-size:25px;
-  color:#102a50;
+  font-size:28px;
+  color:#092b62;
 }
 
-/* SUMMARY */
+.ot-type{
+  margin:0 18px 18px;
+  padding:14px;
+  background:#fff2eb;
+  border:1px solid #ffd9c8;
+  border-radius:12px;
+}
+
+.ot-type small{
+  display:block;
+  color:#65778a;
+  margin-bottom:5px;
+}
+
+.ot-type strong{
+  font-size:18px;
+}
+
+/* ================= SUMMARY ================= */
 
 .summary{
-  padding:0 15px 15px;
+  margin:0 18px 18px;
+  border:1px solid #dce8f4;
+  border-radius:12px;
+  overflow:hidden;
 }
 
 .summary-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:13px 10px;
-  border-bottom:1px solid #e6edf3;
-  gap:15px;
+  display:grid;
+  grid-template-columns:60% 40%;
+  padding:13px 16px;
+  font-size:17px;
 }
 
-.summary-row:nth-child(even){
-  background:#f6faff;
+.summary-row:nth-child(odd){
+  background:#f5faff;
 }
 
-.summary-row span:first-child{
-  color:#50647b;
+.summary-row span{
+  color:#304b6e;
 }
 
 .summary-row strong{
-  color:#13294b;
-  text-align:right;
+  color:#092b62;
 }
 
-/* =========================
-   TOTAL
-========================= */
+/* ================= TOTAL ================= */
 
 .total-box{
-  margin:15px;
-  padding:22px 15px;
-  border-radius:17px;
+  margin:18px;
+  padding:25px;
+  border:2px solid #30b95d;
+  border-radius:16px;
+  background:linear-gradient(135deg,#effff3,#dff9e5);
   text-align:center;
-  background:linear-gradient(135deg,#e9fbe9,#d5f7d5);
-  border:2px solid #55bd67;
 }
 
 .total-box small{
   display:block;
-  color:#17652a;
+  font-size:15px;
   font-weight:bold;
-  font-size:13px;
-  letter-spacing:.7px;
+  color:#08702e;
+  letter-spacing:.5px;
+  margin-bottom:6px;
 }
 
 .total-box strong{
   display:block;
-  margin-top:5px;
-  color:#08752a;
-  font-size:36px;
+  font-size:42px;
+  color:#08702e;
+  font-weight:800;
 }
 
-/* =========================
-   RULES
-========================= */
+/* ================= RULES ================= */
 
 .rules{
-  margin:15px;
-  padding:15px;
-  border-radius:13px;
-  background:#eef7ff;
-  border:1px solid #d3e8f8;
+  margin:18px;
+  padding:18px;
+  background:#edf6ff;
+  border:1px solid #d0e5f7;
+  border-radius:14px;
+  color:#243f63;
+  line-height:1.7;
 }
 
 .rules-title{
-  color:#075496;
+  font-size:18px;
   font-weight:bold;
-  margin-bottom:10px;
+  color:#0753b8;
+  margin-bottom:7px;
 }
 
-.rules div{
-  margin:7px 0;
-  font-size:13px;
-  line-height:1.5;
+/* ================= ACTION BUTTONS ================= */
+
+.action-buttons{
+  display:flex;
+  gap:12px;
+  margin:18px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.whatsapp{
+  flex:1;
+  background:#20b957;
+  color:white;
+}
+
+.pdf{
+  flex:1;
+  background:#0753b8;
+  color:white;
+}
+
+/* ================= FOOTER ================= */
 
 .footer{
   text-align:center;
-  padding:20px 5px 10px;
-  color:#65778a;
-  font-size:11px;
+  padding:18px;
+  margin-top:10px;
+  background:linear-gradient(135deg,#063b82,#06285c);
+  color:white;
+  font-size:14px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.footer b{
+  display:block;
+  margin-top:5px;
+  font-size:15px;
+}
 
-@media(max-width:520px){
+/* ================= MOBILE ================= */
+
+@media(max-width:650px){
 
   .container{
     padding:10px;
   }
 
   .header{
-    padding:20px 15px;
-  }
-
-  .header h1{
-    font-size:22px;
+    padding:20px 16px 25px;
+    border-bottom-left-radius:25px;
+    border-bottom-right-radius:25px;
   }
 
   .header-icon{
-    font-size:35px;
+    font-size:38px;
+  }
+
+  .header h1{
+    font-size:24px;
+  }
+
+  .header p{
+    font-size:16px;
   }
 
   .year-badge{
-    font-size:12px;
-    padding:7px 10px;
+    padding:9px 13px;
+    font-size:15px;
   }
 
   .form-grid,
@@ -385,35 +386,33 @@ button{
     grid-template-columns:1fr;
   }
 
-  .buttons{
-    grid-template-columns:1fr;
-  }
-
-  .pay-box strong{
-    font-size:23px;
+  .buttons,
+  .action-buttons{
+    flex-direction:column;
   }
 
   .total-box strong{
-    font-size:31px;
+    font-size:32px;
   }
 
+  .summary-row{
+    grid-template-columns:55% 45%;
+    font-size:15px;
+  }
 }
 
-/* =========================
-   PRINT / PDF
-========================= */
+/* ================= PRINT ================= */
+
+@page{
+  size:A4;
+  margin:8mm;
+}
 
 @media print{
 
-  @page{
-    size:A4;
-    margin:9mm;
-  }
-
   body{
-    background:#fff;
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
+    background:white;
+    padding:0;
   }
 
   .no-print,
@@ -424,56 +423,87 @@ button{
   .container{
     max-width:none;
     padding:0;
+    margin:0;
   }
 
-  .header{
-    border-radius:12px;
-    padding:17px 20px;
+  #printPage{
+    display:block !important;
   }
 
   .card{
-    margin-top:9px;
     box-shadow:none;
+    margin-bottom:10px;
+    border:1px solid #c9dbea;
     break-inside:avoid;
   }
 
   .section-title{
-    padding:9px 13px;
-    font-size:15px;
+    padding:10px 14px;
+    font-size:17px;
   }
 
-  .section-body{
-    padding:10px 13px;
+  .details-grid{
+    padding:0 12px 8px;
   }
 
   .detail{
-    padding:8px 12px;
+    padding:9px 10px;
+  }
+
+  .detail small{
+    font-size:10px;
+  }
+
+  .detail strong{
+    font-size:14px;
   }
 
   .pay-grid{
-    padding:10px;
+    padding:8px 12px;
     gap:8px;
   }
 
   .pay-box{
-    padding:10px;
+    padding:12px;
+  }
+
+  .pay-box small{
+    font-size:10px;
   }
 
   .pay-box strong{
     font-size:21px;
   }
 
+  .ot-type{
+    margin:0 12px 10px;
+    padding:9px;
+  }
+
+  .ot-type small{
+    font-size:10px;
+  }
+
+  .ot-type strong{
+    font-size:14px;
+  }
+
   .summary{
-    padding:0 10px 10px;
+    margin:0 12px 10px;
   }
 
   .summary-row{
-    padding:8px;
+    padding:8px 10px;
+    font-size:13px;
   }
 
   .total-box{
-    margin:10px;
+    margin:10px 12px;
     padding:15px;
+  }
+
+  .total-box small{
+    font-size:11px;
   }
 
   .total-box strong{
@@ -481,254 +511,159 @@ button{
   }
 
   .rules{
-    margin:10px;
-    padding:10px;
+    margin:10px 12px;
+    padding:10px 12px;
+    font-size:11px;
+    line-height:1.5;
   }
 
-  .rules div{
-    margin:4px 0;
+  .rules-title{
+    font-size:14px;
   }
 
   .footer{
-    padding:8px;
+    margin-top:5px;
+    padding:10px;
+    font-size:11px;
   }
 
-}
-
-/* =========================
-   FORCE ONE PAGE
-========================= */
-
-@media print{
-
-  .print-page{
-    page-break-inside:avoid;
+  .footer b{
+    font-size:12px;
   }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- ================= HEADER ================= -->
 
 <div class="header">
-
   <div class="header-content">
 
     <div class="header-top">
 
       <div>
-
-        <div class="header-icon">
-          ⏱️ 📅
-        </div>
+        <div class="header-icon">⏱️ 📅</div>
 
         <h1>Quick & Accurate</h1>
 
         <p>Overtime Calculation Statement</p>
-
       </div>
 
-      <div class="year-badge">
-        2026
-      </div>
+      <div class="year-badge">2026</div>
 
     </div>
 
   </div>
-
 </div>
 
 
 <div class="container">
 
-
-<!-- =========================
-     CALCULATOR FORM
-========================= -->
+<!-- ================= INPUT FORM ================= -->
 
 <div class="card calculator-card no-print">
 
   <div class="section-title">
-    🧮 Enter Overtime Details
+    👤 Enter Employee & Overtime Details
   </div>
 
   <div class="section-body">
 
-
     <div class="form-grid">
 
-      <div>
-
+      <div class="field">
         <label>Employee Name</label>
-
-        <input
-          type="text"
-          id="employeeName"
-          placeholder="Enter employee name"
-        >
-
+        <input type="text" id="employeeName"
+               placeholder="Enter employee name">
       </div>
 
+      <div class="field">
+        <label>Designation</label>
+        <input type="text" id="designation"
+               placeholder="Enter designation">
+      </div>
 
-      <div>
-
+      <div class="field">
         <label>Employee Code</label>
-
-        <input
-          type="text"
-          id="employeeCode"
-          placeholder="Enter employee code"
-        >
-
+        <input type="text" id="employeeCode"
+               placeholder="Enter employee code">
       </div>
 
-
-      <div>
-
+      <div class="field">
         <label>Branch Code</label>
-
-        <input
-          type="text"
-          id="branchCode"
-          placeholder="Enter branch code"
-        >
-
+        <input type="text" id="branchCode"
+               placeholder="Enter branch code">
       </div>
 
-
-      <div>
-
+      <div class="field">
         <label>Date of Overtime</label>
-
-        <input
-          type="date"
-          id="otDate"
-        >
-
+        <input type="date" id="otDate">
       </div>
 
-    </div>
-
-
-    <label>Select Month</label>
-
-    <select id="monthSelect">
-
-      <option value="">
-        Select Month
-      </option>
-
-      <option value="January 2026">January 2026</option>
-      <option value="February 2026">February 2026</option>
-      <option value="March 2026">March 2026</option>
-      <option value="April 2026">April 2026</option>
-      <option value="May 2026">May 2026</option>
-      <option value="June 2026">June 2026</option>
-      <option value="July 2026">July 2026</option>
-      <option value="August 2026">August 2026</option>
-      <option value="September 2026">September 2026</option>
-      <option value="October 2026">October 2026</option>
-      <option value="November 2026">November 2026</option>
-      <option value="December 2026">December 2026</option>
-
-    </select>
-
-
-    <div class="form-grid">
-
-      <div>
-
+      <div class="field">
         <label>Gross Pay (₹)</label>
-
-        <input
-          type="number"
-          id="grossPay"
-          placeholder="Enter Gross Pay"
-          min="0"
-          step="0.01"
-        >
-
+        <input type="number" id="grossPay"
+               placeholder="Enter gross pay"
+               min="0">
       </div>
 
-
-      <div>
-
+      <div class="field">
         <label>Overtime Hours</label>
+        <input type="number" id="otHours"
+               placeholder="Example: 6.5"
+               min="0"
+               step="0.5">
+      </div>
 
-        <input
-          type="number"
-          id="otHours"
-          placeholder="Example: 6.5"
-          min="0"
-          step="0.5"
-        >
+      <div class="field">
+        <label>Overtime Type</label>
+
+        <select id="otType">
+
+          <option value="">
+            Select Overtime Type
+          </option>
+
+          <option value="weekday">
+            Weekday
+          </option>
+
+          <option value="holiday">
+            Sunday / Holiday
+          </option>
+
+        </select>
 
       </div>
 
     </div>
-
-
-    <label>Overtime Type</label>
-
-    <select id="otType">
-
-      <option value="">
-        Select Overtime Type
-      </option>
-
-      <option value="weekday">
-        Weekday
-      </option>
-
-      <option value="holiday">
-        Sunday / Holiday
-      </option>
-
-    </select>
 
 
     <div class="buttons">
 
-      <button
-        type="button"
-        class="calculate"
-        onclick="calculateOT()"
-      >
-        🧮 Calculate
+      <button type="button"
+              class="calculate"
+              onclick="calculateOT()">
+        🧮 Calculate Overtime
       </button>
 
-
-      <button
-        type="button"
-        class="reset"
-        onclick="resetCalculator()"
-      >
+      <button type="button"
+              class="reset"
+              onclick="resetCalculator()">
         🔄 Reset
       </button>
 
     </div>
 
   </div>
-
 </div>
 
 
-<!-- =========================
-     PRINT PAGE
-========================= -->
+<!-- ================= PRINT PAGE ================= -->
 
-<div
-  id="printPage"
-  class="print-page"
-  style="display:none;"
->
+<div id="printPage">
 
 
 <!-- EMPLOYEE DETAILS -->
@@ -742,57 +677,33 @@ button{
   <div class="details-grid">
 
     <div class="detail">
-
       <small>Employee Name</small>
-
-      <strong id="rEmployee">
-        -
-      </strong>
-
+      <strong id="rEmployee">-</strong>
     </div>
 
-
     <div class="detail">
-
       <small>Date of Overtime</small>
-
-      <strong id="rDate">
-        -
-      </strong>
-
+      <strong id="rDate">-</strong>
     </div>
 
-
     <div class="detail">
-
-      <small>Employee Code</small>
-
-      <strong id="rCode">
-        -
-      </strong>
-
+      <small>Designation</small>
+      <strong id="rDesignation">-</strong>
     </div>
 
-
     <div class="detail">
-
       <small>Branch Code</small>
-
-      <strong id="rBranch">
-        -
-      </strong>
-
+      <strong id="rBranch">-</strong>
     </div>
 
+    <div class="detail">
+      <small>Employee Code</small>
+      <strong id="rCode">-</strong>
+    </div>
 
     <div class="detail">
-
       <small>Month</small>
-
-      <strong id="rMonth">
-        -
-      </strong>
-
+      <strong id="rMonth">-</strong>
     </div>
 
   </div>
@@ -805,15 +716,14 @@ button{
 <div class="card">
 
   <div class="section-title">
-    💰 Pay & Overtime
+    💰 Pay & Overtime Input
   </div>
-
 
   <div class="pay-grid">
 
     <div class="pay-box blue">
 
-      <small>Gross Pay</small>
+      <small>Gross Pay (₹)</small>
 
       <strong id="rGross">
         ₹0.00
@@ -827,7 +737,7 @@ button{
       <small>Overtime Hours</small>
 
       <strong id="rHours">
-        0
+        0 Hrs
       </strong>
 
     </div>
@@ -835,23 +745,9 @@ button{
   </div>
 
 
-  <div
-    style="
-      margin:0 15px 15px;
-      padding:12px;
-      border-radius:10px;
-      background:#fff2eb;
-    "
-  >
+  <div class="ot-type">
 
-    <small
-      style="
-        color:#65778a;
-        display:block;
-      "
-    >
-      Overtime Type
-    </small>
+    <small>Overtime Type</small>
 
     <strong id="rType">
       -
@@ -870,19 +766,16 @@ button{
     🧮 Calculation Summary
   </div>
 
-
   <div class="summary">
 
     <div class="summary-row">
-
       <span>
-        Hourly Rate
+        Hourly Rate (Gross Pay ÷ 150)
       </span>
 
       <strong id="rHourly">
         ₹0.00
       </strong>
-
     </div>
 
 
@@ -959,12 +852,14 @@ button{
 
   <div>
     <b>2.</b>
-    Weekday: First 1 hour @ 150% and remaining hours @ 170%
+    Weekday: First 1 hour @ 150% and
+    remaining hours @ 170%
   </div>
 
   <div>
     <b>3.</b>
-    Sunday / Holiday: All overtime hours @ 200%
+    Sunday / Holiday:
+    All overtime hours @ 200%
   </div>
 
 </div>
@@ -972,23 +867,18 @@ button{
 
 <!-- ACTION BUTTONS -->
 
-<div class="no-print">
+<div class="action-buttons no-print">
 
-  <button
-    type="button"
-    class="whatsapp"
-    onclick="shareWhatsApp()"
-  >
+  <button type="button"
+          class="whatsapp"
+          onclick="shareWhatsApp()">
     🟢 Share on WhatsApp
   </button>
 
-
-  <button
-    type="button"
-    class="pdf"
-    onclick="generatePDF()"
-  >
-    📄 Save / Print PDF
+  <button type="button"
+          class="pdf"
+          onclick="generatePDF()">
+    📄 Print / Save PDF
   </button>
 
 </div>
@@ -999,7 +889,6 @@ button{
 <div class="footer">
 
   Overtime Calculator • 2026
-  <br>
 
   <b>
     Prepared by Ask Union – Udaipur Module
@@ -1009,15 +898,12 @@ button{
 
 </div>
 
-
 </div>
 
 
 <script>
 
-/* =========================
-   DATE FORMAT
-========================= */
+/* ================= DATE FORMAT ================= */
 
 function formatDate(dateValue){
 
@@ -1031,37 +917,56 @@ function formatDate(dateValue){
     return dateValue;
   }
 
-  return (
-    parts[2] + " " +
-    [
-      "",
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ][Number(parts[1])] +
-    " " +
-    parts[0]
-  );
+  const year = Number(parts[0]);
+  const month = Number(parts[1]);
+  const day = Number(parts[2]);
+
+  const date = new Date(year, month - 1, day);
+
+  return date.toLocaleDateString("en-IN",{
+    day:"2-digit",
+    month:"long",
+    year:"numeric"
+  });
 }
 
 
-/* =========================
-   CALCULATE
-========================= */
+/* ================= MONTH FROM DATE ================= */
+
+function getMonthFromDate(dateValue){
+
+  if(!dateValue){
+    return "-";
+  }
+
+  const parts = dateValue.split("-");
+
+  if(parts.length !== 3){
+    return "-";
+  }
+
+  const year = Number(parts[0]);
+  const month = Number(parts[1]);
+  const day = Number(parts[2]);
+
+  const date = new Date(year,month-1,day);
+
+  return date.toLocaleDateString("en-IN",{
+    month:"long",
+    year:"numeric"
+  });
+}
+
+
+/* ================= CALCULATE ================= */
 
 function calculateOT(){
 
   const employee =
     document.getElementById("employeeName").value.trim();
+
+  const designation =
+    document.getElementById("designation").value.trim();
 
   const code =
     document.getElementById("employeeCode").value.trim();
@@ -1072,9 +977,6 @@ function calculateOT(){
   const date =
     document.getElementById("otDate").value;
 
-  const month =
-    document.getElementById("monthSelect").value;
-
   const gross =
     Number(document.getElementById("grossPay").value);
 
@@ -1083,6 +985,24 @@ function calculateOT(){
 
   const type =
     document.getElementById("otType").value;
+
+
+  /* VALIDATION */
+
+  if(!employee){
+
+    alert("Please enter Employee Name.");
+
+    return;
+  }
+
+
+  if(!date){
+
+    alert("Please select Date of Overtime.");
+
+    return;
+  }
 
 
   if(gross <= 0){
@@ -1111,11 +1031,11 @@ function calculateOT(){
 
   /* HOURLY RATE */
 
-  const hourly =
-    gross / 150;
+  const hourly = gross / 150;
 
 
   let amount = 0;
+
   let rate = "";
 
 
@@ -1161,126 +1081,153 @@ function calculateOT(){
     : "Weekday";
 
 
-  /* DISPLAY */
-
-  document.getElementById("rEmployee").textContent =
-    employee || "-";
-
-  document.getElementById("rCode").textContent =
-    code || "-";
-
-  document.getElementById("rBranch").textContent =
-    branch || "-";
-
-  document.getElementById("rDate").textContent =
-    formatDate(date);
-
-  document.getElementById("rMonth").textContent =
-    month || "-";
+  const month =
+    getMonthFromDate(date);
 
 
-  document.getElementById("rGross").textContent =
-    "₹" +
-    gross.toLocaleString("en-IN",{
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    });
+  /* ================= RESULT ================= */
+
+  document.getElementById("rEmployee")
+    .textContent = employee || "-";
 
 
-  document.getElementById("rHours").textContent =
-    hours + " Hrs";
+  document.getElementById("rDesignation")
+    .textContent = designation || "-";
 
 
-  document.getElementById("rType").textContent =
-    typeText;
+  document.getElementById("rCode")
+    .textContent = code || "-";
 
 
-  document.getElementById("rHourly").textContent =
-    "₹" + hourly.toFixed(2);
+  document.getElementById("rBranch")
+    .textContent = branch || "-";
 
 
-  document.getElementById("rRate").textContent =
-    rate;
+  document.getElementById("rDate")
+    .textContent = formatDate(date);
 
 
-  document.getElementById("rHours2").textContent =
-    hours;
+  document.getElementById("rMonth")
+    .textContent = month;
 
 
-  document.getElementById("rType2").textContent =
-    typeText;
+  document.getElementById("rGross")
+    .textContent =
+      "₹" +
+      gross.toLocaleString("en-IN",{
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      });
 
 
-  document.getElementById("rAmount").textContent =
-    "₹" +
-    amount.toLocaleString("en-IN",{
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    });
+  document.getElementById("rHours")
+    .textContent =
+      hours + " Hrs";
 
 
-  /* SHOW */
+  document.getElementById("rType")
+    .textContent =
+      typeText;
 
-  document.getElementById("printPage").style.display =
-    "block";
+
+  document.getElementById("rHourly")
+    .textContent =
+      "₹" +
+      hourly.toLocaleString("en-IN",{
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      });
 
 
-  /* SAVE */
+  document.getElementById("rRate")
+    .textContent =
+      rate;
+
+
+  document.getElementById("rHours2")
+    .textContent =
+      hours;
+
+
+  document.getElementById("rType2")
+    .textContent =
+      typeText;
+
+
+  document.getElementById("rAmount")
+    .textContent =
+      "₹" +
+      amount.toLocaleString("en-IN",{
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      });
+
+
+  document.getElementById("printPage")
+    .style.display = "block";
+
+
+  /* SAVE DATA FOR WHATSAPP */
 
   window.overtimeData = {
 
-    employee:employee,
-
-    code:code,
-
-    branch:branch,
-
-    date:date,
-
-    month:month,
-
-    gross:gross,
-
-    hours:hours,
-
+    employee,
+    designation,
+    code,
+    branch,
+    date,
+    month,
+    gross,
+    hours,
     type:typeText,
-
-    hourly:hourly,
-
-    rate:rate,
-
-    amount:amount
+    hourly,
+    rate,
+    amount
 
   };
+
+
+  /* SCROLL TO RESULT */
+
+  document.getElementById("printPage")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
 
 }
 
 
-/* =========================
-   RESET
-========================= */
+/* ================= RESET ================= */
 
 function resetCalculator(){
 
-  document.getElementById("employeeName").value = "";
+  document.getElementById("employeeName")
+    .value = "";
 
-  document.getElementById("employeeCode").value = "";
+  document.getElementById("designation")
+    .value = "";
 
-  document.getElementById("branchCode").value = "";
+  document.getElementById("employeeCode")
+    .value = "";
 
-  document.getElementById("otDate").value = "";
+  document.getElementById("branchCode")
+    .value = "";
 
-  document.getElementById("monthSelect").value = "";
+  document.getElementById("otDate")
+    .value = "";
 
-  document.getElementById("grossPay").value = "";
+  document.getElementById("grossPay")
+    .value = "";
 
-  document.getElementById("otHours").value = "";
+  document.getElementById("otHours")
+    .value = "";
 
-  document.getElementById("otType").value = "";
+  document.getElementById("otType")
+    .value = "";
 
 
-  document.getElementById("printPage").style.display =
-    "none";
+  document.getElementById("printPage")
+    .style.display = "none";
 
 
   window.overtimeData = null;
@@ -1288,9 +1235,7 @@ function resetCalculator(){
 }
 
 
-/* =========================
-   WHATSAPP
-========================= */
+/* ================= WHATSAPP ================= */
 
 function shareWhatsApp(){
 
@@ -1302,63 +1247,31 @@ function shareWhatsApp(){
   }
 
 
-  const d =
-    window.overtimeData;
+  const d = window.overtimeData;
 
 
   const message =
 
-    "⏱️ OVERTIME CALCULATION\n\n" +
+`⏱️ OVERTIME CALCULATION
 
-    "Employee: " +
-    (d.employee || "-") +
-    "\n" +
+Employee: ${d.employee || "-"}
+Designation: ${d.designation || "-"}
+Employee Code: ${d.code || "-"}
+Branch Code: ${d.branch || "-"}
+Date: ${formatDate(d.date)}
+Month: ${d.month}
+Gross Pay: ₹${d.gross.toLocaleString("en-IN")}
+OT Hours: ${d.hours}
+OT Type: ${d.type}
+Hourly Rate: ₹${d.hourly.toFixed(2)}
+OT Rate: ${d.rate}
 
-    "Employee Code: " +
-    (d.code || "-") +
-    "\n" +
+💰 TOTAL OT: ₹${d.amount.toLocaleString("en-IN",{
+  minimumFractionDigits:2,
+  maximumFractionDigits:2
+})}
 
-    "Branch Code: " +
-    (d.branch || "-") +
-    "\n" +
-
-    "Date: " +
-    formatDate(d.date) +
-    "\n" +
-
-    "Month: " +
-    (d.month || "-") +
-    "\n" +
-
-    "Gross Pay: ₹" +
-    d.gross.toLocaleString("en-IN") +
-    "\n" +
-
-    "OT Hours: " +
-    d.hours +
-    "\n" +
-
-    "OT Type: " +
-    d.type +
-    "\n" +
-
-    "Hourly Rate: ₹" +
-    d.hourly.toFixed(2) +
-    "\n" +
-
-    "OT Rate: " +
-    d.rate +
-    "\n\n" +
-
-    "💰 TOTAL OT: ₹" +
-    d.amount.toLocaleString("en-IN",{
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    }) +
-
-    "\n\n" +
-
-    "Prepared by Ask Union – Udaipur Module";
+Prepared by Ask Union – Udaipur Module`;
 
 
   window.open(
@@ -1370,9 +1283,7 @@ function shareWhatsApp(){
 }
 
 
-/* =========================
-   PDF
-========================= */
+/* ================= PRINT / PDF ================= */
 
 function generatePDF(){
 
@@ -1386,33 +1297,6 @@ function generatePDF(){
   window.print();
 
 }
-
-
-/* =========================
-   AUTO MONTH
-========================= */
-
-document
-  .getElementById("otDate")
-  .addEventListener("change",function(){
-
-    if(!this.value){
-      return;
-    }
-
-
-    const monthIndex =
-      Number(this.value.split("-")[1]);
-
-
-    const select =
-      document.getElementById("monthSelect");
-
-
-    select.selectedIndex =
-      monthIndex;
-
-  });
 
 </script>
 
