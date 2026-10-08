@@ -4,679 +4,291 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Overtime Calculator</title>
+<title>Overtime Calculator | Ask Union</title>
 
+<!-- PDF Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
 *{
     box-sizing:border-box;
-    margin:0;
-    padding:0;
 }
 
 body{
+    margin:0;
     font-family:Arial,Helvetica,sans-serif;
-    background:#f3f7fb;
-    color:#172554;
-    padding:10px;
+    background:linear-gradient(135deg,#eef4ff,#f8fbff);
+    color:#172033;
 }
 
 .container{
     width:100%;
-    max-width:560px;
+    max-width:650px;
     margin:auto;
+    padding:18px;
 }
-
-/* HEADER */
 
 .header{
-    background:linear-gradient(135deg,#0878d1,#07519b);
+    background:linear-gradient(135deg,#063b91,#1261d6);
     color:white;
-    text-align:center;
-    padding:23px 16px;
+    padding:24px 18px;
     border-radius:22px;
-    box-shadow:0 8px 25px rgba(0,80,160,.18);
-    margin-bottom:14px;
-}
-
-.header-icon{
-    font-size:38px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    margin-bottom:18px;
 }
 
 .header h1{
-    font-size:24px;
-    font-weight:900;
-    margin:5px 0;
+    margin:0;
+    font-size:26px;
 }
 
 .header p{
-    font-size:12px;
-    opacity:.92;
+    margin:8px 0 0;
+    opacity:.9;
+    font-size:14px;
 }
-
-/* CARD */
 
 .card{
-    background:#fff;
+    background:white;
     border-radius:20px;
-    padding:19px;
-    margin-bottom:14px;
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    padding:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    margin-bottom:18px;
 }
 
-.title{
-    font-size:17px;
-    font-weight:900;
-    margin-bottom:17px;
-}
-
-/* INPUT */
-
-.field{
-    margin-bottom:14px;
-}
-
-.field label{
+label{
     display:block;
-    font-size:12px;
-    font-weight:800;
-    color:#526174;
-    margin-bottom:6px;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:7px;
+    color:#303b50;
 }
 
-input,
-select{
+input,select{
     width:100%;
-    height:50px;
-    border:1px solid #d7e0eb;
+    padding:13px 14px;
+    border:1px solid #d7deea;
     border-radius:12px;
-    background:#fafcfe;
-    padding:0 13px;
-    font-size:16px;
-    outline:none;
-}
-
-input:focus,
-select:focus{
-    border-color:#0878d1;
-    box-shadow:0 0 0 3px rgba(8,120,209,.10);
-}
-
-/* CALCULATE */
-
-.calc{
-    width:100%;
-    height:54px;
-    border:0;
-    border-radius:13px;
-    background:linear-gradient(135deg,#0878d1,#07519b);
-    color:white;
     font-size:15px;
-    font-weight:900;
-    cursor:pointer;
+    outline:none;
+    background:#fff;
+    margin-bottom:15px;
 }
 
-/* RESULT */
-
-.result{
-    display:none;
-    border:1px solid #ccefdc;
-    background:linear-gradient(135deg,#f1fff7,#fff);
+input:focus,select:focus{
+    border-color:#1261d6;
+    box-shadow:0 0 0 3px rgba(18,97,214,.10);
 }
-
-.result-title{
-    font-size:17px;
-    font-weight:900;
-    color:#08744a;
-    margin-bottom:12px;
-}
-
-.total{
-    text-align:center;
-    background:#eafff2;
-    border:1px solid #cdeedb;
-    border-radius:16px;
-    padding:18px;
-    margin-bottom:14px;
-}
-
-.total small{
-    display:block;
-    color:#64748b;
-    font-size:11px;
-    font-weight:700;
-}
-
-.amount{
-    font-size:36px;
-    font-weight:900;
-    color:#0878d1;
-    margin:5px 0;
-}
-
-/* DETAILS */
 
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:8px;
+    gap:12px;
 }
 
-.item{
-    border:1px solid #e1e8ef;
-    border-radius:12px;
-    padding:11px;
-    background:white;
-}
-
-.item span{
-    display:block;
-    font-size:10px;
-    color:#718096;
-    margin-bottom:4px;
-}
-
-.item b{
-    font-size:13px;
-    word-break:break-word;
-}
-
-/* BUTTONS */
-
-.share{
+button{
     width:100%;
-    height:52px;
-    border:0;
+    border:none;
+    padding:14px;
     border-radius:13px;
-    background:#168c4a;
-    color:white;
-    font-weight:900;
-    margin-top:14px;
+    font-size:16px;
+    font-weight:bold;
     cursor:pointer;
+    margin-top:5px;
+}
+
+.calculate{
+    background:linear-gradient(135deg,#0b63d8,#0847a6);
+    color:white;
 }
 
 .reset{
-    width:100%;
-    height:46px;
-    border:1px solid #ccd8e5;
-    border-radius:12px;
-    background:white;
-    color:#1769aa;
-    font-weight:800;
-    margin-top:9px;
+    background:#edf1f7;
+    color:#263247;
+    margin-top:10px;
 }
 
-/* INFO */
-
-.info{
-    font-size:12px;
-    line-height:1.6;
-    color:#64748b;
+.share{
+    background:#19a957;
+    color:white;
+    margin-top:10px;
 }
 
-/* FOOTER */
+.result{
+    display:none;
+    background:#f7fbff;
+    border:1px solid #dbe9ff;
+    border-radius:18px;
+    padding:18px;
+}
+
+.result h2{
+    margin-top:0;
+    color:#084da8;
+    font-size:21px;
+}
+
+.result-row{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:9px 0;
+    border-bottom:1px solid #e5eaf1;
+    font-size:14px;
+}
+
+.result-row:last-child{
+    border-bottom:none;
+}
+
+.result-row span:last-child{
+    font-weight:bold;
+    text-align:right;
+}
+
+.total{
+    background:#e8f7ee;
+    border-radius:13px;
+    padding:15px;
+    margin-top:14px;
+    text-align:center;
+}
+
+.total small{
+    display:block;
+    color:#237044;
+    font-weight:bold;
+}
+
+.total strong{
+    display:block;
+    color:#087a3e;
+    font-size:29px;
+    margin-top:5px;
+}
+
+.formula{
+    background:#fff8e7;
+    border-left:4px solid #f0a500;
+    padding:12px;
+    border-radius:10px;
+    margin-top:15px;
+    font-size:13px;
+    line-height:1.5;
+}
 
 .footer{
     text-align:center;
-    color:#8995a5;
-    font-size:10px;
-    line-height:1.5;
-    padding:4px 0 12px;
+    font-size:11px;
+    color:#7a8495;
+    margin:20px 0 8px;
 }
 
-.footer .credit{
-    font-size:9px;
-    color:#9aa4b2;
+/* PDF result */
+#pdfArea{
+    background:white;
+    padding:25px;
+    width:700px;
+    position:absolute;
+    left:-99999px;
+    top:0;
 }
 
-/* MOBILE */
+.pdf-title{
+    text-align:center;
+    color:#084da8;
+    margin-bottom:20px;
+}
 
-@media(max-width:380px){
+.pdf-box{
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:15px;
+}
 
-    body{
-        padding:7px;
+.pdf-row{
+    display:flex;
+    justify-content:space-between;
+    padding:9px 0;
+    border-bottom:1px solid #eee;
+}
+
+.pdf-total{
+    margin-top:18px;
+    background:#e8f7ee;
+    padding:18px;
+    text-align:center;
+    border-radius:12px;
+}
+
+.pdf-total strong{
+    display:block;
+    font-size:28px;
+    color:#087a3e;
+    margin-top:5px;
+}
+
+.pdf-footer{
+    text-align:center;
+    margin-top:25px;
+    font-size:11px;
+    color:#777;
+}
+
+@media(max-width:520px){
+    .container{
+        padding:12px;
     }
 
-    .card{
-        padding:15px;
+    .grid{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .header{
+        padding:20px 15px;
     }
 
     .header h1{
-        font-size:21px;
+        font-size:23px;
     }
 
-    .amount{
-        font-size:32px;
+    .card{
+        padding:16px;
     }
 }
 </style>
 </head>
 
-
 <body>
 
 <div class="container">
 
-<!-- HEADER -->
-
-<div class="header">
-
-    <div class="header-icon">
-        ⏱️
+    <div class="header">
+        <h1>Overtime Calculator</h1>
+        <p>Quick & Accurate Overtime Calculation</p>
     </div>
 
-    <h1>
-        OVERTIME CALCULATOR
-    </h1>
+    <div class="card">
 
-    <p>
-        Staff Overtime Calculation • 2026
-    </p>
+        <div class="grid">
 
-</div>
+            <div>
+                <label>Employee Name</label>
+                <input type="text" id="employeeName" placeholder="Enter employee name">
+            </div>
 
+            <div>
+                <label>Employee Code</label>
+                <input type="text" id="employeeCode" placeholder="Employee code">
+            </div>
 
-<!-- INPUT CARD -->
-
-<div class="card">
-
-    <div class="title">
-        📋 Enter Details
-    </div>
-
-
-    <!-- NAME -->
-
-    <div class="field">
-
-        <label>
-            Employee Name
-        </label>
-
-        <input
-            id="name"
-            type="text"
-            placeholder="Enter employee name"
-        >
-
-    </div>
-
-
-    <!-- EMPLOYEE CODE -->
-
-    <div class="field">
-
-        <label>
-            Employee Code
-        </label>
-
-        <input
-            id="empCode"
-            type="text"
-            placeholder="Enter employee code"
-        >
-
-    </div>
-
-
-    <!-- BRANCH CODE -->
-
-    <div class="field">
-
-        <label>
-            Branch Code
-        </label>
-
-        <input
-            id="branchCode"
-            type="text"
-            placeholder="Enter branch code"
-            inputmode="numeric"
-        >
-
-    </div>
-
-
-    <!-- OT DATE -->
-
-    <div class="field">
-
-        <label>
-            Date of Overtime
-        </label>
-
-        <input
-            id="otDate"
-            type="date"
-        >
-
-    </div>
-
-
-    <!-- MONTH -->
-
-    <div class="field">
-
-        <label>
-            Select Month
-        </label>
-
-        <select id="month">
-
-            <option>January 2026</option>
-            <option>February 2026</option>
-            <option>March 2026</option>
-            <option>April 2026</option>
-            <option>May 2026</option>
-            <option>June 2026</option>
-            <option>July 2026</option>
-            <option>August 2026</option>
-            <option>September 2026</option>
-
-            <option selected>
-                October 2026
-            </option>
-
-            <option>November 2026</option>
-            <option>December 2026</option>
-
-        </select>
-
-    </div>
-
-
-    <!-- GROSS PAY -->
-
-    <div class="field">
-
-        <label>
-            Gross Pay (₹)
-        </label>
-
-        <input
-            id="gross"
-            type="number"
-            min="0"
-            step="0.01"
-            placeholder="Enter gross pay"
-            inputmode="decimal"
-        >
-
-    </div>
-
-
-    <!-- OT HOURS -->
-
-    <div class="field">
-
-        <label>
-            Overtime Hours
-        </label>
-
-        <input
-            id="hours"
-            type="number"
-            min="0"
-            step="0.5"
-            placeholder="Enter overtime hours"
-            inputmode="decimal"
-        >
-
-    </div>
-
-
-    <button
-        class="calc"
-        onclick="calculate()"
-    >
-
-        🧮 CALCULATE OVERTIME
-
-    </button>
-
-</div>
-
-
-<!-- RESULT -->
-
-<div
-    class="card result"
-    id="result"
->
-
-    <div class="result-title">
-        ✅ YOUR RESULT
-    </div>
-
-
-    <div class="total">
-
-        <small>
-            ESTIMATED OVERTIME AMOUNT
-        </small>
-
-        <div
-            class="amount"
-            id="total"
-        >
-            ₹ 0
         </div>
 
-        <small id="rateText">
-            OT hourly rate: ₹0
-        </small>
-
-    </div>
-
-
-    <div class="grid">
-
-        <div class="item">
-            <span>EMPLOYEE NAME</span>
-            <b id="rName">-</b>
-        </div>
-
-        <div class="item">
-            <span>EMPLOYEE CODE</span>
-            <b id="rEmp">-</b>
-        </div>
-
-        <div class="item">
-            <span>BRANCH CODE</span>
-            <b id="rBranch">-</b>
-        </div>
-
-        <div class="item">
-            <span>OT DATE</span>
-            <b id="rDate">-</b>
-        </div>
-
-        <div class="item">
-            <span>MONTH</span>
-            <b id="rMonth">-</b>
-        </div>
-
-        <div class="item">
-            <span>GROSS PAY</span>
-            <b id="rGross">-</b>
-        </div>
-
-        <div class="item">
-            <span>OT HOURS</span>
-            <b id="rHours">-</b>
-        </div>
-
-        <div class="item">
-            <span>OT HOURLY RATE</span>
-            <b id="rRate">-</b>
-        </div>
-
-    </div>
-
-
-    <button
-        class="share"
-        onclick="sharePDF()"
-    >
-
-        📄 SHARE PDF ON WHATSAPP
-
-    </button>
-
-
-    <button
-        class="reset"
-        onclick="resetCalc()"
-    >
-
-        ↻ RESET CALCULATION
-
-    </button>
-
-</div>
-
-
-<!-- INFORMATION -->
-
-<div class="card">
-
-    <div class="title">
-        ℹ️ Calculation
-    </div>
-
-    <div class="info">
-
-        Gross Pay and overtime hours are entered by
-        the employee.
-
-        <br><br>
-
-        The overtime hourly rate and total overtime
-        amount are calculated automatically.
-
-        <br><br>
-
-        <b>Current Formula:</b>
-
-        <br>
-
-        Gross Pay ÷ 30 ÷ 8 = Hourly Rate
-
-        <br>
-
-        Hourly Rate × OT Hours = OT Amount
-
-    </div>
-
-</div>
-
-
-<!-- FOOTER -->
-
-<div class="footer">
-
-    Overtime Calculator • 2026
-
-    <br>
-
-    <span class="credit">
-        Prepared by Ask Union – Udaipur Module
-    </span>
-
-</div>
-
-</div>
-
-
-<script>
-
-let lastData = null;
-
-
-/* =========================
-   MONEY FORMAT
-========================= */
-
-function money(number){
-
-    return "₹ " +
-        Number(number).toLocaleString(
-            "en-IN",
-            {
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
-            }
-        );
-
-}
-
-
-/* =========================
-   DATE FORMAT
-========================= */
-
-function formatDate(value){
-
-    if(!value){
-        return "-";
-    }
-
-    const date =
-        new Date(
-            value + "T00:00:00"
-        );
-
-    return date.toLocaleDateString(
-        "en-IN",
-        {
-            day:"2-digit",
-            month:"2-digit",
-            year:"numeric"
-        }
-    );
-
-}
-
-
-/* =========================
-   CALCULATE
-========================= */
-
-function calculate(){
-
-    const name =
-        document.getElementById(
-            "name"
-        ).value.trim();
-
-
-    const emp =
-        document.getElementById(
-            "empCode"
-        ).value.trim();
-
-
-    const branch =
-        document.getElementById(
-            "branchCode"
-        ).value.trim();
-
-
-    const date =
-        document.getElementById(
-            "otDate"
-        ).value;
-
-
-    const month =
-        document.getElementById(
-            "month"
-        ).value;
-
-
-    const gross =
-        Number(
-            document.getElementById(
-               
+        <div class="grid">
+
+            <div>
+                <label>Branch Code</label>
+                <
