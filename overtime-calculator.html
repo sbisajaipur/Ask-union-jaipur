@@ -460,3 +460,590 @@ button{
 
 
 <!-- RESULT CARD -->
+
+<div class="card result" id="result">
+
+    <h2>📊 Calculation Result</h2>
+
+    <div class="row">
+        <span>Employee Name</span>
+        <strong id="rName">-</strong>
+    </div>
+
+    <div class="row">
+        <span>Employee Code</span>
+        <strong id="rCode">-</strong>
+    </div>
+
+    <div class="row">
+        <span>Branch Code</span>
+        <strong id="rBranch">-</strong>
+    </div>
+
+    <div class="row">
+        <span>Date</span>
+        <strong id="rDate">-</strong>
+    </div>
+
+    <div class="row">
+        <span>Month</span>
+        <strong id="rMonth">-</strong>
+    </div>
+
+    <div class="row">
+        <span>Gross Pay</span>
+        <strong id="rGross">-</strong>
+    </div>
+
+    <div class="row">
+        <span>Hourly Rate</span>
+        <strong id="rHourly">-</strong>
+    </div>
+
+    <div class="row">
+        <span>OT Type</span>
+        <strong id="rType">-</strong>
+    </div>
+
+    <div class="row">
+        <span>OT Hours</span>
+        <strong id="rHours">-</strong>
+    </div>
+
+    <div class="row">
+        <span>OT Rate</span>
+        <strong id="rRate">-</strong>
+    </div>
+
+    <div class="total">
+
+        <small>TOTAL OVERTIME AMOUNT</small>
+
+        <h2 id="rAmount">₹0.00</h2>
+
+    </div>
+
+    <button
+        type="button"
+        id="whatsappBtn"
+        class="share-btn">
+        📲 SHARE ON WHATSAPP
+    </button>
+
+    <button
+        type="button"
+        id="pdfBtn"
+        class="pdf-btn">
+        📄 PRINT / SAVE PDF
+    </button>
+
+</div>
+
+
+<!-- CALCULATION INFORMATION -->
+
+<div class="card info">
+
+    <h3>ℹ️ Calculation</h3>
+
+    <p>
+        Gross Pay and overtime hours are entered by the employee.
+    </p>
+
+    <p>
+        Hourly rate and total overtime amount are calculated automatically.
+    </p>
+
+    <div class="formula-box">
+
+        <strong>Formula</strong>
+
+        <br><br>
+
+        Hourly Rate = Gross Pay ÷ 150
+
+        <br><br>
+
+        <strong>Weekday</strong>
+
+        <br>
+
+        First 1 hour × 150% +
+        remaining hours × 170%
+
+        <br><br>
+
+        <strong>Sunday / Holiday</strong>
+
+        <br>
+
+        All OT hours × 200%
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    Overtime Calculator • 2026
+
+    <br>
+
+    Prepared by Ask Union – Udaipur Module
+
+</div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+document
+.getElementById("calculateBtn")
+.addEventListener("click", function(){
+
+    var name =
+        document.getElementById("employeeName").value.trim();
+
+    var code =
+        document.getElementById("employeeCode").value.trim();
+
+    var branch =
+        document.getElementById("branchCode").value.trim();
+
+    var date =
+        document.getElementById("otDate").value;
+
+    var month =
+        document.getElementById("month").value;
+
+    var gross =
+        parseFloat(
+            document.getElementById("grossPay").value
+        );
+
+    var type =
+        document.getElementById("otType").value;
+
+    var hours =
+        parseFloat(
+            document.getElementById("otHours").value
+        );
+
+
+    /* VALIDATION */
+
+    if(name === ""){
+        alert("Please enter Employee Name.");
+        return;
+    }
+
+    if(code === ""){
+        alert("Please enter Employee Code.");
+        return;
+    }
+
+    if(branch === ""){
+        alert("Please enter Branch Code.");
+        return;
+    }
+
+    if(date === ""){
+        alert("Please select Date of Overtime.");
+        return;
+    }
+
+    if(month === ""){
+        alert("Please select Month.");
+        return;
+    }
+
+    if(isNaN(gross) || gross <= 0){
+        alert("Please enter valid Gross Pay.");
+        return;
+    }
+
+    if(type === ""){
+        alert("Please select Overtime Type.");
+        return;
+    }
+
+    if(isNaN(hours) || hours <= 0){
+        alert("Please enter valid Overtime Hours.");
+        return;
+    }
+
+
+    /* HOURLY RATE */
+
+    var hourlyRate = gross / 150;
+
+    var amount = 0;
+
+    var rateText = "";
+
+
+    /* WEEKDAY */
+
+    if(type === "weekday"){
+
+        var firstHour =
+            Math.min(hours, 1);
+
+        var remainingHours =
+            Math.max(hours - 1, 0);
+
+        amount =
+            (hourlyRate * firstHour * 1.50) +
+            (hourlyRate * remainingHours * 1.70);
+
+        rateText =
+            hours <= 1
+            ? "150%"
+            : "150% + 170%";
+    }
+
+
+    /* SUNDAY / HOLIDAY */
+
+    else if(type === "holiday"){
+
+        amount =
+            hourlyRate * hours * 2;
+
+        rateText = "200%";
+    }
+
+
+    /* DATE */
+
+    var dateParts =
+        date.split("-");
+
+    var formattedDate =
+        dateParts[2] +
+        "/" +
+        dateParts[1] +
+        "/" +
+        dateParts[0];
+
+
+    /* DISPLAY */
+
+    document.getElementById("rName").textContent =
+        name;
+
+    document.getElementById("rCode").textContent =
+        code;
+
+    document.getElementById("rBranch").textContent =
+        branch;
+
+    document.getElementById("rDate").textContent =
+        formattedDate;
+
+    document.getElementById("rMonth").textContent =
+        month;
+
+    document.getElementById("rGross").textContent =
+        "₹" +
+        gross.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+    document.getElementById("rHourly").textContent =
+        "₹" +
+        hourlyRate.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+    document.getElementById("rType").textContent =
+        type === "weekday"
+        ? "Weekday"
+        : "Sunday / Holiday";
+
+    document.getElementById("rHours").textContent =
+        hours;
+
+    document.getElementById("rRate").textContent =
+        rateText;
+
+    document.getElementById("rAmount").textContent =
+        "₹" +
+        amount.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+
+    /* SHOW RESULT */
+
+    document.getElementById("result").style.display =
+        "block";
+
+
+    /* SAVE RESULT FOR WHATSAPP */
+
+    window.overtimeData = {
+
+        name: name,
+        code: code,
+        branch: branch,
+        date: formattedDate,
+        month: month,
+        gross: gross,
+        hourly: hourlyRate,
+        type: type,
+        hours: hours,
+        rate: rateText,
+        amount: amount
+
+    };
+
+
+    /* SCROLL */
+
+    document.getElementById("result")
+    .scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+});
+
+
+/* RESET */
+
+document
+.getElementById("resetBtn")
+.addEventListener("click", function(){
+
+    document.getElementById("employeeName").value = "";
+
+    document.getElementById("employeeCode").value = "";
+
+    document.getElementById("branchCode").value = "32146";
+
+    document.getElementById("otDate").value = "";
+
+    document.getElementById("month").value = "";
+
+    document.getElementById("grossPay").value = "";
+
+    document.getElementById("otType").value = "";
+
+    document.getElementById("otHours").value = "";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    window.overtimeData = null;
+
+});
+
+
+/* WHATSAPP */
+
+document
+.getElementById("whatsappBtn")
+.addEventListener("click", function(){
+
+    if(!window.overtimeData){
+
+        alert("Please calculate overtime first.");
+
+        return;
+    }
+
+    var d = window.overtimeData;
+
+    var typeName =
+        d.type === "weekday"
+        ? "Weekday"
+        : "Sunday / Holiday";
+
+    var message =
+        "OVERTIME CALCULATION\n\n" +
+
+        "Employee: " + d.name + "\n" +
+
+        "Employee Code: " + d.code + "\n" +
+
+        "Branch Code: " + d.branch + "\n" +
+
+        "Date: " + d.date + "\n" +
+
+        "Month: " + d.month + "\n" +
+
+        "Gross Pay: ₹" +
+        d.gross.toFixed(2) + "\n" +
+
+        "Hourly Rate: ₹" +
+        d.hourly.toFixed(2) + "\n" +
+
+        "OT Type: " +
+        typeName + "\n" +
+
+        "OT Hours: " +
+        d.hours + "\n" +
+
+        "OT Rate: " +
+        d.rate + "\n" +
+
+        "Overtime Amount: ₹" +
+        d.amount.toFixed(2) +
+
+        "\n\nPrepared by Ask Union";
+
+    var whatsappURL =
+        "https://wa.me/?text=" +
+        encodeURIComponent(message);
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+});
+
+
+/* PRINT / SAVE PDF */
+
+document
+.getElementById("pdfBtn")
+.addEventListener("click", function(){
+
+    if(!window.overtimeData){
+
+        alert("Please calculate overtime first.");
+
+        return;
+    }
+
+    window.print();
+
+});
+
+
+/* AUTO SELECT MONTH */
+
+document
+.getElementById("otDate")
+.addEventListener("change", function(){
+
+    var dateValue = this.value;
+
+    if(dateValue === ""){
+        return;
+    }
+
+    var parts =
+        dateValue.split("-");
+
+    var year =
+        parts[0];
+
+    var monthNumber =
+        parseInt(parts[1], 10);
+
+    var monthNames = [
+
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+
+    ];
+
+    var monthValue =
+        monthNames[monthNumber - 1] +
+        " " +
+        year;
+
+    var monthSelect =
+        document.getElementById("month");
+
+    for(
+        var i = 0;
+        i < monthSelect.options.length;
+        i++
+    ){
+
+        if(
+            monthSelect.options[i].value ===
+            monthValue
+        ){
+
+            monthSelect.selectedIndex = i;
+
+            break;
+        }
+
+    }
+
+});
+
+</script>
+
+
+<!-- PRINT STYLE -->
+
+<style>
+
+@media print{
+
+    body{
+        background:#fff;
+    }
+
+    .container{
+        max-width:800px;
+        padding:10px;
+    }
+
+    .header{
+        box-shadow:none;
+    }
+
+    .card{
+        box-shadow:none;
+        border:1px solid #ddd;
+    }
+
+    .calculate-btn,
+    .reset-btn,
+    .share-btn,
+    .pdf-btn,
+    .info{
+        display:none !important;
+    }
+
+    .result{
+        display:block !important;
+    }
+
+    .footer{
+        margin-top:20px;
+    }
+
+}
+
+</style>
+
+</body>
+</html>
