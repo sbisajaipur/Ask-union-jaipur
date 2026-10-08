@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0">
+
+<meta name="theme-color" content="#2457d6">
+
+<meta name="description"
+      content="Free EMI Calculator - Calculate monthly EMI, total interest and total payment.">
+
+<title>EMI Calculator | ASK UNION</title>
+
+
+<!-- =====================================================
+     GOOGLE ANALYTICS
+===================================================== -->
+
+<script async
+src="https://www.googletagmanager.com/gtag/js?id=G-1HTGRBKV4"></script>
+
+<script>
+
+window.dataLayer = window.dataLayer || [];
+
+function gtag(){
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+gtag('config', 'G-1HTGRBKV4');
+
+function trackEvent(name, params = {}){
+
+    try{
+
+        gtag('event', name, params);
+
+    }catch(e){
+
+        console.log(e);
+
+    }
+
+}
+
+</script>
+
+
+<style>
+
+/* =====================================================
+   BASIC
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+:root{
+
+    --primary:#2457d6;
+    --primary2:#7048d8;
+
+    --text:#172033;
+
+    --muted:#6b7280;
+
+    --bg:#f5f7fb;
+
+    --card:#ffffff;
+
+    --border:#e6eaf1;
+
+    --green:#159957;
+
+    --red:#df3b4b;
+
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    margin:0;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
+
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app{
+
+    width:100%;
+
+    max-width:760px;
+
+    margin:auto;
+
+    min-height:100vh;
+
+    padding-bottom:30px;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    background:
+        rgba(255,255,255,.96);
+
+    backdrop-filter:
+        blur(15px);
+
+    border-bottom:
+        1px solid var(--border);
+
+    padding:
+        13px 16px;
+
+}
+
+
+.header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.logo{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:white;
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:16px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 7px 18px
+        rgba(36,87,214,.25);
+
+}
+
+
+.brand h1{
+
+    margin:0;
+
+    font-size:19px;
+
+    line-height:1.1;
+
+    font-weight:800;
+
+}
+
+
+.brand small{
+
+    display:block;
+
+    margin-top:4px;
+
+    color:
+        var(--primary);
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:.7px;
+
+}
+
+
+.back{
+
+    border:
+        1px solid var(--border);
+
+    background:#fff;
+
+    color:var(--text);
+
+    border-radius:12px;
+
+    padding:
+        9px 12px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main{
+
+    padding:16px;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    background:
+        linear-gradient(
+            135deg,
+            #edf3ff,
+            #f5f0ff
+        );
+
+    border:
+        1px solid #dfe7ff;
+
+    border-radius:22px;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+}
+
+
+.hero .eyebrow{
+
+    font-size:10px;
+
+    color:
+        var(--primary);
+
+    font-weight:800;
+
+    letter-spacing:.9px;
+
+}
+
+
+.hero h2{
+
+    margin:
+        5px 0;
+
+    font-size:27px;
+
+    line-height:1.15;
+
+    letter-spacing:-.6px;
+
+}
+
+
+.hero p{
+
+    margin:0;
+
+    font-size:12px;
+
+    line-height:1.5;
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:17px;
+
+    margin-bottom:14px;
+
+    box-shadow:
+        0 7px 22px
+        rgba(20,35,70,.05);
+
+}
+
+
+/* =====================================================
+   FIELD
+===================================================== */
+
+.field{
+
+    margin-bottom:15px;
+
+}
+
+
+label{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:.2px;
+
+}
+
+
+.input-wrap{
+
+    display:flex;
+
+    align-items:center;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:13px;
+
+    background:#fafbfe;
+
+    overflow:hidden;
+
+}
+
+
+.input-wrap:focus-within{
+
+    border-color:
+        var(--primary);
+
+    background:#fff;
+
+}
+
+
+.prefix{
+
+    padding-left:12px;
+
+    color:
+        var(--muted);
+
+    font-weight:700;
+
+}
+
+
+input{
+
+    width:100%;
+
+    border:0;
+
+    outline:0;
+
+    background:transparent;
+
+    padding:12px;
+
+    font-size:15px;
+
+    color:
+        var(--text);
+
+    font-weight:600;
+
+}
+
+
+input[type="range"]{
+
+    width:100%;
+
+    padding:0;
+
+    margin-top:8px;
+
+    accent-color:
+        var(--primary);
+
+}
+
+
+.range-line{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:9px;
+
+    color:
+        var(--muted);
+
+}
+
+
+.row{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:11px;
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.actions{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:9px;
+
+}
+
+
+button{
+
+    font-family:inherit;
+
+}
+
+
+.primary{
+
+    border:0;
+
+    background:
+        var(--primary);
+
+    color:#fff;
+
+    border-radius:13px;
+
+    padding:12px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+.primary:hover{
+
+    background:
+        #1d49bd;
+
+}
+
+
+.reset{
+
+    border:0;
+
+    background:#f0f2f6;
+
+    color:var(--text);
+
+    border-radius:13px;
+
+    padding:12px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.result{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:#fff;
+
+    border-radius:20px;
+
+    padding:19px;
+
+    margin-bottom:14px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(36,87,214,.20);
+
+}
+
+
+.result-label{
+
+    font-size:10px;
+
+    opacity:.82;
+
+    font-weight:700;
+
+    letter-spacing:.4px;
+
+}
+
+
+.emi{
+
+    font-size:35px;
+
+    font-weight:800;
+
+    line-height:1.1;
+
+    margin:
+        4px 0 15px;
+
+}
+
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:9px;
+
+}
+
+
+.stat{
+
+    background:
+        rgba(255,255,255,.13);
+
+    border-radius:13px;
+
+    padding:11px;
+
+}
+
+
+.stat small{
+
+    display:block;
+
+    font-size:9px;
+
+    opacity:.8;
+
+}
+
+
+.stat strong{
+
+    display:block;
+
+    font-size:14px;
+
+    margin-top:2px;
+
+}
+
+
+/* =====================================================
+   BREAKDOWN
+===================================================== */
+
+.breakdown{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
+
+}
+
+
+.break-card{
+
+    border:
+        1px solid var(--border);
+
+    border-radius:15px;
+
+    padding:13px;
+
+}
+
+
+.break-card small{
+
+    display:block;
+
+    font-size:10px;
+
+    color:
+        var(--muted);
+
+}
+
+
+.break-card strong{
+
+    display:block;
+
+    font-size:16px;
+
+    margin-top:3px;
+
+}
+
+
+.bar{
+
+    height:13px;
+
+    display:flex;
+
+    overflow:hidden;
+
+    border-radius:99px;
+
+    background:#e9edf5;
+
+    margin-top:15px;
+
+}
+
+
+.principal-bar{
+
+    background:
+        #2457d6;
+
+}
+
+
+.interest-bar{
+
+    background:
+        #df3b4b;
+
+}
+
+
+.legend{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:8px;
+
+    font-size:10px;
+
+    color:
+        var(--muted);
+
+}
+
+
+.dot{
+
+    width:8px;
+
+    height:8px;
+
+    display:inline-block;
+
+    border-radius:50%;
+
+    margin-right:4px;
+
+}
+
+
+/* =====================================================
+   SHARE
+===================================================== */
+
+.whatsapp{
+
+    border:0;
+
+    background:
+        #25d366;
+
+    color:#fff;
+
+    border-radius:13px;
+
+    padding:12px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+.print{
+
+    border:0;
+
+    background:#f0f2f6;
+
+    color:var(--text);
+
+    border-radius:13px;
+
+    padding:12px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.schedule{
+
+    width:100%;
+
+    overflow:auto;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:14px;
+
+}
+
+
+table{
+
+    width:100%;
+
+    min-width:570px;
+
+    border-collapse:collapse;
+
+    font-size:10px;
+
+}
+
+
+th{
+
+    background:#f5f7fb;
+
+    padding:10px;
+
+    text-align:right;
+
+    white-space:nowrap;
+
+}
+
+
+th:first-child{
+
+    text-align:center;
+
+}
+
+
+td{
+
+    padding:9px;
+
+    border-top:
+        1px solid var(--border);
+
+    text-align:right;
+
+}
+
+
+td:first-child{
+
+    text-align:center;
+
+    font-weight:700;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    color:
+        var(--muted);
+
+    font-size:10px;
+
+    line-height:1.6;
+
+    padding:
+        12px;
+
+}
+
+
+.footer strong{
+
+    color:
+        var(--text);
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:480px){
+
+    main{
+
+        padding:12px;
+
+    }
+
+
+    .hero h2{
+
+        font-size:23px;
+
+    }
+
+
+    .row{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .emi{
+
+        font-size:30px;
+
+    }
+
+}
+
+
+@media(min-width:761px){
+
+    body{
+
+        background:#edf1f7;
+
+    }
+
+    .app{
+
+        background:
+            var(--bg);
+
+        box-shadow:
+            0 0 40px
+            rgba(0,0,0,.05);
+
+    }
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print{
+
+    header{
+
+        position:static;
+
+    }
+
+
+    .back,
+    .actions,
+    .whatsapp,
+    .print{
+
+        display:none !important;
+
+    }
+
+
+    body{
+
+        background:#fff;
+
+    }
+
+
+    .card,
+    .result,
+    .hero{
+
+        box-shadow:none;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+<div class="header">
+
+<div class="brand">
+
+<div class="logo">
+AU
+</div>
+
+<div>
+
+<h1>
+EMI Calculator
+</h1>
+
+<small>
+ASK UNION · FINANCIAL TOOLS
+</small>
+
+</div>
+
+</div>
+
+
+<button
+class="back"
+onclick="history.back()">
+
+← Back
+
+</button>
+
+</div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="eyebrow">
+SMART LOAN CALCULATOR
+</div>
+
+<h2>
+Calculate Your EMI
+</h2>
+
+<p>
+Enter loan amount, interest rate and tenure
+to instantly calculate your monthly EMI,
+total interest and total payment.
+</p>
+
+</section>
+
+
+<!-- =====================================================
+     INPUT CARD
+===================================================== -->
+
+<section class="card">
+
+
+<!-- LOAN AMOUNT -->
+
+<div class="field">
+
+<label>
+LOAN AMOUNT
+</label>
+
+<div class="input-wrap">
+
+<span class="prefix">
+₹
+</span>
+
+<input
+id="amount"
+type="number"
+value="1000000"
+min="1000"
+step="1000">
+
+</div>
+
+
+<input
+id="amountRange"
+type="range"
+min="10000"
+max="100000000"
+step="10000"
+value="1000000">
+
+
+<div class="range-line">
+
+<span>
+₹10,000
+</span>
+
+<span>
+₹10 Cr
+</span>
+
+</div>
+
+</div>
+
+
+<!-- RATE + TENURE -->
+
+<div class="row">
+
+
+<div class="field">
+
+<label>
+INTEREST RATE (% P.A.)
+</label>
+
+<div class="input-wrap">
+
+<input
+id="rate"
+type="number"
+value="8.5"
+min="0"
+max="50"
+step="0.01">
+
+<span
+class="prefix"
+style="padding-right:12px">
+
+%
+
+</span>
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label>
+TENURE (YEARS)
+</label>
+
+<div class="input-wrap">
+
+<input
+id="years"
+type="number"
+value="20"
+min="1"
+max="40"
+step="1">
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- BUTTONS -->
+
+<div class="actions">
+
+<button
+class="primary"
+onclick="
+calculate();
+trackEvent('emi_calculate');
+">
+
+Calculate EMI
+
+</button>
+
+
+<button
+class="reset"
+onclick="resetCalc()">
+
+Reset
+
+</button>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     EMI RESULT
+===================================================== -->
+
+<section class="result">
+
+<div class="result-label">
+YOUR MONTHLY EMI
+</div>
+
+
+<div
+class="emi"
+id="emi">
+
+₹8,678
+
+</div>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<small>
+Total Interest
+</small>
+
+<strong id="interest">
+₹10,82,720
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+Total Payment
+</small>
+
+<strong id="payment">
+₹20,82,720
+</strong>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     BREAKDOWN
+===================================================== -->
+
+<section class="card">
+
+
+<h3
+style="
+font-size:15px;
+margin:0 0 12px;
+">
+
+Payment Breakdown
+
+</h3>
+
+
+<div class="breakdown">
+
+
+<div class="break-card">
+
+<small>
+Principal
+</small>
+
+<strong id="principal">
+₹10,00,000
+</strong>
+
+</div>
+
+
+<div class="break-card">
+
+<small>
+Interest
+</small>
+
+<strong id="interest2">
+₹10,82,720
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="bar">
+
+<div
+id="principalBar"
+class="principal-bar">
+</div>
+
+<div
+id="interestBar"
+class="interest-bar">
+</div>
+
+</div>
+
+
+<div class="legend">
+
+<span>
+
+<i
+class="dot"
+style="background:#2457d6">
+</i>
+
+Principal
+
+</span>
+
+
+<span>
+
+<i
+class="dot"
+style="background:#df3b4b">
+</i>
+
+Interest
+
+</span>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     SHARE
+===================================================== -->
+
+<section class="card">
+
+
+<h3
+style="
+font-size:15px;
+margin:0 0 12px;
+">
+
+Share Calculator
+
+</h3>
+
+
+<div class="actions">
+
+
+<button
+class="whatsapp"
+onclick="shareWhatsApp()">
+
+Share on WhatsApp
+
+</button>
+
+
+<button
+class="print"
+onclick="window.print()">
+
+Print / PDF
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     YEARLY SCHEDULE
+===================================================== -->
+
+<section class="card">
+
+
+<h3
+style="
+font-size:15px;
+margin:0 0 12px;
+">
+
+Year-wise Repayment Schedule
+
+</h3>
+
+
+<div class="schedule">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Year
+</th>
+
+<th>
+Opening Balance
+</th>
+
+<th>
+Principal Paid
+</th>
+
+<th>
+Interest Paid
+</th>
+
+<th>
+Closing Balance
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="schedule">
+</tbody>
+
+</table>
+
+</div>
+
+
+</section>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<strong>
+ASK UNION
+</strong>
+
+<br>
+
+Bank Employee Digital Utility Platform
+
+<br>
+
+EMI Calculator
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const amount =
+document.getElementById("amount");
+
+const amountRange =
+document.getElementById("amountRange");
+
+const rate =
+document.getElementById("rate");
+
+const years =
+document.getElementById("years");
+
+
+/* =====================================================
+   MONEY FORMAT
+===================================================== */
+
+function money(value){
+
+    if(!isFinite(value)){
+        return "₹0";
+    }
+
+    return "₹" +
+        Math.round(value)
+        .toLocaleString("en-IN");
+
+}
+
+
+/* =====================================================
+   INPUT SYNC
+===================================================== */
+
+amount.addEventListener(
+    "input",
+    function(){
+
+        let value =
+            Number(amount.value) || 0;
+
+        if(value > 100000000){
+
+            value = 100000000;
+
+            amount.value =
+                value;
+
+        }
+
+        amountRange.value =
+            value;
+
+        calculate();
+
+    }
+);
+
+
+amountRange.addEventListener(
+    "input",
+    function(){
+
+        amount.value =
+            amountRange.value;
+
+        calculate();
+
+    }
+);
+
+
+rate.addEventListener(
+    "input",
+    calculate
+);
+
+
+years.addEventListener(
+    "input",
+    calculate
+);
+
+
+/* =====================================================
+   EMI CALCULATION
+===================================================== */
+
+function calculate(){
+
+    let P =
+        Number(amount.value) || 0;
+
+
+    let annualRate =
+        Number(rate.value) || 0;
+
+
+    let totalYears =
+        Number(years.value) || 1;
+
+
+    if(P < 0){
+
+        P = 0;
+
+    }
+
+
+    if(annualRate < 0){
+
+        annualRate = 0;
+
+    }
+
+
+    if(totalYears < 1){
+
+        totalYears = 1;
+
+    }
+
+
+    let n =
+        Math.round(totalYears * 12);
+
+
+    let r =
+        annualRate / 12 / 100;
+
+
+    let emi;
+
+
+    if(P === 0){
+
+        emi = 0;
+
+    }
+
+    else if(r === 0){
+
+        emi = P / n;
+
+    }
+
+    else{
+
+        emi =
+            P *
+            r *
+            Math.pow(
+                1 + r,
+                n
+            )
+            /
+            (
+                Math.pow(
+                    1 + r,
+                    n
+                ) - 1
+            );
+
+    }
+
+
+    let totalPayment =
+        emi * n;
+
+
+    let totalInterest =
+        totalPayment - P;
+
+
+    if(totalInterest < 0){
+
+        totalInterest = 0;
+
+    }
+
+
+    /* RESULTS */
+
+    document.getElementById(
+        "emi"
+    ).textContent =
+        money(emi);
+
+
+    document.getElementById(
+        "interest"
+    ).textContent =
+        money(totalInterest);
+
+
+    document.getElementById(
+        "interest2"
+    ).textContent =
+        money(totalInterest);
+
+
+    document.getElementById(
+        "payment"
+    ).textContent =
+        money(totalPayment);
+
+
+    document.getElementById(
+        "principal"
+    ).textContent =
+        money(P);
+
+
+    /* BREAKDOWN BAR */
+
+    let principalPercent =
+        totalPayment > 0
+        ?
+        (P / totalPayment) * 100
+        :
+        100;
+
+
+    let interestPercent =
+        100 - principalPercent;
+
+
+    document.getElementById(
+        "principalBar"
+    ).style.width =
+        principalPercent + "%";
+
+
+    document.getElementById(
+        "interestBar"
+    ).style.width =
+        interestPercent + "%";
+
+
+    /* SCHEDULE */
+
+    buildSchedule(
+        P,
+        r,
+        emi,
+        n
+    );
+
+}
+
+
+/* =====================================================
+   YEAR-WISE SCHEDULE
+===================================================== */
+
+function buildSchedule(
+    P,
+    r,
+    emi,
+    n
+){
+
+    const tbody =
+        document.getElementById(
+            "schedule"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    let balance = P;
+
+
+    let totalYears =
+        Math.ceil(n / 12);
+
+
+    for(
+        let year = 1;
+        year <= totalYears;
+        year++
+    ){
+
+        let openingBalance =
+            balance;
+
+
+        let principalPaid =
+            0;
+
+
+        let interestPaid =
+            0;
+
+
+        for(
+            let month = 1;
+            month <= 12;
+            month++
+        ){
+
+            let currentMonth =
+                (
+                    (year - 1) * 12
+                ) + month;
+
+
+            if(
+                currentMonth > n
+            ){
+
+                break;
+
+            }
+
+
+            let interest =
+                balance * r;
+
+
+            let principal =
+                emi - interest;
+
+
+            if(principal > balance){
+
+                principal =
+                    balance;
+
+            }
+
+
+            if(principal < 0){
+
+                principal = 0;
+
+            }
+
+
+            principalPaid +=
+                principal;
+
+
+            interestPaid +=
+                interest;
+
+
+            balance -=
+                principal;
+
+
+            if(
+                balance < 0.01
+            ){
+
+                balance = 0;
+
+            }
+
+        }
+
+
+        let row =
+            document.createElement(
+                "tr"
+            );
+
+
+        row.innerHTML = `
+
+            <td>
+                ${year}
+            </td>
+
+            <td>
+                ${money(openingBalance)}
+            </td>
+
+            <td>
+                ${money(principalPaid)}
+            </td>
+
+            <td>
+                ${money(interestPaid)}
+            </td>
+
+            <td>
+                ${money(balance)}
+            </td>
+
+        `;
+
+
+        tbody.appendChild(row);
+
+    }
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetCalc(){
+
+    amount.value =
+        1000000;
+
+
+    amountRange.value =
+        1000000;
+
+
+    rate.value =
+        8.5;
+
+
+    years.value =
+        20;
+
+
+    calculate();
+
+
+    trackEvent(
+        "emi_reset"
+    );
+
+}
+
+
+/* =====================================================
+   WHATSAPP SHARE
+===================================================== */
+
+function shareWhatsApp(){
+
+    let loan =
+        Number(amount.value) || 0;
+
+
+    let interestRate =
+        Number(rate.value) || 0;
+
+
+    let tenure =
+        Number(years.value) || 0;
+
+
+    let emi =
+        document.getElementById(
+            "emi"
+        ).textContent;
+
+
+    let interest =
+        document.getElementById(
+            "interest"
+        ).textContent;
+
+
+    let payment =
+        document.getElementById(
+            "payment"
+        ).textContent;
+
+
+    let text =
+
+`📊 EMI CALCULATOR
+
+💰 Loan Amount: ${money(loan)}
+
+📈 Interest Rate: ${interestRate}% p.a.
+
+⏳ Tenure: ${tenure} Years
+
+💳 Monthly EMI: ${emi}
+
+💰 Total Interest: ${interest}
+
+💵 Total Payment: ${payment}
+
+━━━━━━━━━━━━━━
+
+ASK UNION
+Bank Employee Digital Utility Platform`;
+
+
+    trackEvent(
+        "whatsapp_share",
+        {
+            tool:
+                "emi_calculator"
+        }
+    );
+
+
+    let url =
+        "https://wa.me/?text=" +
+        encodeURIComponent(text);
+
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+/* =====================================================
+   INITIAL CALCULATION
+===================================================== */
+
+calculate();
+
+</script>
+
+</body>
+</html>
