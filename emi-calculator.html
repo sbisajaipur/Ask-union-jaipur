@@ -217,8 +217,63 @@ input{font-size:14px;padding:12px}.actions{gap:8px}button{border-radius:12px;fon
 .panel>.card:first-child:before{content:"ASK UNION FINANCIAL TOOL";display:block;font-size:8px;font-weight:900;letter-spacing:1.4px;color:#8a95a9;margin-bottom:10px}
 @media(max-width:600px){main{padding:10px}.hero{padding:24px 19px;border-radius:24px;min-height:165px}.hero h2{font-size:26px}.tabs{top:65px}.card{padding:15px;border-radius:18px}.result{border-radius:19px}.big{font-size:31px}}
 </style>
+ 
+<link rel="manifest" href="./emi-manifest.json">
+
 </head>
 
+<!-- ASK UNION EMI App Install -->
+<style>
+#emiInstallApp {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  padding: 15px;
+  border: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg,#1747c7,#7048d8);
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 8px 24px #1747c744;
+}
+</style>
+
+<button id="emiInstallApp" type="button">
+  📲 Install ASK UNION EMI App
+</button>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .catch(error => console.error('PWA:', error));
+  });
+}
+
+let emiInstallPrompt = null;
+const emiInstallButton = document.getElementById('emiInstallApp');
+
+window.addEventListener('beforeinstallprompt', event => {
+  event.preventDefault();
+  emiInstallPrompt = event;
+  emiInstallButton.style.display = 'block';
+});
+
+emiInstallButton.addEventListener('click', async () => {
+  if (emiInstallPrompt) {
+    emiInstallPrompt.prompt();
+    await emiInstallPrompt.userChoice;
+    emiInstallPrompt = null;
+    emiInstallButton.style.display = 'none';
+  } else {
+    alert('Chrome menu ⋮ खोलें और Install app या Add to Home screen चुनें।');
+  }
+});
+</script>
 <body>
 <div class="app">
 
